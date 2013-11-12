@@ -146,7 +146,7 @@ public class MainAdminGUI extends JFrame {
 //            }
 //        });
 //
-//        editQuestionGUI.getBtnSave().addActionListener(new ActionListener() {
+//        editQuestionGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 ////                questionBankController.doSaveEditQuestion();   // todo
@@ -161,7 +161,7 @@ public class MainAdminGUI extends JFrame {
 ////                managementExamController.doSearch();  // todo
 //            }
 //        });
-//        managermentExamGUI.getBtnSave().addActionListener(new ActionListener() {
+//        managermentExamGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 ////                managementExamController.doSave();  // todo
@@ -200,7 +200,7 @@ public class MainAdminGUI extends JFrame {
 //                managementSubjectController.doDelete();       // todo
             }
         });
-        managementSubjectGUI.getBtnSave().addActionListener(new ActionListener() {
+        managementSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                managementSubjectController.doSave();    // todo
@@ -215,31 +215,11 @@ public class MainAdminGUI extends JFrame {
             }
         });
 
-        managementSubjectGUI.getBtnAddSUBJECT().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                newSubjectGUI.resetNewSubjectGUI();
-                newSubjectGUI.show();
-            }
-        });
-        managementSubjectGUI.getBtnEditSUBJECT().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                managementSubjectController.doEditSubject();    // todo
-            }
-        });
 
-        managementSubjectGUI.getBtnDelSUBJECT().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                managementSubjectController.doDelSubject();    // todo
-
-            }
-        });
 //
 //        // ---------------- EditSubjectGUI-------------
 //
-//        editSubjectGUI.getBtnSave().addActionListener(new ActionListener() {
+//        editSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                managementSubjectController.doSaveEditSubject();

@@ -18,6 +18,8 @@ import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,15 +82,20 @@ public class ManagementSubjectController {
 //        });
 //
         managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
+        subjectSubjectTable = managementSubjectGUI.getTableSUBJECT();
+        subjectSubjectScrollpane = managementSubjectGUI.getScrollPaneSUBJECT();
+
 //        resetManagementSubjectGUI();
-        List<Subject> subjectList1 = subjectService.getAll();
-        for (Subject subject : subjectList1) {
-            stringSet.add(subject.getFaculty());
-        }
-        for (String s : stringSet) {
-            managementSubjectGUI.getCbBoxFacultyTab1().addItem(s.intern());
-            managementSubjectGUI.getCbBoxFacultyTab2().addItem(s.intern());
-        }
+        subjectList = subjectService.getAll();
+//        for (Subject subject : subjectList) {
+//            stringSet.add(subject.getFaculty());
+//        }
+//        for (String s : stringSet) {
+//            managementSubjectGUI.getCbBoxFacultyTab1().addItem(s.intern());
+//            managementSubjectGUI.getCbBoxFacultyTab2().addItem(s.intern());
+//        }
+
+        doBindingSubject(subjectList, subjectSubjectTable, subjectSubjectScrollpane);
 
 //        managementSubjectGUI.getCbBoxFacultyTab2().addActionListener(new ActionListener() {
 //            @Override
@@ -106,7 +113,42 @@ public class ManagementSubjectController {
 //                }
 //            }
 //        });
+
+        managementSubjectGUI.getBtnAddSUBJECT().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                subjectList.add(new Subject());
+                doBindingSubject(subjectList, subjectSubjectTable, subjectSubjectScrollpane);
+            }
+        });
+
+        managementSubjectGUI.getBtnDelSUBJECT().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowSelected = subjectSubjectTable.getSelectedRow();
+                if (-1 == rowSelected) {
+                    showMessage("Cần chọn một môn học để thực hiện xóa.");
+                } else {
+                    int k = showConfirmMessage("Bạn chắc chắn muốn xóa môn học này?");
+                    if (0 == k) {
+                        subjectService.delete(subjectList.get(rowSelected));
+                        subjectList.remove(rowSelected);
+                        doBindingSubject(subjectList, subjectSubjectTable, subjectSubjectScrollpane);
+                    }
+                }
+            }
+        });
+
+        managementSubjectGUI.getBtnSaveTab1().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Subject subject : subjectList) {
+                    subjectService.save(subject);
+                }
+            }
+        });
     }
+
 
     private void resetComboBoxCourse() {
         managementSubjectGUI.getComboBoxCourse().removeAllItems();
@@ -181,6 +223,8 @@ public class ManagementSubjectController {
         cmodel.getColumn(2).setCellEditor(textEditor);
         cmodel.getColumn(3).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(3).setCellEditor(textEditor);
+        cmodel.getColumn(4).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(4).setCellEditor(textEditor);
         JTableHeader header = jTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));
         jTable.getTableHeader().setReorderingAllowed(false);
@@ -366,4 +410,12 @@ public class ManagementSubjectController {
 //
 //    }
 //
+
+    private void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    private int showConfirmMessage(String message) {
+        return JOptionPane.showConfirmDialog(null, message);
+    }
 }

@@ -13,6 +13,7 @@ public class Subject {
 
     public static String SUBJECT_CODE = "subjectCode";
     public static String SUBJECT_NAME = "subjectName";
+    public static String SUBJECT_FACULTY = "faculty";
     public static String SUBJECT_UNIT_STUDY = "unitOfStudy";
     public static String SUBJECT_DESCRIPTION = "subjectDesc";
 

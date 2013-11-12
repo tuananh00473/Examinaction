@@ -56,6 +56,7 @@ public class TableBinding {
         //-----------------------Option----------------------------------------------
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_CODE)).setColumnName("MÃ MÔN HỌC");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_NAME)).setColumnName("TÊN MÔN HỌC");
+        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_FACULTY)).setColumnName("KHOA");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_UNIT_STUDY)).setColumnName("SỐ ĐƠN VỊ HỌC TRÌNH");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_DESCRIPTION)).setColumnName("MÔ TẢ");
 
