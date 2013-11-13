@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
  * Time: 11:46 AM
  */
 @Component
-public class SettingExamController {
+public class SettingExamController
+{
 //    @Autowired
 //    MainStudentGUI mainStudentGUI;
 //
@@ -105,7 +106,6 @@ public class SettingExamController {
 //        mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().removeAllItems();
 //        mainStudentGUI.getResultGUI().getComboBoxSubject().removeAllItems();
 //        mainStudentGUI.getResultGUI().getComboBoxExamination().removeAllItems();
-//        mainStudentGUI.getResultGUI().getComboBoxClass().removeAllItems();
 //    }
 //
 //

@@ -106,19 +106,9 @@
                   <card name="managementSubjectGUI"/>
                 </constraints>
               </nested-form>
-              <nested-form id="5a53e" form-file="com/ptit/exam/ui/view/student/ManagementStudentGUI.form" binding="managementStudentGUI">
+              <nested-form id="5a53e" form-file="com/ptit/exam/ui/view/admin/ManagementStudentGUI.form" binding="managementStudentGUI">
                 <constraints>
                   <card name="managementStudentGUI"/>
-                </constraints>
-              </nested-form>
-              <nested-form id="e46d8" form-file="com/ptit/exam/ui/view/admin/EditSubjectGUI.form" binding="editSubjectGUI">
-                <constraints>
-                  <card name="editSubjectGUI"/>
-                </constraints>
-              </nested-form>
-              <nested-form id="96f8f" form-file="com/ptit/exam/ui/view/admin/EditStudentGUI.form" binding="editStudentGUI">
-                <constraints>
-                  <card name="editStudentGUI"/>
                 </constraints>
               </nested-form>
             </children>

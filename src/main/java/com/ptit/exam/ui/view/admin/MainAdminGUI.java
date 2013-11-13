@@ -5,9 +5,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.*;
 import com.ptit.exam.ui.control.admincontroller.MainAdminController;
+import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
 import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
 import com.ptit.exam.ui.view.LoginGUI;
-import com.ptit.exam.ui.view.student.ManagementStudentGUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -70,6 +70,7 @@ public class MainAdminGUI extends JFrame
     private JButton btnQuestionBank;
     private JButton btnManagementExam;
     private JButton btnExportExamination;
+    private JButton btnManagementStudent;
     private JButton btnManagementSubject;
     private JPanel AdminCardPanel;
     private JLabel lbLogOut;
@@ -79,11 +80,7 @@ public class MainAdminGUI extends JFrame
     private ExportExamination exportExaminationGUI;
     private ManagermentExamGUI managermentExamGUI;
     private ManagementSubjectGUI managementSubjectGUI;
-    private JButton btnManagementStudent;
     private ManagementStudentGUI managementStudentGUI;
-    private EditSubjectGUI editSubjectGUI;
-    private EditStudentGUI editStudentGUI;
-
 
     private CardLayout cardLayout;
 
@@ -220,24 +217,7 @@ public class MainAdminGUI extends JFrame
             }
         });
 
-//
-//        // ---------------- EditSubjectGUI-------------
-//
-//        editSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementSubjectController.doSaveEditSubject();
-//                mainAdminController.doShowManagementSubjectGUI();
-//            }
-//        });
-//        editSubjectGUI.getBtnCancel().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowManagementSubjectGUI();
-//            }
-//        });
-//
-//        // ============ ManagermentStudentGUI ================
+        // ============ ManagermentStudentGUI ================
 //
 //        // ------------------ byClass ---------------
 //        managementStudentGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
@@ -245,43 +225,6 @@ public class MainAdminGUI extends JFrame
 //            public void actionPerformed(ActionEvent e) {
 //                managementStudentController.doSearch();
 //
-//            }
-//        });
-//        managementStudentGUI.getBtnAdd().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                newStudentGUI.show();
-//
-//            }
-//        });
-//        managementStudentGUI.getBtnEdit().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowEditStudentGUI();
-//                managementStudentController.doEdit();
-//
-//            }
-//        });
-//        managementStudentGUI.getBtnDel().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementStudentController.doDelete();
-//
-//            }
-//        });
-//
-//        // --------------button EditStudentGUI -------------
-//        editStudentGUI.getBtnOk().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementStudentController.doSaveEditStudent();
-//                mainAdminController.doShowManagementStudentGUI();
-//            }
-//        });
-//        editStudentGUI.getBtnCancel().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowManagementStudentGUI();
 //            }
 //        });
 //
@@ -336,13 +279,15 @@ public class MainAdminGUI extends JFrame
             }
         });
 
-//        btnManagementStudent.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowManagementStudentGUI();
-//                managementStudentController.doSetUp();
-//            }
-//        });
+        btnManagementStudent.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                mainAdminController.doShowManagementStudentGUI();
+                managementStudentController.doSetUp();
+            }
+        });
 
 
         cardLayout = (CardLayout) AdminCardPanel.getLayout();
@@ -373,11 +318,6 @@ public class MainAdminGUI extends JFrame
         return btnIntroduce;
     }
 
-    public EditStudentGUI getEditStudentGUI()
-    {
-        return editStudentGUI;
-    }
-
     public ManagementStudentGUI getManagementStudentGUI()
     {
         return managementStudentGUI;
@@ -399,10 +339,6 @@ public class MainAdminGUI extends JFrame
         return editQuestionGUI;
     }
 
-    public EditSubjectGUI getEditSubjectGUI()
-    {
-        return editSubjectGUI;
-    }
 
     public CardLayout getCardLayout()
     {
@@ -486,10 +422,6 @@ public class MainAdminGUI extends JFrame
         AdminCardPanel.add(managementSubjectGUI.$$$getRootComponent$$$(), "managementSubjectGUI");
         managementStudentGUI = new ManagementStudentGUI();
         AdminCardPanel.add(managementStudentGUI.$$$getRootComponent$$$(), "managementStudentGUI");
-        editSubjectGUI = new EditSubjectGUI();
-        AdminCardPanel.add(editSubjectGUI.$$$getRootComponent$$$(), "editSubjectGUI");
-        editStudentGUI = new EditStudentGUI();
-        AdminCardPanel.add(editStudentGUI.$$$getRootComponent$$$(), "editStudentGUI");
         final JLabel label1 = new JLabel();
         label1.setText("Label");
         mainPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

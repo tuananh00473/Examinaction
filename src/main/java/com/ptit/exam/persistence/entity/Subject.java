@@ -98,6 +98,21 @@ public class Subject
         this.subjectDescription = subjectDescription;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        Subject subject = (Subject) obj;
+        if (subjectCode.equals(subject.getSubjectCode())
+                && subjectName.equals(subject.getSubjectName())
+                && subjectDescription.equals(subject.getSubjectDescription())
+                && faculty.equals(subject.getFaculty())
+                && unitOfStudy == subject.getUnitOfStudy())
+        {
+            return true;
+        }
+        return false;
+    }
+
     public boolean inValid()
     {
         if (isValueNull(subjectCode) || isValueNull(subjectName) || isValueNull(faculty) || null == unitOfStudy || isValueNull(subjectDescription))

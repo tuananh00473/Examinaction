@@ -3,7 +3,7 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.ManagementStudentController;
+import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,8 @@ import java.awt.event.ActionListener;
  * Time: 11:17 PM
  */
 @Component
-public class NewStudentGUI extends JFrame {
+public class NewStudentGUI extends JFrame
+{
 
     @Autowired
     ManagementStudentController managementStudentController;
@@ -51,24 +52,29 @@ public class NewStudentGUI extends JFrame {
     private JLabel lbNote;
     private JComboBox comboBoxCourse;
 
-    public NewStudentGUI() throws HeadlessException {
+    public NewStudentGUI() throws HeadlessException
+    {
         setContentPane(studentPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 450);
         resetGUI();
 
-        btnOk.addActionListener(new ActionListener() {
+        btnOk.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementStudentController.doSaveAddStudent();  // todo
                 resetGUI();
                 setVisible(false);
             }
         });
 
-        btnCancel.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 resetGUI();
                 setVisible(false);
 
@@ -76,7 +82,8 @@ public class NewStudentGUI extends JFrame {
         });
     }
 
-    private void resetGUI() {
+    private void resetGUI()
+    {
         txtLastname.setText("");
         txtFirstname.setText("");
         txtClass.setText("");
@@ -94,115 +101,143 @@ public class NewStudentGUI extends JFrame {
         comboBoxTrainingSystem.setSelectedIndex(0);
     }
 
-    public ManagementStudentController getManagementStudentController() {
+    public ManagementStudentController getManagementStudentController()
+    {
         return managementStudentController;
     }
 
-    public JPanel getStudentPanel() {
+    public JPanel getStudentPanel()
+    {
         return studentPanel;
     }
 
-    public JTextField getTxtFirstname() {
+    public JTextField getTxtFirstname()
+    {
         return txtFirstname;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JButton getBtnOk() {
+    public JButton getBtnOk()
+    {
         return btnOk;
     }
 
-    public JTextField getTxtLastname() {
+    public JTextField getTxtLastname()
+    {
         return txtLastname;
     }
 
-    public JTextField getTxtStudentCode() {
+    public JTextField getTxtStudentCode()
+    {
         return txtStudentCode;
     }
 
-    public JRadioButton getBtnRadioMale() {
+    public JRadioButton getBtnRadioMale()
+    {
         return btnRadioMale;
     }
 
-    public JRadioButton getBtnRadioFemale() {
+    public JRadioButton getBtnRadioFemale()
+    {
         return btnRadioFemale;
     }
 
-    public JComboBox getComboBoxDay() {
+    public JComboBox getComboBoxDay()
+    {
         return comboBoxDay;
     }
 
-    public JComboBox getComboBoxMonth() {
+    public JComboBox getComboBoxMonth()
+    {
         return comboBoxMonth;
     }
 
-    public JComboBox getComboBoxYear() {
+    public JComboBox getComboBoxYear()
+    {
         return comboBoxYear;
     }
 
-    public JTextField getTxtClass() {
+    public JTextField getTxtClass()
+    {
         return txtClass;
     }
 
-    public JComboBox getComboBoxFaculty() {
+    public JComboBox getComboBoxFaculty()
+    {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxTrainingSystem() {
+    public JComboBox getComboBoxTrainingSystem()
+    {
         return comboBoxTrainingSystem;
     }
 
-    public JTextField getTxtUsername() {
+    public JTextField getTxtUsername()
+    {
         return txtUsername;
     }
 
-    public JPasswordField getTxtPassword() {
+    public JPasswordField getTxtPassword()
+    {
         return txtPassword;
     }
 
-    public JPasswordField getTxtConfirmPassword() {
+    public JPasswordField getTxtConfirmPassword()
+    {
         return txtConfirmPassword;
     }
 
-    public JLabel getLbValidateFistname() {
+    public JLabel getLbValidateFistname()
+    {
         return lbValidateFistname;
     }
 
-    public JLabel getLbValidateLastname() {
+    public JLabel getLbValidateLastname()
+    {
         return lbValidateLastname;
     }
 
-    public JLabel getLbValidateStudentCode() {
+    public JLabel getLbValidateStudentCode()
+    {
         return lbValidateStudentCode;
     }
 
-    public JLabel getLbValidateClass() {
+    public JLabel getLbValidateClass()
+    {
         return lbValidateClass;
     }
 
-    public JLabel getLbValidateCourse() {
+    public JLabel getLbValidateCourse()
+    {
         return lbValidateCourse;
     }
 
-    public JLabel getLbValidateUsername() {
+    public JLabel getLbValidateUsername()
+    {
         return lbValidateUsername;
     }
 
-    public JLabel getLbValidatePassword() {
+    public JLabel getLbValidatePassword()
+    {
         return lbValidatePassword;
     }
 
-    public JLabel getLbValidateConfirmPassword() {
+    public JLabel getLbValidateConfirmPassword()
+    {
         return lbValidateConfirmPassword;
     }
 
-    public JLabel getLbNote() {
+    public JLabel getLbNote()
+    {
         return lbNote;
     }
 
-    public JComboBox getComboBoxCourse() {
+    public JComboBox getComboBoxCourse()
+    {
         return comboBoxCourse;
     }
 
@@ -220,7 +255,8 @@ public class NewStudentGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         studentPanel = new JPanel();
         studentPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         studentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -475,7 +511,8 @@ public class NewStudentGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return studentPanel;
     }
 }

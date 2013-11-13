@@ -10,8 +10,9 @@ import java.util.List;
  * Date: 9/25/13
  * Time: 10:36 AM
  */
-public interface SubjectDAO extends JpaRepository<Subject, Long> {
-    public Subject findBySubjectName(String nameOfSubject);
+public interface SubjectDAO extends JpaRepository<Subject, Long>
+{
+    public List<Subject> findBySubjectName(String nameOfSubject);
 
     public List<Subject> findByFaculty(String faculty);
 

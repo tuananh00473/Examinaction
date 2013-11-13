@@ -10,7 +10,8 @@ import java.util.List;
  * Date: 9/26/13
  * Time: 4:19 PM
  */
-public interface StudentDAO extends JpaRepository<Student, Long> {
+public interface StudentDAO extends JpaRepository<Student, Long>
+{
     public List<Student> findByFaculty(String faculty);
 
     public List<Student> findByFacultyAndCourse(String faculty, String course);
@@ -22,4 +23,6 @@ public interface StudentDAO extends JpaRepository<Student, Long> {
     public Student findByStudentCode(String studentCode);
 
     public Student findByUserNameAndPassWord(String userName, String passWord);
+
+    public List<Student> findByFirstName(String nameStudent);
 }

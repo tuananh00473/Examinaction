@@ -22,9 +22,9 @@ public interface SubjectService
 
     public List<Subject> getAll();
 
-    public Subject findBySubjectName(String nameOfSubject);
+    public List<Subject> findBySubjectName(String nameOfSubject);
 
     public List<Subject> findByFaculty(String faculty);
 
-    List<Subject> findByFacultyAndNameSubject(String nameFaculty, String nameSubject);
+    List<Subject> findByFacultyAndSubjectName(String nameFaculty, String nameSubject);
 }

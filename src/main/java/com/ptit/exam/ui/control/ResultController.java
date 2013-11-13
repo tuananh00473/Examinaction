@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
  * Time: 4:54 PM
  */
 @Component
-public class ResultController {
+public class ResultController
+{
 //    @Autowired
 //    MainStudentGUI mainStudentGUI;
 //    @Autowired
@@ -38,7 +39,6 @@ public class ResultController {
 //    public void setUpResultGUI(){
 //        resetResultGUI();
 //        resetComboBoxFaculty();
-//        resetComboBoxClass();
 //        resetComboBoxSubject();
 //        resetComboBoxExamination();
 //        subjectList = subjectService.getAll();
@@ -54,10 +54,8 @@ public class ResultController {
 //            public void actionPerformed(ActionEvent e) {
 //                if (mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().isPopupVisible()) {
 //                    resetComboBoxSubject();
-//                    resetComboBoxClass();
 //                    nameFaculty = mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().getSelectedItem().toString();
 //                    doAddContentComboBoxSubject(nameFaculty);
-//                    doAddContentComboBoxClass(nameFaculty);
 //                }
 //            }
 //        });
@@ -91,22 +89,6 @@ public class ResultController {
 //                }
 //            }
 //        });
-//
-//        // add du lieu vao comboBox Class
-//
-//
-//        List<Student> studentList = studentService.findByFaculty(mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().getSelectedItem().toString());
-//        Set<String> stringSet2 = new HashSet<String>();
-//        for (Student student1 : studentList) {
-//            stringSet2.add(student1.getClassRoom());
-//        }
-//
-//        for (String s : stringSet2) {
-//            mainStudentGUI.getResultGUI().getComboBoxClass().addItem(s.intern());
-//        }
-//
-//
-//
 //    }
 //
 //    private void resetResultGUI() {
@@ -139,24 +121,7 @@ public class ResultController {
 //            mainStudentGUI.getResultGUI().getComboBoxSubject().addItem(s.intern());
 //        }
 //    }
-//    private void doAddContentComboBoxClass(String nameFaculty) {
-//
-//        List<Student> studentList = studentService.findByFaculty(nameFaculty);
-//
-//        Set<String> stringSet2 = new HashSet<String>();
-//        for (Student student1 : studentList) {
-//            stringSet2.add(student1.getClassRoom());
-//        }
-//
-//        for (String s : stringSet2) {
-//            mainStudentGUI.getResultGUI().getComboBoxClass().addItem(s.intern());
-//        }
-//    }
-//    private void resetComboBoxClass() {
-//        mainStudentGUI.getResultGUI().getComboBoxClass().removeAllItems();
-//        mainStudentGUI.getResultGUI().getComboBoxClass().addItem("Choose class ...");
-//    }
-//
+
 //    private void resetComboBoxFaculty() {
 //        mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().removeAllItems();
 //        mainStudentGUI.getResultGUI().getCbBoxFacultyTab2().addItem("Choose faculty ...");
@@ -180,7 +145,6 @@ public class ResultController {
 //        resultTable = mainStudentGUI.getResultGUI().getTableMark();
 //
 //        nameExamination = mainStudentGUI.getResultGUI().getComboBoxExamination().getSelectedItem().toString();
-//        nameClass = mainStudentGUI.getResultGUI().getComboBoxClass().getSelectedItem().toString();
 //
 //        List<Student> studentList = studentService.findByClassRoom(nameClass);
 //        Exam exam = examService.findByExamName(nameExamination);

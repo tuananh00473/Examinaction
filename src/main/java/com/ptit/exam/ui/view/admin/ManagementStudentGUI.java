@@ -1,4 +1,4 @@
-package com.ptit.exam.ui.view.student;
+package com.ptit.exam.ui.view.admin;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -12,86 +12,110 @@ import java.awt.*;
  * Date: 10/23/13
  * Time: 9:22 AM
  */
-public class ManagementStudentGUI extends JPanel {
+public class ManagementStudentGUI extends JPanel
+{
     private JPanel managementStudentCard;
-    private JTable studentTable;
-    private JComboBox comboBoxFaculty;
-    private JComboBox comboBoxClass;
-    private JButton btnSearch;
+    private JTable studentTableTab1;
+    private JComboBox comboBoxFacultyTab1;
+    private JButton btnSearchTab1;
     private JButton btnAdd;
     private JButton btnEdit;
     private JButton btnDel;
-    private JScrollPane studentScrollpanel;
+    private JScrollPane studentScrollpanelTab1;
     private JTabbedPane studentTab;
     private JComboBox comboBoxSUBJECT;
-    private JComboBox comboBoxCLASS;
     private JButton btnSEARCH;
     private JButton btnSAVE;
     private JTable studentSubjetTable;
     private JScrollPane studentSubjectScrollpanel;
+    private JButton btnSaveTab1;
+    private JTextField txtNameSearch;
+    private JTextField txtClassSearchTab1;
+    private JTextField txtClassSearchTab2;
 
-    public JPanel getManagementStudentCard() {
+    public JTextField getTxtClassSearchTab1()
+    {
+        return txtClassSearchTab1;
+    }
+
+    public JTextField getTxtNameSearch()
+    {
+        return txtNameSearch;
+    }
+
+    public JButton getBtnSaveTab1()
+    {
+        return btnSaveTab1;
+    }
+
+    public JPanel getManagementStudentCard()
+    {
         return managementStudentCard;
     }
 
-    public JTable getStudentTable() {
-        return studentTable;
+    public JTable getStudentTableTab1()
+    {
+        return studentTableTab1;
     }
 
-    public JComboBox getComboBoxFaculty() {
-        return comboBoxFaculty;
+    public JComboBox getComboBoxFacultyTab1()
+    {
+        return comboBoxFacultyTab1;
     }
 
-    public JComboBox getComboBoxClass() {
-        return comboBoxClass;
+    public JButton getBtnSearchTab1()
+    {
+        return btnSearchTab1;
     }
 
-    public JButton getBtnSearch() {
-        return btnSearch;
-    }
-
-    public JButton getBtnAdd() {
+    public JButton getBtnAdd()
+    {
         return btnAdd;
     }
 
-    public JButton getBtnEdit() {
+    public JButton getBtnEdit()
+    {
         return btnEdit;
     }
 
-    public JButton getBtnDel() {
+    public JButton getBtnDel()
+    {
         return btnDel;
     }
 
 
-    public JScrollPane getStudentScrollpanel() {
-        return studentScrollpanel;
+    public JScrollPane getStudentScrollpanelTab1()
+    {
+        return studentScrollpanelTab1;
     }
 
-    public JTabbedPane getStudentTab() {
+    public JTabbedPane getStudentTab()
+    {
         return studentTab;
     }
 
-    public JComboBox getComboBoxSUBJECT() {
+    public JComboBox getComboBoxSUBJECT()
+    {
         return comboBoxSUBJECT;
     }
 
-    public JComboBox getComboBoxCLASS() {
-        return comboBoxCLASS;
-    }
-
-    public JButton getBtnSEARCH() {
+    public JButton getBtnSEARCH()
+    {
         return btnSEARCH;
     }
 
-    public JButton getBtnSAVE() {
+    public JButton getBtnSAVE()
+    {
         return btnSAVE;
     }
 
-    public JTable getStudentSubjetTable() {
+    public JTable getStudentSubjetTable()
+    {
         return studentSubjetTable;
     }
 
-    public JScrollPane getStudentSubjectScrollpanel() {
+    public JScrollPane getStudentSubjectScrollpanel()
+    {
         return studentSubjectScrollpanel;
     }
 
@@ -109,7 +133,8 @@ public class ManagementStudentGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementStudentCard = new JPanel();
         managementStudentCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -130,7 +155,7 @@ public class ManagementStudentGUI extends JPanel {
         panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel3.add(spacer1, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        comboBoxFaculty = new JComboBox();
+        comboBoxFacultyTab1 = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
         defaultComboBoxModel1.addElement("Chọn khoa ...");
         defaultComboBoxModel1.addElement("Công nghệ thông tin");
@@ -138,28 +163,25 @@ public class ManagementStudentGUI extends JPanel {
         defaultComboBoxModel1.addElement("Điện điện tử");
         defaultComboBoxModel1.addElement("Quản trị kinh doanh");
         defaultComboBoxModel1.addElement("Kế toán");
-        comboBoxFaculty.setModel(defaultComboBoxModel1);
-        panel3.add(comboBoxFaculty, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboBoxFacultyTab1.setModel(defaultComboBoxModel1);
+        panel3.add(comboBoxFacultyTab1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Chọn lớp :");
         panel3.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxClass = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
         defaultComboBoxModel2.addElement("Chọn lớp ...");
-        comboBoxClass.setModel(defaultComboBoxModel2);
-        panel3.add(comboBoxClass, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnSearch = new JButton();
-        btnSearch.setText("Search");
-        panel3.add(btnSearch, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSearchTab1 = new JButton();
+        btnSearchTab1.setText("Search");
+        panel3.add(btnSearchTab1, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        studentScrollpanel = new JScrollPane();
-        panel4.add(studentScrollpanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        studentScrollpanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
-        studentTable = new JTable();
-        studentScrollpanel.setViewportView(studentTable);
+        studentScrollpanelTab1 = new JScrollPane();
+        panel4.add(studentScrollpanelTab1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        studentScrollpanelTab1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        studentTableTab1 = new JTable();
+        studentScrollpanelTab1.setViewportView(studentTableTab1);
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -196,8 +218,6 @@ public class ManagementStudentGUI extends JPanel {
         final JLabel label4 = new JLabel();
         label4.setText("Chọn lớp :");
         panel7.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxCLASS = new JComboBox();
-        panel7.add(comboBoxCLASS, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSEARCH = new JButton();
         btnSEARCH.setText("Search");
         panel7.add(btnSEARCH, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -219,7 +239,8 @@ public class ManagementStudentGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementStudentCard;
     }
 }

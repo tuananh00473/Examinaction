@@ -52,7 +52,7 @@ public class SubjectServiceImpl implements SubjectService
     }
 
     @Override
-    public Subject findBySubjectName(String nameOfSubject)
+    public List<Subject> findBySubjectName(String nameOfSubject)
     {
         return subjectDAO.findBySubjectName(nameOfSubject);
     }
@@ -64,7 +64,7 @@ public class SubjectServiceImpl implements SubjectService
     }
 
     @Override
-    public List<Subject> findByFacultyAndNameSubject(String nameFaculty, String nameSubject)
+    public List<Subject> findByFacultyAndSubjectName(String nameFaculty, String nameSubject)
     {
         List<Subject> subjectList = new ArrayList<Subject>();
         Subject subject = subjectDAO.findByFacultyAndSubjectName(nameFaculty, nameSubject);

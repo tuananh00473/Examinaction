@@ -19,6 +19,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,16 +109,19 @@ public class ManagementSubjectController
     {
         String nameSubject = managementSubjectGUI.getTxtNameSubjectSearch().getText();
         String nameFaculty = managementSubjectGUI.getCbBoxFacultyTab1().getSelectedItem().toString();
-        if ("".equals(nameSubject))
+
+        List<Subject> list1 = ("".equals(nameSubject) ? subjectService.getAll() : subjectService.findBySubjectName(nameSubject));
+        List<Subject> list2 = ("".equals(nameFaculty) ? subjectService.getAll() : subjectService.findByFaculty(nameFaculty));
+
+        tab1SubjectList = new ArrayList<Subject>();
+        for (Subject subject : list1)
         {
-            tab1SubjectList = subjectService.findByFaculty(nameFaculty);
-            doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+            if (list2.contains(subject))
+            {
+                tab1SubjectList.add(subject);
+            }
         }
-        else
-        {
-            tab1SubjectList = subjectService.findByFacultyAndNameSubject(nameFaculty, nameSubject);
-            doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
-        }
+        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
     }
 
     private void doSaveTab1()
@@ -164,13 +168,6 @@ public class ManagementSubjectController
         tab1SubjectList.add(new Subject());
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
     }
-
-    private void resetComboBoxCourse()
-    {
-        managementSubjectGUI.getComboBoxCourse().removeAllItems();
-        managementSubjectGUI.getComboBoxCourse().addItem("Chọn khóa ...");
-    }
-
 
 //    public void doSearch() {
 //
