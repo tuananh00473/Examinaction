@@ -12,7 +12,8 @@ import java.awt.*;
  * Date: 10/18/13
  * Time: 4:57 PM
  */
-public class QuestionBankGUI extends JPanel {
+public class QuestionBankGUI extends JPanel
+{
     private JPanel QuestionBankCard;
     private JComboBox comboBoxSubject;
     private JButton btnSearch;
@@ -22,55 +23,79 @@ public class QuestionBankGUI extends JPanel {
     private JTable tableQuestionBank;
     private JScrollPane questionBankScrollPanel;
     private JTextArea txtContentQuestion;
-    private JComboBox comboBoxLevelDifficult;
+    private JComboBox comboBoxLevel;
     private JLabel lbImage;
     private JTextArea txtContentAnswer;
+    private JTextField txtChapterSearch;
+    private JTextField txtSubjectSearch;
 
-    public JPanel getQuestionBankCard() {
+    public JTextField getTxtChapterSearch()
+    {
+        return txtChapterSearch;
+    }
+
+    public JTextField getTxtSubjectSearch()
+    {
+        return txtSubjectSearch;
+    }
+
+    public JPanel getQuestionBankCard()
+    {
         return QuestionBankCard;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
     }
 
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JButton getBtnNewQuestion() {
+    public JButton getBtnNewQuestion()
+    {
         return btnNewQuestion;
     }
 
-    public JButton getBtnEditQuestion() {
+    public JButton getBtnEditQuestion()
+    {
         return btnEditQuestion;
     }
 
-    public JButton getBtnDeleteQuestion() {
+    public JButton getBtnDeleteQuestion()
+    {
         return btnDeleteQuestion;
     }
 
-    public JTable getTableQuestionBank() {
+    public JTable getTableQuestionBank()
+    {
         return tableQuestionBank;
     }
 
-    public JScrollPane getQuestionBankScrollPanel() {
+    public JScrollPane getQuestionBankScrollPanel()
+    {
         return questionBankScrollPanel;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JComboBox getComboBoxLevelDifficult() {
-        return comboBoxLevelDifficult;
+    public JComboBox getComboBoxLevel()
+    {
+        return comboBoxLevel;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public JTextArea getTxtContentAnswer() {
+    public JTextArea getTxtContentAnswer()
+    {
         return txtContentAnswer;
     }
 
@@ -88,7 +113,8 @@ public class QuestionBankGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         QuestionBankCard = new JPanel();
         QuestionBankCard.setLayout(new CardLayout(0, 0));
         QuestionBankCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -111,8 +137,8 @@ public class QuestionBankGUI extends JPanel {
         final JLabel label2 = new JLabel();
         label2.setText("Choose Level difficult :");
         panel2.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxLevelDifficult = new JComboBox();
-        panel2.add(comboBoxLevelDifficult, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboBoxLevel = new JComboBox();
+        panel2.add(comboBoxLevel, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -169,7 +195,8 @@ public class QuestionBankGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return QuestionBankCard;
     }
 }

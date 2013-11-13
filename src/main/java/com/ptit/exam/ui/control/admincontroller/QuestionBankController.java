@@ -1,8 +1,23 @@
 package com.ptit.exam.ui.control.admincontroller;
 
+import com.ptit.exam.business.QuestionService;
+import com.ptit.exam.business.common.TableBinding;
+import com.ptit.exam.business.common.TextAreaEditor;
+import com.ptit.exam.business.common.TextAreaRenderer;
+import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
+import com.ptit.exam.ui.view.admin.QuestionBankGUI;
+import com.ptit.exam.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * User: thuongntt
@@ -15,31 +30,38 @@ public class QuestionBankController
     @Autowired
     MainAdminGUI mainAdminGUI;
 
+    @Autowired
+    MainAdminController mainAdminController;
+
     //    @Autowired
 //    SubjectService subjectService;
-//
-//    @Autowired
-//    QuestionService questionService;
-//
-//    @Autowired
+
+    @Autowired
+    QuestionService questionService;
+
+    //    @Autowired
 //    AnswerService answerService;
-//
-//    @Autowired
-//    NewQuestionGUI newQuestionGUI;
-//
-//    private List<Subject> subjectList;
-//    private List<Difficult> difficultList;
-//    private List<Question> questionList;
-//    private String nameSubject;
+
+    //    private List<Subject> subjectList;
+    private List<Question> questionList;
+
+    //    private String nameSubject;
 //    private String nameDifficult;
 //    private Subject subject;
 //    private Difficult difficult;
 //    private Question currentQuestion;
-//    private JTable tableQuestionBank;
-//
-    public void showQuestionBankGUI()
+    private JTable tableQuestionBank;
+    private JScrollPane scrollQuestionBank;
+
+    private JComboBox cbLevel;
+
+    private QuestionBankGUI questionBankGUI;
+
+    //
+    public void doSetUp()
     {
-//
+        setUpView();
+        setUpActionListener();
 //        resetQuestionBankGUI();
 //        resetComboBoxSubject();
 //        resetComboBoxLevelDifficult();
@@ -53,20 +75,79 @@ public class QuestionBankController
 //        for (String s : stringSet) {
 //            mainAdminGUI.getQuestionBankGUI().getComboBoxSubject().addItem(s);
 //        }
-//
-//        difficultList = difficultService.getAll();
-//        Set<String> stringSet1 = new HashSet<String>();
-//        for (Difficult difficult : difficultList) {
-//            stringSet1.add(difficult.getDifficultName());
-//        }
-//
-//        for (String s : stringSet1) {
-//            mainAdminGUI.getQuestionBankGUI().getComboBoxLevelDifficult().addItem(s);
-//        }
-//
-//
+
+        questionList = questionService.getAll();
+        doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
     }
-//    private void resetQuestionBankGUI() {
+
+    private void setUpActionListener()
+    {
+        questionBankGUI.getBtnSearch().addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+//                questionBankController.doSearch();   // todo
+            }
+        });
+
+        questionBankGUI.getBtnNewQuestion().addActionListener(actionListener);
+
+        questionBankGUI.getBtnDeleteQuestion().addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+//                questionBankController.doDeleteQuestion(); // todo
+            }
+        });
+
+        questionBankGUI.getBtnEditQuestion().addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+//                questionBankController.doEditQuestion();     // todo
+                mainAdminController.doShowEditQuestionCard();
+            }
+        });
+
+    }
+
+    public ActionListener actionListener = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == questionBankGUI.getBtnSearch())
+            {
+            }
+            if (e.getSource() == questionBankGUI.getBtnNewQuestion())
+            {
+                mainAdminController.doShowNewQuestionCard();
+            }
+            if (e.getSource() == questionBankGUI.getBtnDeleteQuestion())
+            {
+            }
+            if (e.getSource() == questionBankGUI.getBtnEditQuestion())
+            {
+            }
+        }
+    };
+
+    private void setUpView()
+    {
+        questionBankGUI = mainAdminGUI.getQuestionBankGUI();
+
+        tableQuestionBank = questionBankGUI.getTableQuestionBank();
+        scrollQuestionBank = questionBankGUI.getQuestionBankScrollPanel();
+
+        cbLevel = questionBankGUI.getComboBoxLevel();
+        cbLevel.setModel(new DefaultComboBoxModel(Constants.level));
+
+    }
+
+    //    private void resetQuestionBankGUI() {
 //        if(questionList!=null){
 //            int x = questionList.size();
 //            for(int i = 0; i< x;i++){
@@ -92,8 +173,8 @@ public class QuestionBankController
 //    }
 //
 //    private void resetComboBoxLevelDifficult() {
-//        mainAdminGUI.getQuestionBankGUI().getComboBoxLevelDifficult().removeAllItems();
-//        mainAdminGUI.getQuestionBankGUI().getComboBoxLevelDifficult().addItem("Choose level difficult ...");
+//        mainAdminGUI.getQuestionBankGUI().getComboBoxLevel().removeAllItems();
+//        mainAdminGUI.getQuestionBankGUI().getComboBoxLevel().addItem("Choose level difficult ...");
 //    }
 //
 //    public void doSearch() {
@@ -103,7 +184,7 @@ public class QuestionBankController
 //
 //        nameSubject = mainAdminGUI.getQuestionBankGUI().getComboBoxSubject().getSelectedItem().toString();
 //        subject = subjectService.findBySubjectName(nameSubject);
-//        nameDifficult = mainAdminGUI.getQuestionBankGUI().getComboBoxLevelDifficult().getSelectedItem().toString();
+//        nameDifficult = mainAdminGUI.getQuestionBankGUI().getComboBoxLevel().getSelectedItem().toString();
 //        difficult = difficultService.findByDifficultName(nameDifficult);
 //
 //        questionList = questionService.findBySubjectRelationAndDifficultRelation(subject, difficult);
@@ -148,24 +229,27 @@ public class QuestionBankController
 //
 //    }
 //
-//    private void doBindingQuestionBank(List<Question> questionList) {
-//        TableBinding.bindingQuestionBank(questionList, tableQuestionBank, mainAdminGUI.getQuestionBankGUI().getQuestionBankScrollPanel());
-//
-//        TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
-//        TextAreaEditor textEditor = new TextAreaEditor();
-//        TableColumnModel cmodel = tableQuestionBank.getColumnModel();
-//        cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
-//        cmodel.getColumn(0).setCellEditor(textEditor);
-//        cmodel.getColumn(1).setCellRenderer(textAreaRenderer);
-//        cmodel.getColumn(1).setCellEditor(textEditor);
-//
-//
-//        JTableHeader header = tableQuestionBank.getTableHeader();
-//        header.setPreferredSize(new Dimension(10000, 30));
-//        tableQuestionBank.getTableHeader().setReorderingAllowed(false);
-//        tableQuestionBank.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        tableQuestionBank.repaint();
-//    }
+    private void doBindingQuestionBank(List<Question> questionList, JTable jTable, JScrollPane jScrollPane)
+    {
+        TableBinding.bindingQuestionBank(questionList, jTable, jScrollPane);
+
+        TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
+        TextAreaEditor textEditor = new TextAreaEditor();
+        TableColumnModel cmodel = jTable.getColumnModel();
+        cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(0).setCellEditor(textEditor);
+        cmodel.getColumn(1).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(1).setCellEditor(textEditor);
+        cmodel.getColumn(2).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(2).setCellEditor(textEditor);
+
+
+        JTableHeader header = jTable.getTableHeader();
+        header.setPreferredSize(new Dimension(10000, 30));
+        jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTable.repaint();
+    }
 //
 //    public void doSaveNewQuestion() {
 //        String questionCode = newQuestionGUI.getTxtQuestionCode().getText();

@@ -5,7 +5,6 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +17,7 @@ import java.util.regex.Matcher;
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-@Component
-public class NewQuestionGUI extends JFrame
+public class NewQuestionGUI extends JPanel
 {
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
@@ -40,11 +38,8 @@ public class NewQuestionGUI extends JFrame
     @Autowired
     QuestionBankController questionBankController;
 
-    public NewQuestionGUI()
+    public void doSetUp()
     {
-        setContentPane(newQuestionPanel);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(450, 500);
         btnCancel.addActionListener(new ActionListener()
         {
             @Override

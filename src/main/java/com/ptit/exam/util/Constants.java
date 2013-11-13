@@ -13,5 +13,5 @@ public class Constants
 
     public static final String[] facultyList = new String[]{"", "công nghệ thông tin", "điện tử viễn thông", "quản trị kinh doanh"};
     public static final String[] courseList = new String[]{"2008 - 2013", "2009 - 2014", "2010 - 2015", "2011 - 2016", "2012 - 2017"};
-
+    public static final String[] level = new String[]{"1", "2", "3"};
 }

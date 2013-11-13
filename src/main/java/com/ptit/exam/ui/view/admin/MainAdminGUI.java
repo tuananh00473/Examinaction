@@ -29,10 +29,8 @@ import java.awt.event.MouseEvent;
 @Component
 public class MainAdminGUI extends JFrame
 {
-
     @Autowired
     MainAdminController mainAdminController;
-
 
     @Autowired
     LoginController loginController;
@@ -42,9 +40,6 @@ public class MainAdminGUI extends JFrame
 
     @Autowired
     QuestionBankController questionBankController;
-
-    @Autowired
-    NewQuestionGUI newQuestionGUI;
 
     @Autowired
     ExportExamController exportExamController;
@@ -77,6 +72,7 @@ public class MainAdminGUI extends JFrame
     private JLabel lbUsername;
     private QuestionBankGUI questionBankGUI;
     private EditQuestionGUI editQuestionGUI;
+    private NewQuestionGUI newQuestionGUI;
     private ExportExamination exportExaminationGUI;
     private ManagermentExamGUI managermentExamGUI;
     private ManagementSubjectGUI managementSubjectGUI;
@@ -105,37 +101,7 @@ public class MainAdminGUI extends JFrame
                 MainAdminGUI.this.setVisible(false);
             }
         });
-        // ============ button QuestionBankGUI ==============
 
-//        questionBankGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                questionBankController.doSearch();   // todo
-//            }
-//        });
-//
-//        questionBankGUI.getBtnNewQuestion().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                newQuestionGUI.show();
-//            }
-//        });
-//
-//        questionBankGUI.getBtnDeleteQuestion().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                questionBankController.doDeleteQuestion(); // todo
-//            }
-//        });
-//
-//        questionBankGUI.getBtnEditQuestion().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                questionBankController.doEditQuestion();     // todo
-//                mainAdminController.doShowEditQuestionCard();
-//            }
-//        });
-//
 //        // ------------------ EditQuestionGUI----------------
 //        editQuestionGUI.getBtnCancel().addActionListener(new ActionListener() {
 //            @Override
@@ -214,9 +180,8 @@ public class MainAdminGUI extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
+                questionBankController.doSetUp();
                 mainAdminController.doShowQuestionBankCard();
-                questionBankController.showQuestionBankGUI();
             }
         });
 
@@ -241,8 +206,8 @@ public class MainAdminGUI extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                mainAdminController.doShowManagementSubjectGUI();
                 managementSubjectController.doSetUp();
+                mainAdminController.doShowManagementSubjectGUI();
             }
         });
 
@@ -251,8 +216,8 @@ public class MainAdminGUI extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                mainAdminController.doShowManagementStudentGUI();
                 managementStudentController.doSetUp();
+                mainAdminController.doShowManagementStudentGUI();
             }
         });
 
@@ -381,6 +346,8 @@ public class MainAdminGUI extends JFrame
         AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
         editQuestionGUI = new EditQuestionGUI();
         AdminCardPanel.add(editQuestionGUI.$$$getRootComponent$$$(), "editQuestionGUI");
+        exportExaminationGUI = new ExportExamination();
+        AdminCardPanel.add(newQuestionGUI.$$$getRootComponent$$$(), "newQuestionGUI");
         exportExaminationGUI = new ExportExamination();
         AdminCardPanel.add(exportExaminationGUI.$$$getRootComponent$$$(), "exportExaminationGUI");
         managermentExamGUI = new ManagermentExamGUI();
