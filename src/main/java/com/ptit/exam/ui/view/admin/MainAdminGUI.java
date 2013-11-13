@@ -3,7 +3,10 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.*;
+import com.ptit.exam.ui.control.ExportExamController;
+import com.ptit.exam.ui.control.LoginController;
+import com.ptit.exam.ui.control.ManagementExamController;
+import com.ptit.exam.ui.control.QuestionBankController;
 import com.ptit.exam.ui.control.admincontroller.MainAdminController;
 import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
 import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
@@ -36,9 +39,6 @@ public class MainAdminGUI extends JFrame
 
     @Autowired
     LoginGUI loginGUI;
-
-    @Autowired
-    RegistryController registryController;
 
     @Autowired
     QuestionBankController questionBankController;
