@@ -1,5 +1,7 @@
-package com.ptit.exam.ui.control;
+package com.ptit.exam.ui.control.admincontroller;
 
+import com.ptit.exam.ui.view.admin.MainAdminGUI;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,15 +10,13 @@ import org.springframework.stereotype.Component;
  * Time: 1:44 AM
  */
 @Component
-public class QuestionBankController {
-//    @Autowired
-//    MainAdminGUI mainAdminGUI;
-//
-//    @Autowired
+public class QuestionBankController
+{
+    @Autowired
+    MainAdminGUI mainAdminGUI;
+
+    //    @Autowired
 //    SubjectService subjectService;
-//
-//    @Autowired
-//    DifficultService difficultService;
 //
 //    @Autowired
 //    QuestionService questionService;
@@ -26,7 +26,6 @@ public class QuestionBankController {
 //
 //    @Autowired
 //    NewQuestionGUI newQuestionGUI;
-//
 //
 //    private List<Subject> subjectList;
 //    private List<Difficult> difficultList;
@@ -38,7 +37,8 @@ public class QuestionBankController {
 //    private Question currentQuestion;
 //    private JTable tableQuestionBank;
 //
-//    public void showQuestionBankGUI() {
+    public void showQuestionBankGUI()
+    {
 //
 //        resetQuestionBankGUI();
 //        resetComboBoxSubject();
@@ -65,7 +65,7 @@ public class QuestionBankController {
 //        }
 //
 //
-//    }
+    }
 //    private void resetQuestionBankGUI() {
 //        if(questionList!=null){
 //            int x = questionList.size();

@@ -3,7 +3,7 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.QuestionBankController;
+import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,8 @@ import java.util.regex.Matcher;
  * Time: 2:20 AM
  */
 @Component
-public class NewQuestionGUI extends JFrame {
+public class NewQuestionGUI extends JFrame
+{
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -39,29 +40,36 @@ public class NewQuestionGUI extends JFrame {
     @Autowired
     QuestionBankController questionBankController;
 
-    public NewQuestionGUI() {
+    public NewQuestionGUI()
+    {
         setContentPane(newQuestionPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(450, 500);
-        btnCancel.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 
                 setVisible(false);
             }
         });
 
-        btnSave.addActionListener(new ActionListener() {
+        btnSave.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                questionBankController.doSaveNewQuestion();  // todo
                 setVisible(false);
             }
 
         });
-        btnBrowser.addActionListener(new ActionListener() {
+        btnBrowser.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 
                 doLoadLocation();
             }
@@ -69,74 +77,91 @@ public class NewQuestionGUI extends JFrame {
     }
 
 
-    private void doLoadLocation() {
+    private void doLoadLocation()
+    {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int returnVal = chooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
             String path = chooser.getSelectedFile().getAbsolutePath();
             path = path.replaceAll(Matcher.quoteReplacement("\\"), "/");
             txtUrlImage.setText(path);
         }
     }
 
-    public JTextArea getTxtContentQues() {
+    public JTextArea getTxtContentQues()
+    {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage() {
+    public JTextField getTxtUrlImage()
+    {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser() {
+    public JButton getBtnBrowser()
+    {
         return btnBrowser;
     }
 
-    public JTextArea getTxtContentAnswer1() {
+    public JTextArea getTxtContentAnswer1()
+    {
         return txtContentAnswer1;
     }
 
-    public JTextArea getTxtContentAnswer2() {
+    public JTextArea getTxtContentAnswer2()
+    {
         return txtContentAnswer2;
     }
 
-    public JTextArea getTxtContentAnswer3() {
+    public JTextArea getTxtContentAnswer3()
+    {
         return txtContentAnswer3;
     }
 
-    public JTextArea getTxtContentAnswer4() {
+    public JTextArea getTxtContentAnswer4()
+    {
         return txtContentAnswer4;
     }
 
-    public JTextField getTxtQuestionCode() {
+    public JTextField getTxtQuestionCode()
+    {
         return txtQuestionCode;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JPanel getNewQuestionPanel() {
+    public JPanel getNewQuestionPanel()
+    {
         return newQuestionPanel;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JRadioButton getRdAnswer1() {
+    public JRadioButton getRdAnswer1()
+    {
         return rdAnswer1;
     }
 
-    public JRadioButton getRdAnswer2() {
+    public JRadioButton getRdAnswer2()
+    {
         return rdAnswer2;
     }
 
-    public JRadioButton getRdAnswer3() {
+    public JRadioButton getRdAnswer3()
+    {
         return rdAnswer3;
     }
 
-    public JRadioButton getRdAnswer4() {
+    public JRadioButton getRdAnswer4()
+    {
         return rdAnswer4;
     }
 
@@ -154,7 +179,8 @@ public class NewQuestionGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         newQuestionPanel = new JPanel();
         newQuestionPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
@@ -252,7 +278,8 @@ public class NewQuestionGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return newQuestionPanel;
     }
 }

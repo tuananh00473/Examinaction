@@ -51,7 +51,10 @@ public class MainStudentGUI extends JFrame
     {
         setContentPane(studentPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(950, 650);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = (int) tk.getScreenSize().getWidth();
+        int ySize = (int) tk.getScreenSize().getHeight() - 100;
+        setSize(xSize, ySize);
 
         lbLogOut.addMouseListener(new MouseAdapter()
         {

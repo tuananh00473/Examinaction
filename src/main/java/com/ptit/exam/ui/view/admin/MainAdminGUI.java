@@ -6,10 +6,10 @@ import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.ExportExamController;
 import com.ptit.exam.ui.control.LoginController;
 import com.ptit.exam.ui.control.ManagementExamController;
-import com.ptit.exam.ui.control.QuestionBankController;
 import com.ptit.exam.ui.control.admincontroller.MainAdminController;
 import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
 import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
+import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
 import com.ptit.exam.ui.view.LoginGUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -89,7 +89,10 @@ public class MainAdminGUI extends JFrame
     {
 
         setContentPane(mainPanel);
-        setSize(900, 650);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = (int) tk.getScreenSize().getWidth();
+        int ySize = (int) tk.getScreenSize().getHeight() - 100;
+        setSize(xSize, ySize);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
@@ -179,44 +182,6 @@ public class MainAdminGUI extends JFrame
 //            }
 //        });
 //
-        // =========== button ManagementSubjectGUI ===========
-        // ---------------- xap xep mon thi ===========
-
-        managementSubjectGUI.getBtnSearchTab2().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementSubjectController.doSearch();  // todo
-            }
-        });
-
-        managementSubjectGUI.getBtnAdd().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementSubjectController.doAdd();   // todo
-            }
-        });
-
-        managementSubjectGUI.getBtnDelete().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementSubjectController.doDelete();       // todo
-            }
-        });
-        managementSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementSubjectController.doSave();    // todo
-            }
-        });
-
         // ============ ManagermentStudentGUI ================
 //
 //        // ------------------ byClass ---------------
@@ -242,16 +207,18 @@ public class MainAdminGUI extends JFrame
 //                managementStudentController.doSAVE();
 //            }
 //        });
-        // ============ button MainAdminGUI ================
+//         ============ button MainAdminGUI ================
 
-//        btnQuestionBank.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                mainAdminController.doShowQuestionBankCard();
-//                questionBankController.showQuestionBankGUI();
-//            }
-//        });
+        btnQuestionBank.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                mainAdminController.doShowQuestionBankCard();
+                questionBankController.showQuestionBankGUI();
+            }
+        });
 
 //        btnExportExamination.addActionListener(new ActionListener() {
 //            @Override
