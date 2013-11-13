@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.*;
 import com.ptit.exam.ui.control.admincontroller.MainAdminController;
+import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
 import com.ptit.exam.ui.view.LoginGUI;
 import com.ptit.exam.ui.view.student.ManagementStudentGUI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ import java.awt.event.MouseEvent;
  * Time: 11:17 AM
  */
 @Component
-public class MainAdminGUI extends JFrame {
+public class MainAdminGUI extends JFrame
+{
 
     @Autowired
     MainAdminController mainAdminController;
@@ -86,23 +88,26 @@ public class MainAdminGUI extends JFrame {
     private CardLayout cardLayout;
 
 
-    public MainAdminGUI() {
+    public MainAdminGUI()
+    {
 
         setContentPane(mainPanel);
         setSize(900, 650);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        lbLogOut.addMouseListener(new MouseAdapter() {
+        lbLogOut.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e)
+            {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
             }
         });
         // ============ button QuestionBankGUI ==============
 
-//        questionBankGUI.getBtnSearch().addActionListener(new ActionListener() {
+//        questionBankGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 ////                questionBankController.doSearch();   // todo
@@ -155,7 +160,7 @@ public class MainAdminGUI extends JFrame {
 //        });
 //
 //        // ============= button ManagementExamGUI ==========
-//        managermentExamGUI.getBtnSearch().addActionListener(new ActionListener() {
+//        managermentExamGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 ////                managementExamController.doSearch();  // todo
@@ -180,41 +185,40 @@ public class MainAdminGUI extends JFrame {
         // =========== button ManagementSubjectGUI ===========
         // ---------------- xap xep mon thi ===========
 
-        managementSubjectGUI.getBtnSearch().addActionListener(new ActionListener() {
+        managementSubjectGUI.getBtnSearchTab2().addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementSubjectController.doSearch();  // todo
             }
         });
 
-        managementSubjectGUI.getBtnAdd().addActionListener(new ActionListener() {
+        managementSubjectGUI.getBtnAdd().addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementSubjectController.doAdd();   // todo
             }
         });
 
-        managementSubjectGUI.getBtnDelete().addActionListener(new ActionListener() {
+        managementSubjectGUI.getBtnDelete().addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementSubjectController.doDelete();       // todo
             }
         });
-        managementSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
+        managementSubjectGUI.getBtnSaveTab2().addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementSubjectController.doSave();    // todo
             }
         });
-//
-        // -------------------- quan ly mon thi ----------------
-        managementSubjectGUI.getBtnSEARCH().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                managementSubjectController.doSearchSubject();   // todo
-            }
-        });
-
 
 //
 //        // ---------------- EditSubjectGUI-------------
@@ -236,7 +240,7 @@ public class MainAdminGUI extends JFrame {
 //        // ============ ManagermentStudentGUI ================
 //
 //        // ------------------ byClass ---------------
-//        managementStudentGUI.getBtnSearch().addActionListener(new ActionListener() {
+//        managementStudentGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                managementStudentController.doSearch();
@@ -283,7 +287,7 @@ public class MainAdminGUI extends JFrame {
 //
 //        // -------------- bySubject -----------------
 //
-//        managementStudentGUI.getBtnSEARCH().addActionListener(new ActionListener() {
+//        managementStudentGUI.getBtnSearchTab1().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                managementStudentController.doSEARCH();
@@ -322,9 +326,11 @@ public class MainAdminGUI extends JFrame {
 //            }
 //        });
 
-        btnManagementSubject.addActionListener(new ActionListener() {
+        btnManagementSubject.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 mainAdminController.doShowManagementSubjectGUI();
                 managementSubjectController.doSetUp();
             }
@@ -342,66 +348,81 @@ public class MainAdminGUI extends JFrame {
         cardLayout = (CardLayout) AdminCardPanel.getLayout();
     }
 
-    public JButton getBtnQuestionBank() {
+    public JButton getBtnQuestionBank()
+    {
         return btnQuestionBank;
     }
 
-    public JButton getBtnManagementExam() {
+    public JButton getBtnManagementExam()
+    {
         return btnManagementExam;
     }
 
-    public ExportExamination getExportExaminationGUI() {
+    public ExportExamination getExportExaminationGUI()
+    {
         return exportExaminationGUI;
     }
 
-    public ManagermentExamGUI getManagermentExamGUI() {
+    public ManagermentExamGUI getManagermentExamGUI()
+    {
         return managermentExamGUI;
     }
 
-    public JButton getBtnIntroduce() {
+    public JButton getBtnIntroduce()
+    {
         return btnIntroduce;
     }
 
-    public EditStudentGUI getEditStudentGUI() {
+    public EditStudentGUI getEditStudentGUI()
+    {
         return editStudentGUI;
     }
 
-    public ManagementStudentGUI getManagementStudentGUI() {
+    public ManagementStudentGUI getManagementStudentGUI()
+    {
         return managementStudentGUI;
     }
 
-    public ManagementSubjectGUI getManagementSubjectGUI() {
+    public ManagementSubjectGUI getManagementSubjectGUI()
+    {
         return managementSubjectGUI;
     }
 
 
-    public QuestionBankGUI getQuestionBankGUI() {
+    public QuestionBankGUI getQuestionBankGUI()
+    {
         return questionBankGUI;
     }
 
-    public EditQuestionGUI getEditQuestionGUI() {
+    public EditQuestionGUI getEditQuestionGUI()
+    {
         return editQuestionGUI;
     }
 
-    public EditSubjectGUI getEditSubjectGUI() {
+    public EditSubjectGUI getEditSubjectGUI()
+    {
         return editSubjectGUI;
     }
 
-    public CardLayout getCardLayout() {
+    public CardLayout getCardLayout()
+    {
         return cardLayout;
     }
 
 
-    public JPanel getAdminCardPanel() {
+    public JPanel getAdminCardPanel()
+    {
         return AdminCardPanel;
     }
 
 
-    public JLabel getLbUsername() {
+    public JLabel getLbUsername()
+    {
         return lbUsername;
     }
 
-    public JLabel getLbLogOut() {
+    public JLabel getLbLogOut()
+    {
         return lbLogOut;
     }
 
@@ -420,7 +441,8 @@ public class MainAdminGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
@@ -484,7 +506,8 @@ public class MainAdminGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return mainPanel;
     }
 }

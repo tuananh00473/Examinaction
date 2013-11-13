@@ -10,7 +10,8 @@ import java.util.List;
  * Time: 10:39 AM
  */
 
-public interface SubjectService {
+public interface SubjectService
+{
     public Subject findById(Long id);
 
     public Subject save(Subject subject);
@@ -24,4 +25,6 @@ public interface SubjectService {
     public Subject findBySubjectName(String nameOfSubject);
 
     public List<Subject> findByFaculty(String faculty);
+
+    List<Subject> findByFacultyAndNameSubject(String nameFaculty, String nameSubject);
 }

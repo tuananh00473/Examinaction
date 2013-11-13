@@ -12,14 +12,15 @@ import java.awt.*;
  * Date: 10/21/13
  * Time: 4:28 PM
  */
-public class ManagementSubjectGUI extends JPanel {
+public class ManagementSubjectGUI extends JPanel
+{
     private JPanel managementSubjectCard;
     private JTable subjectTable;
     private JComboBox cbBoxFacultyTab2;
     private JButton btnSaveTab2;
     private JComboBox comboBoxCourse;
     private JTable subjectSelectedTable;
-    private JButton btnSearch;
+    private JButton btnSearchTab2;
     private JButton btnAdd;
     private JButton btnDelete;
     private JScrollPane subjectScrollpanel;
@@ -29,94 +30,111 @@ public class ManagementSubjectGUI extends JPanel {
     private JPanel Subject;
     private JTable tableSUBJECT;
     private JComboBox cbBoxFacultyTab1;
-    private JButton btnSEARCH;
+    private JButton btnSearchTab1;
     private JButton btnDelSUBJECT;
     private JButton btnAddSUBJECT;
     private JScrollPane scrollPaneSUBJECT;
     private JButton btnSaveTab1;
+    private JTextField txtNameSubjectSearch;
 
-    public JButton getBtnSaveTab1() {
+    public JButton getBtnSaveTab1()
+    {
         return btnSaveTab1;
     }
 
-    public JPanel getManagementSubjectCard() {
-        return managementSubjectCard;
+    public JTextField getTxtNameSubjectSearch()
+    {
+        return txtNameSubjectSearch;
     }
 
-    public JTable getSubjectTable() {
-        return subjectTable;
-    }
-
-    public JComboBox getCbBoxFacultyTab2() {
+    public JComboBox getCbBoxFacultyTab2()
+    {
         return cbBoxFacultyTab2;
     }
 
-    public JButton getBtnSaveTab2() {
+    public JButton getBtnSaveTab2()
+    {
         return btnSaveTab2;
     }
 
-    public JComboBox getComboBoxCourse() {
+    public JComboBox getComboBoxCourse()
+    {
         return comboBoxCourse;
     }
 
-    public JTable getSubjectSelectedTable() {
+    public JTable getSubjectSelectedTable()
+    {
         return subjectSelectedTable;
     }
 
-    public JButton getBtnSearch() {
-        return btnSearch;
+    public JButton getBtnSearchTab2()
+    {
+        return btnSearchTab2;
     }
 
-    public JButton getBtnAdd() {
+    public JButton getBtnAdd()
+    {
         return btnAdd;
     }
 
-    public JButton getBtnDelete() {
+    public JButton getBtnDelete()
+    {
         return btnDelete;
     }
 
-    public JScrollPane getSubjectScrollpanel() {
+    public JScrollPane getSubjectScrollpanel()
+    {
         return subjectScrollpanel;
     }
 
-    public JScrollPane getSubjectSelectedScrollpanel() {
+    public JScrollPane getSubjectSelectedScrollpanel()
+    {
         return subjectSelectedScrollpanel;
     }
 
-    public JTabbedPane getTabbedPane() {
+    public JTabbedPane getTabbedPane()
+    {
         return tabbedPane;
     }
 
-    public JPanel getExamArrangementPanel() {
+    public JPanel getExamArrangementPanel()
+    {
         return examArrangementPanel;
     }
 
-    public JPanel getSubject() {
+    public JPanel getSubject()
+    {
         return Subject;
     }
 
-    public JTable getTableSUBJECT() {
+    public JTable getTableSUBJECT()
+    {
         return tableSUBJECT;
     }
 
 
-    public JComboBox getCbBoxFacultyTab1() {
+    public JComboBox getCbBoxFacultyTab1()
+    {
         return cbBoxFacultyTab1;
     }
 
-    public JButton getBtnSEARCH() {
-        return btnSEARCH;
+    public JButton getBtnSearchTab1()
+    {
+        return btnSearchTab1;
     }
 
-    public JButton getBtnDelSUBJECT() {
+    public JButton getBtnDelSUBJECT()
+    {
         return btnDelSUBJECT;
     }
 
-    public JButton getBtnAddSUBJECT() {
+    public JButton getBtnAddSUBJECT()
+    {
         return btnAddSUBJECT;
     }
 
-    public JScrollPane getScrollPaneSUBJECT() {
+    public JScrollPane getScrollPaneSUBJECT()
+    {
         return scrollPaneSUBJECT;
     }
 
@@ -134,7 +152,8 @@ public class ManagementSubjectGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementSubjectCard = new JPanel();
         managementSubjectCard.setLayout(new CardLayout(0, 0));
         managementSubjectCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -164,9 +183,9 @@ public class ManagementSubjectGUI extends JPanel {
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
         cbBoxFacultyTab1.setModel(defaultComboBoxModel1);
         panel3.add(cbBoxFacultyTab1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnSEARCH = new JButton();
-        btnSEARCH.setText("Search");
-        panel3.add(btnSEARCH, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSearchTab1 = new JButton();
+        btnSearchTab1.setText("Search");
+        panel3.add(btnSearchTab1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         Subject.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -213,9 +232,9 @@ public class ManagementSubjectGUI extends JPanel {
         panel7.add(label3, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxCourse = new JComboBox();
         panel7.add(comboBoxCourse, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnSearch = new JButton();
-        btnSearch.setText("Search");
-        panel7.add(btnSearch, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSearchTab2 = new JButton();
+        btnSearchTab2.setText("Search");
+        panel7.add(btnSearchTab2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel7.add(spacer3, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel8 = new JPanel();
@@ -268,7 +287,8 @@ public class ManagementSubjectGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementSubjectCard;
     }
 }

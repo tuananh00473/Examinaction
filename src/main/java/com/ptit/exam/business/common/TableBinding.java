@@ -19,13 +19,15 @@ import java.util.Map;
  * Date: 7/30/13
  * Time: 3:01 PM
  */
-public class TableBinding {
+public class TableBinding
+{
     @Autowired
     StudentService studentService;
 
     public static Map<String, JTableBinding> bindMap = new HashMap<String, JTableBinding>();
 
-    public static void bindingAnswer(List<Answer> answerList, JTable table, JScrollPane panel) {
+    public static void bindingAnswer(List<Answer> answerList, JTable table, JScrollPane panel)
+    {
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, answerList, table);
         //-----------------------Option----------------------------------------------
@@ -36,7 +38,8 @@ public class TableBinding {
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
-    public static void bindingQuestionBank(List<Question> questionList, JTable table, JScrollPane panel) {
+    public static void bindingQuestionBank(List<Question> questionList, JTable table, JScrollPane panel)
+    {
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, questionList, table);
         //-----------------------Option----------------------------------------------
@@ -50,21 +53,23 @@ public class TableBinding {
     }
 
 
-    public static void bindingSubject(List<Subject> subjectList, JTable table, JScrollPane panel) {
+    public static void bindingSubject(List<Subject> subjectList, JTable table, JScrollPane panel)
+    {
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, subjectList, table);
         //-----------------------Option----------------------------------------------
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_CODE)).setColumnName("MÃ MÔN HỌC");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_NAME)).setColumnName("TÊN MÔN HỌC");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_FACULTY)).setColumnName("KHOA");
-        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_UNIT_STUDY)).setColumnName("SỐ ĐƠN VỊ HỌC TRÌNH");
+        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_UNIT_STUDY)).setColumnName("ĐVHT");
         jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_DESCRIPTION)).setColumnName("MÔ TẢ");
 
         jTableBinding.bind();
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
-    public static void bindingManagementExam(List<Exam> examList, JTable table, JScrollPane panel) {
+    public static void bindingManagementExam(List<Exam> examList, JTable table, JScrollPane panel)
+    {
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examList, table);
         //-----------------------Option----------------------------------------------
@@ -79,7 +84,8 @@ public class TableBinding {
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
-    public static void bindingStudent(List<Student> studentList, JTable table, JScrollPane panel) {
+    public static void bindingStudent(List<Student> studentList, JTable table, JScrollPane panel)
+    {
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, studentList, table);
         //-----------------------Option----------------------------------------------
@@ -99,9 +105,11 @@ public class TableBinding {
     }
 
     //----------------- unbinding-------------------------------
-    public static void unbinding(JTable table, JScrollPane panel) {
+    public static void unbinding(JTable table, JScrollPane panel)
+    {
         String key = table.hashCode() + "." + panel.hashCode();
-        if (bindMap.containsKey(key)) {
+        if (bindMap.containsKey(key))
+        {
             bindMap.get(key).unbind();
             bindMap.remove(bindMap.get(key));
         }

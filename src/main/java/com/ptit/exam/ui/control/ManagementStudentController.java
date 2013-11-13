@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
  * Time: 9:45 PM
  */
 @Component
-public class ManagementStudentController {
+public class ManagementStudentController
+{
 //    @Autowired
 //    MainAdminGUI mainAdminGUI;
 //    @Autowired

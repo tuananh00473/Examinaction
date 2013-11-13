@@ -3,7 +3,7 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.ManagementSubjectController;
+import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,8 @@ import java.awt.event.ActionListener;
  * Time: 2:33 PM
  */
 @Component
-public class NewSubjectGUI extends JFrame {
+public class NewSubjectGUI extends JFrame
+{
 
     @Autowired
     ManagementSubjectController managementSubjectController;
@@ -31,22 +32,26 @@ public class NewSubjectGUI extends JFrame {
     private JButton btnSave;
     private JPanel newSubjectPanel;
 
-    public NewSubjectGUI() {
+    public NewSubjectGUI()
+    {
 
 
         setContentPane(newSubjectPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 450);
 
-        btnSave.addActionListener(new ActionListener() {
+        btnSave.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 //                managementSubjectController.doSaveNewSubject();  //todo
             }
         });
     }
 
-    public void resetNewSubjectGUI() {
+    public void resetNewSubjectGUI()
+    {
         txtSubjectName.setText("");
         txtSubjectCode.setText("");
         txtDescription.setText("");
@@ -55,31 +60,38 @@ public class NewSubjectGUI extends JFrame {
     }
 
 
-    public JTextField getTxtSubjectName() {
+    public JTextField getTxtSubjectName()
+    {
         return txtSubjectName;
     }
 
-    public JTextField getTxtSubjectCode() {
+    public JTextField getTxtSubjectCode()
+    {
         return txtSubjectCode;
     }
 
-    public JComboBox getComboBoxFaculty() {
+    public JComboBox getComboBoxFaculty()
+    {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxUnitStudy() {
+    public JComboBox getComboBoxUnitStudy()
+    {
         return comboBoxUnitStudy;
     }
 
-    public JTextArea getTxtDescription() {
+    public JTextArea getTxtDescription()
+    {
         return txtDescription;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JPanel getNewSubjectPanel() {
+    public JPanel getNewSubjectPanel()
+    {
         return newSubjectPanel;
     }
 
@@ -97,7 +109,8 @@ public class NewSubjectGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         newSubjectPanel = new JPanel();
         newSubjectPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         newSubjectPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -188,7 +201,8 @@ public class NewSubjectGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return newSubjectPanel;
     }
 }

@@ -9,13 +9,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "subjects")
-public class Subject {
+public class Subject
+{
 
     public static String SUBJECT_CODE = "subjectCode";
     public static String SUBJECT_NAME = "subjectName";
     public static String SUBJECT_FACULTY = "faculty";
     public static String SUBJECT_UNIT_STUDY = "unitOfStudy";
-    public static String SUBJECT_DESCRIPTION = "subjectDesc";
+    public static String SUBJECT_DESCRIPTION = "subjectDescription";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,51 +38,81 @@ public class Subject {
     @Column(name = "subject_description")
     private String subjectDescription;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public String getSubjectCode() {
+    public String getSubjectCode()
+    {
         return subjectCode;
     }
 
-    public void setSubjectCode(String subjectCode) {
+    public void setSubjectCode(String subjectCode)
+    {
         this.subjectCode = subjectCode;
     }
 
-    public String getSubjectName() {
+    public String getSubjectName()
+    {
         return subjectName;
     }
 
-    public void setSubjectName(String subjectName) {
+    public void setSubjectName(String subjectName)
+    {
         this.subjectName = subjectName;
     }
 
-    public String getFaculty() {
+    public String getFaculty()
+    {
         return faculty;
     }
 
-    public void setFaculty(String faculty) {
+    public void setFaculty(String faculty)
+    {
         this.faculty = faculty;
     }
 
-    public Long getUnitOfStudy() {
+    public Long getUnitOfStudy()
+    {
         return unitOfStudy;
     }
 
-    public void setUnitOfStudy(Long unitOfStudy) {
+    public void setUnitOfStudy(Long unitOfStudy)
+    {
         this.unitOfStudy = unitOfStudy;
     }
 
-    public String getSubjectDescription() {
+    public String getSubjectDescription()
+    {
         return subjectDescription;
     }
 
-    public void setSubjectDescription(String subjectDescription) {
+    public void setSubjectDescription(String subjectDescription)
+    {
         this.subjectDescription = subjectDescription;
+    }
+
+    public boolean inValid()
+    {
+        if (isValueNull(subjectCode) || isValueNull(subjectName) || isValueNull(faculty) || null == unitOfStudy || isValueNull(subjectDescription))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isValueNull(String attribute)
+    {
+        if (null == attribute || "".equals(attribute))
+        {
+            return true;
+        }
+        return false;
     }
 }
