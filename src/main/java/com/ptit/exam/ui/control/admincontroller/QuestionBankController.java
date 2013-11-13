@@ -25,8 +25,7 @@ import java.util.List;
  * Time: 1:44 AM
  */
 @Component
-public class QuestionBankController
-{
+public class QuestionBankController {
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -57,9 +56,9 @@ public class QuestionBankController
 
     private QuestionBankGUI questionBankGUI;
 
+
     //
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpView();
         setUpActionListener();
 //        resetQuestionBankGUI();
@@ -80,33 +79,26 @@ public class QuestionBankController
         doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
     }
 
-    private void setUpActionListener()
-    {
-        questionBankGUI.getBtnSearch().addActionListener(new ActionListener()
-        {
+    private void setUpActionListener() {
+        questionBankGUI.getBtnSearch().addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 //                questionBankController.doSearch();   // todo
             }
         });
 
         questionBankGUI.getBtnNewQuestion().addActionListener(actionListener);
 
-        questionBankGUI.getBtnDeleteQuestion().addActionListener(new ActionListener()
-        {
+        questionBankGUI.getBtnDeleteQuestion().addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 //                questionBankController.doDeleteQuestion(); // todo
             }
         });
 
-        questionBankGUI.getBtnEditQuestion().addActionListener(new ActionListener()
-        {
+        questionBankGUI.getBtnEditQuestion().addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 //                questionBankController.doEditQuestion();     // todo
                 mainAdminController.doShowEditQuestionCard();
             }
@@ -114,29 +106,22 @@ public class QuestionBankController
 
     }
 
-    public ActionListener actionListener = new ActionListener()
-    {
+    public ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == questionBankGUI.getBtnSearch())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == questionBankGUI.getBtnSearch()) {
             }
-            if (e.getSource() == questionBankGUI.getBtnNewQuestion())
-            {
+            if (e.getSource() == questionBankGUI.getBtnNewQuestion()) {
                 mainAdminController.doShowNewQuestionCard();
             }
-            if (e.getSource() == questionBankGUI.getBtnDeleteQuestion())
-            {
+            if (e.getSource() == questionBankGUI.getBtnDeleteQuestion()) {
             }
-            if (e.getSource() == questionBankGUI.getBtnEditQuestion())
-            {
+            if (e.getSource() == questionBankGUI.getBtnEditQuestion()) {
             }
         }
     };
 
-    private void setUpView()
-    {
+    private void setUpView() {
         questionBankGUI = mainAdminGUI.getQuestionBankGUI();
 
         tableQuestionBank = questionBankGUI.getTableQuestionBank();
@@ -229,8 +214,7 @@ public class QuestionBankController
 //
 //    }
 //
-    private void doBindingQuestionBank(List<Question> questionList, JTable jTable, JScrollPane jScrollPane)
-    {
+    private void doBindingQuestionBank(List<Question> questionList, JTable jTable, JScrollPane jScrollPane) {
         TableBinding.bindingQuestionBank(questionList, jTable, jScrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();

@@ -12,8 +12,7 @@ import java.awt.*;
  * Date: 10/18/13
  * Time: 4:57 PM
  */
-public class QuestionBankGUI extends JPanel
-{
+public class QuestionBankGUI extends JPanel {
     private JPanel QuestionBankCard;
     private JComboBox comboBoxSubject;
     private JButton btnSearch;
@@ -29,73 +28,59 @@ public class QuestionBankGUI extends JPanel
     private JTextField txtChapterSearch;
     private JTextField txtSubjectSearch;
 
-    public JTextField getTxtChapterSearch()
-    {
+    public JTextField getTxtChapterSearch() {
         return txtChapterSearch;
     }
 
-    public JTextField getTxtSubjectSearch()
-    {
+    public JTextField getTxtSubjectSearch() {
         return txtSubjectSearch;
     }
 
-    public JPanel getQuestionBankCard()
-    {
+    public JPanel getQuestionBankCard() {
         return QuestionBankCard;
     }
 
-    public JComboBox getComboBoxSubject()
-    {
+    public JComboBox getComboBoxSubject() {
         return comboBoxSubject;
     }
 
-    public JButton getBtnSearch()
-    {
+    public JButton getBtnSearch() {
         return btnSearch;
     }
 
-    public JButton getBtnNewQuestion()
-    {
+    public JButton getBtnNewQuestion() {
         return btnNewQuestion;
     }
 
-    public JButton getBtnEditQuestion()
-    {
+    public JButton getBtnEditQuestion() {
         return btnEditQuestion;
     }
 
-    public JButton getBtnDeleteQuestion()
-    {
+    public JButton getBtnDeleteQuestion() {
         return btnDeleteQuestion;
     }
 
-    public JTable getTableQuestionBank()
-    {
+    public JTable getTableQuestionBank() {
         return tableQuestionBank;
     }
 
-    public JScrollPane getQuestionBankScrollPanel()
-    {
+    public JScrollPane getQuestionBankScrollPanel() {
         return questionBankScrollPanel;
     }
 
-    public JTextArea getTxtContentQuestion()
-    {
+    public JTextArea getTxtContentQuestion() {
         return txtContentQuestion;
     }
 
-    public JComboBox getComboBoxLevel()
-    {
+    public JComboBox getComboBoxLevel() {
         return comboBoxLevel;
     }
 
-    public JLabel getLbImage()
-    {
+    public JLabel getLbImage() {
         return lbImage;
     }
 
-    public JTextArea getTxtContentAnswer()
-    {
+    public JTextArea getTxtContentAnswer() {
         return txtContentAnswer;
     }
 
@@ -113,8 +98,7 @@ public class QuestionBankGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         QuestionBankCard = new JPanel();
         QuestionBankCard.setLayout(new CardLayout(0, 0));
         QuestionBankCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -122,23 +106,30 @@ public class QuestionBankGUI extends JPanel
         panel1.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         QuestionBankCard.add(panel1, "Card1");
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.setLayout(new GridLayoutManager(1, 8, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setText("Choose Subject :");
+        label1.setText("Môn học");
         panel2.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        comboBoxSubject = new JComboBox();
-        panel2.add(comboBoxSubject, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel2.add(spacer1, new GridConstraints(0, 7, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnSearch = new JButton();
         btnSearch.setText("SEARCH");
-        panel2.add(btnSearch, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel2.add(btnSearch, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Choose Level difficult :");
-        panel2.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label2.setText("Mức khó");
+        panel2.add(label2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxLevel = new JComboBox();
-        panel2.add(comboBoxLevel, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel2.add(comboBoxLevel, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label3 = new JLabel();
+        label3.setText("Chương");
+        panel2.add(label3, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txtChapterSearch = new JTextField();
+        txtChapterSearch.setText("");
+        panel2.add(txtChapterSearch, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtSubjectSearch = new JTextField();
+        txtSubjectSearch.setText("");
+        panel2.add(txtSubjectSearch, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -177,12 +168,12 @@ public class QuestionBankGUI extends JPanel
         panel5.add(txtContentAnswer, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         lbImage = new JLabel();
         lbImage.setText("");
-        panel5.add(lbImage, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(lbImage, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, new Dimension(50, 50), 0, false));
         final JPanel panel7 = new JPanel();
         panel7.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnNewQuestion = new JButton();
-        btnNewQuestion.setEnabled(false);
+        btnNewQuestion.setEnabled(true);
         btnNewQuestion.setIcon(new ImageIcon(getClass().getResource("/images/add.png")));
         btnNewQuestion.setText("");
         panel7.add(btnNewQuestion, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -195,8 +186,7 @@ public class QuestionBankGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return QuestionBankCard;
     }
 }

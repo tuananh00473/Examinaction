@@ -22,8 +22,8 @@ public class Question {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "subject_id")
-    private Long subjectId;
+    @Column(name = "subject_code")
+    private String subjectCode;
 
     @Column(name = "level")
     private int level;
@@ -45,12 +45,12 @@ public class Question {
         this.id = id;
     }
 
-    public Long getSubjectId() {
-        return subjectId;
+    public String getSubjectCode() {
+        return subjectCode;
     }
 
-    public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
     }
 
     public int getLevel() {

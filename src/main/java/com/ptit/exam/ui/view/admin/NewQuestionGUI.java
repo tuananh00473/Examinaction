@@ -3,22 +3,20 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.ptit.exam.persistence.entity.Answer;
+import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.regex.Matcher;
 
 /**
  * User: thuongntt
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-public class NewQuestionGUI extends JPanel
-{
+public class NewQuestionGUI extends JPanel {
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -33,131 +31,122 @@ public class NewQuestionGUI extends JPanel
     private JRadioButton rdAnswer2;
     private JRadioButton rdAnswer3;
     private JRadioButton rdAnswer4;
-    private JTextField txtQuestionCode;
+    private JTextField txtSubjectCode;
+    private JTextField txtChapter;
+    private JComboBox cbLevel;
 
     @Autowired
     QuestionBankController questionBankController;
 
-    public void doSetUp()
-    {
-        btnCancel.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
 
-                setVisible(false);
-            }
-        });
-
-        btnSave.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                questionBankController.doSaveNewQuestion();  // todo
-                setVisible(false);
-            }
-
-        });
-        btnBrowser.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-
-                doLoadLocation();
-            }
-        });
-    }
-
-
-    private void doLoadLocation()
-    {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int returnVal = chooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            String path = chooser.getSelectedFile().getAbsolutePath();
-            path = path.replaceAll(Matcher.quoteReplacement("\\"), "/");
-            txtUrlImage.setText(path);
-        }
-    }
-
-    public JTextArea getTxtContentQues()
-    {
+    public JTextArea getTxtContentQues() {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage()
-    {
+    public JTextField getTxtUrlImage() {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser()
-    {
+    public JButton getBtnBrowser() {
         return btnBrowser;
     }
 
-    public JTextArea getTxtContentAnswer1()
-    {
+    public JTextArea getTxtContentAnswer1() {
         return txtContentAnswer1;
     }
 
-    public JTextArea getTxtContentAnswer2()
-    {
+    public JTextArea getTxtContentAnswer2() {
         return txtContentAnswer2;
     }
 
-    public JTextArea getTxtContentAnswer3()
-    {
+    public JTextArea getTxtContentAnswer3() {
         return txtContentAnswer3;
     }
 
-    public JTextArea getTxtContentAnswer4()
-    {
+    public JTextArea getTxtContentAnswer4() {
         return txtContentAnswer4;
     }
 
-    public JTextField getTxtQuestionCode()
-    {
-        return txtQuestionCode;
-    }
-
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public JPanel getNewQuestionPanel()
-    {
+    public JPanel getNewQuestionPanel() {
         return newQuestionPanel;
     }
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public JRadioButton getRdAnswer1()
-    {
+    public JRadioButton getRdAnswer1() {
         return rdAnswer1;
     }
 
-    public JRadioButton getRdAnswer2()
-    {
+    public JRadioButton getRdAnswer2() {
         return rdAnswer2;
     }
 
-    public JRadioButton getRdAnswer3()
-    {
+    public JRadioButton getRdAnswer3() {
         return rdAnswer3;
     }
 
-    public JRadioButton getRdAnswer4()
-    {
+    public JRadioButton getRdAnswer4() {
         return rdAnswer4;
+    }
+
+    public Question getQuestionInfo() {
+        Question question = new Question();
+        question.setSubjectCode(txtSubjectCode.getText());
+        question.setChapter(Integer.parseInt(txtChapter.getText()));
+        question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
+        question.setContent(txtContentQues.getText());
+        question.setUrlImage(txtUrlImage.getText());
+        return question;
+    }
+
+    public Answer getAnswer1(Question question) {
+        Answer answer = new Answer();
+        answer.setContent(txtContentAnswer1.getText());
+        answer.setCorrect(rdAnswer1.isSelected());
+        answer.setQuestionId(question.getId());
+        return answer;
+    }
+
+    public Answer getAnswer2(Question question) {
+        Answer answer = new Answer();
+        answer.setContent(txtContentAnswer2.getText());
+        answer.setCorrect(rdAnswer2.isSelected());
+        answer.setQuestionId(question.getId());
+        return answer;
+    }
+
+    public Answer getAnswer3(Question question) {
+        Answer answer = new Answer();
+        answer.setContent(txtContentAnswer3.getText());
+        answer.setCorrect(rdAnswer3.isSelected());
+        answer.setQuestionId(question.getId());
+        return answer;
+    }
+
+    public Answer getAnswer4(Question question) {
+        Answer answer = new Answer();
+        answer.setContent(txtContentAnswer4.getText());
+        answer.setCorrect(rdAnswer4.isSelected());
+        answer.setQuestionId(question.getId());
+        return answer;
+    }
+
+    public boolean invalidForm() {
+        if ("".equals(txtSubjectCode)
+                || "".equals(txtChapter)
+                || "".equals(txtContentQues)
+                || "".equals(txtContentAnswer1)
+                || "".equals(txtContentAnswer2)
+                || "".equals(txtContentAnswer3)
+                || "".equals(txtContentAnswer4))
+            return true;
+        return false;
     }
 
     {
@@ -174,39 +163,39 @@ public class NewQuestionGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         newQuestionPanel = new JPanel();
         newQuestionPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
         label1.setText("New question :");
         newQuestionPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1));
         newQuestionPanel.add(panel1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JLabel label2 = new JLabel();
         label2.setText("Nội dung câu hỏi :");
-        panel1.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Url Image :");
-        panel1.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(label3, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("Các phương án trả lời :");
-        panel1.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(label4, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtContentQues = new JTextArea();
-        panel1.add(txtContentQues, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        panel1.add(txtContentQues, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(53, 100), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(panel2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(53, 29), null, 0, false));
         txtUrlImage = new JTextField();
+        txtUrlImage.setText("");
         panel2.add(txtUrlImage, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         btnBrowser = new JButton();
         btnBrowser.setText("Browser");
         panel2.add(btnBrowser, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel3, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(panel3, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(53, 221), null, 0, false));
         panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
         final JLabel label5 = new JLabel();
         label5.setText("Phương án 1:");
@@ -242,11 +231,23 @@ public class NewQuestionGUI extends JPanel
         rdAnswer4.setText("");
         panel3.add(rdAnswer4, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
-        label9.setText("Mã câu hỏi :");
+        label9.setText("Mã môn học:");
         panel1.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        txtQuestionCode = new JTextField();
-        txtQuestionCode.setText("");
-        panel1.add(txtQuestionCode, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtSubjectCode = new JTextField();
+        panel1.add(txtSubjectCode, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 22), null, 0, false));
+        final JLabel label10 = new JLabel();
+        label10.setText("Nội dung thuộc chương:");
+        panel1.add(label10, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txtChapter = new JTextField();
+        txtChapter.setText("");
+        panel1.add(txtChapter, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 22), null, 0, false));
+        final JLabel label11 = new JLabel();
+        label11.setText("Độ khó");
+        panel1.add(label11, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        cbLevel = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        cbLevel.setModel(defaultComboBoxModel1);
+        panel1.add(cbLevel, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 24), null, 0, false));
         final Spacer spacer1 = new Spacer();
         newQuestionPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
@@ -273,8 +274,7 @@ public class NewQuestionGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return newQuestionPanel;
     }
 }
