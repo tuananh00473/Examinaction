@@ -9,8 +9,7 @@ import java.util.List;
  * Date: 8/25/13
  * Time: 12:27 AM
  */
-public interface QuestionService
-{
+public interface QuestionService {
     public Question findById(Long id);
 
     public Question save(Question question);
@@ -23,4 +22,9 @@ public interface QuestionService
 
     public List<Question> findBySubjectIdAndLevelAndChapter(String subjectCode, int difficult, int chapter);
 
+    public List<Question> findBySubjectCode(String subjectCode);
+
+    public List<Question> findByChapter(int value);
+
+    public List<Question> findByLevel(int value);
 }

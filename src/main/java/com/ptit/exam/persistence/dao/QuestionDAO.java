@@ -10,9 +10,12 @@ import java.util.List;
  * Date: 8/22/13
  * Time: 9:36 PM
  */
-public interface QuestionDAO extends JpaRepository<Question, Long>
-{
+public interface QuestionDAO extends JpaRepository<Question, Long> {
     public List<Question> findBySubjectCode(String subjectCode);
 
     public List<Question> findBySubjectCodeAndChapterAndLevel(String subjectCode, int chapter, int level);
+
+    public List<Question> findByChapter(int value);
+
+    public List<Question> findByLevel(int value);
 }

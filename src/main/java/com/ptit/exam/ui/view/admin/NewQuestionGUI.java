@@ -18,8 +18,7 @@ import java.util.List;
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-public class NewQuestionGUI extends JPanel
-{
+public class NewQuestionGUI extends JPanel {
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -41,93 +40,75 @@ public class NewQuestionGUI extends JPanel
     @Autowired
     QuestionBankController questionBankController;
 
-    public JComboBox getCbLevel()
-    {
+    public JComboBox getCbLevel() {
         return cbLevel;
     }
 
-    public JTextField getTxtChapter()
-    {
+    public JTextField getTxtChapter() {
         return txtChapter;
     }
 
-    public JTextField getTxtSubjectCode()
-    {
+    public JTextField getTxtSubjectCode() {
         return txtSubjectCode;
     }
 
-    public JTextArea getTxtContentQues()
-    {
+    public JTextArea getTxtContentQues() {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage()
-    {
+    public JTextField getTxtUrlImage() {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser()
-    {
+    public JButton getBtnBrowser() {
         return btnBrowser;
     }
 
-    public JTextArea getTxtContentAnswer1()
-    {
+    public JTextArea getTxtContentAnswer1() {
         return txtContentAnswer1;
     }
 
-    public JTextArea getTxtContentAnswer2()
-    {
+    public JTextArea getTxtContentAnswer2() {
         return txtContentAnswer2;
     }
 
-    public JTextArea getTxtContentAnswer3()
-    {
+    public JTextArea getTxtContentAnswer3() {
         return txtContentAnswer3;
     }
 
-    public JTextArea getTxtContentAnswer4()
-    {
+    public JTextArea getTxtContentAnswer4() {
         return txtContentAnswer4;
     }
 
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public JPanel getNewQuestionPanel()
-    {
+    public JPanel getNewQuestionPanel() {
         return newQuestionPanel;
     }
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public JRadioButton getRdAnswer1()
-    {
+    public JRadioButton getRdAnswer1() {
         return rdAnswer1;
     }
 
-    public JRadioButton getRdAnswer2()
-    {
+    public JRadioButton getRdAnswer2() {
         return rdAnswer2;
     }
 
-    public JRadioButton getRdAnswer3()
-    {
+    public JRadioButton getRdAnswer3() {
         return rdAnswer3;
     }
 
-    public JRadioButton getRdAnswer4()
-    {
+    public JRadioButton getRdAnswer4() {
         return rdAnswer4;
     }
 
-    public Question getQuestionInfo(Question question)
-    {
+    public Question getQuestionInfo(Question question) {
         question.setSubjectCode(txtSubjectCode.getText());
         question.setChapter(Integer.parseInt(txtChapter.getText()));
         question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
@@ -136,51 +117,78 @@ public class NewQuestionGUI extends JPanel
         return question;
     }
 
-    public Answer getAnswer1(Question question, Answer answer)
-    {
+    public Answer getAnswer1(Question question, Answer answer) {
         answer.setContent(txtContentAnswer1.getText());
         answer.setCorrect(rdAnswer1.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer2(Question question, Answer answer)
-    {
+    public Answer getAnswer2(Question question, Answer answer) {
         answer.setContent(txtContentAnswer2.getText());
         answer.setCorrect(rdAnswer2.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer3(Question question, Answer answer)
-    {
+    public Answer getAnswer3(Question question, Answer answer) {
         answer.setContent(txtContentAnswer3.getText());
         answer.setCorrect(rdAnswer3.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer4(Question question, Answer answer)
-    {
+    public Answer getAnswer4(Question question, Answer answer) {
         answer.setContent(txtContentAnswer4.getText());
         answer.setCorrect(rdAnswer4.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public boolean invalidForm()
-    {
+    public boolean invalidForm() {
         if ("".equals(txtSubjectCode.getText())
                 || "".equals(txtChapter.getText())
                 || "".equals(txtContentQues.getText())
                 || "".equals(txtContentAnswer1.getText())
                 || "".equals(txtContentAnswer2.getText())
                 || "".equals(txtContentAnswer3.getText())
-                || "".equals(txtContentAnswer4.getText()))
-        {
+                || "".equals(txtContentAnswer4.getText())) {
             return true;
         }
         return false;
+    }
+
+    public List<JTextArea> getTxtContentAnswer() {
+        List<JTextArea> answerList = new ArrayList<JTextArea>();
+        answerList.add(txtContentAnswer1);
+        answerList.add(txtContentAnswer2);
+        answerList.add(txtContentAnswer3);
+        answerList.add(txtContentAnswer4);
+        return answerList;
+    }
+
+    public List<JRadioButton> getRadioButtonList() {
+        List<JRadioButton> radioButtonList = new ArrayList<JRadioButton>();
+        radioButtonList.add(rdAnswer1);
+        radioButtonList.add(rdAnswer2);
+        radioButtonList.add(rdAnswer3);
+        radioButtonList.add(rdAnswer4);
+        return radioButtonList;
+    }
+
+    public void resetNewQuestionGUI() {
+        txtSubjectCode.setText("");
+        txtChapter.setText("");
+        txtContentQues.setText("");
+        txtUrlImage.setText("");
+        txtContentAnswer1.setText("");
+        txtContentAnswer2.setText("");
+        txtContentAnswer3.setText("");
+        txtContentAnswer4.setText("");
+        rdAnswer1.setSelected(false);
+        rdAnswer2.setSelected(false);
+        rdAnswer3.setSelected(false);
+        rdAnswer4.setSelected(false);
     }
 
     {
@@ -197,8 +205,7 @@ public class NewQuestionGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         newQuestionPanel = new JPanel();
         newQuestionPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
@@ -254,12 +261,14 @@ public class NewQuestionGUI extends JPanel
         txtContentAnswer4 = new JTextArea();
         panel3.add(txtContentAnswer4, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         rdAnswer1 = new JRadioButton();
+        rdAnswer1.setSelected(true);
         rdAnswer1.setText("");
         panel3.add(rdAnswer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         rdAnswer2 = new JRadioButton();
         rdAnswer2.setText("");
         panel3.add(rdAnswer2, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         rdAnswer3 = new JRadioButton();
+        rdAnswer3.setEnabled(true);
         rdAnswer3.setText("");
         panel3.add(rdAnswer3, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         rdAnswer4 = new JRadioButton();
@@ -309,44 +318,7 @@ public class NewQuestionGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return newQuestionPanel;
-    }
-
-    public List<JTextArea> getTxtContentAnswer()
-    {
-        List<JTextArea> answerList = new ArrayList<JTextArea>();
-        answerList.add(txtContentAnswer1);
-        answerList.add(txtContentAnswer2);
-        answerList.add(txtContentAnswer3);
-        answerList.add(txtContentAnswer4);
-        return answerList;
-    }
-
-    public List<JRadioButton> getRadioButtonList()
-    {
-        List<JRadioButton> radioButtonList = new ArrayList<JRadioButton>();
-        radioButtonList.add(rdAnswer1);
-        radioButtonList.add(rdAnswer2);
-        radioButtonList.add(rdAnswer3);
-        radioButtonList.add(rdAnswer4);
-        return radioButtonList;
-    }
-
-    public void resetNewQuestionGUI()
-    {
-        txtSubjectCode.setText("");
-        txtChapter.setText("");
-        txtContentQues.setText("");
-        txtUrlImage.setText("");
-        txtContentAnswer1.setText("");
-        txtContentAnswer2.setText("");
-        txtContentAnswer3.setText("");
-        txtContentAnswer4.setText("");
-        rdAnswer1.setSelected(false);
-        rdAnswer2.setSelected(false);
-        rdAnswer3.setSelected(false);
-        rdAnswer4.setSelected(false);
     }
 }

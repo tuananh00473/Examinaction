@@ -61,4 +61,14 @@ public class Answer {
     public void setQuestionId(Long questionId) {
         this.questionId = questionId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Answer answer = (Answer) obj;
+        if (questionId == answer.getQuestionId()
+                && content.equals(answer.getContent())
+                && (correct && answer.isCorrect()))
+            return true;
+        return false;
+    }
 }
