@@ -44,6 +44,7 @@ public class TableBinding
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, questionList, table);
         //-----------------------Option----------------------------------------------
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CONTENT)).setColumnName("NỘI DUNG CÂU HỎI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_SUBJECT_CODE)).setColumnName("MÃ MÔN");
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_IMAGE_URL)).setColumnName("HÌNH ẢNH MINH HỌA");
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CHAPTER)).setColumnName("NỘI DUNG THUỘC CHƯƠNG");
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_LEVEL)).setColumnName("MỨC KHÓ");

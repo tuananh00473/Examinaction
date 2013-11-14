@@ -18,10 +18,7 @@ public class MainAdminController
     public static final String MANAGEMENT_STUDENT_CARD = "managementStudentGUI";
     public static final String MANAGEMENT_SUBJECT_CARD = "managementSubjectGUI";
     public static final String SCHEDULE_CARD = "scheduleGUI";
-    public static final String EDIT_SUBJECT_CARD = "editSubjectGUI";
     public static final String EXPORT_EXAM_CARD = "exportExaminationGUI";
-    public static final String EDIT_QUESTION_CARD = "editQuestionGUI";
-    public static final String EDIT_STUDENT_CARD = "editStudentGUI";
     public static final String QUESTION_BANK_CARD = "questionBankGUI";
     private static final String NEW_QUESTION_CARD = "newQuestionGUI";
 
@@ -36,11 +33,6 @@ public class MainAdminController
     public void doShowScheduleCard()
     {
         showCard(SCHEDULE_CARD);
-    }
-
-    public void doShowEditQuestionCard()
-    {
-        showCard(EDIT_QUESTION_CARD);
     }
 
     public void doShowNewQuestionCard()
@@ -67,16 +59,6 @@ public class MainAdminController
     public void doShowManagementStudentGUI()
     {
         showCard(MANAGEMENT_STUDENT_CARD);
-    }
-
-    public void doShowEditSubjectGUI()
-    {
-        showCard(EDIT_SUBJECT_CARD);
-    }
-
-    public void doShowEditStudentGUI()
-    {
-        showCard(EDIT_STUDENT_CARD);
     }
 
     public void showCard(String nameCard)

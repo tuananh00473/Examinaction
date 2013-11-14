@@ -27,7 +27,8 @@ import java.awt.event.MouseEvent;
  * Time: 11:17 AM
  */
 @Component
-public class MainAdminGUI extends JFrame {
+public class MainAdminGUI extends JFrame
+{
     @Autowired
     MainAdminController mainAdminController;
 
@@ -70,7 +71,6 @@ public class MainAdminGUI extends JFrame {
     private JLabel lbLogOut;
     private JLabel lbUsername;
     private QuestionBankGUI questionBankGUI;
-    private EditQuestionGUI editQuestionGUI;
     private NewQuestionGUI newQuestionGUI;
     private ExportExamination exportExaminationGUI;
     private ManagermentExamGUI managermentExamGUI;
@@ -80,7 +80,8 @@ public class MainAdminGUI extends JFrame {
     private CardLayout cardLayout;
 
 
-    public MainAdminGUI() {
+    public MainAdminGUI()
+    {
 
         setContentPane(mainPanel);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -90,36 +91,16 @@ public class MainAdminGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        lbLogOut.addMouseListener(new MouseAdapter() {
+        lbLogOut.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e)
+            {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
             }
         });
 
-//        // ------------------ EditQuestionGUI----------------
-//        editQuestionGUI.getBtnCancel().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowQuestionBankCard();
-//            }
-//        });
-//
-//        editQuestionGUI.getBtnEditBrowser().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                questionBankController.doLoadLocation();   // todo
-//            }
-//        });
-//
-//        editQuestionGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                questionBankController.doSaveEditQuestion();   // todo
-//                mainAdminController.doShowQuestionBankCard();
-//            }
-//        });
 //
 //        // ============= button ManagementExamGUI ==========
 //        managermentExamGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
@@ -171,9 +152,11 @@ public class MainAdminGUI extends JFrame {
 //        });
 //         ============ button MainAdminGUI ================
 
-        btnQuestionBank.addActionListener(new ActionListener() {
+        btnQuestionBank.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 questionBankController.doSetUp();
                 mainAdminController.doShowQuestionBankCard();
             }
@@ -195,17 +178,21 @@ public class MainAdminGUI extends JFrame {
 //            }
 //        });
 
-        btnManagementSubject.addActionListener(new ActionListener() {
+        btnManagementSubject.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 managementSubjectController.doSetUp();
                 mainAdminController.doShowManagementSubjectGUI();
             }
         });
 
-        btnManagementStudent.addActionListener(new ActionListener() {
+        btnManagementStudent.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 managementStudentController.doSetUp();
                 mainAdminController.doShowManagementStudentGUI();
             }
@@ -215,60 +202,69 @@ public class MainAdminGUI extends JFrame {
         cardLayout = (CardLayout) AdminCardPanel.getLayout();
     }
 
-    public JButton getBtnQuestionBank() {
+    public JButton getBtnQuestionBank()
+    {
         return btnQuestionBank;
     }
 
-    public JButton getBtnManagementExam() {
+    public JButton getBtnManagementExam()
+    {
         return btnManagementExam;
     }
 
-    public ExportExamination getExportExaminationGUI() {
+    public ExportExamination getExportExaminationGUI()
+    {
         return exportExaminationGUI;
     }
 
-    public ManagermentExamGUI getManagermentExamGUI() {
+    public ManagermentExamGUI getManagermentExamGUI()
+    {
         return managermentExamGUI;
     }
 
-    public JButton getBtnIntroduce() {
+    public JButton getBtnIntroduce()
+    {
         return btnIntroduce;
     }
 
-    public ManagementStudentGUI getManagementStudentGUI() {
+    public ManagementStudentGUI getManagementStudentGUI()
+    {
         return managementStudentGUI;
     }
 
-    public ManagementSubjectGUI getManagementSubjectGUI() {
+    public ManagementSubjectGUI getManagementSubjectGUI()
+    {
         return managementSubjectGUI;
     }
 
 
-    public QuestionBankGUI getQuestionBankGUI() {
+    public QuestionBankGUI getQuestionBankGUI()
+    {
         return questionBankGUI;
     }
 
-    public EditQuestionGUI getEditQuestionGUI() {
-        return editQuestionGUI;
-    }
-
-    public NewQuestionGUI getNewQuestionGUI() {
+    public NewQuestionGUI getNewQuestionGUI()
+    {
         return newQuestionGUI;
     }
 
-    public CardLayout getCardLayout() {
+    public CardLayout getCardLayout()
+    {
         return cardLayout;
     }
 
-    public JPanel getAdminCardPanel() {
+    public JPanel getAdminCardPanel()
+    {
         return AdminCardPanel;
     }
 
-    public JLabel getLbUsername() {
+    public JLabel getLbUsername()
+    {
         return lbUsername;
     }
 
-    public JLabel getLbLogOut() {
+    public JLabel getLbLogOut()
+    {
         return lbLogOut;
     }
 
@@ -287,7 +283,8 @@ public class MainAdminGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(3, 2, new Insets(10, 10, 10, 10), -1, -1));
         final JPanel panel1 = new JPanel();
@@ -321,8 +318,6 @@ public class MainAdminGUI extends JFrame {
         panel1.add(AdminCardPanel, BorderLayout.CENTER);
         questionBankGUI = new QuestionBankGUI();
         AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
-        editQuestionGUI = new EditQuestionGUI();
-        AdminCardPanel.add(editQuestionGUI.$$$getRootComponent$$$(), "editQuestionGUI");
         exportExaminationGUI = new ExportExamination();
         AdminCardPanel.add(exportExaminationGUI.$$$getRootComponent$$$(), "exportExaminationGUI");
         managermentExamGUI = new ManagermentExamGUI();
@@ -349,7 +344,8 @@ public class MainAdminGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return mainPanel;
     }
 }

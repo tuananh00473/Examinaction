@@ -8,25 +8,36 @@ package com.ptit.exam.business.common;
 
 import javax.swing.*;
 
-public class TextAreaEditor extends DefaultCellEditor {
-    public TextAreaEditor() {
+public class TextAreaEditor extends DefaultCellEditor
+{
+    public final JTextArea textArea;
+
+    public TextAreaEditor()
+    {
         super(new JTextField());
-        final JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
-
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBorder(null);
         editorComponent = scrollPane;
 
-        delegate = new EditorDelegate() {
-            public void setValue(final Object value) {
+        delegate = new EditorDelegate()
+        {
+            public void setValue(final Object value)
+            {
                 textArea.setText((value != null) ? value.toString() : "");
             }
 
-            public Object getCellEditorValue() {
+            public Object getCellEditorValue()
+            {
                 return textArea.getText();
             }
         };
+    }
+
+    public void setEditAble(boolean isCanEdit)
+    {
+        textArea.setEditable(isCanEdit);
     }
 }

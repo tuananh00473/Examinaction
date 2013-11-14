@@ -9,12 +9,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "questions")
-public class Question {
+public class Question
+{
 
     public static final String QUESTION_CONTENT = "content";
     public static final String QUESTION_IMAGE_URL = "urlImage";
     public static final String QUESTION_CHAPTER = "chapter";
     public static final String QUESTION_LEVEL = "level";
+    public static final String QUESTION_SUBJECT_CODE = "subjectCode";
 
     //  ============= Attribute ==============
     @Id
@@ -37,56 +39,69 @@ public class Question {
     @Column(name = "question_urlimage")
     private String urlImage;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public String getSubjectCode() {
+    public String getSubjectCode()
+    {
         return subjectCode;
     }
 
-    public void setSubjectCode(String subjectCode) {
+    public void setSubjectCode(String subjectCode)
+    {
         this.subjectCode = subjectCode;
     }
 
-    public int getLevel() {
+    public int getLevel()
+    {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(int level)
+    {
         this.level = level;
     }
 
-    public int getChapter() {
+    public int getChapter()
+    {
         return chapter;
     }
 
-    public void setChapter(int chapter) {
+    public void setChapter(int chapter)
+    {
         this.chapter = chapter;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content)
+    {
         this.content = content;
     }
 
-    public String getUrlImage() {
+    public String getUrlImage()
+    {
         return urlImage;
     }
 
-    public void setUrlImage(String urlImage) {
+    public void setUrlImage(String urlImage)
+    {
         this.urlImage = urlImage;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return content;
     }
 }

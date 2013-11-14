@@ -5,6 +5,7 @@ import com.ptit.exam.business.QuestionService;
 import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewQuestionGUI;
+import com.ptit.exam.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,8 @@ import java.util.regex.Matcher;
  */
 
 @Component
-public class AddQuestionController {
+public class AddQuestionController
+{
 
     @Autowired
     MainAdminController mainAdminController;
@@ -39,21 +41,31 @@ public class AddQuestionController {
 
     private NewQuestionGUI newQuestionGUI;
 
-    public void doSetUp() {
+    public void doSetUp()
+    {
         newQuestionGUI = mainAdminGUI.getNewQuestionGUI();
+
+        newQuestionGUI.getCbLevel().setModel(new DefaultComboBoxModel(Constants.level));
+
         newQuestionGUI.getBtnSave().addActionListener(actionListener);
         newQuestionGUI.getBtnCancel().addActionListener(actionListener);
         newQuestionGUI.getBtnBrowser().addActionListener(actionListener);
 
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == newQuestionGUI.getBtnSave()) {
-                if (newQuestionGUI.invalidForm()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == newQuestionGUI.getBtnSave())
+            {
+                if (newQuestionGUI.invalidForm())
+                {
                     showMessage("Dữ liệu không được chấp nhận.");
-                } else {
+                }
+                else
+                {
                     Question questionInput = newQuestionGUI.getQuestionInfo();
                     Question question = questionService.save(questionInput);
                     answerService.save(newQuestionGUI.getAnswer1(question));
@@ -66,28 +78,33 @@ public class AddQuestionController {
                     mainAdminController.doShowQuestionBankCard();
                 }
             }
-            if (e.getSource() == newQuestionGUI.getBtnCancel()) {
+            if (e.getSource() == newQuestionGUI.getBtnCancel())
+            {
                 questionBankController.doSetUp();
                 mainAdminController.doShowQuestionBankCard();
             }
-            if (e.getSource() == newQuestionGUI.getBtnBrowser()) {
+            if (e.getSource() == newQuestionGUI.getBtnBrowser())
+            {
                 doLoadLocation();
             }
         }
     };
 
-    private void doLoadLocation() {
+    private void doLoadLocation()
+    {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int returnVal = chooser.showOpenDialog(newQuestionGUI);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
             String path = chooser.getSelectedFile().getAbsolutePath();
             path = path.replaceAll(Matcher.quoteReplacement("\\"), "/");
             newQuestionGUI.getTxtUrlImage().setText(path);
         }
     }
 
-    public void showMessage(String message) {
+    public void showMessage(String message)
+    {
         JOptionPane.showMessageDialog(null, message);
     }
 }

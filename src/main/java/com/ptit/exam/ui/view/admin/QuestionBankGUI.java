@@ -6,15 +6,17 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: thuongntt
  * Date: 10/18/13
  * Time: 4:57 PM
  */
-public class QuestionBankGUI extends JPanel {
+public class QuestionBankGUI extends JPanel
+{
     private JPanel QuestionBankCard;
-    private JComboBox comboBoxSubject;
     private JButton btnSearch;
     private JButton btnNewQuestion;
     private JButton btnEditQuestion;
@@ -24,64 +26,81 @@ public class QuestionBankGUI extends JPanel {
     private JTextArea txtContentQuestion;
     private JComboBox comboBoxLevel;
     private JLabel lbImage;
-    private JTextArea txtContentAnswer;
+    private JTextArea txtContentAnswer4;
     private JTextField txtChapterSearch;
     private JTextField txtSubjectSearch;
+    private JTextArea txtContentAnswer3;
+    private JTextArea txtContentAnswer2;
+    private JTextArea txtContentAnswer1;
 
-    public JTextField getTxtChapterSearch() {
+    public JTextField getTxtChapterSearch()
+    {
         return txtChapterSearch;
     }
 
-    public JTextField getTxtSubjectSearch() {
+    public JTextField getTxtSubjectSearch()
+    {
         return txtSubjectSearch;
     }
 
-    public JPanel getQuestionBankCard() {
+    public JPanel getQuestionBankCard()
+    {
         return QuestionBankCard;
     }
 
-    public JComboBox getComboBoxSubject() {
-        return comboBoxSubject;
-    }
-
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JButton getBtnNewQuestion() {
+    public JButton getBtnNewQuestion()
+    {
         return btnNewQuestion;
     }
 
-    public JButton getBtnEditQuestion() {
+    public JButton getBtnEditQuestion()
+    {
         return btnEditQuestion;
     }
 
-    public JButton getBtnDeleteQuestion() {
+    public JButton getBtnDeleteQuestion()
+    {
         return btnDeleteQuestion;
     }
 
-    public JTable getTableQuestionBank() {
+    public JTable getTableQuestionBank()
+    {
         return tableQuestionBank;
     }
 
-    public JScrollPane getQuestionBankScrollPanel() {
+    public JScrollPane getQuestionBankScrollPanel()
+    {
         return questionBankScrollPanel;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JComboBox getComboBoxLevel() {
+    public JComboBox getComboBoxLevel()
+    {
         return comboBoxLevel;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public JTextArea getTxtContentAnswer() {
-        return txtContentAnswer;
+    public List<JTextArea> getTxtContentAnswer()
+    {
+        List<JTextArea> answerList = new ArrayList<JTextArea>();
+        answerList.add(txtContentAnswer1);
+        answerList.add(txtContentAnswer2);
+        answerList.add(txtContentAnswer3);
+        answerList.add(txtContentAnswer4);
+        return answerList;
     }
 
     {
@@ -98,7 +117,8 @@ public class QuestionBankGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         QuestionBankCard = new JPanel();
         QuestionBankCard.setLayout(new CardLayout(0, 0));
         QuestionBankCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -164,8 +184,8 @@ public class QuestionBankGUI extends JPanel {
         panel5.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         txtContentQuestion = new JTextArea();
         scrollPane1.setViewportView(txtContentQuestion);
-        txtContentAnswer = new JTextArea();
-        panel5.add(txtContentAnswer, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        txtContentAnswer4 = new JTextArea();
+        panel5.add(txtContentAnswer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         lbImage = new JLabel();
         lbImage.setText("");
         panel5.add(lbImage, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, new Dimension(50, 50), 0, false));
@@ -186,7 +206,18 @@ public class QuestionBankGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return QuestionBankCard;
+    }
+
+    public void resetPreview()
+    {
+        txtContentQuestion.setText("");
+        lbImage.setVisible(false);
+        txtContentAnswer1.setText("");
+        txtContentAnswer2.setText("");
+        txtContentAnswer3.setText("");
+        txtContentAnswer4.setText("");
     }
 }
