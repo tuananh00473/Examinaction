@@ -9,15 +9,17 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "exams")
-public class Exam {
+public class Exam
+{
 
 
     public static String EXAM_NAME = "examName";
     public static String EXAM_CODE = "examCode";
+    public static String EXAM_SUBJECT_CODE = "subjectCode";
     public static String EXAM_TOTAL_TIME = "totalTime";
-    public static String EXAM_TOTAL_EASY_QUESTION = "totalTime";
-    public static String EXAM_TOTAL_MEDIUM_QUESTION = "totalTime";
-    public static String EXAM_TOTAL_HARD_QUESTION = "totalTime";
+    public static String EXAM_TOTAL_EASY_QUESTION = "totalEasyQuestion";
+    public static String EXAM_TOTAL_MEDIUM_QUESTION = "totalMediumQuestion";
+    public static String EXAM_TOTAL_HARD_QUESTION = "totalHardQuestion";
 
 
     @Id
@@ -25,8 +27,8 @@ public class Exam {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "subject_id")
-    private Long subjectId;
+    @Column(name = "subject_code")
+    private String subjectCode;
 
     @Column(name = "exam_code")
     private String examCode;
@@ -46,67 +48,83 @@ public class Exam {
     @Column(name = "total_easy_question")
     private int totalEasyQuestion;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public Long getSubjectId() {
-        return subjectId;
+    public String getSubjectCode()
+    {
+        return subjectCode;
     }
 
-    public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
+    public void setSubjectCode(String subjectCode)
+    {
+        this.subjectCode = subjectCode;
     }
 
-    public String getExamCode() {
+    public String getExamCode()
+    {
         return examCode;
     }
 
-    public void setExamCode(String examCode) {
+    public void setExamCode(String examCode)
+    {
         this.examCode = examCode;
     }
 
-    public String getExamName() {
+    public String getExamName()
+    {
         return examName;
     }
 
-    public void setExamName(String examName) {
+    public void setExamName(String examName)
+    {
         this.examName = examName;
     }
 
-    public Long getTotalTime() {
+    public Long getTotalTime()
+    {
         return totalTime;
     }
 
-    public void setTotalTime(Long totalTime) {
+    public void setTotalTime(Long totalTime)
+    {
         this.totalTime = totalTime;
     }
 
-    public int getTotalHardQuestion() {
+    public int getTotalHardQuestion()
+    {
         return totalHardQuestion;
     }
 
-    public void setTotalHardQuestion(int totalHardQuestion) {
+    public void setTotalHardQuestion(int totalHardQuestion)
+    {
         this.totalHardQuestion = totalHardQuestion;
     }
 
-    public int getTotalMediumQuestion() {
+    public int getTotalMediumQuestion()
+    {
         return totalMediumQuestion;
     }
 
-    public void setTotalMediumQuestion(int totalMediumQuestion) {
+    public void setTotalMediumQuestion(int totalMediumQuestion)
+    {
         this.totalMediumQuestion = totalMediumQuestion;
     }
 
-    public int getTotalEasyQuestion() {
+    public int getTotalEasyQuestion()
+    {
         return totalEasyQuestion;
     }
 
-    public void setTotalEasyQuestion(int totalEasyQuestion) {
+    public void setTotalEasyQuestion(int totalEasyQuestion)
+    {
         this.totalEasyQuestion = totalEasyQuestion;
     }
 }

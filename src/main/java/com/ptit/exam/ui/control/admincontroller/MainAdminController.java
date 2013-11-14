@@ -42,7 +42,6 @@ public class MainAdminController
 
     public void doShowExportExamCard()
     {
-
         showCard(EXPORT_EXAM_CARD);
     }
 

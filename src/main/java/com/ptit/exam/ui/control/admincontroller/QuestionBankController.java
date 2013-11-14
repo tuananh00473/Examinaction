@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,40 +52,17 @@ public class QuestionBankController
     @Autowired
     AnswerService answerService;
 
-    NewQuestionGUI newQuestionGUI;
-
-    //    private List<Subject> subjectList;
     private List<Question> questionList;
-
-    //    private String nameSubject;
-//    private String nameDifficult;
-//    private Subject subject;
-//    private Difficult difficult;
-//    private Question currentQuestion;
     private JTable tableQuestionBank;
     private JScrollPane scrollQuestionBank;
 
-    private JComboBox cbLevel;
-
     private QuestionBankGUI questionBankGUI;
+    private NewQuestionGUI newQuestionGUI;
 
     public void doSetUp()
     {
         setUpView();
         setUpActionListener();
-//        resetQuestionBankGUI();
-//        resetComboBoxSubject();
-//        resetComboBoxLevelDifficult();
-//
-//        subjectList = subjectService.getAll();
-//        Set<String> stringSet = new HashSet<String>();
-//        for (Subject subject : subjectList) {
-//            stringSet.add(subject.getSubjectName());
-//        }
-//
-//        for (String s : stringSet) {
-//            mainAdminGUI.getQuestionBankGUI().getComboBoxSubject().addItem(s);
-//        }
 
         questionList = questionService.getAll();
         doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
@@ -93,27 +71,19 @@ public class QuestionBankController
     private void setUpView()
     {
         questionBankGUI = mainAdminGUI.getQuestionBankGUI();
+        newQuestionGUI = mainAdminGUI.getNewQuestionGUI();
 
         tableQuestionBank = questionBankGUI.getTableQuestionBank();
         scrollQuestionBank = questionBankGUI.getQuestionBankScrollPanel();
 
-        cbLevel = questionBankGUI.getComboBoxLevel();
-        cbLevel.setModel(new DefaultComboBoxModel(Constants.level));
-
+        questionBankGUI.getComboBoxLevel().setModel(new DefaultComboBoxModel(Constants.level));
     }
 
     private void setUpActionListener()
     {
         tableQuestionBank.getSelectionModel().addListSelectionListener(listSelectionListener);
-        questionBankGUI.getBtnSearch().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                questionBankController.doSearch();   // todo
-            }
-        });
 
+        questionBankGUI.getBtnSearch().addActionListener(actionListener);
         questionBankGUI.getBtnNewQuestion().addActionListener(actionListener);
         questionBankGUI.getBtnDeleteQuestion().addActionListener(actionListener);
         questionBankGUI.getBtnEditQuestion().addActionListener(actionListener);
@@ -129,7 +99,14 @@ public class QuestionBankController
             }
             if (e.getSource() == questionBankGUI.getBtnNewQuestion())
             {
-                addQuestionController.doSetUp();
+                Question question = new Question();
+                List<Answer> answerList = new ArrayList<Answer>();
+                answerList.add(new Answer());
+                answerList.add(new Answer());
+                answerList.add(new Answer());
+                answerList.add(new Answer());
+                addQuestionController.doSetUp(question, answerList);
+                newQuestionGUI.resetNewQuestionGUI();
                 mainAdminController.doShowNewQuestionCard();
             }
             if (e.getSource() == questionBankGUI.getBtnDeleteQuestion())
@@ -164,11 +141,6 @@ public class QuestionBankController
             }
         }
     };
-
-    private int showConfirmMessage(String message)
-    {
-        return JOptionPane.showConfirmDialog(null, message);
-    }
 
     private ListSelectionListener listSelectionListener = new ListSelectionListener()
     {
@@ -285,20 +257,6 @@ public class QuestionBankController
         jTable.repaint();
     }
 
-    //    private void resetNewQuestionGUI() {
-//        newQuestionGUI.getTxtContentQues().setText("");
-//        newQuestionGUI.getTxtUrlImage().setText("");
-//        newQuestionGUI.getTxtContentAnswer1().setText("");
-//        newQuestionGUI.getTxtContentAnswer2().setText("");
-//        newQuestionGUI.getTxtContentAnswer3().setText("");
-//        newQuestionGUI.getTxtContentAnswer4().setText("");
-//        newQuestionGUI.getRdAnswer1().setSelected(true);
-//        newQuestionGUI.getRdAnswer2().setSelected(false);
-//        newQuestionGUI.getRdAnswer3().setSelected(false);
-//        newQuestionGUI.getRdAnswer4().setSelected(false);
-//
-//    }
-//
     public void doDeleteQuestion(Question question)
     {
         int index = tableQuestionBank.getSelectedRow();
@@ -313,64 +271,31 @@ public class QuestionBankController
 
     public void doSetUpEditQuestion(Question question)
     {
-        newQuestionGUI = mainAdminGUI.getNewQuestionGUI();
-        int index = tableQuestionBank.getSelectedRow();
-        if (-1 != index)
+        newQuestionGUI.getTxtSubjectCode().setText(question.getSubjectCode());
+        newQuestionGUI.getTxtChapter().setText(String.valueOf(question.getChapter()));
+        newQuestionGUI.getCbLevel().setModel(new DefaultComboBoxModel(Constants.level));
+        newQuestionGUI.getCbLevel().setSelectedIndex(question.getLevel() - 1);
+        newQuestionGUI.getTxtContentQues().setText(question.getContent());
+        newQuestionGUI.getTxtUrlImage().setText(question.getUrlImage());
+        List<Answer> answerList = answerService.getListAnswer(question.getId());
+        List<JTextArea> txtAnswerList = newQuestionGUI.getTxtContentAnswer();
+        List<JRadioButton> radioButtonList = newQuestionGUI.getRadioButtonList();
+
+        for (int i = 0; i < 4; i++)
         {
-            question = questionList.get(index);
-            newQuestionGUI.getTxtSubjectCode().setText(question.getSubjectCode());
-            newQuestionGUI.getTxtChapter().setText(String.valueOf(question.getChapter()));
-            newQuestionGUI.getCbLevel().setModel(new DefaultComboBoxModel(Constants.level));
-            newQuestionGUI.getCbLevel().setSelectedIndex(question.getLevel() - 1);
-            newQuestionGUI.getTxtContentQues().setText(question.getContent());
-            newQuestionGUI.getTxtUrlImage().setText(question.getUrlImage());
-            List<Answer> answerList = answerService.getListAnswer(question.getId());
-            List<JTextArea> txtAnswerList = newQuestionGUI.getTxtContentAnswer();
-            List<JRadioButton> radioButtonList = newQuestionGUI.getRadioButtonList();
-
-            for (int i = 0; i < 4; i++)
-            {
-                txtAnswerList.get(i).setText(answerList.get(i).getContent());
-                radioButtonList.get(i).setSelected(answerList.get(i).isCorrect());
-            }
+            txtAnswerList.get(i).setText(answerList.get(i).getContent());
+            radioButtonList.get(i).setSelected(answerList.get(i).isCorrect());
         }
+        addQuestionController.doSetUp(question, answerList);
     }
-
-//    public void doLoadLocation() {
-//        JFileChooser chooser = new JFileChooser();
-//        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-//        int returnVal = chooser.showOpenDialog(mainAdminGUI.getEditQuestionGUI());
-//        if (returnVal == JFileChooser.APPROVE_OPTION) {
-//            String path = chooser.getSelectedFile().getAbsolutePath();
-//            path = path.replaceAll(Matcher.quoteReplacement("\\"), "/");
-//            mainAdminGUI.getEditQuestionGUI().getTxtEditUrlImage().setText(path);
-//        }
-//    }
-//    public void doSaveEditQuestion() {
-//        currentQuestion.setQuestionCode(mainAdminGUI.getEditQuestionGUI().getTxtQuestionCode().getText());
-//        currentQuestion.setContent( mainAdminGUI.getEditQuestionGUI().getTxtEditContentQuestion().getText());
-//        currentQuestion.setUrlImage( mainAdminGUI.getEditQuestionGUI().getTxtEditUrlImage().getText());
-//        List<Answer> answerList = currentQuestion.getAnswerList();
-//        answerList.get(0).setContent( mainAdminGUI.getEditQuestionGUI().getTxtEditAnswer1().getText());
-//        answerList.get(0).setCorrect( mainAdminGUI.getEditQuestionGUI().getRdEditAnswer1().isSelected() ? true : false);
-//        answerList.get(1).setContent( mainAdminGUI.getEditQuestionGUI().getTxtEditAnswer2().getText());
-//        answerList.get(1).setCorrect( mainAdminGUI.getEditQuestionGUI().getRdEditAnswer2().isSelected() ? true : false);
-//        answerList.get(2).setContent( mainAdminGUI.getEditQuestionGUI().getTxtEditAnswer3().getText());
-//        answerList.get(2).setCorrect( mainAdminGUI.getEditQuestionGUI().getRdEditAnswer3().isSelected() ? true : false);
-//        answerList.get(3).setContent( mainAdminGUI.getEditQuestionGUI().getTxtEditAnswer4().getText());
-//        answerList.get(3).setCorrect( mainAdminGUI.getEditQuestionGUI().getRdEditAnswer4().isSelected() ? true : false);
-//
-//        questionService.save(currentQuestion);
-//        answerService.save(answerList.get(0));
-//        answerService.save(answerList.get(1));
-//        answerService.save(answerList.get(2));
-//        answerService.save(answerList.get(3));
-//
-//        doBindingQuestionBank(questionList);
-//    }
 
     private void showMessage(String message)
     {
         JOptionPane.showMessageDialog(null, message);
+    }
+
+    private int showConfirmMessage(String message)
+    {
+        return JOptionPane.showConfirmDialog(null, message);
     }
 }

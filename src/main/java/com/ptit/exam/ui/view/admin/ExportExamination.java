@@ -3,6 +3,7 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.ptit.exam.persistence.entity.Exam;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,96 +13,35 @@ import java.awt.*;
  * Date: 10/17/13
  * Time: 9:27 AM
  */
-public class ExportExamination extends JPanel {
+public class ExportExamination extends JPanel
+{
     private JPanel ExportExaminationCard;
-    private JComboBox comboBoxsubject;
+    private JComboBox comboBoxSubject;
     private JTextField txtExamName;
-    private JTextField txtTotalNumberQuestion;
     private JTextField txtTotalNumberTime;
-    private JTextField txtNumberQuestionDifficult1;
-    private JTextField txtNumberQuestionDifficult2;
-    private JTextField txtNumberQuestionDifficult3;
-    private JButton btnExportExam;
-    private JLabel lbDifficult1;
-    private JLabel lbDifficult2;
-    private JLabel lbDifficult3;
-    private JLabel lbTotalQuestionDifficult1;
-    private JLabel lbTotalQuestionDifficult2;
-    private JLabel lbTotalQuestionDifficult3;
-    private JLabel lbTotalQuestionBank;
-    private JLabel lbTotalNumberSelested;
+    private JTextField txtNumberQuestionEasy;
+    private JTextField txtNumberQuestionMedium;
+    private JTextField txtNumberQuestionHard;
+    private JButton btnSave;
+    private JLabel lbTotalQuestionEasy;
+    private JLabel lbTotalQuestionMedium;
+    private JLabel lbTotalQuestionHard;
     private JTextField txtExamCode;
+    private JButton btnCancel;
 
-    public JPanel getExportExaminationCard() {
-        return ExportExaminationCard;
+    public JButton getBtnCancel()
+    {
+        return btnCancel;
     }
 
-    public JComboBox getComboBoxsubject() {
-        return comboBoxsubject;
+    public JComboBox getComboBoxSubject()
+    {
+        return comboBoxSubject;
     }
 
-    public JTextField getTxtExamName() {
-        return txtExamName;
-    }
-
-    public JTextField getTxtTotalNumberQuestion() {
-        return txtTotalNumberQuestion;
-    }
-
-    public JTextField getTxtExamCode() {
-        return txtExamCode;
-    }
-
-    public JTextField getTxtTotalNumberTime() {
-        return txtTotalNumberTime;
-    }
-
-    public JTextField getTxtNumberQuestionDifficult1() {
-        return txtNumberQuestionDifficult1;
-    }
-
-    public JTextField getTxtNumberQuestionDifficult2() {
-        return txtNumberQuestionDifficult2;
-    }
-
-    public JTextField getTxtNumberQuestionDifficult3() {
-        return txtNumberQuestionDifficult3;
-    }
-
-    public JButton getBtnExportExam() {
-        return btnExportExam;
-    }
-
-    public JLabel getLbDifficult1() {
-        return lbDifficult1;
-    }
-
-    public JLabel getLbDifficult2() {
-        return lbDifficult2;
-    }
-
-    public JLabel getLbDifficult3() {
-        return lbDifficult3;
-    }
-
-    public JLabel getLbTotalQuestionDifficult1() {
-        return lbTotalQuestionDifficult1;
-    }
-
-    public JLabel getLbTotalQuestionDifficult2() {
-        return lbTotalQuestionDifficult2;
-    }
-
-    public JLabel getLbTotalQuestionDifficult3() {
-        return lbTotalQuestionDifficult3;
-    }
-
-    public JLabel getLbTotalQuestionBank() {
-        return lbTotalQuestionBank;
-    }
-
-    public JLabel getLbTotalNumberSelested() {
-        return lbTotalNumberSelested;
+    public JButton getBtnSave()
+    {
+        return btnSave;
     }
 
     {
@@ -118,7 +58,8 @@ public class ExportExamination extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         ExportExaminationCard = new JPanel();
         ExportExaminationCard.setLayout(new CardLayout(0, 0));
         ExportExaminationCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -145,8 +86,8 @@ public class ExportExamination extends JPanel {
         final JLabel label2 = new JLabel();
         label2.setText("Chọn Môn Thi :");
         panel3.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxsubject = new JComboBox();
-        panel3.add(comboBoxsubject, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboBoxSubject = new JComboBox();
+        panel3.add(comboBoxSubject, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -176,9 +117,6 @@ public class ExportExamination extends JPanel {
         final JLabel label6 = new JLabel();
         label6.setText("Thiết lập thời gian thi :");
         panel6.add(label6, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        txtTotalNumberQuestion = new JTextField();
-        txtTotalNumberQuestion.setText("0");
-        panel6.add(txtTotalNumberQuestion, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtTotalNumberTime = new JTextField();
         txtTotalNumberTime.setText("0");
         panel6.add(txtTotalNumberTime, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -206,41 +144,32 @@ public class ExportExamination extends JPanel {
         panel10.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel9.add(panel10, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel10.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        lbDifficult1 = new JLabel();
-        lbDifficult1.setText("");
-        panel10.add(lbDifficult1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbDifficult2 = new JLabel();
-        lbDifficult2.setText("");
-        panel10.add(lbDifficult2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbDifficult3 = new JLabel();
-        lbDifficult3.setText("");
-        panel10.add(lbDifficult3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel11 = new JPanel();
         panel11.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel9.add(panel11, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel11.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        txtNumberQuestionDifficult1 = new JTextField();
-        txtNumberQuestionDifficult1.setText("0");
-        panel11.add(txtNumberQuestionDifficult1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        txtNumberQuestionDifficult2 = new JTextField();
-        txtNumberQuestionDifficult2.setText("0");
-        panel11.add(txtNumberQuestionDifficult2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        txtNumberQuestionDifficult3 = new JTextField();
-        txtNumberQuestionDifficult3.setText("0");
-        panel11.add(txtNumberQuestionDifficult3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtNumberQuestionEasy = new JTextField();
+        txtNumberQuestionEasy.setText("0");
+        panel11.add(txtNumberQuestionEasy, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtNumberQuestionMedium = new JTextField();
+        txtNumberQuestionMedium.setText("0");
+        panel11.add(txtNumberQuestionMedium, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtNumberQuestionHard = new JTextField();
+        txtNumberQuestionHard.setText("0");
+        panel11.add(txtNumberQuestionHard, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel9.add(panel12, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel12.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        lbTotalQuestionDifficult1 = new JLabel();
-        lbTotalQuestionDifficult1.setText("0");
-        panel12.add(lbTotalQuestionDifficult1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbTotalQuestionDifficult2 = new JLabel();
-        lbTotalQuestionDifficult2.setText("0");
-        panel12.add(lbTotalQuestionDifficult2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbTotalQuestionDifficult3 = new JLabel();
-        lbTotalQuestionDifficult3.setText("0");
-        panel12.add(lbTotalQuestionDifficult3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbTotalQuestionEasy = new JLabel();
+        lbTotalQuestionEasy.setText("0");
+        panel12.add(lbTotalQuestionEasy, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbTotalQuestionMedium = new JLabel();
+        lbTotalQuestionMedium.setText("0");
+        panel12.add(lbTotalQuestionMedium, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbTotalQuestionHard = new JLabel();
+        lbTotalQuestionHard.setText("0");
+        panel12.add(lbTotalQuestionHard, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel9.add(spacer4, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
@@ -254,21 +183,15 @@ public class ExportExamination extends JPanel {
         panel13.add(label10, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer6 = new Spacer();
         panel13.add(spacer6, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        lbTotalQuestionBank = new JLabel();
-        lbTotalQuestionBank.setText("");
-        panel13.add(lbTotalQuestionBank, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbTotalNumberSelested = new JLabel();
-        lbTotalNumberSelested.setText("0");
-        panel13.add(lbTotalNumberSelested, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label11 = new JLabel();
         label11.setText("Đã chọn :");
         panel13.add(label11, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel14 = new JPanel();
         panel14.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel14, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        btnExportExam = new JButton();
-        btnExportExam.setText("Xuất Đề Thi");
-        panel14.add(btnExportExam, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave = new JButton();
+        btnSave.setText("LƯU");
+        panel14.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
         panel14.add(spacer7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer8 = new Spacer();
@@ -278,7 +201,60 @@ public class ExportExamination extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return ExportExaminationCard;
+    }
+
+    public boolean invalidForm()
+    {
+        if ("".equals(txtExamName.getText())
+                || "".equals(txtExamCode.getText())
+                || "".equals(txtTotalNumberTime.getText())
+                || "".equals(txtNumberQuestionEasy.getText())
+                || "".equals(txtNumberQuestionMedium.getText())
+                || "".equals(txtNumberQuestionHard.getText())
+                || value(txtNumberQuestionEasy.getText()) > value(lbTotalQuestionEasy.getText())
+                || value(txtNumberQuestionMedium.getText()) > value(lbTotalQuestionMedium.getText())
+                || value(txtNumberQuestionHard.getText()) > value(lbTotalQuestionHard.getText()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private int value(String text)
+    {
+        return Integer.parseInt(text);
+    }
+
+    public Exam getExamInfo(Exam exam)
+    {
+        exam.setExamCode(txtExamCode.getText());
+        exam.setExamName(txtExamName.getText());
+        exam.setSubjectCode(comboBoxSubject.getSelectedItem().toString());
+        exam.setTotalTime(Long.parseLong(txtTotalNumberTime.getText()));
+        exam.setTotalEasyQuestion(Integer.parseInt(txtNumberQuestionEasy.getText()));
+        exam.setTotalMediumQuestion(Integer.parseInt(txtNumberQuestionMedium.getText()));
+        exam.setTotalHardQuestion(Integer.parseInt(txtNumberQuestionHard.getText()));
+        return exam;
+    }
+
+    public void setInforExam(Exam exam)
+    {
+        comboBoxSubject.setSelectedItem(exam.getSubjectCode());
+        txtExamCode.setText(exam.getExamCode());
+        txtExamName.setText(exam.getExamName());
+        txtTotalNumberTime.setText(String.valueOf(exam.getTotalTime()));
+        txtNumberQuestionEasy.setText(String.valueOf(exam.getTotalEasyQuestion()));
+        txtNumberQuestionMedium.setText(String.valueOf(exam.getTotalMediumQuestion()));
+        txtNumberQuestionHard.setText(String.valueOf(exam.getTotalHardQuestion()));
+    }
+
+    public void setLabelTotalCountLevel(int easy, int medium, int hard)
+    {
+        lbTotalQuestionEasy.setText(String.valueOf(easy));
+        lbTotalQuestionMedium.setText(String.valueOf(medium));
+        lbTotalQuestionHard.setText(String.valueOf(hard));
     }
 }

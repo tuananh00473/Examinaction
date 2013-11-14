@@ -126,9 +126,8 @@ public class NewQuestionGUI extends JPanel
         return rdAnswer4;
     }
 
-    public Question getQuestionInfo()
+    public Question getQuestionInfo(Question question)
     {
-        Question question = new Question();
         question.setSubjectCode(txtSubjectCode.getText());
         question.setChapter(Integer.parseInt(txtChapter.getText()));
         question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
@@ -137,36 +136,32 @@ public class NewQuestionGUI extends JPanel
         return question;
     }
 
-    public Answer getAnswer1(Question question)
+    public Answer getAnswer1(Question question, Answer answer)
     {
-        Answer answer = new Answer();
         answer.setContent(txtContentAnswer1.getText());
         answer.setCorrect(rdAnswer1.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer2(Question question)
+    public Answer getAnswer2(Question question, Answer answer)
     {
-        Answer answer = new Answer();
         answer.setContent(txtContentAnswer2.getText());
         answer.setCorrect(rdAnswer2.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer3(Question question)
+    public Answer getAnswer3(Question question, Answer answer)
     {
-        Answer answer = new Answer();
         answer.setContent(txtContentAnswer3.getText());
         answer.setCorrect(rdAnswer3.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer4(Question question)
+    public Answer getAnswer4(Question question, Answer answer)
     {
-        Answer answer = new Answer();
         answer.setContent(txtContentAnswer4.getText());
         answer.setCorrect(rdAnswer4.isSelected());
         answer.setQuestionId(question.getId());
@@ -175,13 +170,13 @@ public class NewQuestionGUI extends JPanel
 
     public boolean invalidForm()
     {
-        if ("".equals(txtSubjectCode)
-                || "".equals(txtChapter)
-                || "".equals(txtContentQues)
-                || "".equals(txtContentAnswer1)
-                || "".equals(txtContentAnswer2)
-                || "".equals(txtContentAnswer3)
-                || "".equals(txtContentAnswer4))
+        if ("".equals(txtSubjectCode.getText())
+                || "".equals(txtChapter.getText())
+                || "".equals(txtContentQues.getText())
+                || "".equals(txtContentAnswer1.getText())
+                || "".equals(txtContentAnswer2.getText())
+                || "".equals(txtContentAnswer3.getText())
+                || "".equals(txtContentAnswer4.getText()))
         {
             return true;
         }
@@ -337,5 +332,21 @@ public class NewQuestionGUI extends JPanel
         radioButtonList.add(rdAnswer3);
         radioButtonList.add(rdAnswer4);
         return radioButtonList;
+    }
+
+    public void resetNewQuestionGUI()
+    {
+        txtSubjectCode.setText("");
+        txtChapter.setText("");
+        txtContentQues.setText("");
+        txtUrlImage.setText("");
+        txtContentAnswer1.setText("");
+        txtContentAnswer2.setText("");
+        txtContentAnswer3.setText("");
+        txtContentAnswer4.setText("");
+        rdAnswer1.setSelected(false);
+        rdAnswer2.setSelected(false);
+        rdAnswer3.setSelected(false);
+        rdAnswer4.setSelected(false);
     }
 }

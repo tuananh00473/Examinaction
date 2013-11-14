@@ -1,6 +1,17 @@
-package com.ptit.exam.ui.control;
+package com.ptit.exam.ui.control.admincontroller;
 
+import com.ptit.exam.business.ExamService;
+import com.ptit.exam.business.QuestionService;
+import com.ptit.exam.persistence.entity.Exam;
+import com.ptit.exam.ui.view.admin.ExportExamination;
+import com.ptit.exam.ui.view.admin.MainAdminGUI;
+import com.ptit.exam.util.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * User: thuongntt
@@ -8,31 +19,90 @@ import org.springframework.stereotype.Component;
  * Time: 4:28 PM
  */
 @Component
-public class ExportExamController {
-//    @Autowired
-//    MainAdminGUI mainAdminGUI;
-//    @Autowired
-//    SubjectService subjectService;
-//    @Autowired
-//    ExamService examService;
-//
-//    @Autowired
-//    ExamQuestionService examQuestionService;
-//    @Autowired
-//    QuestionService questionService;
-//    @Autowired
-//    DifficultService difficultService;
-//
-//    private List<Subject> subjectList;
-//    private List<Question> questionList;
-//    private List<Difficult> difficultList;
-//    private Subject subject;
-//
-//    private List<Question> questionListDifficult1;
-////    private List<Question> questionListDifficult2;
-////    private List<Question> questionListDifficult3;
-//
-//    public void showExportExamGUI() {
+public class ExportExamController
+{
+    @Autowired
+    MainAdminGUI mainAdminGUI;
+
+    @Autowired
+    MainAdminController mainAdminController;
+
+    @Autowired
+    ManagementExamController managementExamController;
+
+    @Autowired
+    ExamService examService;
+
+    @Autowired
+    QuestionService questionService;
+
+    private ExportExamination exportExamination;
+
+    private Exam exam;
+
+    public void doSetUp(Exam exam)
+    {
+        this.exam = exam;
+
+        exportExamination = mainAdminGUI.getExportExaminationGUI();
+
+        exportExamination.getComboBoxSubject().setModel(new DefaultComboBoxModel(Constants.subjects));
+
+        int countEasy = getTotalCountEasy();
+        int countMedium = getTotalCountMedium();
+        int countHard = getTotalCountHard();
+
+        exportExamination.setLabelTotalCountLevel(countEasy, countMedium, countHard);
+
+        exportExamination.getBtnSave().addActionListener(actionListener);
+        exportExamination.getBtnCancel().addActionListener(actionListener);
+    }
+
+    private int getTotalCountHard()
+    {
+        return 10; // todo: vao service de lay info nay
+    }
+
+    private int getTotalCountMedium()
+    {
+        return 10; // todo: vao service de lay info nay
+    }
+
+    private int getTotalCountEasy()
+    {
+//        return questionService.findBySubjectIdAndLevelAndChapter()
+        return 10; // todo: vao service de lay info nay
+    }
+
+    private ActionListener actionListener = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == exportExamination.getBtnSave())
+            {
+                if (exportExamination.invalidForm())
+                {
+                    showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
+                }
+                else
+                {
+                    exam = exportExamination.getExamInfo(exam);
+                    examService.save(exam);
+                    showMessage("Dữ liệu đã được lưu trữ.");
+
+                    managementExamController.doSetUp();
+                    mainAdminController.doShowManagementExamGUI();
+                }
+            }
+            if (e.getSource() == exportExamination.getBtnCancel())
+            {
+                managementExamController.doSetUp();
+                mainAdminController.doShowManagementExamGUI();
+            }
+        }
+    };
+
 //        resetComboBoxSubject();
 //
 //        subjectList = subjectService.getAll();
@@ -42,7 +112,7 @@ public class ExportExamController {
 //        }
 //
 //        for (String s : stringSet) {
-//            mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().addItem(s);
+//            mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().addItem(s);
 //        }
 //
 //        difficultList = difficultService.getAll();
@@ -50,12 +120,12 @@ public class ExportExamController {
 //        mainAdminGUI.getExportExaminationGUI().getLbDifficult2().setText(difficultList.get(1).getDifficultName());
 //        mainAdminGUI.getExportExaminationGUI().getLbDifficult3().setText(difficultList.get(2).getDifficultName());
 //
-//        mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().addActionListener(new ActionListener() {
+//        mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
-//                if (mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().isPopupVisible()) {
+//                if (mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().isPopupVisible()) {
 //
-//                    subject = subjectService.findBySubjectName(mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().getSelectedItem().toString());
+//                    subject = subjectService.findBySubjectName(mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().getSelectedItem().toString());
 //
 //                    questionList = questionService.findBySubjectRelation(subject);
 //                    int totalNumberQuestionBank = questionList.size();
@@ -74,20 +144,20 @@ public class ExportExamController {
 //    }
 //
 //    private void resetComboBoxSubject() {
-//        mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().removeAllItems();
-//        mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().addItem("Choose subject ...");
+//        mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().removeAllItems();
+//        mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().addItem("Choose subject ...");
 //    }
 //
 //    public void doExportExam() {
 //
-//        String nameSubject = mainAdminGUI.getExportExaminationGUI().getComboBoxsubject().getSelectedItem().toString();
+//        String nameSubject = mainAdminGUI.getExportExaminationGUI().getComboBoxSubject().getSelectedItem().toString();
 //        Subject subject1 = subjectService.findBySubjectName(nameSubject);
 //        String examName = mainAdminGUI.getExportExaminationGUI().getTxtExamName().getText();
 //        int totalNumberQuestion = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtTotalNumberQuestion().getText());
 //        int totalTime = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtTotalNumberTime().getText());
-//        int totalNumberQuestionDifficult1 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult1().getText());
-//        int totalNumberQuestionDifficult2 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult2().getText());
-//        int totalNumberQuestionDifficult3 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult3().getText());
+//        int totalNumberQuestionDifficult1 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionEasy().getText());
+//        int totalNumberQuestionDifficult2 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionMedium().getText());
+//        int totalNumberQuestionDifficult3 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionHard().getText());
 //
 //        int totalNumberQuestionBankDifficult1 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getLbTotalQuestionDifficult1().getText());
 //        int totalNumberQuestionBankDifficult2 = Integer.parseInt(mainAdminGUI.getExportExaminationGUI().getLbTotalQuestionDifficult2().getText());
@@ -124,25 +194,13 @@ public class ExportExamController {
 //        mainAdminGUI.getExportExaminationGUI().getTxtExamCode().setText("");
 //        mainAdminGUI.getExportExaminationGUI().getTxtTotalNumberQuestion().setText("0");
 //        mainAdminGUI.getExportExaminationGUI().getTxtTotalNumberTime().setText("0");
-//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult1().setText("0");
-//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult2().setText("0");
-//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionDifficult3().setText("0");
+//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionEasy().setText("0");
+//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionMedium().setText("0");
+//        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionHard().setText("0");
 //    }
-//
-//    private void getQuestionRandom(List<Question> questionList, Subject subject1,Difficult difficult, int totalNumberQuestionDifficult1, int totalNumberQuestionBankDifficult1) {
-//        if (totalNumberQuestionDifficult1 <= totalNumberQuestionBankDifficult1) {
-//            questionListDifficult1 = questionService.findBySubjectRelationAndDifficultRelation(subject1, difficult);
-//
-//            int count = 0;
-//            while (count < totalNumberQuestionDifficult1) {
-//                int x = NumberManager.getRandomNumber(totalNumberQuestionBankDifficult1 - 1 - count);
-//                questionList.add(questionListDifficult1.get(x));
-//                questionListDifficult1.remove(x);
-//                count++;
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Số câu hỏi trong ngân hàng không đủ");
-//
-//        }
-//    }
+
+    private void showMessage(String message)
+    {
+        JOptionPane.showMessageDialog(null, message);
+    }
 }

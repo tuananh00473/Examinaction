@@ -12,37 +12,55 @@ import java.awt.*;
  * Date: 10/21/13
  * Time: 10:40 AM
  */
-public class ManagermentExamGUI extends JPanel {
+public class ManagermentExamGUI extends JPanel
+{
     private JPanel managementExamCard;
     private JComboBox comboBoxSubject;
     private JButton btnSearch;
     private JTable managementExamTable;
-    private JButton btnSave;
     private JScrollPane managementExamScrollpanel;
     private JTabbedPane tabbedPane1;
+    private JButton btnAddExam;
+    private JButton btnEditExam;
+    private JButton btnDeleteExam;
 
+    public JButton getBtnAddExam()
+    {
+        return btnAddExam;
+    }
 
-    public JPanel getManagementExamCard() {
+    public JButton getBtnEditExam()
+    {
+        return btnEditExam;
+    }
+
+    public JButton getBtnDeleteExam()
+    {
+        return btnDeleteExam;
+    }
+
+    public JPanel getManagementExamCard()
+    {
         return managementExamCard;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
     }
 
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JTable getManagementExamTable() {
+    public JTable getManagementExamTable()
+    {
         return managementExamTable;
     }
 
-    public JButton getBtnSave() {
-        return btnSave;
-    }
-
-    public JScrollPane getManagementExamScrollpanel() {
+    public JScrollPane getManagementExamScrollpanel()
+    {
         return managementExamScrollpanel;
     }
 
@@ -60,7 +78,8 @@ public class ManagermentExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementExamCard = new JPanel();
         managementExamCard.setLayout(new CardLayout(0, 0));
         managementExamCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -98,9 +117,6 @@ public class ManagermentExamGUI extends JPanel {
         panel4.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        btnSave = new JButton();
-        btnSave.setText("SAVE");
-        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel4.add(spacer3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
@@ -111,7 +127,8 @@ public class ManagermentExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementExamCard;
     }
 }

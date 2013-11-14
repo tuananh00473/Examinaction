@@ -9,7 +9,8 @@ import java.util.List;
  * Date: 9/25/13
  * Time: 10:40 AM
  */
-public interface ExamService {
+public interface ExamService
+{
     public Exam findById(Long id);
 
     public Exam save(Exam exam);
@@ -20,5 +21,5 @@ public interface ExamService {
 
     public List<Exam> getAll();
 
-    public List<Exam> findBySubjectId(Long subjectId);
+    public List<Exam> findBySubjectCode(String subjectCode);
 }

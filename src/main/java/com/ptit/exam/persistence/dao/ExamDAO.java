@@ -10,11 +10,12 @@ import java.util.List;
  * Date: 9/25/13
  * Time: 10:37 AM
  */
-public interface ExamDAO extends JpaRepository<Exam, Long> {
+public interface ExamDAO extends JpaRepository<Exam, Long>
+{
     public Exam findByExamCode(String examCode);
 
     public Exam findByExamName(String examName);
 
-    public List<Exam> findBySubjectId(Long subjectId);
+    public List<Exam> findBySubjectCode(String subjectCode);
 
 }

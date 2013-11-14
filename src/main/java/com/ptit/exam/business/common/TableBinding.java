@@ -76,6 +76,7 @@ public class TableBinding
         //-----------------------Option----------------------------------------------
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_NAME)).setColumnName("TÊN ĐỀ THI");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_CODE)).setColumnName("MÃ ĐỀ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_SUBJECT_CODE)).setColumnName("MÃ MÔN");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_TIME)).setColumnName("THỜI GIAN THI");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_HARD_QUESTION)).setColumnName("SỐ CÂU KHÓ");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_MEDIUM_QUESTION)).setColumnName("SỐ CÂU TRUNG BÌNH");

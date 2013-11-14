@@ -3,13 +3,8 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.ExportExamController;
 import com.ptit.exam.ui.control.LoginController;
-import com.ptit.exam.ui.control.ManagementExamController;
-import com.ptit.exam.ui.control.admincontroller.MainAdminController;
-import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
-import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
-import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
+import com.ptit.exam.ui.control.admincontroller.*;
 import com.ptit.exam.ui.view.LoginGUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -117,7 +112,7 @@ public class MainAdminGUI extends JFrame
 //        });
 //
 //        // ============ button ExportExamGUI ==============
-//        exportExaminationGUI.getBtnExportExam().addActionListener(new ActionListener() {
+//        exportExaminationGUI.getBtnSave().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 ////                exportExamController.doExportExam();  // todo
@@ -162,21 +157,26 @@ public class MainAdminGUI extends JFrame
             }
         });
 
-//        btnExportExamination.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowExportExamCard();
-//                exportExamController.showExportExamGUI();
-//            }
-//        });
 
-//        btnManagementExam.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainAdminController.doShowManagementExamGUI();
-//                managementExamController.doSetUp();
-//            }
-//        });
+        btnManagementExam.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                managementExamController.doSetUp();
+                mainAdminController.doShowManagementExamGUI();
+            }
+        });
+
+        btnExportExamination.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                mainAdminController.doShowExportExamCard();
+//                exportExamController.showExportExamGUI();
+            }
+        });
 
         btnManagementSubject.addActionListener(new ActionListener()
         {
