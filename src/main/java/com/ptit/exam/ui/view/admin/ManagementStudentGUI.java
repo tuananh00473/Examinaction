@@ -12,7 +12,8 @@ import java.awt.*;
  * Date: 10/23/13
  * Time: 9:22 AM
  */
-public class ManagementStudentGUI extends JPanel {
+public class ManagementStudentGUI extends JPanel
+{
     private JPanel managementStudentCard;
     private JTable studentTableTab1;
     private JComboBox comboBoxFacultyTab1;
@@ -27,78 +28,53 @@ public class ManagementStudentGUI extends JPanel {
     private JButton btnSAVE;
     private JTable studentSubjetTable;
     private JScrollPane studentSubjectScrollpanel;
-    private JButton btnSaveTab1;
     private JTextField txtNameSearch;
     private JTextField txtClassSearchTab1;
     private JTextField txtClassSearchTab2;
 
-    public JTextField getTxtClassSearchTab1() {
+    public JTextField getTxtClassSearchTab1()
+    {
         return txtClassSearchTab1;
     }
 
-    public JTextField getTxtNameSearch() {
+    public JTextField getTxtNameSearch()
+    {
         return txtNameSearch;
     }
 
-    public JButton getBtnSaveTab1() {
-        return btnSaveTab1;
-    }
-
-    public JPanel getManagementStudentCard() {
-        return managementStudentCard;
-    }
-
-    public JTable getStudentTableTab1() {
+    public JTable getStudentTableTab1()
+    {
         return studentTableTab1;
     }
 
-    public JComboBox getComboBoxFacultyTab1() {
+    public JComboBox getComboBoxFacultyTab1()
+    {
         return comboBoxFacultyTab1;
     }
 
-    public JButton getBtnSearchTab1() {
+    public JButton getBtnSearchTab1()
+    {
         return btnSearchTab1;
     }
 
-    public JButton getBtnAdd() {
+    public JButton getBtnAdd()
+    {
         return btnAdd;
     }
 
-    public JButton getBtnEdit() {
+    public JButton getBtnEdit()
+    {
         return btnEdit;
     }
 
-    public JButton getBtnDel() {
+    public JButton getBtnDel()
+    {
         return btnDel;
     }
 
-
-    public JScrollPane getStudentScrollpanelTab1() {
+    public JScrollPane getStudentScrollpanelTab1()
+    {
         return studentScrollpanelTab1;
-    }
-
-    public JTabbedPane getStudentTab() {
-        return studentTab;
-    }
-
-    public JComboBox getComboBoxSUBJECT() {
-        return comboBoxSUBJECT;
-    }
-
-    public JButton getBtnSEARCH() {
-        return btnSEARCH;
-    }
-
-    public JButton getBtnSAVE() {
-        return btnSAVE;
-    }
-
-    public JTable getStudentSubjetTable() {
-        return studentSubjetTable;
-    }
-
-    public JScrollPane getStudentSubjectScrollpanel() {
-        return studentSubjectScrollpanel;
     }
 
     {
@@ -115,7 +91,8 @@ public class ManagementStudentGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementStudentCard = new JPanel();
         managementStudentCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -177,9 +154,6 @@ public class ManagementStudentGUI extends JPanel {
         btnDel.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
         btnDel.setText("");
         panel5.add(btnDel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnSaveTab1 = new JButton();
-        btnSaveTab1.setText("LƯU");
-        panel5.add(btnSaveTab1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel2.add(spacer3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel6 = new JPanel();
@@ -223,7 +197,8 @@ public class ManagementStudentGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementStudentCard;
     }
 }

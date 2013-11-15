@@ -111,6 +111,16 @@
                   <card name="newQuestionGUI"/>
                 </constraints>
               </nested-form>
+              <nested-form id="792cc" form-file="com/ptit/exam/ui/view/admin/NewSubjectGUI.form" binding="newSubjectGUI">
+                <constraints>
+                  <card name="newSubjectGUI"/>
+                </constraints>
+              </nested-form>
+              <nested-form id="6078f" form-file="com/ptit/exam/ui/view/admin/NewStudentGUI.form" binding="newStudentGUI">
+                <constraints>
+                  <card name="newStudentGUI"/>
+                </constraints>
+              </nested-form>
             </children>
           </grid>
         </children>

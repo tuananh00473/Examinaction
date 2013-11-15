@@ -30,10 +30,10 @@ public class AddQuestionController
     MainAdminController mainAdminController;
 
     @Autowired
-    QuestionBankController questionBankController;
+    MainAdminGUI mainAdminGUI;
 
     @Autowired
-    MainAdminGUI mainAdminGUI;
+    QuestionBankController questionBankController;
 
     @Autowired
     QuestionService questionService;
@@ -65,29 +65,11 @@ public class AddQuestionController
         {
             if (e.getSource() == newQuestionGUI.getBtnSave())
             {
-                if (newQuestionGUI.invalidForm())
-                {
-                    showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
-                }
-                else
-                {
-                    question = newQuestionGUI.getQuestionInfo(question);
-                    question = questionService.save(question);
-
-                    answerService.save(newQuestionGUI.getAnswer1(question, answerList.get(0)));
-                    answerService.save(newQuestionGUI.getAnswer2(question, answerList.get(1)));
-                    answerService.save(newQuestionGUI.getAnswer3(question, answerList.get(2)));
-                    answerService.save(newQuestionGUI.getAnswer4(question, answerList.get(3)));
-                    showMessage("Dữ liệu đã được lưu trữ.");
-
-                    questionBankController.doSetUp();
-                    mainAdminController.doShowQuestionBankCard();
-                }
+                doSaveQuestion();
             }
             if (e.getSource() == newQuestionGUI.getBtnCancel())
             {
-                questionBankController.doSetUp();
-                mainAdminController.doShowQuestionBankCard();
+                doCancelAddQuestion();
             }
             if (e.getSource() == newQuestionGUI.getBtnBrowser())
             {
@@ -95,6 +77,34 @@ public class AddQuestionController
             }
         }
     };
+
+    private void doCancelAddQuestion()
+    {
+        questionBankController.doSetUp();
+        mainAdminController.doShowQuestionBankCard();
+    }
+
+    private void doSaveQuestion()
+    {
+        if (newQuestionGUI.invalidForm())
+        {
+            showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
+        }
+        else
+        {
+            question = newQuestionGUI.getQuestionInfo(question);
+            question = questionService.save(question);
+
+            answerService.save(newQuestionGUI.getAnswer1(question, answerList.get(0)));
+            answerService.save(newQuestionGUI.getAnswer2(question, answerList.get(1)));
+            answerService.save(newQuestionGUI.getAnswer3(question, answerList.get(2)));
+            answerService.save(newQuestionGUI.getAnswer4(question, answerList.get(3)));
+            showMessage("Dữ liệu đã được lưu trữ.");
+
+            questionBankController.doSetUp();
+            mainAdminController.doShowQuestionBankCard();
+        }
+    }
 
     private void doLoadLocation()
     {

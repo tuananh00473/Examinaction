@@ -21,6 +21,8 @@ public class MainAdminController
     public static final String EXPORT_EXAM_CARD = "exportExaminationGUI";
     public static final String QUESTION_BANK_CARD = "questionBankGUI";
     private static final String NEW_QUESTION_CARD = "newQuestionGUI";
+    private static final String NEW_SUBJECT_CARD = "newSubjectGUI";
+    private static final String NEW_STUDENT_CARD = "newStudentGUI";
 
     @Autowired
     MainAdminGUI mainAdminGUI;
@@ -58,6 +60,16 @@ public class MainAdminController
     public void doShowManagementStudentGUI()
     {
         showCard(MANAGEMENT_STUDENT_CARD);
+    }
+
+    public void doShowNewSubjectCard()
+    {
+        showCard(NEW_SUBJECT_CARD);
+    }
+
+    public void doShowNewStudentCard()
+    {
+        showCard(NEW_STUDENT_CARD);
     }
 
     public void showCard(String nameCard)

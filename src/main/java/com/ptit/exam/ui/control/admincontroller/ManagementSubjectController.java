@@ -1,6 +1,5 @@
 package com.ptit.exam.ui.control.admincontroller;
 
-import com.ptit.exam.business.StudentService;
 import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
@@ -38,10 +37,7 @@ public class ManagementSubjectController
     SubjectService subjectService;
 
     @Autowired
-    StudentService studentService;
-
-    @Autowired
-    NewSubjectGUI newSubjectGUI;
+    AddSubjectController addSubjectController;
 
     @Autowired
     MainAdminController mainAdminController;
@@ -51,6 +47,7 @@ public class ManagementSubjectController
     private JScrollPane tab1SubjectScrollpane;
 
     private ManagementSubjectGUI managementSubjectGUI;
+    private NewSubjectGUI newSubjectGUI;
 
     public void doSetUp()
     {
@@ -64,14 +61,15 @@ public class ManagementSubjectController
     private void setUpActionListener()
     {
         managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListener);
+        managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListener);
         managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListener);
-        managementSubjectGUI.getBtnSaveTab1().addActionListener(actionListener);
         managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListener);
     }
 
     private void setUpView()
     {
         managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
+        newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
 
         tab1SubjectTable = managementSubjectGUI.getTableSUBJECT();
         tab1SubjectScrollpane = managementSubjectGUI.getScrollPaneSUBJECT();
@@ -90,13 +88,13 @@ public class ManagementSubjectController
             {
                 doAddSubject();
             }
+            if (e.getSource() == managementSubjectGUI.getBtnEditSUBJECT())
+            {
+                doEditSubject();
+            }
             if (e.getSource() == managementSubjectGUI.getBtnDelSUBJECT())
             {
                 doDeleteSubject();
-            }
-            if (e.getSource() == managementSubjectGUI.getBtnSaveTab1())
-            {
-                doSaveTab1();
             }
             if (e.getSource() == managementSubjectGUI.getBtnSearchTab1())
             {
@@ -104,6 +102,26 @@ public class ManagementSubjectController
             }
         }
     };
+
+    private void doEditSubject()
+    {
+        int select = tab1SubjectTable.getSelectedRow();
+        if (-1 == select)
+        {
+            showMessage("Hãy chọn môn học bạn muốn sửa.");
+        }
+        else
+        {
+            doSetUpEditSubject(tab1SubjectList.get(select));
+            mainAdminController.doShowNewSubjectCard();
+        }
+    }
+
+    private void doSetUpEditSubject(Subject subject)
+    {
+        newSubjectGUI.setInfoSubject(subject);
+        addSubjectController.doSetUp(subject);
+    }
 
     private void doSearchTab1()
     {
@@ -122,26 +140,6 @@ public class ManagementSubjectController
             }
         }
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
-    }
-
-    private void doSaveTab1()
-    {
-        stopEditing(tab1SubjectTable);
-        boolean saveSuccess = true;
-        for (int i = 0; i < tab1SubjectList.size(); i++)
-        {
-            if (tab1SubjectList.get(i).inValid())
-            {
-                showMessage("Hãy nhập đủ thông tin vào dòng " + ++i);
-                saveSuccess = false;
-                break;
-            }
-            subjectService.save(tab1SubjectList.get(i));
-        }
-        if (saveSuccess)
-        {
-            showMessage("Lưu dữ liệu thành công!");
-        }
     }
 
     private void doDeleteSubject()
@@ -165,8 +163,9 @@ public class ManagementSubjectController
 
     private void doAddSubject()
     {
-        tab1SubjectList.add(new Subject());
-        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+        addSubjectController.doSetUp(new Subject());
+        newSubjectGUI.resetNewSubjectGUI();
+        mainAdminController.doShowNewSubjectCard();
     }
 
 //    public void doSearch() {
@@ -228,6 +227,7 @@ public class ManagementSubjectController
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
         TextAreaEditor textEditor = new TextAreaEditor();
+        textEditor.setEditAble(false);
         TableColumnModel cmodel = jTable.getColumnModel();
         cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(0).setCellEditor(textEditor);
@@ -298,69 +298,7 @@ public class ManagementSubjectController
 //        doSetUp();
 //    }
 //
-    //===================================================
 
-//    public void doSaveNewSubject() {
-//
-//        String nameSubject = newSubjectGUI.getTxtSubjectName().getText();
-//        String codeSubject = newSubjectGUI.getTxtSubjectCode().getText();
-//        String faculty = newSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
-//        Long unitStudy = Long.parseLong(newSubjectGUI.getComboBoxUnitStudy().getSelectedItem().toString());
-//        String desc = newSubjectGUI.getTxtDescription().getText();
-//        Subject subject1 = subjectService.save(new Subject(codeSubject, nameSubject, faculty, unitStudy, desc));
-//        subjectSubjectList.add(subject1);
-//        subjectService.save(subject1);
-//        if (subject1 != null) {
-//
-//            JOptionPane.showMessageDialog(null, "Thêm môn thi thành công");
-//        }
-//        doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollpane);
-//
-//        newSubjectGUI.setVisible(false);
-//    }
-//
-//    public void doEditSubject() {
-//        int index = mainAdminGUI.getManagementSubjectGUI().getTableSUBJECT().getSelectedRow();
-//        if (index != -1) {
-//            mainAdminController.doShowEditSubjectGUI();
-//            currentSubject = subjectSubjectList.get(index);
-//            mainAdminGUI.getEditSubjectGUI().getTxtSubjectName().setText(currentSubject.getSubjectName());
-//            mainAdminGUI.getEditSubjectGUI().getTxtSubjectCode().setText(currentSubject.getSubjectCode());
-//            mainAdminGUI.getEditSubjectGUI().getTxtDesc().setText(currentSubject.getSubjectDesc());
-//            mainAdminGUI.getEditSubjectGUI().getCbBoxFacultyTab2().setSelectedItem(currentSubject.getFaculty());
-//            mainAdminGUI.getEditSubjectGUI().getComboBoxUnitStudy().setSelectedItem(currentSubject.getUnitOfStudy().toString());
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Bạn cần chọn 1 môn thi !");
-//        }
-//
-//    }
-//
-//
-//    public void doSaveEditSubject() {
-//        currentSubject.setSubjectCode(mainAdminGUI.getEditSubjectGUI().getTxtSubjectCode().getText());
-//        currentSubject.setSubjectName(mainAdminGUI.getEditSubjectGUI().getTxtSubjectName().getText());
-//        currentSubject.setFaculty(mainAdminGUI.getEditSubjectGUI().getCbBoxFacultyTab2().getSelectedItem().toString());
-//        currentSubject.setUnitOfStudy(Long.parseLong(mainAdminGUI.getEditSubjectGUI().getComboBoxUnitStudy().getSelectedItem().toString()));
-//        currentSubject.setSubjectDesc(mainAdminGUI.getEditSubjectGUI().getTxtDesc().getText());
-//
-//        subjectService.save(currentSubject);
-//        doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollpane);
-//
-//    }
-//
-//    public void doDelSubject() {
-//
-//        int index = mainAdminGUI.getManagementSubjectGUI().getTableSUBJECT().getSelectedRow();
-//        if (index != -1) {
-//            Subject subject1 = subjectSubjectList.get(index);
-//            subjectSubjectList.remove(index);
-//            subjectService.delete(subject1);
-//            doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollpane);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Bạn cần chọn 1 môn thi !");
-//        }
-//    }
-//
 //    private void resetTableSubjectSelected() {
 //
 //        if (subjectSelectedList.size() != 0) {
@@ -413,14 +351,6 @@ public class ManagementSubjectController
 //
 //    }
 //
-
-    public void stopEditing(JTable table)
-    {
-        if (table.isEditing())
-        {
-            table.getCellEditor().stopCellEditing();
-        }
-    }
 
     private void showMessage(String message)
     {

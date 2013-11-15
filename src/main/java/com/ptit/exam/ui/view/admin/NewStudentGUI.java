@@ -3,31 +3,21 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.admincontroller.ManagementStudentController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * User: thuongntt
  * Date: 10/23/13
  * Time: 11:17 PM
  */
-@Component
-public class NewStudentGUI extends JFrame
+public class NewStudentGUI extends JPanel
 {
-
-    @Autowired
-    ManagementStudentController managementStudentController;
-
     private JPanel studentPanel;
     private JTextField txtFirstname;
     private JButton btnCancel;
-    private JButton btnOk;
+    private JButton btnSave;
     private JTextField txtLastname;
     private JTextField txtStudentCode;
     private JRadioButton btnRadioMale;
@@ -52,36 +42,6 @@ public class NewStudentGUI extends JFrame
     private JLabel lbNote;
     private JComboBox comboBoxCourse;
 
-    public NewStudentGUI() throws HeadlessException
-    {
-        setContentPane(studentPanel);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(500, 450);
-        resetGUI();
-
-        btnOk.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementStudentController.doSaveAddStudent();  // todo
-                resetGUI();
-                setVisible(false);
-            }
-        });
-
-        btnCancel.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                resetGUI();
-                setVisible(false);
-
-            }
-        });
-    }
-
     private void resetGUI()
     {
         txtLastname.setText("");
@@ -101,144 +61,14 @@ public class NewStudentGUI extends JFrame
         comboBoxTrainingSystem.setSelectedIndex(0);
     }
 
-    public ManagementStudentController getManagementStudentController()
-    {
-        return managementStudentController;
-    }
-
-    public JPanel getStudentPanel()
-    {
-        return studentPanel;
-    }
-
-    public JTextField getTxtFirstname()
-    {
-        return txtFirstname;
-    }
-
     public JButton getBtnCancel()
     {
         return btnCancel;
     }
 
-    public JButton getBtnOk()
+    public JButton getBtnSave()
     {
-        return btnOk;
-    }
-
-    public JTextField getTxtLastname()
-    {
-        return txtLastname;
-    }
-
-    public JTextField getTxtStudentCode()
-    {
-        return txtStudentCode;
-    }
-
-    public JRadioButton getBtnRadioMale()
-    {
-        return btnRadioMale;
-    }
-
-    public JRadioButton getBtnRadioFemale()
-    {
-        return btnRadioFemale;
-    }
-
-    public JComboBox getComboBoxDay()
-    {
-        return comboBoxDay;
-    }
-
-    public JComboBox getComboBoxMonth()
-    {
-        return comboBoxMonth;
-    }
-
-    public JComboBox getComboBoxYear()
-    {
-        return comboBoxYear;
-    }
-
-    public JTextField getTxtClass()
-    {
-        return txtClass;
-    }
-
-    public JComboBox getComboBoxFaculty()
-    {
-        return comboBoxFaculty;
-    }
-
-    public JComboBox getComboBoxTrainingSystem()
-    {
-        return comboBoxTrainingSystem;
-    }
-
-    public JTextField getTxtUsername()
-    {
-        return txtUsername;
-    }
-
-    public JPasswordField getTxtPassword()
-    {
-        return txtPassword;
-    }
-
-    public JPasswordField getTxtConfirmPassword()
-    {
-        return txtConfirmPassword;
-    }
-
-    public JLabel getLbValidateFistname()
-    {
-        return lbValidateFistname;
-    }
-
-    public JLabel getLbValidateLastname()
-    {
-        return lbValidateLastname;
-    }
-
-    public JLabel getLbValidateStudentCode()
-    {
-        return lbValidateStudentCode;
-    }
-
-    public JLabel getLbValidateClass()
-    {
-        return lbValidateClass;
-    }
-
-    public JLabel getLbValidateCourse()
-    {
-        return lbValidateCourse;
-    }
-
-    public JLabel getLbValidateUsername()
-    {
-        return lbValidateUsername;
-    }
-
-    public JLabel getLbValidatePassword()
-    {
-        return lbValidatePassword;
-    }
-
-    public JLabel getLbValidateConfirmPassword()
-    {
-        return lbValidateConfirmPassword;
-    }
-
-    public JLabel getLbNote()
-    {
-        return lbNote;
-    }
-
-    public JComboBox getComboBoxCourse()
-    {
-        return comboBoxCourse;
+        return btnSave;
     }
 
     {
@@ -316,9 +146,9 @@ public class NewStudentGUI extends JFrame
         panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        btnOk = new JButton();
-        btnOk.setText("OK");
-        panel4.add(btnOk, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave = new JButton();
+        btnSave.setText("OK");
+        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtLastname = new JTextField();
         panel3.add(txtLastname, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtStudentCode = new JTextField();

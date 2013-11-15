@@ -7,6 +7,7 @@ import com.ptit.exam.business.common.TextAreaRenderer;
 import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
+import com.ptit.exam.ui.view.admin.NewStudentGUI;
 import com.ptit.exam.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,23 +35,18 @@ public class ManagementStudentController
     @Autowired
     StudentService studentService;
 
-//    @Autowired
-//    SubjectService subjectService;
-
-//    @Autowired
-//    StudentSubjectService studentSubjectService;
-
     private List<Student> tab1StudentList;
     private JTable tab1StudentTable;
     private JScrollPane tab1StudentScrollpane;
 
     private ManagementStudentGUI managementStudentGUI;
+    private NewStudentGUI newStudentGUI;
 
     public void doSetUp()
     {
-//        resetManagementStudentGUI();
-//        resetComboBoxSubject();
         managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
+        newStudentGUI = mainAdminGUI.getNewStudentGUI();
+
         tab1StudentTable = managementStudentGUI.getStudentTableTab1();
         tab1StudentScrollpane = managementStudentGUI.getStudentScrollpanelTab1();
 
@@ -60,8 +56,8 @@ public class ManagementStudentController
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
 
         managementStudentGUI.getBtnAdd().addActionListener(actionListener);
+        managementStudentGUI.getBtnEdit().addActionListener(actionListener);
         managementStudentGUI.getBtnDel().addActionListener(actionListener);
-        managementStudentGUI.getBtnSaveTab1().addActionListener(actionListener);
         managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
 
 //        List<Subject> subjectList = subjectService.getAll();
@@ -98,13 +94,13 @@ public class ManagementStudentController
             {
                 doAddStudent();
             }
+            if (e.getSource() == managementStudentGUI.getBtnEdit())
+            {
+                doEditStudent();
+            }
             if (e.getSource() == managementStudentGUI.getBtnDel())
             {
                 doDeleteStudent();
-            }
-            if (e.getSource() == managementStudentGUI.getBtnSaveTab1())
-            {
-                doSaveStudent();
             }
             if (e.getSource() == managementStudentGUI.getBtnSearchTab1())
             {
@@ -112,6 +108,11 @@ public class ManagementStudentController
             }
         }
     };
+
+    private void doEditStudent()
+    {
+
+    }
 
     private void doSearchStudent()
     {
@@ -132,26 +133,6 @@ public class ManagementStudentController
             }
         }
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
-    }
-
-    private void doSaveStudent()
-    {
-        stopEditing(tab1StudentTable);
-        boolean saveSuccess = true;
-        for (int i = 0; i < tab1StudentList.size(); i++)
-        {
-            if (tab1StudentList.get(i).inValid())
-            {
-                showMessage("Hãy nhập đủ thông tin vào dòng " + ++i);
-                saveSuccess = false;
-                break;
-            }
-            studentService.save(tab1StudentList.get(i));
-        }
-        if (saveSuccess)
-        {
-            showMessage("Lưu dữ liệu thành công!");
-        }
     }
 
     private void doDeleteStudent()
@@ -175,8 +156,7 @@ public class ManagementStudentController
 
     private void doAddStudent()
     {
-        tab1StudentList.add(new Student());
-        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
+
     }
 
 
@@ -223,6 +203,8 @@ public class ManagementStudentController
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
         TextAreaEditor textEditor = new TextAreaEditor();
+        textEditor.setEditAble(false);
+
         TableColumnModel cmodel = jTable.getColumnModel();
         cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(0).setCellEditor(textEditor);
@@ -302,14 +284,6 @@ public class ManagementStudentController
 //        resetManagementStudentGUI();
 //        doSetUp();
 //    }
-
-    public void stopEditing(JTable table)
-    {
-        if (table.isEditing())
-        {
-            table.getCellEditor().stopCellEditing();
-        }
-    }
 
     private void showMessage(String message)
     {

@@ -3,27 +3,18 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.ptit.exam.ui.control.admincontroller.ManagementSubjectController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.ptit.exam.persistence.entity.Subject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * User: thuongntt
  * Date: 10/22/13
  * Time: 2:33 PM
  */
-@Component
-public class NewSubjectGUI extends JFrame
+public class NewSubjectGUI extends JPanel
 {
-
-    @Autowired
-    ManagementSubjectController managementSubjectController;
-
     private JTextField txtSubjectName;
     private JTextField txtSubjectCode;
     private JComboBox comboBoxFaculty;
@@ -31,24 +22,7 @@ public class NewSubjectGUI extends JFrame
     private JTextArea txtDescription;
     private JButton btnSave;
     private JPanel newSubjectPanel;
-
-    public NewSubjectGUI()
-    {
-
-
-        setContentPane(newSubjectPanel);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(500, 450);
-
-        btnSave.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-//                managementSubjectController.doSaveNewSubject();  //todo
-            }
-        });
-    }
+    private JButton btnCancel;
 
     public void resetNewSubjectGUI()
     {
@@ -59,15 +33,14 @@ public class NewSubjectGUI extends JFrame
         comboBoxUnitStudy.setSelectedIndex(0);
     }
 
-
-    public JTextField getTxtSubjectName()
+    public JButton getBtnCancel()
     {
-        return txtSubjectName;
+        return btnCancel;
     }
 
-    public JTextField getTxtSubjectCode()
+    public JButton getBtnSave()
     {
-        return txtSubjectCode;
+        return btnSave;
     }
 
     public JComboBox getComboBoxFaculty()
@@ -78,21 +51,6 @@ public class NewSubjectGUI extends JFrame
     public JComboBox getComboBoxUnitStudy()
     {
         return comboBoxUnitStudy;
-    }
-
-    public JTextArea getTxtDescription()
-    {
-        return txtDescription;
-    }
-
-    public JButton getBtnSave()
-    {
-        return btnSave;
-    }
-
-    public JPanel getNewSubjectPanel()
-    {
-        return newSubjectPanel;
     }
 
     {
@@ -204,5 +162,37 @@ public class NewSubjectGUI extends JFrame
     public JComponent $$$getRootComponent$$$()
     {
         return newSubjectPanel;
+    }
+
+    public boolean invalidForm()
+    {
+        if ("".equals(txtSubjectName.getText())
+                || "".equals(txtSubjectCode.getText())
+                || "".equals(comboBoxFaculty.getSelectedItem().toString())
+                || "".equals(comboBoxUnitStudy.getSelectedItem().toString())
+                || "".equals(txtDescription.getText()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public Subject getSubjectInfo(Subject subject)
+    {
+        subject.setSubjectName(txtSubjectName.getText());
+        subject.setSubjectCode(txtSubjectCode.getText());
+        subject.setFaculty(comboBoxFaculty.getSelectedItem().toString());
+        subject.setUnitOfStudy(Long.parseLong(comboBoxUnitStudy.getSelectedItem().toString()));
+        subject.setSubjectDescription(txtDescription.getText());
+        return subject;
+    }
+
+    public void setInfoSubject(Subject subject)
+    {
+        txtSubjectName.setText(subject.getSubjectName());
+        txtSubjectCode.setText(subject.getSubjectCode());
+        comboBoxFaculty.setSelectedItem(subject.getFaculty());
+        comboBoxUnitStudy.setSelectedItem(String.valueOf(subject.getUnitOfStudy()));
+        txtDescription.setText(subject.getSubjectDescription());
     }
 }

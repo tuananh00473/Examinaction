@@ -12,7 +12,8 @@ import java.awt.*;
  * Date: 10/21/13
  * Time: 4:28 PM
  */
-public class ManagementSubjectGUI extends JPanel {
+public class ManagementSubjectGUI extends JPanel
+{
     private JPanel managementSubjectCard;
     private JTable subjectTable;
     private JComboBox cbBoxFacultyTab2;
@@ -33,87 +34,57 @@ public class ManagementSubjectGUI extends JPanel {
     private JButton btnDelSUBJECT;
     private JButton btnAddSUBJECT;
     private JScrollPane scrollPaneSUBJECT;
-    private JButton btnSaveTab1;
     private JTextField txtNameSubjectSearch;
+    private JButton btnEditSUBJECT;
 
-    public JButton getBtnSaveTab1() {
-        return btnSaveTab1;
+    public JButton getBtnEditSUBJECT()
+    {
+        return btnEditSUBJECT;
     }
 
-    public JTextField getTxtNameSubjectSearch() {
+    public JTextField getTxtNameSubjectSearch()
+    {
         return txtNameSubjectSearch;
     }
 
-    public JComboBox getCbBoxFacultyTab2() {
+    public JComboBox getCbBoxFacultyTab2()
+    {
         return cbBoxFacultyTab2;
     }
 
-    public JButton getBtnSaveTab2() {
-        return btnSaveTab2;
-    }
-
-    public JComboBox getComboBoxCourse() {
+    public JComboBox getComboBoxCourse()
+    {
         return comboBoxCourse;
     }
 
-    public JTable getSubjectSelectedTable() {
-        return subjectSelectedTable;
-    }
-
-    public JButton getBtnSearchTab2() {
-        return btnSearchTab2;
-    }
-
-    public JButton getBtnAdd() {
-        return btnAdd;
-    }
-
-    public JButton getBtnDelete() {
-        return btnDelete;
-    }
-
-    public JScrollPane getSubjectScrollpanel() {
-        return subjectScrollpanel;
-    }
-
-    public JScrollPane getSubjectSelectedScrollpanel() {
-        return subjectSelectedScrollpanel;
-    }
-
-    public JTabbedPane getTabbedPane() {
-        return tabbedPane;
-    }
-
-    public JPanel getExamArrangementPanel() {
-        return examArrangementPanel;
-    }
-
-    public JPanel getSubject() {
-        return Subject;
-    }
-
-    public JTable getTableSUBJECT() {
+    public JTable getTableSUBJECT()
+    {
         return tableSUBJECT;
     }
 
 
-    public JComboBox getCbBoxFacultyTab1() {
+    public JComboBox getCbBoxFacultyTab1()
+    {
         return cbBoxFacultyTab1;
     }
 
-    public JButton getBtnSearchTab1() {
+    public JButton getBtnSearchTab1()
+    {
         return btnSearchTab1;
     }
 
-    public JButton getBtnDelSUBJECT() {
+    public JButton getBtnDelSUBJECT()
+    {
         return btnDelSUBJECT;
     }
 
-    public JButton getBtnAddSUBJECT() {
+    public JButton getBtnAddSUBJECT()
+    {
         return btnAddSUBJECT;
     }
 
-    public JScrollPane getScrollPaneSUBJECT() {
+    public JScrollPane getScrollPaneSUBJECT()
+    {
         return scrollPaneSUBJECT;
     }
 
@@ -131,7 +102,8 @@ public class ManagementSubjectGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementSubjectCard = new JPanel();
         managementSubjectCard.setLayout(new CardLayout(0, 0));
         managementSubjectCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -191,9 +163,6 @@ public class ManagementSubjectGUI extends JPanel {
         btnDelSUBJECT.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
         btnDelSUBJECT.setText("");
         panel5.add(btnDelSUBJECT, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnSaveTab1 = new JButton();
-        btnSaveTab1.setText("LƯU");
-        panel5.add(btnSaveTab1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         examArrangementPanel = new JPanel();
         examArrangementPanel.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane.addTab("Sắp xếp môn thi", examArrangementPanel);
@@ -271,7 +240,8 @@ public class ManagementSubjectGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementSubjectCard;
     }
 }

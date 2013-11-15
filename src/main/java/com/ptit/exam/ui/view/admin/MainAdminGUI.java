@@ -48,13 +48,6 @@ public class MainAdminGUI extends JFrame
     @Autowired
     ManagementStudentController managementStudentController;
 
-    @Autowired
-    NewSubjectGUI newSubjectGUI;
-
-    @Autowired
-    NewStudentGUI newStudentGUI;
-
-
     private JPanel mainPanel;
     private JButton btnIntroduce;
     private JButton btnQuestionBank;
@@ -67,6 +60,8 @@ public class MainAdminGUI extends JFrame
     private JLabel lbUsername;
     private QuestionBankGUI questionBankGUI;
     private NewQuestionGUI newQuestionGUI;
+    private NewSubjectGUI newSubjectGUI;
+    private NewStudentGUI newStudentGUI;
     private ExportExamination exportExaminationGUI;
     private ManagermentExamGUI managermentExamGUI;
     private ManagementSubjectGUI managementSubjectGUI;
@@ -328,6 +323,10 @@ public class MainAdminGUI extends JFrame
         AdminCardPanel.add(managementStudentGUI.$$$getRootComponent$$$(), "managementStudentGUI");
         newQuestionGUI = new NewQuestionGUI();
         AdminCardPanel.add(newQuestionGUI.$$$getRootComponent$$$(), "newQuestionGUI");
+        newSubjectGUI = new NewSubjectGUI();
+        AdminCardPanel.add(newSubjectGUI.$$$getRootComponent$$$(), "newSubjectGUI");
+        newStudentGUI = new NewStudentGUI();
+        AdminCardPanel.add(newStudentGUI.$$$getRootComponent$$$(), "newStudentGUI");
         final JLabel label1 = new JLabel();
         label1.setText("Label");
         mainPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -347,5 +346,15 @@ public class MainAdminGUI extends JFrame
     public JComponent $$$getRootComponent$$$()
     {
         return mainPanel;
+    }
+
+    public NewSubjectGUI getNewSubjectGUI()
+    {
+        return newSubjectGUI;
+    }
+
+    public NewStudentGUI getNewStudentGUI()
+    {
+        return newStudentGUI;
     }
 }
