@@ -18,8 +18,7 @@ import java.util.List;
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-public class NewQuestionGUI extends JPanel
-{
+public class NewQuestionGUI extends JPanel {
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -41,48 +40,39 @@ public class NewQuestionGUI extends JPanel
     @Autowired
     QuestionBankController questionBankController;
 
-    public JComboBox getCbLevel()
-    {
+    public JComboBox getCbLevel() {
         return cbLevel;
     }
 
-    public JTextField getTxtChapter()
-    {
+    public JTextField getTxtChapter() {
         return txtChapter;
     }
 
-    public JTextField getTxtSubjectCode()
-    {
+    public JTextField getTxtSubjectCode() {
         return txtSubjectCode;
     }
 
-    public JTextArea getTxtContentQues()
-    {
+    public JTextArea getTxtContentQues() {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage()
-    {
+    public JTextField getTxtUrlImage() {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser()
-    {
+    public JButton getBtnBrowser() {
         return btnBrowser;
     }
 
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public Question getQuestionInfo(Question question)
-    {
+    public Question getQuestionInfo(Question question) {
         question.setSubjectCode(txtSubjectCode.getText());
         question.setChapter(Integer.parseInt(txtChapter.getText()));
         question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
@@ -91,55 +81,48 @@ public class NewQuestionGUI extends JPanel
         return question;
     }
 
-    public Answer getAnswer1(Question question, Answer answer)
-    {
+    public Answer getAnswer1(Question question, Answer answer) {
         answer.setContent(txtContentAnswer1.getText());
         answer.setCorrect(rdAnswer1.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer2(Question question, Answer answer)
-    {
+    public Answer getAnswer2(Question question, Answer answer) {
         answer.setContent(txtContentAnswer2.getText());
         answer.setCorrect(rdAnswer2.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer3(Question question, Answer answer)
-    {
+    public Answer getAnswer3(Question question, Answer answer) {
         answer.setContent(txtContentAnswer3.getText());
         answer.setCorrect(rdAnswer3.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer4(Question question, Answer answer)
-    {
+    public Answer getAnswer4(Question question, Answer answer) {
         answer.setContent(txtContentAnswer4.getText());
         answer.setCorrect(rdAnswer4.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public boolean invalidForm()
-    {
+    public boolean invalidForm() {
         if ("".equals(txtSubjectCode.getText())
                 || "".equals(txtChapter.getText())
                 || "".equals(txtContentQues.getText())
                 || "".equals(txtContentAnswer1.getText())
                 || "".equals(txtContentAnswer2.getText())
                 || "".equals(txtContentAnswer3.getText())
-                || "".equals(txtContentAnswer4.getText()))
-        {
+                || "".equals(txtContentAnswer4.getText())) {
             return true;
         }
         return false;
     }
 
-    public List<JTextArea> getTxtContentAnswer()
-    {
+    public List<JTextArea> getTxtContentAnswer() {
         List<JTextArea> answerList = new ArrayList<JTextArea>();
         answerList.add(txtContentAnswer1);
         answerList.add(txtContentAnswer2);
@@ -148,8 +131,7 @@ public class NewQuestionGUI extends JPanel
         return answerList;
     }
 
-    public List<JRadioButton> getRadioButtonList()
-    {
+    public List<JRadioButton> getRadioButtonList() {
         List<JRadioButton> radioButtonList = new ArrayList<JRadioButton>();
         radioButtonList.add(rdAnswer1);
         radioButtonList.add(rdAnswer2);
@@ -158,8 +140,7 @@ public class NewQuestionGUI extends JPanel
         return radioButtonList;
     }
 
-    public void resetNewQuestionGUI()
-    {
+    public void resetNewQuestionGUI() {
         txtSubjectCode.setText("");
         txtChapter.setText("");
         txtContentQues.setText("");
@@ -172,6 +153,26 @@ public class NewQuestionGUI extends JPanel
         rdAnswer2.setSelected(false);
         rdAnswer3.setSelected(false);
         rdAnswer4.setSelected(false);
+    }
+
+    public void mappingInfoToField(Question question, List<Answer> answerList) {
+        txtContentAnswer1.setText(answerList.get(0).getContent());
+        rdAnswer1.setSelected(answerList.get(0).isCorrect());
+
+        txtContentAnswer2.setText(answerList.get(1).getContent());
+        rdAnswer2.setSelected(answerList.get(1).isCorrect());
+
+        txtContentAnswer3.setText(answerList.get(2).getContent());
+        rdAnswer3.setSelected(answerList.get(2).isCorrect());
+
+        txtContentAnswer4.setText(answerList.get(3).getContent());
+        rdAnswer4.setSelected(answerList.get(3).isCorrect());
+
+        txtSubjectCode.setText(question.getSubjectCode());
+        txtChapter.setText(String.valueOf(question.getChapter()));
+        cbLevel.setSelectedItem(String.valueOf(question.getLevel()));
+        txtContentQues.setText(question.getContent());
+        txtUrlImage.setText(question.getUrlImage());
     }
 
     {
@@ -188,8 +189,7 @@ public class NewQuestionGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         newQuestionPanel = new JPanel();
         newQuestionPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
@@ -302,8 +302,7 @@ public class NewQuestionGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return newQuestionPanel;
     }
 }

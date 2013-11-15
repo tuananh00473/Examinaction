@@ -13,8 +13,7 @@ import java.awt.*;
  * Date: 10/17/13
  * Time: 9:27 AM
  */
-public class ExportExamination extends JPanel
-{
+public class ExportExamination extends JPanel {
     private JPanel ExportExaminationCard;
     private JComboBox comboBoxSubject;
     private JTextField txtExamName;
@@ -29,23 +28,19 @@ public class ExportExamination extends JPanel
     private JTextField txtExamCode;
     private JButton btnCancel;
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public JComboBox getComboBoxSubject()
-    {
+    public JComboBox getComboBoxSubject() {
         return comboBoxSubject;
     }
 
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public boolean invalidForm()
-    {
+    public boolean invalidForm() {
         if ("".equals(txtExamName.getText())
                 || "".equals(txtExamCode.getText())
                 || "".equals(txtTotalNumberTime.getText())
@@ -54,20 +49,17 @@ public class ExportExamination extends JPanel
                 || "".equals(txtNumberQuestionHard.getText())
                 || value(txtNumberQuestionEasy.getText()) > value(lbTotalQuestionEasy.getText())
                 || value(txtNumberQuestionMedium.getText()) > value(lbTotalQuestionMedium.getText())
-                || value(txtNumberQuestionHard.getText()) > value(lbTotalQuestionHard.getText()))
-        {
+                || value(txtNumberQuestionHard.getText()) > value(lbTotalQuestionHard.getText())) {
             return true;
         }
         return false;
     }
 
-    private int value(String text)
-    {
+    private int value(String text) {
         return Integer.parseInt(text);
     }
 
-    public Exam getExamInfo(Exam exam)
-    {
+    public Exam getExamInfo(Exam exam) {
         exam.setExamCode(txtExamCode.getText());
         exam.setExamName(txtExamName.getText());
         exam.setSubjectCode(comboBoxSubject.getSelectedItem().toString());
@@ -78,8 +70,7 @@ public class ExportExamination extends JPanel
         return exam;
     }
 
-    public void setInfoExam(Exam exam)
-    {
+    public void mappingInfoToField(Exam exam) {
         comboBoxSubject.setSelectedItem(exam.getSubjectCode());
         txtExamCode.setText(exam.getExamCode());
         txtExamName.setText(exam.getExamName());
@@ -89,15 +80,13 @@ public class ExportExamination extends JPanel
         txtNumberQuestionHard.setText(String.valueOf(exam.getTotalHardQuestion()));
     }
 
-    public void setLabelTotalCountLevel(int easy, int medium, int hard)
-    {
+    public void setLabelTotalCountLevel(int easy, int medium, int hard) {
         lbTotalQuestionEasy.setText(String.valueOf(easy));
         lbTotalQuestionMedium.setText(String.valueOf(medium));
         lbTotalQuestionHard.setText(String.valueOf(hard));
     }
 
-    public void resetExportExamGUI()
-    {
+    public void resetExportExamGUI() {
         comboBoxSubject.setSelectedIndex(0);
         txtExamName.setText("");
         txtExamCode.setText("");
@@ -121,8 +110,7 @@ public class ExportExamination extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         ExportExaminationCard = new JPanel();
         ExportExaminationCard.setLayout(new CardLayout(0, 0));
         ExportExaminationCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -258,8 +246,7 @@ public class ExportExamination extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return ExportExaminationCard;
     }
 }

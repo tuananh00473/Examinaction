@@ -27,8 +27,7 @@ import java.util.List;
  * Time: 4:50 PM
  */
 @Component
-public class ManagementSubjectController
-{
+public class ManagementSubjectController {
 
     @Autowired
     MainAdminGUI mainAdminGUI;
@@ -49,8 +48,7 @@ public class ManagementSubjectController
     private ManagementSubjectGUI managementSubjectGUI;
     private NewSubjectGUI newSubjectGUI;
 
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpView();
         setUpActionListener();
 
@@ -58,16 +56,14 @@ public class ManagementSubjectController
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
     }
 
-    private void setUpActionListener()
-    {
+    private void setUpActionListener() {
         managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListener);
         managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListener);
         managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListener);
         managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListener);
     }
 
-    private void setUpView()
-    {
+    private void setUpView() {
         managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
         newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
 
@@ -79,52 +75,40 @@ public class ManagementSubjectController
         managementSubjectGUI.getComboBoxCourse().setModel(new DefaultComboBoxModel(Constants.courseList));
     }
 
-    public ActionListener actionListener = new ActionListener()
-    {
+    public ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == managementSubjectGUI.getBtnAddSUBJECT())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementSubjectGUI.getBtnAddSUBJECT()) {
                 doAddSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnEditSUBJECT())
-            {
+            if (e.getSource() == managementSubjectGUI.getBtnEditSUBJECT()) {
                 doEditSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnDelSUBJECT())
-            {
+            if (e.getSource() == managementSubjectGUI.getBtnDelSUBJECT()) {
                 doDeleteSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnSearchTab1())
-            {
+            if (e.getSource() == managementSubjectGUI.getBtnSearchTab1()) {
                 doSearchTab1();
             }
         }
     };
 
-    private void doEditSubject()
-    {
+    private void doEditSubject() {
         int select = tab1SubjectTable.getSelectedRow();
-        if (-1 == select)
-        {
+        if (-1 == select) {
             showMessage("Hãy chọn môn học bạn muốn sửa.");
-        }
-        else
-        {
+        } else {
             doSetUpEditSubject(tab1SubjectList.get(select));
             mainAdminController.doShowNewSubjectCard();
         }
     }
 
-    private void doSetUpEditSubject(Subject subject)
-    {
-        newSubjectGUI.setInfoSubject(subject);
+    private void doSetUpEditSubject(Subject subject) {
         addSubjectController.doSetUp(subject);
+        newSubjectGUI.mappingInfoToField(subject);
     }
 
-    private void doSearchTab1()
-    {
+    private void doSearchTab1() {
         String nameSubject = managementSubjectGUI.getTxtNameSubjectSearch().getText();
         String nameFaculty = managementSubjectGUI.getCbBoxFacultyTab1().getSelectedItem().toString();
 
@@ -132,28 +116,21 @@ public class ManagementSubjectController
         List<Subject> list2 = ("".equals(nameFaculty) ? subjectService.getAll() : subjectService.findByFaculty(nameFaculty));
 
         tab1SubjectList = new ArrayList<Subject>();
-        for (Subject subject : list1)
-        {
-            if (list2.contains(subject))
-            {
+        for (Subject subject : list1) {
+            if (list2.contains(subject)) {
                 tab1SubjectList.add(subject);
             }
         }
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
     }
 
-    private void doDeleteSubject()
-    {
+    private void doDeleteSubject() {
         int rowSelected = tab1SubjectTable.getSelectedRow();
-        if (-1 == rowSelected)
-        {
+        if (-1 == rowSelected) {
             showMessage("Hãy chọn môn học bạn muốn xóa.");
-        }
-        else
-        {
+        } else {
             int k = showConfirmMessage("Bạn chắc chắn muốn xóa môn học này?");
-            if (0 == k)
-            {
+            if (0 == k) {
                 subjectService.delete(tab1SubjectList.get(rowSelected));
                 tab1SubjectList.remove(rowSelected);
                 doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
@@ -161,8 +138,7 @@ public class ManagementSubjectController
         }
     }
 
-    private void doAddSubject()
-    {
+    private void doAddSubject() {
         addSubjectController.doSetUp(new Subject());
         newSubjectGUI.resetNewSubjectGUI();
         mainAdminController.doShowNewSubjectCard();
@@ -221,8 +197,7 @@ public class ManagementSubjectController
 //    }
 
 
-    private void doBindingSubject(List<Subject> subjectList, JTable jTable, JScrollPane jScrollPane)
-    {
+    private void doBindingSubject(List<Subject> subjectList, JTable jTable, JScrollPane jScrollPane) {
         TableBinding.bindingSubject(subjectList, jTable, jScrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
@@ -352,13 +327,11 @@ public class ManagementSubjectController
 //    }
 //
 
-    private void showMessage(String message)
-    {
+    private void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
-    private int showConfirmMessage(String message)
-    {
+    private int showConfirmMessage(String message) {
         return JOptionPane.showConfirmDialog(null, message);
     }
 }

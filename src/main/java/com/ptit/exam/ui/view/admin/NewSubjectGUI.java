@@ -13,8 +13,7 @@ import java.awt.*;
  * Date: 10/22/13
  * Time: 2:33 PM
  */
-public class NewSubjectGUI extends JPanel
-{
+public class NewSubjectGUI extends JPanel {
     private JTextField txtSubjectName;
     private JTextField txtSubjectCode;
     private JComboBox comboBoxFaculty;
@@ -24,8 +23,7 @@ public class NewSubjectGUI extends JPanel
     private JPanel newSubjectPanel;
     private JButton btnCancel;
 
-    public void resetNewSubjectGUI()
-    {
+    public void resetNewSubjectGUI() {
         txtSubjectName.setText("");
         txtSubjectCode.setText("");
         txtDescription.setText("");
@@ -33,41 +31,34 @@ public class NewSubjectGUI extends JPanel
         comboBoxUnitStudy.setSelectedIndex(0);
     }
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public JComboBox getComboBoxFaculty()
-    {
+    public JComboBox getComboBoxFaculty() {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxUnitStudy()
-    {
+    public JComboBox getComboBoxUnitStudy() {
         return comboBoxUnitStudy;
     }
 
-    public boolean invalidForm()
-    {
+    public boolean invalidForm() {
         if ("".equals(txtSubjectName.getText())
                 || "".equals(txtSubjectCode.getText())
                 || "".equals(comboBoxFaculty.getSelectedItem().toString())
                 || "".equals(comboBoxUnitStudy.getSelectedItem().toString())
-                || "".equals(txtDescription.getText()))
-        {
+                || "".equals(txtDescription.getText())) {
             return true;
         }
         return false;
     }
 
-    public Subject getSubjectInfo(Subject subject)
-    {
+    public Subject getSubjectInfo(Subject subject) {
         subject.setSubjectName(txtSubjectName.getText());
         subject.setSubjectCode(txtSubjectCode.getText());
         subject.setFaculty(comboBoxFaculty.getSelectedItem().toString());
@@ -76,8 +67,7 @@ public class NewSubjectGUI extends JPanel
         return subject;
     }
 
-    public void setInfoSubject(Subject subject)
-    {
+    public void mappingInfoToField(Subject subject) {
         txtSubjectName.setText(subject.getSubjectName());
         txtSubjectCode.setText(subject.getSubjectCode());
         comboBoxFaculty.setSelectedItem(subject.getFaculty());
@@ -99,8 +89,7 @@ public class NewSubjectGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         newSubjectPanel = new JPanel();
         newSubjectPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         newSubjectPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -175,8 +164,7 @@ public class NewSubjectGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return newSubjectPanel;
     }
 }

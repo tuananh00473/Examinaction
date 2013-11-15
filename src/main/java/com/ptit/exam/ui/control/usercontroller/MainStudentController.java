@@ -33,7 +33,6 @@ public class MainStudentController {
     }
 
     public void doShowSettingExamCard() {
-//        settingExamController.doSetUp();   // todo
         showCard(SETTING_EXAM_CARD);
     }
 
@@ -42,7 +41,6 @@ public class MainStudentController {
     }
 
     public void doShowResultCard() {
-//        resultController.setUpResultGUI();    // todo
         showCard(RESULT_CARD);
     }
 }

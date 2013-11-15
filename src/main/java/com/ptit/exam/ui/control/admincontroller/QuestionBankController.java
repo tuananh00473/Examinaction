@@ -91,56 +91,72 @@ public class QuestionBankController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == questionBankGUI.getBtnSearch()) {
-                String subjectCode = questionBankGUI.getComboBoxSubjectCode().getSelectedItem().toString();
-                String chapter = questionBankGUI.getComboBoxChapter().getSelectedItem().toString();
-                String level = questionBankGUI.getComboBoxLevel().getSelectedItem().toString();
-
-                List<Question> list1 = ("".equals(subjectCode) ? questionService.getAll() : questionService.findBySubjectCode(subjectCode));
-                List<Question> list2 = ("".equals(chapter) ? questionService.getAll() : questionService.findByChapter(value(chapter)));
-                List<Question> list3 = ("".equals(level) ? questionService.getAll() : questionService.findByLevel(value(level)));
-
-                questionList = new ArrayList<Question>();
-                for (Question question : list1) {
-                    if (list2.contains(question) && list3.contains(question)) {
-                        questionList.add(question);
-                    }
-                }
-                doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
+                doSearchQuestion();
             }
             if (e.getSource() == questionBankGUI.getBtnNewQuestion()) {
-                Question question = new Question();
-                List<Answer> answerList = new ArrayList<Answer>();
-                answerList.add(new Answer());
-                answerList.add(new Answer());
-                answerList.add(new Answer());
-                answerList.add(new Answer());
-                addQuestionController.doSetUp(question, answerList);
-                newQuestionGUI.resetNewQuestionGUI();
-                mainAdminController.doShowNewQuestionCard();
+                doAddQuestion();
             }
             if (e.getSource() == questionBankGUI.getBtnDeleteQuestion()) {
-                int indexSelected = tableQuestionBank.getSelectedRow();
-                if (-1 == indexSelected) {
-                    showMessage("Hãy chọn 1 câu hỏi mà bạn muốn xóa.");
-                } else {
-                    int select = showConfirmMessage("Bạn chắc chắn muốn xóa?");
-                    if (0 == select) {
-                        doDeleteQuestion(questionList.get(indexSelected));
-                        doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
-                    }
-                }
+                doDeleteQuestion();
             }
             if (e.getSource() == questionBankGUI.getBtnEditQuestion()) {
-                int indexSelected = tableQuestionBank.getSelectedRow();
-                if (-1 == indexSelected) {
-                    showMessage("Hãy chọn 1 câu hỏi mà bạn muốn sửa.");
-                } else {
-                    doSetUpEditQuestion(questionList.get(indexSelected));
-                    mainAdminController.doShowNewQuestionCard();
-                }
+                doEditQuestion();
             }
         }
     };
+
+    private void doEditQuestion() {
+        int indexSelected = tableQuestionBank.getSelectedRow();
+        if (-1 == indexSelected) {
+            showMessage("Hãy chọn 1 câu hỏi mà bạn muốn sửa.");
+        } else {
+            doSetUpEditQuestionGUI(questionList.get(indexSelected));
+            mainAdminController.doShowNewQuestionCard();
+        }
+    }
+
+    private void doDeleteQuestion() {
+        int indexSelected = tableQuestionBank.getSelectedRow();
+        if (-1 == indexSelected) {
+            showMessage("Hãy chọn 1 câu hỏi mà bạn muốn xóa.");
+        } else {
+            int select = showConfirmMessage("Bạn chắc chắn muốn xóa?");
+            if (0 == select) {
+                doDeleteQuestion(questionList.get(indexSelected));
+                doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
+            }
+        }
+    }
+
+    private void doAddQuestion() {
+        Question question = new Question();
+        List<Answer> answerList = new ArrayList<Answer>();
+        answerList.add(new Answer());
+        answerList.add(new Answer());
+        answerList.add(new Answer());
+        answerList.add(new Answer());
+        addQuestionController.doSetUp(question, answerList);
+        newQuestionGUI.resetNewQuestionGUI();
+        mainAdminController.doShowNewQuestionCard();
+    }
+
+    private void doSearchQuestion() {
+        String subjectCode = questionBankGUI.getComboBoxSubjectCode().getSelectedItem().toString();
+        String chapter = questionBankGUI.getComboBoxChapter().getSelectedItem().toString();
+        String level = questionBankGUI.getComboBoxLevel().getSelectedItem().toString();
+
+        List<Question> list1 = ("".equals(subjectCode) ? questionService.getAll() : questionService.findBySubjectCode(subjectCode));
+        List<Question> list2 = ("".equals(chapter) ? questionService.getAll() : questionService.findByChapter(value(chapter)));
+        List<Question> list3 = ("".equals(level) ? questionService.getAll() : questionService.findByLevel(value(level)));
+
+        questionList = new ArrayList<Question>();
+        for (Question question : list1) {
+            if (list2.contains(question) && list3.contains(question)) {
+                questionList.add(question);
+            }
+        }
+        doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
+    }
 
     private int value(String text) {
         return Integer.parseInt(text);
@@ -264,22 +280,10 @@ public class QuestionBankController {
         mainAdminGUI.getQuestionBankGUI().resetPreview();
     }
 
-    public void doSetUpEditQuestion(Question question) {
-        newQuestionGUI.getTxtSubjectCode().setText(question.getSubjectCode());
-        newQuestionGUI.getTxtChapter().setText(String.valueOf(question.getChapter()));
-        newQuestionGUI.getCbLevel().setModel(new DefaultComboBoxModel(Constants.level));
-        newQuestionGUI.getCbLevel().setSelectedIndex(question.getLevel() - 1);
-        newQuestionGUI.getTxtContentQues().setText(question.getContent());
-        newQuestionGUI.getTxtUrlImage().setText(question.getUrlImage());
+    public void doSetUpEditQuestionGUI(Question question) {
         List<Answer> answerList = answerService.getListAnswer(question.getId());
-        List<JTextArea> txtAnswerList = newQuestionGUI.getTxtContentAnswer();
-        List<JRadioButton> radioButtonList = newQuestionGUI.getRadioButtonList();
-
-        for (int i = 0; i < 4; i++) {
-            txtAnswerList.get(i).setText(answerList.get(i).getContent());
-            radioButtonList.get(i).setSelected(answerList.get(i).isCorrect());
-        }
         addQuestionController.doSetUp(question, answerList);
+        newQuestionGUI.mappingInfoToField(question, answerList);
     }
 
     private void showMessage(String message) {

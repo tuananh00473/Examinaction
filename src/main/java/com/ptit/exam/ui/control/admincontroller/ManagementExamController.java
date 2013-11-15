@@ -26,8 +26,7 @@ import java.util.List;
  * Time: 10:56 AM
  */
 @Component
-public class ManagementExamController
-{
+public class ManagementExamController {
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -50,8 +49,7 @@ public class ManagementExamController
     //    private Set<String> stringSet = new HashSet<String>();
 //    private String nameSubject;
 //
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpView();
         setUpActionListenner();
 
@@ -59,78 +57,60 @@ public class ManagementExamController
         doBindingExam(examList, managementExamTable, managementExamScrollPanel);
     }
 
-    private void setUpActionListenner()
-    {
+    private void setUpActionListenner() {
         managementExamGUI.getBtnSearch().addActionListener(actionListener);
         managementExamGUI.getBtnAddExam().addActionListener(actionListener);
         managementExamGUI.getBtnEditExam().addActionListener(actionListener);
         managementExamGUI.getBtnDeleteExam().addActionListener(actionListener);
     }
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == managementExamGUI.getBtnSearch())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementExamGUI.getBtnSearch()) {
                 doSearchExam();
             }
-            if (e.getSource() == managementExamGUI.getBtnAddExam())
-            {
+            if (e.getSource() == managementExamGUI.getBtnAddExam()) {
                 doAddExam();
             }
-            if (e.getSource() == managementExamGUI.getBtnEditExam())
-            {
+            if (e.getSource() == managementExamGUI.getBtnEditExam()) {
                 doEditExam();
             }
-            if (e.getSource() == managementExamGUI.getBtnDeleteExam())
-            {
+            if (e.getSource() == managementExamGUI.getBtnDeleteExam()) {
                 doDeleteExam();
             }
         }
     };
 
-    private void doSearchExam()
-    {
+    private void doSearchExam() {
         String subjectCode = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
         examList = ("".equals(subjectCode)) ? examService.getAll() : examService.findBySubjectCode(subjectCode);
         doBindingExam(examList, managementExamTable, managementExamScrollPanel);
     }
 
-    private void doAddExam()
-    {
+    private void doAddExam() {
         exportExamController.doSetUp(new Exam());
         exportExamination.resetExportExamGUI();
         mainAdminController.doShowExportExamCard();
     }
 
-    private void doEditExam()
-    {
+    private void doEditExam() {
         int select = managementExamTable.getSelectedRow();
-        if (-1 == select)
-        {
+        if (-1 == select) {
             showMessage("Hãy chọn đề thi bạn muốn sửa.");
-        }
-        else
-        {
+        } else {
             doSetUpEditExam(examList.get(select));
             mainAdminController.doShowExportExamCard();
         }
     }
 
-    private void doDeleteExam()
-    {
+    private void doDeleteExam() {
         int select = managementExamTable.getSelectedRow();
-        if (-1 == select)
-        {
+        if (-1 == select) {
             showMessage("Hãy chọn đề thi bạn muốn xóa.");
-        }
-        else
-        {
+        } else {
             int k = showConfirmMessage("Bạn chắc chắn muốn xóa?");
-            if (0 == k)
-            {
+            if (0 == k) {
                 examService.delete(examList.get(select));
                 examList.remove(select);
                 doBindingExam(examList, managementExamTable, managementExamScrollPanel);
@@ -138,14 +118,12 @@ public class ManagementExamController
         }
     }
 
-    private void doSetUpEditExam(Exam exam)
-    {
-        exportExamination.setInfoExam(exam);
+    private void doSetUpEditExam(Exam exam) {
         exportExamController.doSetUp(exam);
+        exportExamination.mappingInfoToField(exam);
     }
 
-    private void setUpView()
-    {
+    private void setUpView() {
         managementExamGUI = mainAdminGUI.getManagermentExamGUI();
         exportExamination = mainAdminGUI.getExportExaminationGUI();
 
@@ -166,8 +144,7 @@ public class ManagementExamController
 //
 //    }
 
-    private void doBindingExam(List<Exam> examList, JTable table, JScrollPane scrollPane)
-    {
+    private void doBindingExam(List<Exam> examList, JTable table, JScrollPane scrollPane) {
         TableBinding.bindingManagementExam(examList, table, scrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
@@ -196,13 +173,11 @@ public class ManagementExamController
         managementExamTable.repaint();
     }
 
-    private void showMessage(String message)
-    {
+    private void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
-    private int showConfirmMessage(String message)
-    {
+    private int showConfirmMessage(String message) {
         return JOptionPane.showConfirmDialog(null, message);
     }
 }
