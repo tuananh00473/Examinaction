@@ -3,6 +3,7 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.ptit.exam.persistence.entity.Student;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,7 @@ public class NewStudentGUI extends JPanel
     private JTextField txtClass;
     private JComboBox comboBoxFaculty;
     private JComboBox comboBoxTrainingSystem;
+    private JComboBox comboBoxCourse;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JPasswordField txtConfirmPassword;
@@ -40,26 +42,6 @@ public class NewStudentGUI extends JPanel
     private JLabel lbValidatePassword;
     private JLabel lbValidateConfirmPassword;
     private JLabel lbNote;
-    private JComboBox comboBoxCourse;
-
-    private void resetGUI()
-    {
-        txtLastname.setText("");
-        txtFirstname.setText("");
-        txtClass.setText("");
-        txtStudentCode.setText("");
-        txtPassword.setText("");
-        txtConfirmPassword.setText("");
-        txtUsername.setText("");
-
-        btnRadioMale.setSelected(true);
-        comboBoxCourse.setSelectedIndex(0);
-        comboBoxDay.setSelectedIndex(0);
-        comboBoxMonth.setSelectedIndex(0);
-        comboBoxFaculty.setSelectedIndex(0);
-        comboBoxYear.setSelectedIndex(0);
-        comboBoxTrainingSystem.setSelectedIndex(0);
-    }
 
     public JButton getBtnCancel()
     {
@@ -69,6 +51,153 @@ public class NewStudentGUI extends JPanel
     public JButton getBtnSave()
     {
         return btnSave;
+    }
+
+    public JComboBox getComboBoxDay()
+    {
+        return comboBoxDay;
+    }
+
+    public JComboBox getComboBoxMonth()
+    {
+        return comboBoxMonth;
+    }
+
+    public JComboBox getComboBoxYear()
+    {
+        return comboBoxYear;
+    }
+
+    public JComboBox getComboBoxFaculty()
+    {
+        return comboBoxFaculty;
+    }
+
+    public JComboBox getComboBoxTrainingSystem()
+    {
+        return comboBoxTrainingSystem;
+    }
+
+    public JComboBox getComboBoxCourse()
+    {
+        return comboBoxCourse;
+    }
+
+    public boolean invalidForm()
+    {
+        if ("".equals(txtStudentCode.getText())
+                || "".equals(txtFirstname.getText())
+                || "".equals(txtLastname.getText())
+                || "".equals(txtClass.getText())
+                || "".equals(txtUsername.getText())
+                || "".equals(txtPassword.getText())
+                || "".equals(txtConfirmPassword.getText())
+                || !txtPassword.getText().equals(txtConfirmPassword.getText())
+                || "".equals(comboBoxCourse.getSelectedItem().toString())
+                || "".equals(comboBoxFaculty.getSelectedItem().toString())
+                || "".equals(comboBoxTrainingSystem.getSelectedItem().toString()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public Student getSubjectInfo(Student student)
+    {
+        student.setStudentCode(txtStudentCode.getText());
+        student.setFirstName(txtFirstname.getText());
+        student.setLastName(txtLastname.getText());
+        student.setClassRoom(txtClass.getText());
+        student.setGender(getGender());
+        student.setCourse(comboBoxCourse.getSelectedItem().toString());
+        student.setFaculty(comboBoxFaculty.getSelectedItem().toString());
+        student.setTrainingType(comboBoxTrainingSystem.getSelectedItem().toString());
+        student.setUserName(txtUsername.getText());
+        student.setPassWord(txtPassword.getText());
+        student.setDateOfBirth(getDateOfBirth());
+        return student;
+    }
+
+    private String getDateOfBirth()
+    {
+        String day = comboBoxDay.getSelectedItem().toString();
+        String month = comboBoxMonth.getSelectedItem().toString();
+        String year = comboBoxYear.getSelectedItem().toString();
+        return day + "/" + month + "/" + year;
+    }
+
+    private String getGender()
+    {
+        if (btnRadioMale.isSelected())
+        {
+            return "nam";
+        }
+        else
+        {
+            return "nữ";
+        }
+    }
+
+    public void setInfoSubject(Student student)
+    {
+        txtFirstname.setText(student.getFirstName());
+        txtLastname.setText(student.getLastName());
+        txtClass.setText(student.getClassRoom());
+        txtStudentCode.setText(student.getStudentCode());
+        txtUsername.setText(student.getUserName());
+        txtPassword.setText(student.getPassWord());
+        txtConfirmPassword.setText(student.getPassWord());
+
+        setGender(student.getGender());
+
+        comboBoxCourse.setSelectedItem(student.getCourse());
+        comboBoxFaculty.setSelectedItem(student.getFaculty());
+        comboBoxTrainingSystem.setSelectedItem(student.getTrainingType());
+
+        setDateOfBirth(student.getDateOfBirth());
+    }
+
+    private void setDateOfBirth(String dateOfBirth)
+    {
+        String[] arg = dateOfBirth.split("/");
+        comboBoxDay.setSelectedItem(arg[0]);
+        comboBoxMonth.setSelectedItem(arg[1]);
+        comboBoxYear.setSelectedItem(arg[2]);
+    }
+
+    private void setGender(String gender)
+    {
+        if ("nam".equals(gender))
+        {
+            btnRadioMale.setSelected(true);
+            btnRadioFemale.setSelected(false);
+        }
+        if ("nữ".equals(gender))
+        {
+            btnRadioMale.setSelected(false);
+            btnRadioFemale.setSelected(true);
+        }
+    }
+
+    public void resetForm()
+    {
+        txtLastname.setText("");
+        txtFirstname.setText("");
+        txtClass.setText("");
+        txtStudentCode.setText("");
+        txtPassword.setText("");
+        txtConfirmPassword.setText("");
+        txtUsername.setText("");
+
+        btnRadioMale.setSelected(false);
+        btnRadioFemale.setSelected(false);
+
+        comboBoxCourse.setSelectedIndex(0);
+        comboBoxDay.setSelectedIndex(0);
+        comboBoxMonth.setSelectedIndex(0);
+        comboBoxFaculty.setSelectedIndex(0);
+        comboBoxYear.setSelectedIndex(0);
+        comboBoxTrainingSystem.setSelectedIndex(0);
     }
 
     {
@@ -142,12 +271,12 @@ public class NewStudentGUI extends JPanel
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel4, new GridConstraints(12, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("CANCEL");
+        btnCancel.setText("HỦY");
         panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("OK");
+        btnSave.setText("LƯU");
         panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtLastname = new JTextField();
         panel3.add(txtLastname, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -176,37 +305,6 @@ public class NewStudentGUI extends JPanel
         panel6.add(spacer3, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         comboBoxDay = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("1");
-        defaultComboBoxModel1.addElement("2");
-        defaultComboBoxModel1.addElement("3");
-        defaultComboBoxModel1.addElement("4");
-        defaultComboBoxModel1.addElement("5");
-        defaultComboBoxModel1.addElement("6");
-        defaultComboBoxModel1.addElement("7");
-        defaultComboBoxModel1.addElement("8");
-        defaultComboBoxModel1.addElement("9");
-        defaultComboBoxModel1.addElement("10");
-        defaultComboBoxModel1.addElement("11");
-        defaultComboBoxModel1.addElement("12");
-        defaultComboBoxModel1.addElement("13");
-        defaultComboBoxModel1.addElement("14");
-        defaultComboBoxModel1.addElement("15");
-        defaultComboBoxModel1.addElement("16");
-        defaultComboBoxModel1.addElement("17");
-        defaultComboBoxModel1.addElement("18");
-        defaultComboBoxModel1.addElement("19");
-        defaultComboBoxModel1.addElement("20");
-        defaultComboBoxModel1.addElement("21");
-        defaultComboBoxModel1.addElement("22");
-        defaultComboBoxModel1.addElement("23");
-        defaultComboBoxModel1.addElement("24");
-        defaultComboBoxModel1.addElement("25");
-        defaultComboBoxModel1.addElement("26");
-        defaultComboBoxModel1.addElement("27");
-        defaultComboBoxModel1.addElement("28");
-        defaultComboBoxModel1.addElement("29");
-        defaultComboBoxModel1.addElement("30");
-        defaultComboBoxModel1.addElement("31");
         comboBoxDay.setModel(defaultComboBoxModel1);
         panel6.add(comboBoxDay, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label14 = new JLabel();
@@ -214,18 +312,6 @@ public class NewStudentGUI extends JPanel
         panel6.add(label14, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxMonth = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
-        defaultComboBoxModel2.addElement("1");
-        defaultComboBoxModel2.addElement("2");
-        defaultComboBoxModel2.addElement("3");
-        defaultComboBoxModel2.addElement("4");
-        defaultComboBoxModel2.addElement("5");
-        defaultComboBoxModel2.addElement("6");
-        defaultComboBoxModel2.addElement("7");
-        defaultComboBoxModel2.addElement("8");
-        defaultComboBoxModel2.addElement("9");
-        defaultComboBoxModel2.addElement("10");
-        defaultComboBoxModel2.addElement("11");
-        defaultComboBoxModel2.addElement("12");
         comboBoxMonth.setModel(defaultComboBoxModel2);
         panel6.add(comboBoxMonth, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label15 = new JLabel();
@@ -233,46 +319,20 @@ public class NewStudentGUI extends JPanel
         panel6.add(label15, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxYear = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel3 = new DefaultComboBoxModel();
-        defaultComboBoxModel3.addElement("1986");
-        defaultComboBoxModel3.addElement("1987");
-        defaultComboBoxModel3.addElement("1988");
-        defaultComboBoxModel3.addElement("1989");
-        defaultComboBoxModel3.addElement("1990");
-        defaultComboBoxModel3.addElement("1991");
-        defaultComboBoxModel3.addElement("1992");
-        defaultComboBoxModel3.addElement("1993");
-        defaultComboBoxModel3.addElement("1994");
-        defaultComboBoxModel3.addElement("1995");
-        defaultComboBoxModel3.addElement("1996");
-        defaultComboBoxModel3.addElement("1997");
-        defaultComboBoxModel3.addElement("1998");
-        defaultComboBoxModel3.addElement("1999");
-        defaultComboBoxModel3.addElement("2000");
         comboBoxYear.setModel(defaultComboBoxModel3);
         panel6.add(comboBoxYear, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtClass = new JTextField();
         panel3.add(txtClass, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         comboBoxFaculty = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel4 = new DefaultComboBoxModel();
-        defaultComboBoxModel4.addElement("Chọn khoa...");
-        defaultComboBoxModel4.addElement("Công nghệ thông tin");
-        defaultComboBoxModel4.addElement("Điện tử viễn thông");
-        defaultComboBoxModel4.addElement("Điện điện tử");
-        defaultComboBoxModel4.addElement("Quản trị kinh doanh");
-        defaultComboBoxModel4.addElement("Kế toán");
         comboBoxFaculty.setModel(defaultComboBoxModel4);
         panel3.add(comboBoxFaculty, new GridConstraints(6, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxTrainingSystem = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel5 = new DefaultComboBoxModel();
-        defaultComboBoxModel5.addElement("Chọn hệ đào tạo ...");
-        defaultComboBoxModel5.addElement("Đại học chính quy");
-        defaultComboBoxModel5.addElement("Cao đẳngchính quy");
-        defaultComboBoxModel5.addElement("Đại học từ xa");
-        defaultComboBoxModel5.addElement("Hệ liên thông");
-        defaultComboBoxModel5.addElement("Hệ tại chức");
         comboBoxTrainingSystem.setModel(defaultComboBoxModel5);
         panel3.add(comboBoxTrainingSystem, new GridConstraints(8, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtUsername = new JTextField();
+        txtUsername.setText("");
         panel3.add(txtUsername, new GridConstraints(9, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtPassword = new JPasswordField();
         panel3.add(txtPassword, new GridConstraints(10, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -317,19 +377,6 @@ public class NewStudentGUI extends JPanel
         panel3.add(lbNote, new GridConstraints(13, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxCourse = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel6 = new DefaultComboBoxModel();
-        defaultComboBoxModel6.addElement("Chọn khóa học ...");
-        defaultComboBoxModel6.addElement("2009 - 2013");
-        defaultComboBoxModel6.addElement("2009 - 2014");
-        defaultComboBoxModel6.addElement("2010 - 2014");
-        defaultComboBoxModel6.addElement("2010 - 2015");
-        defaultComboBoxModel6.addElement("2011 - 2015");
-        defaultComboBoxModel6.addElement("2011 - 2016");
-        defaultComboBoxModel6.addElement("2012 - 2016");
-        defaultComboBoxModel6.addElement("2012 - 2017");
-        defaultComboBoxModel6.addElement("2013 - 2017");
-        defaultComboBoxModel6.addElement("2013 - 2018");
-        defaultComboBoxModel6.addElement("2014 - 2018");
-        defaultComboBoxModel6.addElement("2014 - 2019");
         comboBoxCourse.setModel(defaultComboBoxModel6);
         panel3.add(comboBoxCourse, new GridConstraints(7, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;

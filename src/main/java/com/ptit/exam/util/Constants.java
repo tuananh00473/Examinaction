@@ -13,4 +13,5 @@ public class Constants
     public static final String[] subjects = new String[]{"", "CNTT123", "DTVT123"};
     public static final String[] chapters = new String[]{"", "1", "2", "3", "4"};
     public static final String[] unitOfStudy = new String[]{"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    public static final String[] trainingTypes = new String[]{"", "chính quy", "tại chức", "từ xa"};
 }

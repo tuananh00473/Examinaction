@@ -124,7 +124,7 @@ public class ManagementExamController
         int select = managementExamTable.getSelectedRow();
         if (-1 == select)
         {
-            showMessage("Hãy chọn đề thi bạn cần xóa.");
+            showMessage("Hãy chọn đề thi bạn muốn xóa.");
         }
         else
         {

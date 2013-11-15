@@ -243,39 +243,7 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <model>
-                            <item value="1"/>
-                            <item value="2"/>
-                            <item value="3"/>
-                            <item value="4"/>
-                            <item value="5"/>
-                            <item value="6"/>
-                            <item value="7"/>
-                            <item value="8"/>
-                            <item value="9"/>
-                            <item value="10"/>
-                            <item value="11"/>
-                            <item value="12"/>
-                            <item value="13"/>
-                            <item value="14"/>
-                            <item value="15"/>
-                            <item value="16"/>
-                            <item value="17"/>
-                            <item value="18"/>
-                            <item value="19"/>
-                            <item value="20"/>
-                            <item value="21"/>
-                            <item value="22"/>
-                            <item value="23"/>
-                            <item value="24"/>
-                            <item value="25"/>
-                            <item value="26"/>
-                            <item value="27"/>
-                            <item value="28"/>
-                            <item value="29"/>
-                            <item value="30"/>
-                            <item value="31"/>
-                          </model>
+                          <model/>
                         </properties>
                       </component>
                       <component id="81f85" class="javax.swing.JLabel">
@@ -291,20 +259,7 @@
                           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <model>
-                            <item value="1"/>
-                            <item value="2"/>
-                            <item value="3"/>
-                            <item value="4"/>
-                            <item value="5"/>
-                            <item value="6"/>
-                            <item value="7"/>
-                            <item value="8"/>
-                            <item value="9"/>
-                            <item value="10"/>
-                            <item value="11"/>
-                            <item value="12"/>
-                          </model>
+                          <model/>
                         </properties>
                       </component>
                       <component id="3921b" class="javax.swing.JLabel">
@@ -320,23 +275,7 @@
                           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <model>
-                            <item value="1986"/>
-                            <item value="1987"/>
-                            <item value="1988"/>
-                            <item value="1989"/>
-                            <item value="1990"/>
-                            <item value="1991"/>
-                            <item value="1992"/>
-                            <item value="1993"/>
-                            <item value="1994"/>
-                            <item value="1995"/>
-                            <item value="1996"/>
-                            <item value="1997"/>
-                            <item value="1998"/>
-                            <item value="1999"/>
-                            <item value="2000"/>
-                          </model>
+                          <model/>
                         </properties>
                       </component>
                     </children>
@@ -354,14 +293,7 @@
                       <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <model>
-                        <item value="Chọn khoa..."/>
-                        <item value="Công nghệ thông tin"/>
-                        <item value="Điện tử viễn thông"/>
-                        <item value="Điện điện tử"/>
-                        <item value="Quản trị kinh doanh"/>
-                        <item value="Kế toán"/>
-                      </model>
+                      <model/>
                     </properties>
                   </component>
                   <component id="88e40" class="javax.swing.JComboBox" binding="comboBoxTrainingSystem">
@@ -369,14 +301,7 @@
                       <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <model>
-                        <item value="Chọn hệ đào tạo ..."/>
-                        <item value="Đại học chính quy"/>
-                        <item value="Cao đẳngchính quy"/>
-                        <item value="Đại học từ xa"/>
-                        <item value="Hệ liên thông"/>
-                        <item value="Hệ tại chức"/>
-                      </model>
+                      <model/>
                     </properties>
                   </component>
                   <component id="1fc4b" class="javax.swing.JTextField" binding="txtUsername">
@@ -385,7 +310,9 @@
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                   <component id="d3667" class="javax.swing.JPasswordField" binding="txtPassword">
                     <constraints>
@@ -490,21 +417,7 @@
                       <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <model>
-                        <item value="Chọn khóa học ..."/>
-                        <item value="2009 - 2013"/>
-                        <item value="2009 - 2014"/>
-                        <item value="2010 - 2014"/>
-                        <item value="2010 - 2015"/>
-                        <item value="2011 - 2015"/>
-                        <item value="2011 - 2016"/>
-                        <item value="2012 - 2016"/>
-                        <item value="2012 - 2017"/>
-                        <item value="2013 - 2017"/>
-                        <item value="2013 - 2018"/>
-                        <item value="2014 - 2018"/>
-                        <item value="2014 - 2019"/>
-                      </model>
+                      <model/>
                     </properties>
                   </component>
                 </children>

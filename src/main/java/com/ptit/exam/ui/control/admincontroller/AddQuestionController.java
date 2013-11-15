@@ -88,7 +88,7 @@ public class AddQuestionController
     {
         if (newQuestionGUI.invalidForm())
         {
-            showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
+            showMessage("Thông tin về câu hỏi không hợp lệ.");
         }
         else
         {
@@ -99,7 +99,7 @@ public class AddQuestionController
             answerService.save(newQuestionGUI.getAnswer2(question, answerList.get(1)));
             answerService.save(newQuestionGUI.getAnswer3(question, answerList.get(2)));
             answerService.save(newQuestionGUI.getAnswer4(question, answerList.get(3)));
-            showMessage("Dữ liệu đã được lưu trữ.");
+            showMessage("Đã lưu thành công.");
 
             questionBankController.doSetUp();
             mainAdminController.doShowQuestionBankCard();

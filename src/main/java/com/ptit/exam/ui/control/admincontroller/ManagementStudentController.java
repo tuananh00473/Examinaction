@@ -33,6 +33,12 @@ public class ManagementStudentController
     MainAdminGUI mainAdminGUI;
 
     @Autowired
+    AddStudentController addStudentController;
+
+    @Autowired
+    MainAdminController mainAdminController;
+
+    @Autowired
     StudentService studentService;
 
     private List<Student> tab1StudentList;
@@ -44,21 +50,11 @@ public class ManagementStudentController
 
     public void doSetUp()
     {
-        managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
-        newStudentGUI = mainAdminGUI.getNewStudentGUI();
-
-        tab1StudentTable = managementStudentGUI.getStudentTableTab1();
-        tab1StudentScrollpane = managementStudentGUI.getStudentScrollpanelTab1();
-
-        mainAdminGUI.getManagementStudentGUI().getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
+        setUpView();
+        setUpActionListener();
 
         tab1StudentList = studentService.getAll();
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
-
-        managementStudentGUI.getBtnAdd().addActionListener(actionListener);
-        managementStudentGUI.getBtnEdit().addActionListener(actionListener);
-        managementStudentGUI.getBtnDel().addActionListener(actionListener);
-        managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
 
 //        List<Subject> subjectList = subjectService.getAll();
 //        Set<String> stringSet1 = new HashSet<String>();
@@ -83,6 +79,25 @@ public class ManagementStudentController
 //                }
 //            }
 //        });
+    }
+
+    private void setUpView()
+    {
+        managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
+        newStudentGUI = mainAdminGUI.getNewStudentGUI();
+
+        tab1StudentTable = managementStudentGUI.getStudentTableTab1();
+        tab1StudentScrollpane = managementStudentGUI.getStudentScrollpanelTab1();
+
+        mainAdminGUI.getManagementStudentGUI().getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
+    }
+
+    private void setUpActionListener()
+    {
+        managementStudentGUI.getBtnAdd().addActionListener(actionListener);
+        managementStudentGUI.getBtnEdit().addActionListener(actionListener);
+        managementStudentGUI.getBtnDel().addActionListener(actionListener);
+        managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
     }
 
     public ActionListener actionListener = new ActionListener()
@@ -111,7 +126,23 @@ public class ManagementStudentController
 
     private void doEditStudent()
     {
+        int select = tab1StudentTable.getSelectedRow();
+        if (-1 == select)
+        {
+            showMessage("Hãy chọn sinh viên bạn muốn sửa.");
+        }
+        else
+        {
+            doSetUpStudentGUI(tab1StudentList.get(select));
+            mainAdminController.doShowNewStudentCard();
+        }
 
+    }
+
+    private void doSetUpStudentGUI(Student student)
+    {
+        addStudentController.doSetUp(student);
+        newStudentGUI.setInfoSubject(student);
     }
 
     private void doSearchStudent()
@@ -140,7 +171,7 @@ public class ManagementStudentController
         int rowSelected = tab1StudentTable.getSelectedRow();
         if (-1 == rowSelected)
         {
-            showMessage("Cần chọn một sinh viên để thực hiện xóa.");
+            showMessage("Hãy chọn sinh viên bạn muốn xóa.");
         }
         else
         {
@@ -156,7 +187,9 @@ public class ManagementStudentController
 
     private void doAddStudent()
     {
-
+        addStudentController.doSetUp(new Student());
+        newStudentGUI.resetForm();
+        mainAdminController.doShowNewStudentCard();
     }
 
 

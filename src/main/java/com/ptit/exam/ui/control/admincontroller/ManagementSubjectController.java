@@ -147,7 +147,7 @@ public class ManagementSubjectController
         int rowSelected = tab1SubjectTable.getSelectedRow();
         if (-1 == rowSelected)
         {
-            showMessage("Cần chọn một môn học để thực hiện xóa.");
+            showMessage("Hãy chọn môn học bạn muốn xóa.");
         }
         else
         {

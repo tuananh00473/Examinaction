@@ -83,13 +83,13 @@ public class ExportExamController
             {
                 if (exportExamination.invalidForm())
                 {
-                    showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
+                    showMessage("Thông tin về đề thi không hợp lệ.");
                 }
                 else
                 {
                     exam = exportExamination.getExamInfo(exam);
                     examService.save(exam);
-                    showMessage("Dữ liệu đã được lưu trữ.");
+                    showMessage("Đã lưu thành công.");
 
                     managementExamController.doSetUp();
                     mainAdminController.doShowManagementExamGUI();

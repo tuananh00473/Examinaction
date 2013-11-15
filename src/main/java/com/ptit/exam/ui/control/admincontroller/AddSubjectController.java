@@ -58,14 +58,14 @@ public class AddSubjectController
             {
                 if (newSubjectGUI.invalidForm())
                 {
-                    showMessage("Cần điển đầy đủ các thông tin về câu hỏi.");
+                    showMessage("Thông tin về môn học không hợp lệ.");
                 }
                 else
                 {
                     subject = newSubjectGUI.getSubjectInfo(subject);
                     subjectService.save(subject);
 
-                    showMessage("Dữ liệu đã được lưu trữ.");
+                    showMessage("Đã lưu thành công.");
 
                     managementSubjectController.doSetUp();
                     mainAdminController.doShowManagementSubjectGUI();

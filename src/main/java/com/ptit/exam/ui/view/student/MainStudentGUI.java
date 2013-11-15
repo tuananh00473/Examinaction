@@ -21,7 +21,8 @@ import java.awt.event.MouseEvent;
  * Time: 10:18 AM
  */
 @Component
-public class MainStudentGUI extends JFrame {
+public class MainStudentGUI extends JFrame
+{
     private JPanel studentPanel;
     private JButton btnStartExam;
     private JButton btnExamResults;
@@ -46,7 +47,8 @@ public class MainStudentGUI extends JFrame {
     @Autowired
     LoginGUI loginGUI;
 
-    public MainStudentGUI() {
+    public MainStudentGUI()
+    {
         setContentPane(studentPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -54,9 +56,11 @@ public class MainStudentGUI extends JFrame {
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
         setSize(xSize, ySize);
 
-        lbLogOut.addMouseListener(new MouseAdapter() {
+        lbLogOut.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e)
+            {
                 loginGUI.setVisible(true);
                 MainStudentGUI.this.setVisible(false);
             }
@@ -98,27 +102,33 @@ public class MainStudentGUI extends JFrame {
         cardLayout = (CardLayout) StudentCardPanel.getLayout();
     }
 
-    public ExamGUI getExamGUI() {
+    public ExamGUI getExamGUI()
+    {
         return examGUI;
     }
 
-    public JPanel getStudentCardPanel() {
+    public JPanel getStudentCardPanel()
+    {
         return StudentCardPanel;
     }
 
-    public SettingExamGUI getSettingExamGUI() {
+    public SettingExamGUI getSettingExamGUI()
+    {
         return settingExamGUI;
     }
 
-    public ResultGUI getResultGUI() {
+    public ResultGUI getResultGUI()
+    {
         return resultGUI;
     }
 
-    public CardLayout getCardLayout() {
+    public CardLayout getCardLayout()
+    {
         return cardLayout;
     }
 
-    public JLabel getLbUsername() {
+    public JLabel getLbUsername()
+    {
         return lbUsername;
     }
 
@@ -136,7 +146,8 @@ public class MainStudentGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         studentPanel = new JPanel();
         studentPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
         studentPanel.setEnabled(false);
@@ -161,12 +172,13 @@ public class MainStudentGUI extends JFrame {
         StudentCardPanel.setBackground(new Color(-6710785));
         panel1.add(StudentCardPanel, BorderLayout.CENTER);
         StudentCardPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16737895)), null));
-        settingExamGUI = new SettingExamGUI();
-        StudentCardPanel.add(settingExamGUI.$$$getRootComponent$$$(), "settingExamGUI");
         examGUI = new ExamGUI();
         StudentCardPanel.add(examGUI.$$$getRootComponent$$$(), "examGUI");
         resultGUI = new ResultGUI();
         StudentCardPanel.add(resultGUI.$$$getRootComponent$$$(), "resultGUI");
+        settingExamGUI = new SettingExamGUI();
+        settingExamGUI.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        StudentCardPanel.add(settingExamGUI, "settingExamGUI");
         final JLabel label1 = new JLabel();
         label1.setText("Label");
         studentPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -183,7 +195,8 @@ public class MainStudentGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return studentPanel;
     }
 }
