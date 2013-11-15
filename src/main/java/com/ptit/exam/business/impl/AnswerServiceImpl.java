@@ -50,4 +50,12 @@ public class AnswerServiceImpl implements AnswerService {
 
         return answerDAO.findByQuestionId(questionId);
     }
+
+    @Override
+    public void deleteByQuestionId(Long questionId) {
+        List<Answer> answers = answerDAO.findByQuestionId(questionId);
+        for (Answer answer : answers) {
+            answerDAO.delete(answer);
+        }
+    }
 }

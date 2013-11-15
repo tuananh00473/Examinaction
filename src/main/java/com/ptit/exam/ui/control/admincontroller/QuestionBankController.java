@@ -11,6 +11,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewQuestionGUI;
 import com.ptit.exam.ui.view.admin.QuestionBankGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,9 @@ import java.util.List;
  */
 @Component
 public class QuestionBankController {
+
+    private static final int YES = 0;
+
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -108,7 +112,7 @@ public class QuestionBankController {
     private void doEditQuestion() {
         int indexSelected = tableQuestionBank.getSelectedRow();
         if (-1 == indexSelected) {
-            showMessage("Hãy chọn 1 câu hỏi mà bạn muốn sửa.");
+            MessageManager.show("Hãy chọn 1 câu hỏi mà bạn muốn sửa.");
         } else {
             doSetUpEditQuestionGUI(questionList.get(indexSelected));
             mainAdminController.doShowNewQuestionCard();
@@ -116,13 +120,18 @@ public class QuestionBankController {
     }
 
     private void doDeleteQuestion() {
-        int indexSelected = tableQuestionBank.getSelectedRow();
-        if (-1 == indexSelected) {
-            showMessage("Hãy chọn 1 câu hỏi mà bạn muốn xóa.");
+        int select = tableQuestionBank.getSelectedRow();
+        if (-1 == select) {
+            MessageManager.show("Hãy chọn 1 câu hỏi mà bạn muốn xóa.");
         } else {
-            int select = showConfirmMessage("Bạn chắc chắn muốn xóa?");
-            if (0 == select) {
-                doDeleteQuestion(questionList.get(indexSelected));
+            int confirm = MessageManager.showConfirm("Bạn chắc chắn muốn xóa?");
+            if (YES == confirm) {
+                Question question = questionList.get(select);
+                answerService.deleteByQuestionId(question.getId());
+                questionService.delete(question);
+                questionList.remove(select);
+
+                questionBankGUI.resetPreview();
                 doBindingQuestionBank(questionList, tableQuestionBank, scrollQuestionBank);
             }
         }
@@ -270,27 +279,9 @@ public class QuestionBankController {
         jTable.repaint();
     }
 
-    public void doDeleteQuestion(Question question) {
-        int index = tableQuestionBank.getSelectedRow();
-        if (-1 != index) {
-            question = questionList.get(index);
-            questionList.remove(index);
-            questionService.delete(question);
-        }
-        mainAdminGUI.getQuestionBankGUI().resetPreview();
-    }
-
     public void doSetUpEditQuestionGUI(Question question) {
         List<Answer> answerList = answerService.getListAnswer(question.getId());
         addQuestionController.doSetUp(question, answerList);
         newQuestionGUI.mappingInfoToField(question, answerList);
-    }
-
-    private void showMessage(String message) {
-        JOptionPane.showMessageDialog(null, message);
-    }
-
-    private int showConfirmMessage(String message) {
-        return JOptionPane.showConfirmDialog(null, message);
     }
 }

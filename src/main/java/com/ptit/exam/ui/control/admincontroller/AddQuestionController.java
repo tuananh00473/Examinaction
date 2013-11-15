@@ -7,6 +7,7 @@ import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewQuestionGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +24,7 @@ import java.util.regex.Matcher;
  */
 
 @Component
-public class AddQuestionController
-{
+public class AddQuestionController {
 
     @Autowired
     MainAdminController mainAdminController;
@@ -45,8 +45,7 @@ public class AddQuestionController
     private Question question;
     private List<Answer> answerList;
 
-    public void doSetUp(Question question, List<Answer> answerList)
-    {
+    public void doSetUp(Question question, List<Answer> answerList) {
         this.question = question;
         this.answerList = answerList;
 
@@ -58,40 +57,30 @@ public class AddQuestionController
         newQuestionGUI.getBtnBrowser().addActionListener(actionListener);
     }
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == newQuestionGUI.getBtnSave())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == newQuestionGUI.getBtnSave()) {
                 doSaveQuestion();
             }
-            if (e.getSource() == newQuestionGUI.getBtnCancel())
-            {
+            if (e.getSource() == newQuestionGUI.getBtnCancel()) {
                 doCancelAddQuestion();
             }
-            if (e.getSource() == newQuestionGUI.getBtnBrowser())
-            {
+            if (e.getSource() == newQuestionGUI.getBtnBrowser()) {
                 doLoadLocation();
             }
         }
     };
 
-    private void doCancelAddQuestion()
-    {
+    private void doCancelAddQuestion() {
         questionBankController.doSetUp();
         mainAdminController.doShowQuestionBankCard();
     }
 
-    private void doSaveQuestion()
-    {
-        if (newQuestionGUI.invalidForm())
-        {
-            showMessage("Thông tin về câu hỏi không hợp lệ.");
-        }
-        else
-        {
+    private void doSaveQuestion() {
+        if (newQuestionGUI.invalidForm()) {
+            MessageManager.show("Thông tin về câu hỏi không hợp lệ.");
+        } else {
             question = newQuestionGUI.getQuestionInfo(question);
             question = questionService.save(question);
 
@@ -99,28 +88,21 @@ public class AddQuestionController
             answerService.save(newQuestionGUI.getAnswer2(question, answerList.get(1)));
             answerService.save(newQuestionGUI.getAnswer3(question, answerList.get(2)));
             answerService.save(newQuestionGUI.getAnswer4(question, answerList.get(3)));
-            showMessage("Đã lưu thành công.");
+            MessageManager.show("Đã lưu thành công.");
 
             questionBankController.doSetUp();
             mainAdminController.doShowQuestionBankCard();
         }
     }
 
-    private void doLoadLocation()
-    {
+    private void doLoadLocation() {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int returnVal = chooser.showOpenDialog(newQuestionGUI);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             String path = chooser.getSelectedFile().getAbsolutePath();
             path = path.replaceAll(Matcher.quoteReplacement("\\"), "/");
             newQuestionGUI.getTxtUrlImage().setText(path);
         }
-    }
-
-    public void showMessage(String message)
-    {
-        JOptionPane.showMessageDialog(null, message);
     }
 }

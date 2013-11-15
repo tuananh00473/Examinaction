@@ -21,4 +21,6 @@ public interface AnswerService {
     public List<Answer> getAll();
 
     public List<Answer> getListAnswer(Long questionId);
+
+    public void deleteByQuestionId(Long questionId);
 }

@@ -9,6 +9,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementSubjectGUI;
 import com.ptit.exam.ui.view.admin.NewSubjectGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -96,7 +97,7 @@ public class ManagementSubjectController {
     private void doEditSubject() {
         int select = tab1SubjectTable.getSelectedRow();
         if (-1 == select) {
-            showMessage("Hãy chọn môn học bạn muốn sửa.");
+            MessageManager.show("Hãy chọn môn học bạn muốn sửa.");
         } else {
             doSetUpEditSubject(tab1SubjectList.get(select));
             mainAdminController.doShowNewSubjectCard();
@@ -127,9 +128,9 @@ public class ManagementSubjectController {
     private void doDeleteSubject() {
         int rowSelected = tab1SubjectTable.getSelectedRow();
         if (-1 == rowSelected) {
-            showMessage("Hãy chọn môn học bạn muốn xóa.");
+            MessageManager.show("Hãy chọn môn học bạn muốn xóa.");
         } else {
-            int k = showConfirmMessage("Bạn chắc chắn muốn xóa môn học này?");
+            int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa môn học này?");
             if (0 == k) {
                 subjectService.delete(tab1SubjectList.get(rowSelected));
                 tab1SubjectList.remove(rowSelected);
@@ -325,13 +326,4 @@ public class ManagementSubjectController {
 //        managementSubjectGUI.getComboBoxCourse().addItem("Chọn khóa học ...");
 //
 //    }
-//
-
-    private void showMessage(String message) {
-        JOptionPane.showMessageDialog(null, message);
-    }
-
-    private int showConfirmMessage(String message) {
-        return JOptionPane.showConfirmDialog(null, message);
-    }
 }

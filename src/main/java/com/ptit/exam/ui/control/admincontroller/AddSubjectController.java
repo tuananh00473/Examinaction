@@ -5,6 +5,7 @@ import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewSubjectGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,7 @@ import java.awt.event.ActionListener;
  */
 
 @Component
-public class AddSubjectController
-{
+public class AddSubjectController {
     @Autowired
     MainAdminController mainAdminController;
 
@@ -36,8 +36,7 @@ public class AddSubjectController
     private NewSubjectGUI newSubjectGUI;
     private Subject subject;
 
-    public void doSetUp(Subject subject)
-    {
+    public void doSetUp(Subject subject) {
         this.subject = subject;
 
         newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
@@ -49,38 +48,26 @@ public class AddSubjectController
         newSubjectGUI.getBtnCancel().addActionListener(actionListener);
     }
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == newSubjectGUI.getBtnSave())
-            {
-                if (newSubjectGUI.invalidForm())
-                {
-                    showMessage("Thông tin về môn học không hợp lệ.");
-                }
-                else
-                {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == newSubjectGUI.getBtnSave()) {
+                if (newSubjectGUI.invalidForm()) {
+                    MessageManager.show("Thông tin về môn học không hợp lệ.");
+                } else {
                     subject = newSubjectGUI.getSubjectInfo(subject);
                     subjectService.save(subject);
 
-                    showMessage("Đã lưu thành công.");
+                    MessageManager.show("Đã lưu thành công.");
 
                     managementSubjectController.doSetUp();
                     mainAdminController.doShowManagementSubjectGUI();
                 }
             }
-            if (e.getSource() == newSubjectGUI.getBtnCancel())
-            {
+            if (e.getSource() == newSubjectGUI.getBtnCancel()) {
                 managementSubjectController.doSetUp();
                 mainAdminController.doShowManagementSubjectGUI();
             }
         }
     };
-
-    public void showMessage(String message)
-    {
-        JOptionPane.showMessageDialog(null, message);
-    }
 }

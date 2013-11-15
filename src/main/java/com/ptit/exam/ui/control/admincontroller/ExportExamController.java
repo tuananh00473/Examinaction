@@ -6,6 +6,7 @@ import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.ui.view.admin.ExportExamination;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,7 @@ import java.awt.event.ActionListener;
  * Time: 4:28 PM
  */
 @Component
-public class ExportExamController
-{
+public class ExportExamController {
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -40,8 +40,7 @@ public class ExportExamController
 
     private Exam exam;
 
-    public void doSetUp(Exam exam)
-    {
+    public void doSetUp(Exam exam) {
         this.exam = exam;
 
         exportExamination = mainAdminGUI.getExportExaminationGUI();
@@ -58,45 +57,35 @@ public class ExportExamController
         exportExamination.getBtnCancel().addActionListener(actionListener);
     }
 
-    private int getTotalCountHard()
-    {
+    private int getTotalCountHard() {
         return 10; // todo: vao service de lay info nay
     }
 
-    private int getTotalCountMedium()
-    {
+    private int getTotalCountMedium() {
         return 10; // todo: vao service de lay info nay
     }
 
-    private int getTotalCountEasy()
-    {
+    private int getTotalCountEasy() {
 //        return questionService.findBySubjectIdAndLevelAndChapter()
         return 10; // todo: vao service de lay info nay
     }
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == exportExamination.getBtnSave())
-            {
-                if (exportExamination.invalidForm())
-                {
-                    showMessage("Thông tin về đề thi không hợp lệ.");
-                }
-                else
-                {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == exportExamination.getBtnSave()) {
+                if (exportExamination.invalidForm()) {
+                    MessageManager.show("Thông tin về đề thi không hợp lệ.");
+                } else {
                     exam = exportExamination.getExamInfo(exam);
                     examService.save(exam);
-                    showMessage("Đã lưu thành công.");
+                    MessageManager.show("Đã lưu thành công.");
 
                     managementExamController.doSetUp();
                     mainAdminController.doShowManagementExamGUI();
                 }
             }
-            if (e.getSource() == exportExamination.getBtnCancel())
-            {
+            if (e.getSource() == exportExamination.getBtnCancel()) {
                 managementExamController.doSetUp();
                 mainAdminController.doShowManagementExamGUI();
             }
@@ -198,9 +187,4 @@ public class ExportExamController
 //        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionMedium().setText("0");
 //        mainAdminGUI.getExportExaminationGUI().getTxtNumberQuestionHard().setText("0");
 //    }
-
-    private void showMessage(String message)
-    {
-        JOptionPane.showMessageDialog(null, message);
-    }
 }

@@ -9,6 +9,7 @@ import com.ptit.exam.ui.view.admin.ExportExamination;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagermentExamGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -97,7 +98,7 @@ public class ManagementExamController {
     private void doEditExam() {
         int select = managementExamTable.getSelectedRow();
         if (-1 == select) {
-            showMessage("Hãy chọn đề thi bạn muốn sửa.");
+            MessageManager.show("Hãy chọn đề thi bạn muốn sửa.");
         } else {
             doSetUpEditExam(examList.get(select));
             mainAdminController.doShowExportExamCard();
@@ -107,9 +108,9 @@ public class ManagementExamController {
     private void doDeleteExam() {
         int select = managementExamTable.getSelectedRow();
         if (-1 == select) {
-            showMessage("Hãy chọn đề thi bạn muốn xóa.");
+            MessageManager.show("Hãy chọn đề thi bạn muốn xóa.");
         } else {
-            int k = showConfirmMessage("Bạn chắc chắn muốn xóa?");
+            int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa?");
             if (0 == k) {
                 examService.delete(examList.get(select));
                 examList.remove(select);
@@ -171,13 +172,5 @@ public class ManagementExamController {
         managementExamTable.getTableHeader().setReorderingAllowed(false);
         managementExamTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         managementExamTable.repaint();
-    }
-
-    private void showMessage(String message) {
-        JOptionPane.showMessageDialog(null, message);
-    }
-
-    private int showConfirmMessage(String message) {
-        return JOptionPane.showConfirmDialog(null, message);
     }
 }

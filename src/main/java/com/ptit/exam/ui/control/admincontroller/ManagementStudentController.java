@@ -9,6 +9,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
 import com.ptit.exam.ui.view.admin.NewStudentGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +28,7 @@ import java.util.List;
  * Time: 9:45 PM
  */
 @Component
-public class ManagementStudentController
-{
+public class ManagementStudentController {
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -48,8 +48,7 @@ public class ManagementStudentController
     private ManagementStudentGUI managementStudentGUI;
     private NewStudentGUI newStudentGUI;
 
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpView();
         setUpActionListener();
 
@@ -81,8 +80,7 @@ public class ManagementStudentController
 //        });
     }
 
-    private void setUpView()
-    {
+    private void setUpView() {
         managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
         newStudentGUI = mainAdminGUI.getNewStudentGUI();
 
@@ -92,61 +90,48 @@ public class ManagementStudentController
         mainAdminGUI.getManagementStudentGUI().getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
     }
 
-    private void setUpActionListener()
-    {
+    private void setUpActionListener() {
         managementStudentGUI.getBtnAdd().addActionListener(actionListener);
         managementStudentGUI.getBtnEdit().addActionListener(actionListener);
         managementStudentGUI.getBtnDel().addActionListener(actionListener);
         managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
     }
 
-    public ActionListener actionListener = new ActionListener()
-    {
+    public ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == managementStudentGUI.getBtnAdd())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementStudentGUI.getBtnAdd()) {
                 doAddStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnEdit())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnEdit()) {
                 doEditStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnDel())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnDel()) {
                 doDeleteStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnSearchTab1())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnSearchTab1()) {
                 doSearchStudent();
             }
         }
     };
 
-    private void doEditStudent()
-    {
+    private void doEditStudent() {
         int select = tab1StudentTable.getSelectedRow();
-        if (-1 == select)
-        {
-            showMessage("Hãy chọn sinh viên bạn muốn sửa.");
-        }
-        else
-        {
+        if (-1 == select) {
+            MessageManager.show("Hãy chọn sinh viên bạn muốn sửa.");
+        } else {
             doSetUpStudentGUI(tab1StudentList.get(select));
             mainAdminController.doShowNewStudentCard();
         }
 
     }
 
-    private void doSetUpStudentGUI(Student student)
-    {
+    private void doSetUpStudentGUI(Student student) {
         addStudentController.doSetUp(student);
         newStudentGUI.setInfoSubject(student);
     }
 
-    private void doSearchStudent()
-    {
+    private void doSearchStudent() {
         String nameStudent = managementStudentGUI.getTxtNameSearch().getText();
         String classRoom = managementStudentGUI.getTxtClassSearchTab1().getText();
         String faculty = managementStudentGUI.getComboBoxFacultyTab1().getSelectedItem().toString();
@@ -156,28 +141,21 @@ public class ManagementStudentController
         List<Student> list3 = ("".equals(faculty) ? studentService.getAll() : studentService.findByFaculty(faculty));
 
         tab1StudentList = new ArrayList<Student>();
-        for (Student student : list1)
-        {
-            if (list2.contains(student) && list3.contains(student))
-            {
+        for (Student student : list1) {
+            if (list2.contains(student) && list3.contains(student)) {
                 tab1StudentList.add(student);
             }
         }
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
     }
 
-    private void doDeleteStudent()
-    {
+    private void doDeleteStudent() {
         int rowSelected = tab1StudentTable.getSelectedRow();
-        if (-1 == rowSelected)
-        {
-            showMessage("Hãy chọn sinh viên bạn muốn xóa.");
-        }
-        else
-        {
-            int k = showConfirmMessage("Bạn chắc chắn muốn xóa sinh viên này?");
-            if (0 == k)
-            {
+        if (-1 == rowSelected) {
+            MessageManager.show("Hãy chọn sinh viên bạn muốn xóa.");
+        } else {
+            int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa sinh viên này?");
+            if (0 == k) {
                 studentService.delete(tab1StudentList.get(rowSelected));
                 tab1StudentList.remove(rowSelected);
                 doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
@@ -185,8 +163,7 @@ public class ManagementStudentController
         }
     }
 
-    private void doAddStudent()
-    {
+    private void doAddStudent() {
         addStudentController.doSetUp(new Student());
         newStudentGUI.resetForm();
         mainAdminController.doShowNewStudentCard();
@@ -229,8 +206,7 @@ public class ManagementStudentController
 //
 //    }
 //
-    private void doBindingStudent(List<Student> studentList, JTable jTable, JScrollPane jScrollPane)
-    {
+    private void doBindingStudent(List<Student> studentList, JTable jTable, JScrollPane jScrollPane) {
 
         TableBinding.bindingStudent(studentList, jTable, jScrollPane);
 
@@ -317,14 +293,4 @@ public class ManagementStudentController
 //        resetManagementStudentGUI();
 //        doSetUp();
 //    }
-
-    private void showMessage(String message)
-    {
-        JOptionPane.showMessageDialog(null, message);
-    }
-
-    private int showConfirmMessage(String message)
-    {
-        return JOptionPane.showConfirmDialog(null, message);
-    }
 }
