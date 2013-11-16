@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -21,8 +23,7 @@ import java.awt.event.MouseEvent;
  * Time: 10:18 AM
  */
 @Component
-public class MainStudentGUI extends JFrame
-{
+public class MainStudentGUI extends JFrame {
     private JPanel studentPanel;
     private JButton btnStartExam;
     private JButton btnExamResults;
@@ -47,8 +48,7 @@ public class MainStudentGUI extends JFrame
     @Autowired
     LoginGUI loginGUI;
 
-    public MainStudentGUI()
-    {
+    public MainStudentGUI() {
         setContentPane(studentPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -56,23 +56,20 @@ public class MainStudentGUI extends JFrame
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
         setSize(xSize, ySize);
 
-        lbLogOut.addMouseListener(new MouseAdapter()
-        {
+        lbLogOut.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e)
-            {
+            public void mousePressed(MouseEvent e) {
                 loginGUI.setVisible(true);
                 MainStudentGUI.this.setVisible(false);
             }
         });
 
-//        btnStartExam.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainStudentController.doShowSettingExamCard();
-//
-//            }
-//        });
+        btnStartExam.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainStudentController.doShowSettingExamCard();
+            }
+        });
 //
 //        btnExamResults.addActionListener(new ActionListener() {
 //            @Override
@@ -102,33 +99,27 @@ public class MainStudentGUI extends JFrame
         cardLayout = (CardLayout) StudentCardPanel.getLayout();
     }
 
-    public ExamGUI getExamGUI()
-    {
+    public ExamGUI getExamGUI() {
         return examGUI;
     }
 
-    public JPanel getStudentCardPanel()
-    {
+    public JPanel getStudentCardPanel() {
         return StudentCardPanel;
     }
 
-    public SettingExamGUI getSettingExamGUI()
-    {
+    public SettingExamGUI getSettingExamGUI() {
         return settingExamGUI;
     }
 
-    public ResultGUI getResultGUI()
-    {
+    public ResultGUI getResultGUI() {
         return resultGUI;
     }
 
-    public CardLayout getCardLayout()
-    {
+    public CardLayout getCardLayout() {
         return cardLayout;
     }
 
-    public JLabel getLbUsername()
-    {
+    public JLabel getLbUsername() {
         return lbUsername;
     }
 
@@ -146,8 +137,7 @@ public class MainStudentGUI extends JFrame
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         studentPanel = new JPanel();
         studentPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
         studentPanel.setEnabled(false);
@@ -195,8 +185,7 @@ public class MainStudentGUI extends JFrame
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return studentPanel;
     }
 }

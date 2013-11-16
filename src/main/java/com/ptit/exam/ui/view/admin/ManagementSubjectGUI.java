@@ -12,80 +12,85 @@ import java.awt.*;
  * Date: 10/21/13
  * Time: 4:28 PM
  */
-public class ManagementSubjectGUI extends JPanel
-{
+public class ManagementSubjectGUI extends JPanel {
     private JPanel managementSubjectCard;
-    private JTable subjectTable;
+    private JTable tableSubjectTab2;
     private JComboBox cbBoxFacultyTab2;
     private JButton btnSaveTab2;
-    private JComboBox comboBoxCourse;
-    private JTable subjectSelectedTable;
+    private JComboBox comboBoxCourseTab2;
+    private JTable tableSubjectActivedTab2;
     private JButton btnSearchTab2;
     private JButton btnAdd;
     private JButton btnDelete;
-    private JScrollPane subjectScrollpanel;
-    private JScrollPane subjectSelectedScrollpanel;
+    private JScrollPane scrollPanelSubjectTab2;
+    private JScrollPane scrollPanelSubjectActivedTab2;
     private JTabbedPane tabbedPane;
     private JPanel examArrangementPanel;
     private JPanel Subject;
-    private JTable tableSUBJECT;
+    private JTable tableSubjectTab1;
     private JComboBox cbBoxFacultyTab1;
     private JButton btnSearchTab1;
     private JButton btnDelSUBJECT;
     private JButton btnAddSUBJECT;
-    private JScrollPane scrollPaneSUBJECT;
+    private JScrollPane scrollPaneSubjectTab1;
     private JTextField txtNameSubjectSearch;
     private JButton btnEditSUBJECT;
 
-    public JButton getBtnEditSUBJECT()
-    {
+    public JButton getBtnEditSUBJECT() {
         return btnEditSUBJECT;
     }
 
-    public JTextField getTxtNameSubjectSearch()
-    {
+    public JTextField getTxtNameSubjectSearch() {
         return txtNameSubjectSearch;
     }
 
-    public JComboBox getCbBoxFacultyTab2()
-    {
+    public JComboBox getCbBoxFacultyTab2() {
         return cbBoxFacultyTab2;
     }
 
-    public JComboBox getComboBoxCourse()
-    {
-        return comboBoxCourse;
+    public JComboBox getComboBoxCourseTab2() {
+        return comboBoxCourseTab2;
     }
 
-    public JTable getTableSUBJECT()
-    {
-        return tableSUBJECT;
+    public JTable getTableSubjectTab1() {
+        return tableSubjectTab1;
     }
 
 
-    public JComboBox getCbBoxFacultyTab1()
-    {
+    public JComboBox getCbBoxFacultyTab1() {
         return cbBoxFacultyTab1;
     }
 
-    public JButton getBtnSearchTab1()
-    {
+    public JButton getBtnSearchTab1() {
         return btnSearchTab1;
     }
 
-    public JButton getBtnDelSUBJECT()
-    {
+    public JButton getBtnDelSUBJECT() {
         return btnDelSUBJECT;
     }
 
-    public JButton getBtnAddSUBJECT()
-    {
+    public JButton getBtnAddSUBJECT() {
         return btnAddSUBJECT;
     }
 
-    public JScrollPane getScrollPaneSUBJECT()
-    {
-        return scrollPaneSUBJECT;
+    public JScrollPane getScrollPaneSubjectTab1() {
+        return scrollPaneSubjectTab1;
+    }
+
+    public JTable getTableSubjectTab2() {
+        return tableSubjectTab2;
+    }
+
+    public JTable getTableSubjectActivedTab2() {
+        return tableSubjectActivedTab2;
+    }
+
+    public JScrollPane getScrollPanelSubjectTab2() {
+        return scrollPanelSubjectTab2;
+    }
+
+    public JScrollPane getScrollPanelSubjectActivedTab2() {
+        return scrollPanelSubjectActivedTab2;
     }
 
     {
@@ -102,8 +107,7 @@ public class ManagementSubjectGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         managementSubjectCard = new JPanel();
         managementSubjectCard.setLayout(new CardLayout(0, 0));
         managementSubjectCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -146,10 +150,10 @@ public class ManagementSubjectGUI extends JPanel
         panel4.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         Subject.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
-        scrollPaneSUBJECT = new JScrollPane();
-        panel4.add(scrollPaneSUBJECT, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        tableSUBJECT = new JTable();
-        scrollPaneSUBJECT.setViewportView(tableSUBJECT);
+        scrollPaneSubjectTab1 = new JScrollPane();
+        panel4.add(scrollPaneSubjectTab1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        tableSubjectTab1 = new JTable();
+        scrollPaneSubjectTab1.setViewportView(tableSubjectTab1);
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 2, false));
@@ -187,8 +191,8 @@ public class ManagementSubjectGUI extends JPanel
         final JLabel label4 = new JLabel();
         label4.setText("Chọn Khóa Học :");
         panel7.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxCourse = new JComboBox();
-        panel7.add(comboBoxCourse, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboBoxCourseTab2 = new JComboBox();
+        panel7.add(comboBoxCourseTab2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSearchTab2 = new JButton();
         btnSearchTab2.setText("Search");
         panel7.add(btnSearchTab2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -198,16 +202,16 @@ public class ManagementSubjectGUI extends JPanel
         panel8.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         examArrangementPanel.add(panel8, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel8.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
-        subjectScrollpanel = new JScrollPane();
-        panel8.add(subjectScrollpanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        subjectScrollpanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        subjectTable = new JTable();
-        subjectScrollpanel.setViewportView(subjectTable);
-        subjectSelectedScrollpanel = new JScrollPane();
-        panel8.add(subjectSelectedScrollpanel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        subjectSelectedScrollpanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
-        subjectSelectedTable = new JTable();
-        subjectSelectedScrollpanel.setViewportView(subjectSelectedTable);
+        scrollPanelSubjectTab2 = new JScrollPane();
+        panel8.add(scrollPanelSubjectTab2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPanelSubjectTab2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+        tableSubjectTab2 = new JTable();
+        scrollPanelSubjectTab2.setViewportView(tableSubjectTab2);
+        scrollPanelSubjectActivedTab2 = new JScrollPane();
+        panel8.add(scrollPanelSubjectActivedTab2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPanelSubjectActivedTab2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+        tableSubjectActivedTab2 = new JTable();
+        scrollPanelSubjectActivedTab2.setViewportView(tableSubjectActivedTab2);
         final JPanel panel9 = new JPanel();
         panel9.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel8.add(panel9, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -244,8 +248,7 @@ public class ManagementSubjectGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return managementSubjectCard;
     }
 }

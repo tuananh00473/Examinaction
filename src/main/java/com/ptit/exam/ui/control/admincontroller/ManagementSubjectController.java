@@ -44,17 +44,26 @@ public class ManagementSubjectController {
 
     private List<Subject> tab1SubjectList;
     private JTable tab1SubjectTable;
-    private JScrollPane tab1SubjectScrollpane;
+    private JScrollPane tab1SubjectScrollPane;
+
+    private List<Subject> tab2SubjectList;
+    private JTable tab2SubjectTable;
+    private JScrollPane tab2SubjectScrollPane;
+
+    private List<Subject> tab2SubjectListActived;
+    private JTable tab2SubjectTableActived;
+    private JScrollPane tab2SubjectScrollPaneActived;
 
     private ManagementSubjectGUI managementSubjectGUI;
     private NewSubjectGUI newSubjectGUI;
 
     public void doSetUp() {
-        setUpView();
-        setUpActionListener();
+        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
+        newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
 
-        tab1SubjectList = subjectService.getAll();
-        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+        setUpViewTab1();
+        setUpViewTab2();
+        setUpActionListener();
     }
 
     private void setUpActionListener() {
@@ -64,16 +73,39 @@ public class ManagementSubjectController {
         managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListener);
     }
 
-    private void setUpView() {
-        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
-        newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
-
-        tab1SubjectTable = managementSubjectGUI.getTableSUBJECT();
-        tab1SubjectScrollpane = managementSubjectGUI.getScrollPaneSUBJECT();
+    private void setUpViewTab1() {
+        tab1SubjectTable = managementSubjectGUI.getTableSubjectTab1();
+        tab1SubjectScrollPane = managementSubjectGUI.getScrollPaneSubjectTab1();
         managementSubjectGUI.getCbBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
 
+        tab1SubjectList = subjectService.getAll();
+        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
+    }
+
+    public void setUpViewTab2() {
+        setUpTab2TableSubject();
+        setUpTab2TableSubjectActived();
+
         managementSubjectGUI.getCbBoxFacultyTab2().setModel(new DefaultComboBoxModel(Constants.facultyList));
-        managementSubjectGUI.getComboBoxCourse().setModel(new DefaultComboBoxModel(Constants.courseList));
+        managementSubjectGUI.getComboBoxCourseTab2().setModel(new DefaultComboBoxModel(Constants.courseList));
+
+
+    }
+
+    private void setUpTab2TableSubject() {
+        tab2SubjectTable = managementSubjectGUI.getTableSubjectTab2();
+        tab2SubjectScrollPane = managementSubjectGUI.getScrollPanelSubjectTab2();
+
+        tab2SubjectList = subjectService.getAll();
+        doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
+    }
+
+    private void setUpTab2TableSubjectActived() {
+        tab2SubjectTableActived = managementSubjectGUI.getTableSubjectActivedTab2();
+        tab2SubjectScrollPaneActived = managementSubjectGUI.getScrollPanelSubjectActivedTab2();
+
+        tab2SubjectListActived = subjectService.getAll();
+        doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
     }
 
     public ActionListener actionListener = new ActionListener() {
@@ -122,7 +154,7 @@ public class ManagementSubjectController {
                 tab1SubjectList.add(subject);
             }
         }
-        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+        doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
     }
 
     private void doDeleteSubject() {
@@ -134,7 +166,7 @@ public class ManagementSubjectController {
             if (0 == k) {
                 subjectService.delete(tab1SubjectList.get(rowSelected));
                 tab1SubjectList.remove(rowSelected);
-                doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+                doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
             }
         }
     }
@@ -150,7 +182,7 @@ public class ManagementSubjectController {
 //        Set<Subject> subjectSet = new HashSet<Subject>();
 //        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
 //        nameFaculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
-//        nameCourse = managementSubjectGUI.getComboBoxCourse().getSelectedItem().toString();
+//        nameCourse = managementSubjectGUI.getComboBoxCourseTab2().getSelectedItem().toString();
 //
 //        tab1SubjectList = ObservableCollections.observableList(subjectService.findByFaculty(nameFaculty));
 //        studentList = ObservableCollections.observableList(studentService.findByFacultyAndCourse(nameFaculty, nameCourse));
@@ -304,7 +336,7 @@ public class ManagementSubjectController {
 //            }
 //        }
 //        if (tab1SubjectTable != null) {
-//            doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollpane);
+//            doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollPane);
 //        }
 //
 //
@@ -319,11 +351,11 @@ public class ManagementSubjectController {
 //
 //
 //        managementSubjectGUI.getCbBoxFacultyTab2().removeAllItems();
-//        managementSubjectGUI.getComboBoxCourse().removeAllItems();
+//        managementSubjectGUI.getComboBoxCourseTab2().removeAllItems();
 //        managementSubjectGUI.getCbBoxFacultyTab1().removeAllItems();
 //        managementSubjectGUI.getCbBoxFacultyTab2().addItem("Chọn khoa ...");
 //        managementSubjectGUI.getCbBoxFacultyTab1().addItem("Chọn khoa ...");
-//        managementSubjectGUI.getComboBoxCourse().addItem("Chọn khóa học ...");
+//        managementSubjectGUI.getComboBoxCourseTab2().addItem("Chọn khóa học ...");
 //
 //    }
 }
