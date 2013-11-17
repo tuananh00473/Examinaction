@@ -47,4 +47,9 @@ public class ExamCardServiceImpl implements ExamCardService {
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId) {
         return examCardDAO.findByStudentIdAndSubjectId(studentId, subjectId);
     }
+
+    @Override
+    public void removeBySubjectIdAndCourse(Long subjectId, String course) {
+        examCardDAO.removeBySubjectIdAndCourse(subjectId, course);
+    }
 }

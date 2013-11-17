@@ -63,6 +63,7 @@ public class ManagementSubjectController {
     private JScrollPane tab2SubjectScrollPane;
 
     private List<Subject> tab2SubjectListActived;
+    private List<Subject> tab2SubjectListActivedBackUp;
     private JTable tab2SubjectTableActived;
     private JScrollPane tab2SubjectScrollPaneActived;
 
@@ -242,7 +243,12 @@ public class ManagementSubjectController {
         }
         List<Student> studentList = studentService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
         if (studentList.size() <= 0) {
-            MessageManager.show("Khóa học không có sinh viên.");
+            if (tab2SubjectListActivedBackUp.size() > 0) {
+                for (Subject subject : tab2SubjectListActivedBackUp) {
+//                    subjectService.deactive(subject, managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());    // todo : dang lam do o day
+                }
+            }
+            MessageManager.show("Đã hủy kích hoạt tất cả các môn học.");
             return;
         }
         for (Subject subject : tab2SubjectListActived) {
@@ -259,68 +265,29 @@ public class ManagementSubjectController {
             if ((e.getSource() == managementSubjectGUI.getCbBoxFacultyTab2() && !("".equals(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString())))
                     || (e.getSource() == managementSubjectGUI.getCbBoxCourseTab2() && !("".equals(managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString())))) {
 
-//                tab2SubjectListActived = subjectService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
-                tab2SubjectListActived = subjectService.findByCourse("2009 - 2014");
-                doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
-
-
+                String faculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
+                String course = managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString();
                 tab2SubjectList = subjectService.getAll();
+                tab2SubjectListActived = new ArrayList<Subject>();
+
+                for (Subject subject : tab2SubjectList) {
+                    List<Subject> checkList = subjectService.findByCourseAndFaculty(course, faculty, subject.getId());
+                    if (checkList.size() > 0) {
+                        tab2SubjectListActived.add(subject);
+                    }
+                }
+
+                for (Subject subject : tab2SubjectListActived) {
+                    tab2SubjectList.remove(subject);
+                }
+
+                tab2SubjectListActivedBackUp = tab2SubjectListActived;
+
+                doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
                 doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
             }
         }
     };
-//    public void doSearch() {
-//
-//        Set<Subject> subjectSet = new HashSet<Subject>();
-//        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
-//        nameFaculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
-//        nameCourse = managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString();
-//
-//        tab1SubjectList = ObservableCollections.observableList(subjectService.findByFaculty(nameFaculty));
-//        studentList = ObservableCollections.observableList(studentService.findByFacultyAndCourse(nameFaculty, nameCourse));
-//
-//        if (studentList.size() != 0) {
-//            studentSubjectList = studentSubjectService.findByStudentRelationStudentSubject(studentList.get(0));
-//
-//
-//        }
-//
-//        subjectSelectedList = ObservableCollections.observableList(new ArrayList<Subject>());
-//
-//        for (StudentSubject studentSubject : studentSubjectList) {
-//            subject = studentSubject.getSubjectRelationStudentSubject();
-//            subjectSet.add(subject);
-//            for (Subject subject1 : tab1SubjectList) {
-//                if (subject1.getId().equals(subject.getId())) {
-//                    tab1SubjectList.remove(subject1);
-//                    break;
-//                }
-//            }
-//
-//        }
-//
-//
-//
-//        for (Subject subject1 : subjectSet) {
-//            subjectSelectedList.add(subject1);
-//
-//        }
-//        for (Subject subject1 : subjectSet) {
-//            subjectSet.add(subject1);
-//
-//        }
-//
-//        subjectTable = managementSubjectGUI.getSubjectTable();
-//        subjectScrollpane = managementSubjectGUI.getSubjectScrollpanel();
-//        doBindingSubject(tab1SubjectList, subjectTable, subjectScrollpane);
-//
-//        subjectSelectedTable = managementSubjectGUI.getSubjectSelectedTable();
-//        subjectSelectedScrollpane = managementSubjectGUI.getSubjectSelectedScrollpanel();
-//        doBindingSubject(subjectSelectedList, subjectSelectedTable, subjectSelectedScrollpane);
-//
-//
-//    }
-
 
     private void doBindingSubject(List<Subject> subjectList, JTable jTable, JScrollPane jScrollPane) {
         TableBinding.bindingSubject(subjectList, jTable, jScrollPane);
@@ -345,43 +312,7 @@ public class ManagementSubjectController {
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTable.repaint();
     }
-//
-//    public void doAdd() {
-//        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
-//
-//        int index = managementSubjectGUI.getSubjectTable().getSelectedRow();
-//        if (index != -1) {
-//            subject = tab1SubjectList.get(index);
-//            tab1SubjectList.remove(subject);
-//            subjectSelectedList.add(subject);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Bạn cần chọn 1 môn thi !");
-//        }
-//
-//
-//    }
-//
-//
-//    public void doDelete() {
-//        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
-//        int index = managementSubjectGUI.getSubjectSelectedTable().getSelectedRow();
-//        if (index != -1) {
-//            subject = subjectSelectedList.get(index);
-//            subjectSelectedList.remove(subject);
-//            tab1SubjectList.add(subject);
-//
-//            List<StudentSubject> studentSubjectList1 = studentSubjectService.findBySubjectRelationStudentSubject(subject);
-//            for (StudentSubject studentSubject : studentSubjectList1) {
-//                studentSubjectService.delete(studentSubject);
-//            }
-//
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Bạn cần chọn 1 môn thi !");
-//        }
-//
-//    }
-//
+
 //    public void doSave() {
 //        for (Student student : studentList) {
 //            for (Subject subject1 : subjectSelectedList) {
@@ -396,58 +327,5 @@ public class ManagementSubjectController {
 //        JOptionPane.showMessageDialog(null, "Bạn đã lưu thành công !!!");
 //        resetManagementSubjectGUI();
 //        doSetUp();
-//    }
-//
-
-//    private void resetTableSubjectSelected() {
-//
-//        if (subjectSelectedList.size() != 0) {
-//            for (int i = 0; i < subjectSelectedList.size(); i++) {
-//                subjectSelectedList.remove(i);
-//            }
-//        }
-//        if (subjectSelectedTable != null) {
-//            doBindingSubject(subjectSelectedList, subjectSelectedTable, subjectSelectedScrollpane);
-//        }
-//    }
-//
-//    private void resetManagementSubjectGUI() {
-//        if (null != tab1SubjectList) {
-//            for (Subject subject : tab1SubjectList) {
-//                tab1SubjectList.remove(subject);
-//            }
-//        }
-//        if (subjectTable != null) {
-//            doBindingSubject(tab1SubjectList, subjectTable, subjectScrollpane);
-//        }
-//
-//
-//        if (subjectSubjectList != null) {
-//            for (int i = 0; i < subjectSubjectList.size(); i++) {
-//                subjectSubjectList.remove(i);
-//            }
-//        }
-//        if (tab1SubjectTable != null) {
-//            doBindingSubject(subjectSubjectList, tab1SubjectTable, tab1SubjectScrollPane);
-//        }
-//
-//
-//        if (subjectSelectedList != null) {
-//            for (int i = 0; i < subjectSelectedList.size(); i++) {
-//                subjectSelectedList.remove(i);
-//            }
-//        }
-//        if (subjectSelectedTable != null) {
-//            doBindingSubject(subjectSelectedList, subjectSelectedTable, subjectSelectedScrollpane);
-//        }
-//
-//
-//        managementSubjectGUI.getCbBoxFacultyTab2().removeAllItems();
-//        managementSubjectGUI.getCbBoxCourseTab2().removeAllItems();
-//        managementSubjectGUI.getCbBoxFacultyTab1().removeAllItems();
-//        managementSubjectGUI.getCbBoxFacultyTab2().addItem("Chọn khoa ...");
-//        managementSubjectGUI.getCbBoxFacultyTab1().addItem("Chọn khoa ...");
-//        managementSubjectGUI.getCbBoxCourseTab2().addItem("Chọn khóa học ...");
-//
 //    }
 }

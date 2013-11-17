@@ -21,4 +21,6 @@ public interface ExamCardService {
     public List<ExamCard> getAll();
 
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId);
+
+    public void removeBySubjectIdAndCourse(Long subjectId, String course);
 }

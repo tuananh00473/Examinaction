@@ -70,8 +70,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> findByCourse(String course) {
-//        examCardDAO.findBy
-        return subjectDAO.findByCourse(course);
+    public List<Subject> findByCourseAndFaculty(String course, String faculty, Long id) {
+        return subjectDAO.findByCourseAndFaculty(course, faculty, id);
     }
 }

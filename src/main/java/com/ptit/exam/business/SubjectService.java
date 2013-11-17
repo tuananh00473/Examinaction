@@ -27,5 +27,5 @@ public interface SubjectService {
 
     public List<Subject> findByFacultyAndSubjectName(String nameFaculty, String nameSubject);
 
-    public List<Subject> findByCourse(String course);
+    public List<Subject> findByCourseAndFaculty(String course, String faculty, Long id);
 }
