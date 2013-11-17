@@ -1,9 +1,13 @@
 package com.ptit.exam.ui.control.admincontroller;
 
+import com.ptit.exam.business.ExamCardService;
+import com.ptit.exam.business.StudentService;
 import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
 import com.ptit.exam.business.common.TextAreaRenderer;
+import com.ptit.exam.persistence.entity.ExamCard;
+import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementSubjectGUI;
@@ -19,6 +23,8 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +48,12 @@ public class ManagementSubjectController {
     @Autowired
     MainAdminController mainAdminController;
 
+    @Autowired
+    ExamCardService examCardService;
+
+    @Autowired
+    StudentService studentService;
+
     private List<Subject> tab1SubjectList;
     private JTable tab1SubjectTable;
     private JScrollPane tab1SubjectScrollPane;
@@ -63,14 +75,8 @@ public class ManagementSubjectController {
 
         setUpViewTab1();
         setUpViewTab2();
-        setUpActionListener();
-    }
-
-    private void setUpActionListener() {
-        managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListener);
-        managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListener);
-        managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListener);
-        managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListener);
+        setUpActionListenerTab1();
+        setUpActionListenerTab2();
     }
 
     private void setUpViewTab1() {
@@ -87,7 +93,7 @@ public class ManagementSubjectController {
         setUpTab2TableSubjectActived();
 
         managementSubjectGUI.getCbBoxFacultyTab2().setModel(new DefaultComboBoxModel(Constants.facultyList));
-        managementSubjectGUI.getComboBoxCourseTab2().setModel(new DefaultComboBoxModel(Constants.courseList));
+        managementSubjectGUI.getCbBoxCourseTab2().setModel(new DefaultComboBoxModel(Constants.courseList));
 
 
     }
@@ -95,20 +101,21 @@ public class ManagementSubjectController {
     private void setUpTab2TableSubject() {
         tab2SubjectTable = managementSubjectGUI.getTableSubjectTab2();
         tab2SubjectScrollPane = managementSubjectGUI.getScrollPanelSubjectTab2();
-
-        tab2SubjectList = subjectService.getAll();
-        doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
     }
 
     private void setUpTab2TableSubjectActived() {
         tab2SubjectTableActived = managementSubjectGUI.getTableSubjectActivedTab2();
         tab2SubjectScrollPaneActived = managementSubjectGUI.getScrollPanelSubjectActivedTab2();
-
-        tab2SubjectListActived = subjectService.getAll();
-        doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
     }
 
-    public ActionListener actionListener = new ActionListener() {
+    private void setUpActionListenerTab1() {
+        managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListenerTab1);
+        managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListenerTab1);
+        managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListenerTab1);
+        managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListenerTab1);
+    }
+
+    public ActionListener actionListenerTab1 = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == managementSubjectGUI.getBtnAddSUBJECT()) {
@@ -125,6 +132,12 @@ public class ManagementSubjectController {
             }
         }
     };
+
+    private void doAddSubject() {
+        addSubjectController.doSetUp(new Subject());
+        newSubjectGUI.resetNewSubjectGUI();
+        mainAdminController.doShowNewSubjectCard();
+    }
 
     private void doEditSubject() {
         int select = tab1SubjectTable.getSelectedRow();
@@ -171,18 +184,97 @@ public class ManagementSubjectController {
         }
     }
 
-    private void doAddSubject() {
-        addSubjectController.doSetUp(new Subject());
-        newSubjectGUI.resetNewSubjectGUI();
-        mainAdminController.doShowNewSubjectCard();
+
+    private void setUpActionListenerTab2() {
+        managementSubjectGUI.getBtnAdd().addActionListener(actionListenerTab2);
+        managementSubjectGUI.getBtnDelete().addActionListener(actionListenerTab2);
+        managementSubjectGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
+
+        managementSubjectGUI.getCbBoxCourseTab2().addItemListener(itemListener);
+        managementSubjectGUI.getCbBoxFacultyTab2().addItemListener(itemListener);
     }
 
+    private ActionListener actionListenerTab2 = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementSubjectGUI.getBtnAdd()) {
+                addSubjectToActive();
+            }
+            if (e.getSource() == managementSubjectGUI.getBtnDelete()) {
+                removeSubjectToDeActive();
+            }
+            if (e.getSource() == managementSubjectGUI.getBtnSaveTab2()) {
+                activeSubject();
+            }
+        }
+    };
+
+    private void addSubjectToActive() {
+        int select = tab2SubjectTable.getSelectedRow();
+        if (-1 == select) {
+            MessageManager.show("Không có môn học được chọn để kích hoạt thẻ dự thi.");
+        } else {
+            tab2SubjectListActived.add(tab2SubjectList.get(select));
+            doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
+
+            tab2SubjectList.remove(tab2SubjectList.get(select));
+            doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
+        }
+    }
+
+    private void removeSubjectToDeActive() {
+        int select = tab2SubjectTableActived.getSelectedRow();
+        if (-1 == select) {
+            MessageManager.show("Không có môn học được chọn để bỏ kích hoạt thẻ dự thi.");
+        } else {
+            tab2SubjectList.add(tab2SubjectListActived.get(select));
+            doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
+
+            tab2SubjectListActived.remove(tab2SubjectListActived.get(select));
+            doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
+        }
+    }
+
+    private void activeSubject() {
+        if (tab2SubjectListActived.size() <= 0) {
+            MessageManager.show("Không có môn học nào được lựa chọn để kích hoạt đề thi.");
+            return;
+        }
+        List<Student> studentList = studentService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
+        if (studentList.size() <= 0) {
+            MessageManager.show("Khóa học không có sinh viên.");
+            return;
+        }
+        for (Subject subject : tab2SubjectListActived) {
+            for (Student student : studentList) {
+                examCardService.save(new ExamCard(subject, student));
+            }
+        }
+        MessageManager.show("Kích hoạt thẻ dự thi thành công.");
+    }
+
+    private ItemListener itemListener = new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if ((e.getSource() == managementSubjectGUI.getCbBoxFacultyTab2() && !("".equals(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString())))
+                    || (e.getSource() == managementSubjectGUI.getCbBoxCourseTab2() && !("".equals(managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString())))) {
+
+//                tab2SubjectListActived = subjectService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
+                tab2SubjectListActived = subjectService.findByCourse("2009 - 2014");
+                doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
+
+
+                tab2SubjectList = subjectService.getAll();
+                doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
+            }
+        }
+    };
 //    public void doSearch() {
 //
 //        Set<Subject> subjectSet = new HashSet<Subject>();
 //        managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
 //        nameFaculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
-//        nameCourse = managementSubjectGUI.getComboBoxCourseTab2().getSelectedItem().toString();
+//        nameCourse = managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString();
 //
 //        tab1SubjectList = ObservableCollections.observableList(subjectService.findByFaculty(nameFaculty));
 //        studentList = ObservableCollections.observableList(studentService.findByFacultyAndCourse(nameFaculty, nameCourse));
@@ -351,11 +443,11 @@ public class ManagementSubjectController {
 //
 //
 //        managementSubjectGUI.getCbBoxFacultyTab2().removeAllItems();
-//        managementSubjectGUI.getComboBoxCourseTab2().removeAllItems();
+//        managementSubjectGUI.getCbBoxCourseTab2().removeAllItems();
 //        managementSubjectGUI.getCbBoxFacultyTab1().removeAllItems();
 //        managementSubjectGUI.getCbBoxFacultyTab2().addItem("Chọn khoa ...");
 //        managementSubjectGUI.getCbBoxFacultyTab1().addItem("Chọn khoa ...");
-//        managementSubjectGUI.getComboBoxCourseTab2().addItem("Chọn khóa học ...");
+//        managementSubjectGUI.getCbBoxCourseTab2().addItem("Chọn khóa học ...");
 //
 //    }
 }

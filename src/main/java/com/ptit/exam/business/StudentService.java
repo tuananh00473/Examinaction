@@ -9,8 +9,7 @@ import java.util.List;
  * Date: 9/26/13
  * Time: 4:20 PM
  */
-public interface StudentService
-{
+public interface StudentService {
     public Student findById(Long id);
 
     public Student save(Student student);
@@ -33,5 +32,7 @@ public interface StudentService
 
     public Student findByUserNameAndPassWord(String userName, String passWord);
 
-    List<Student> findByName(String nameStudent);
+    public List<Student> findByName(String nameStudent);
+
+    public List<Student> findByCourse(String course);
 }

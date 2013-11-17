@@ -16,37 +16,35 @@ import java.util.List;
 @Component("resultService")
 public class ExamCardServiceImpl implements ExamCardService {
     @Autowired
-    ExamCardDAO resultDAO;
+    ExamCardDAO examCardDAO;
 
     @Override
     public ExamCard findById(Long id) {
-        return resultDAO.findOne(id);
+        return examCardDAO.findOne(id);
     }
 
     @Override
     public ExamCard save(ExamCard result) {
-        return resultDAO.saveAndFlush(result);
+        return examCardDAO.saveAndFlush(result);
     }
 
     @Override
     public void deleteById(Long id) {
-        resultDAO.delete(id);
+        examCardDAO.delete(id);
     }
 
     @Override
     public void delete(ExamCard result) {
-        resultDAO.delete(result);
+        examCardDAO.delete(result);
     }
 
     @Override
     public List<ExamCard> getAll() {
-        return resultDAO.findAll();
+        return examCardDAO.findAll();
     }
 
     @Override
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId) {
-        return resultDAO.findByStudentIdAndSubjectId(studentId, subjectId);
+        return examCardDAO.findByStudentIdAndSubjectId(studentId, subjectId);
     }
-
-
 }

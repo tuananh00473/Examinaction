@@ -21,5 +21,4 @@ public interface ExamCardService {
     public List<ExamCard> getAll();
 
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId);
-
 }

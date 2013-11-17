@@ -17,7 +17,7 @@ public class ManagementSubjectGUI extends JPanel {
     private JTable tableSubjectTab2;
     private JComboBox cbBoxFacultyTab2;
     private JButton btnSaveTab2;
-    private JComboBox comboBoxCourseTab2;
+    private JComboBox cbBoxCourseTab2;
     private JTable tableSubjectActivedTab2;
     private JButton btnSearchTab2;
     private JButton btnAdd;
@@ -36,6 +36,22 @@ public class ManagementSubjectGUI extends JPanel {
     private JTextField txtNameSubjectSearch;
     private JButton btnEditSUBJECT;
 
+    public JButton getBtnSaveTab2() {
+        return btnSaveTab2;
+    }
+
+    public JButton getBtnSearchTab2() {
+        return btnSearchTab2;
+    }
+
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+
     public JButton getBtnEditSUBJECT() {
         return btnEditSUBJECT;
     }
@@ -48,8 +64,8 @@ public class ManagementSubjectGUI extends JPanel {
         return cbBoxFacultyTab2;
     }
 
-    public JComboBox getComboBoxCourseTab2() {
-        return comboBoxCourseTab2;
+    public JComboBox getCbBoxCourseTab2() {
+        return cbBoxCourseTab2;
     }
 
     public JTable getTableSubjectTab1() {
@@ -191,8 +207,8 @@ public class ManagementSubjectGUI extends JPanel {
         final JLabel label4 = new JLabel();
         label4.setText("Chọn Khóa Học :");
         panel7.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        comboBoxCourseTab2 = new JComboBox();
-        panel7.add(comboBoxCourseTab2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        cbBoxCourseTab2 = new JComboBox();
+        panel7.add(cbBoxCourseTab2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSearchTab2 = new JButton();
         btnSearchTab2.setText("Search");
         panel7.add(btnSearchTab2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -217,14 +233,12 @@ public class ManagementSubjectGUI extends JPanel {
         panel8.add(panel9, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel9.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), null));
         btnAdd = new JButton();
-        btnAdd.setIcon(new ImageIcon(getClass().getResource("/images/add.png")));
-        btnAdd.setText("");
+        btnAdd.setText("KÍCH HOẠT >>");
         panel9.add(btnAdd, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel9.add(spacer4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         btnDelete = new JButton();
-        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
-        btnDelete.setText("");
+        btnDelete.setText("<< HỦY");
         panel9.add(btnDelete, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel10 = new JPanel();
         panel10.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));

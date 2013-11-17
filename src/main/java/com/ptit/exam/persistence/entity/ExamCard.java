@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Time: 10:54 AM
  */
 @Entity
-@Table(name = "results")
+@Table(name = "exam_card")
 public class ExamCard {
 
     public static String RESULT_ID = "id";
@@ -33,6 +33,11 @@ public class ExamCard {
 
     @Column(name = "max_score")
     private Long maxScore;
+
+    public ExamCard(Subject subject, Student student) {
+        this.subjectId = subject.getId();
+        this.studentId = student.getId();
+    }
 
     public Long getId() {
         return id;

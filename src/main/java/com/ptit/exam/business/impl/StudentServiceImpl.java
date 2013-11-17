@@ -15,81 +15,73 @@ import java.util.List;
  */
 @Component("studentService")
 
-public class StudentServiceImpl implements StudentService
-{
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     StudentDAO studentDAO;
 
     @Override
-    public Student findById(Long id)
-    {
+    public Student findById(Long id) {
         return studentDAO.findOne(id);
     }
 
     @Override
-    public Student save(Student student)
-    {
+    public Student save(Student student) {
         return studentDAO.saveAndFlush(student);
     }
 
     @Override
-    public void deleteById(Long id)
-    {
+    public void deleteById(Long id) {
         studentDAO.delete(id);
     }
 
     @Override
-    public void delete(Student student)
-    {
+    public void delete(Student student) {
         studentDAO.delete(student);
     }
 
     @Override
-    public List<Student> getAll()
-    {
+    public List<Student> getAll() {
         return studentDAO.findAll();
     }
 
     @Override
-    public Student findByUserName(String userName)
-    {
+    public Student findByUserName(String userName) {
         return studentDAO.findByUserName(userName);
     }
 
     @Override
-    public List<Student> findByFaculty(String faculty)
-    {
+    public List<Student> findByFaculty(String faculty) {
         return studentDAO.findByFaculty(faculty);
     }
 
     @Override
-    public List<Student> findByFacultyAndCourse(String faculty, String course)
-    {
+    public List<Student> findByFacultyAndCourse(String faculty, String course) {
         return studentDAO.findByFacultyAndCourse(faculty, course);
     }
 
     @Override
-    public List<Student> findByClassRoom(String classRoom)
-    {
+    public List<Student> findByClassRoom(String classRoom) {
         return studentDAO.findByClassRoom(classRoom);
     }
 
     @Override
-    public Student findByStudentCode(String studentCode)
-    {
+    public Student findByStudentCode(String studentCode) {
         return studentDAO.findByStudentCode(studentCode);
     }
 
     @Override
-    public Student findByUserNameAndPassWord(String userName, String passWord)
-    {
+    public Student findByUserNameAndPassWord(String userName, String passWord) {
         return studentDAO.findByUserNameAndPassWord(userName, passWord);
     }
 
     @Override
-    public List<Student> findByName(String nameStudent)
-    {
+    public List<Student> findByName(String nameStudent) {
         return studentDAO.findByFirstName(nameStudent);
+    }
+
+    @Override
+    public List<Student> findByCourse(String course) {
+        return studentDAO.findByCourse(course);
     }
 }
