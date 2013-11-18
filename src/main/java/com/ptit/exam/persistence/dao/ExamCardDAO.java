@@ -12,14 +12,20 @@ import java.util.List;
  * Date: 10/9/13
  * Time: 11:46 PM
  */
-public interface ExamCardDAO extends JpaRepository<ExamCard, Long> {
+public interface ExamCardDAO extends JpaRepository<ExamCard, Long>
+{
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId);
 
     public List<ExamCard> findByStudentId(Long studentId);
 
     public List<ExamCard> findBySubjectId(Long subjectId);
 
-    //    @Query(value = "DELETE FROM ExamCard ec LEFT JOIN Student st, Subject su WHERE su.id = ec.subjectId AND st.id = ec.studentId AND su.id = :id AND st.course = :course")
-    @Query(value = "DELETE FROM ExamCard ec")
-    public void removeBySubjectIdAndCourse(@Param("id") Long id, @Param("course") String course);
+    @Query(value = "select ec " +
+            "from Subject su, Student st, ExamCard ec " +
+            "where su.id = ec.subjectId " +
+            "and st.id = ec.studentId " +
+            "and st.course = :course " +
+            "and su.faculty = :faculty " +
+            "and su.id = :id")
+    public List<ExamCard> findBySubjectIdAndCourse(@Param("course") String course, @Param("faculty") String faculty, @Param("id") Long id);
 }

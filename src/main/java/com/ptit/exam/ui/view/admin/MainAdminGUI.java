@@ -91,57 +91,6 @@ public class MainAdminGUI extends JFrame
             }
         });
 
-//
-//        // ============= button ManagementExamGUI ==========
-//        managermentExamGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                managementExamController.doSearch();  // todo
-//            }
-//        });
-//        managermentExamGUI.getBtnSaveTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                managementExamController.doSave();  // todo
-//            }
-//        });
-//
-//        // ============ button ExportExamGUI ==============
-//        exportExaminationGUI.getBtnSave().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                exportExamController.doExportExam();  // todo
-//
-//            }
-//        });
-//
-        // ============ ManagermentStudentGUI ================
-//
-//        // ------------------ byClass ---------------
-//        managementStudentGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementStudentController.doSearch();
-//
-//            }
-//        });
-//
-//        // -------------- bySubject -----------------
-//
-//        managementStudentGUI.getBtnSearchTab1().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementStudentController.doSEARCH();
-//            }
-//        });
-//        managementStudentGUI.getBtnSAVE().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                managementStudentController.doSAVE();
-//            }
-//        });
-//         ============ button MainAdminGUI ================
-
         btnQuestionBank.addActionListener(new ActionListener()
         {
             @Override
@@ -257,12 +206,6 @@ public class MainAdminGUI extends JFrame
     {
         return lbUsername;
     }
-
-    public JLabel getLbLogOut()
-    {
-        return lbLogOut;
-    }
-
 
     public NewSubjectGUI getNewSubjectGUI()
     {

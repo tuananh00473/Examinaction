@@ -7,7 +7,6 @@ import com.ptit.exam.persistence.entity.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +15,8 @@ import java.util.List;
  * Time: 10:42 AM
  */
 @Component("subjectService")
-public class SubjectServiceImpl implements SubjectService {
+public class SubjectServiceImpl implements SubjectService
+{
 
     @Autowired
     SubjectDAO subjectDAO;
@@ -25,52 +25,56 @@ public class SubjectServiceImpl implements SubjectService {
     ExamCardDAO examCardDAO;
 
     @Override
-    public Subject findById(Long id) {
+    public Subject findById(Long id)
+    {
         return subjectDAO.findOne(id);
     }
 
     @Override
-    public Subject save(Subject subject) {
+    public Subject save(Subject subject)
+    {
         return subjectDAO.saveAndFlush(subject);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id)
+    {
         subjectDAO.delete(id);
     }
 
     @Override
-    public void delete(Subject subject) {
+    public void delete(Subject subject)
+    {
         subjectDAO.delete(subject);
     }
 
     @Override
-    public List<Subject> getAll() {
+    public List<Subject> getAll()
+    {
         return subjectDAO.findAll();
     }
 
     @Override
-    public List<Subject> findBySubjectName(String nameOfSubject) {
+    public List<Subject> findBySubjectName(String nameOfSubject)
+    {
         return subjectDAO.findBySubjectName(nameOfSubject);
     }
 
     @Override
-    public List<Subject> findByFaculty(String faculty) {
+    public List<Subject> findByFaculty(String faculty)
+    {
         return subjectDAO.findByFaculty(faculty);
     }
 
     @Override
-    public List<Subject> findByFacultyAndSubjectName(String nameFaculty, String nameSubject) {
-        List<Subject> subjectList = new ArrayList<Subject>();
-        Subject subject = subjectDAO.findByFacultyAndSubjectName(nameFaculty, nameSubject);
-        if (null != subject) {
-            subjectList.add(subject);
-        }
-        return subjectList;
+    public Subject findByFacultyAndSubjectName(String nameFaculty, String nameSubject)
+    {
+        return subjectDAO.findByFacultyAndSubjectName(nameFaculty, nameSubject);
     }
 
     @Override
-    public List<Subject> findByCourseAndFaculty(String course, String faculty, Long id) {
+    public List<Subject> findByCourseAndFaculty(String course, String faculty, Long id)
+    {
         return subjectDAO.findByCourseAndFaculty(course, faculty, id);
     }
 }

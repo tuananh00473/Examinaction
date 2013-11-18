@@ -14,42 +14,60 @@ import java.util.List;
  * Time: 11:49 PM
  */
 @Component("resultService")
-public class ExamCardServiceImpl implements ExamCardService {
+public class ExamCardServiceImpl implements ExamCardService
+{
     @Autowired
     ExamCardDAO examCardDAO;
 
     @Override
-    public ExamCard findById(Long id) {
+    public ExamCard findById(Long id)
+    {
         return examCardDAO.findOne(id);
     }
 
     @Override
-    public ExamCard save(ExamCard result) {
+    public ExamCard save(ExamCard result)
+    {
         return examCardDAO.saveAndFlush(result);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id)
+    {
         examCardDAO.delete(id);
     }
 
     @Override
-    public void delete(ExamCard result) {
+    public void delete(ExamCard result)
+    {
         examCardDAO.delete(result);
     }
 
     @Override
-    public List<ExamCard> getAll() {
+    public List<ExamCard> getAll()
+    {
         return examCardDAO.findAll();
     }
 
     @Override
-    public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId) {
+    public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId)
+    {
         return examCardDAO.findByStudentIdAndSubjectId(studentId, subjectId);
     }
 
     @Override
-    public void removeBySubjectIdAndCourse(Long subjectId, String course) {
-        examCardDAO.removeBySubjectIdAndCourse(subjectId, course);
+    public void deActiveSubject(String course, String faculty, Long subjectId)
+    {
+        List<ExamCard> examCardRemoveList = examCardDAO.findBySubjectIdAndCourse(course, faculty, subjectId);
+        for (ExamCard examCard : examCardRemoveList)
+        {
+            examCardDAO.delete(examCard);
+        }
+    }
+
+    @Override
+    public List<ExamCard> findByStudentId(Long studentId)
+    {
+        return examCardDAO.findByStudentId(studentId);
     }
 }

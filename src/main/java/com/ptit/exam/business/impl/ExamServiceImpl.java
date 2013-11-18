@@ -13,7 +13,7 @@ import java.util.List;
  * Date: 9/25/13
  * Time: 10:43 AM
  */
-@Component("examinationService")
+@Component("examService")
 public class ExamServiceImpl implements ExamService
 {
 
@@ -55,6 +55,4 @@ public class ExamServiceImpl implements ExamService
     {
         return examDAO.findBySubjectCode(subjectCode);
     }
-
-
 }

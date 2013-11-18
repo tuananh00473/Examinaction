@@ -3,6 +3,7 @@ package com.ptit.exam.ui.view.student;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.ptit.exam.persistence.entity.Student;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,8 @@ import java.awt.*;
  * Date: 10/8/13
  * Time: 10:34 AM
  */
-public class SettingExamGUI extends JPanel {
+public class SettingExamGUI extends JPanel
+{
     private JPanel SettingExamCard;
     private JComboBox comboBoxSubject;
     private JTable tableExamination;
@@ -24,40 +26,58 @@ public class SettingExamGUI extends JPanel {
     private JLabel lbClass;
     private JScrollPane examinationScrollPanel;
 
-    public JButton getBtnStart() {
+    public JButton getBtnStart()
+    {
         return btnStart;
     }
 
-    public JLabel getLbStudentCode() {
+    public JLabel getLbStudentCode()
+    {
         return lbStudentCode;
     }
 
-    public JLabel getLbDateOfBirth() {
+    public JLabel getLbDateOfBirth()
+    {
         return lbDateOfBirth;
     }
 
-    public JLabel getLbFaculty() {
+    public JLabel getLbFaculty()
+    {
         return lbFaculty;
     }
 
-    public JLabel getLbClass() {
+    public JLabel getLbClass()
+    {
         return lbClass;
     }
 
-    public JScrollPane getExaminationScrollPanel() {
+    public JScrollPane getExaminationScrollPanel()
+    {
         return examinationScrollPanel;
     }
 
-    public JTable getTableExamination() {
+    public JTable getTableExamination()
+    {
         return tableExamination;
     }
 
-    public JLabel getLbNameStudent() {
+    public JLabel getLbNameStudent()
+    {
         return lbNameStudent;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
+    }
+
+    public void setInfoAboutStudentToField(Student student)
+    {
+        lbNameStudent.setText(student.getLastName() + " " + student.getFirstName());
+        lbClass.setText(student.getClassRoom());
+        lbStudentCode.setText(student.getStudentCode());
+        lbDateOfBirth.setText(student.getDateOfBirth());
+        lbFaculty.setText(student.getFaculty());
     }
 
     {
@@ -74,7 +94,8 @@ public class SettingExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         SettingExamCard = new JPanel();
         SettingExamCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -94,7 +115,7 @@ public class SettingExamGUI extends JPanel {
         panel1.add(panel2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createRaisedBevelBorder(), null));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JLabel label1 = new JLabel();
@@ -117,16 +138,16 @@ public class SettingExamGUI extends JPanel {
         panel3.add(lbStudentCode, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("Faculty :");
-        panel3.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbFaculty = new JLabel();
         lbFaculty.setText("");
-        panel3.add(lbFaculty, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(lbFaculty, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
         label5.setText("Class :");
-        panel3.add(label5, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(label5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbClass = new JLabel();
         lbClass.setText("");
-        panel3.add(lbClass, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(lbClass, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
         panel2.add(spacer5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer6 = new Spacer();
@@ -158,7 +179,8 @@ public class SettingExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return SettingExamCard;
     }
 }

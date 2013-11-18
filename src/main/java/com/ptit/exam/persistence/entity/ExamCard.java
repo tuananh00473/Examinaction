@@ -9,7 +9,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "exam_card")
-public class ExamCard {
+public class ExamCard
+{
 
     public static String RESULT_ID = "id";
     public static String RESULT_SUBJECT_ID = "subjectId";
@@ -34,48 +35,63 @@ public class ExamCard {
     @Column(name = "max_score")
     private Long maxScore;
 
-    public ExamCard(Subject subject, Student student) {
+    public ExamCard()
+    {
+    }
+
+    public ExamCard(Subject subject, Student student)
+    {
         this.subjectId = subject.getId();
         this.studentId = student.getId();
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public Long getSubjectId() {
+    public Long getSubjectId()
+    {
         return subjectId;
     }
 
-    public void setSubjectId(Long subjectId) {
+    public void setSubjectId(Long subjectId)
+    {
         this.subjectId = subjectId;
     }
 
-    public Long getStudentId() {
+    public Long getStudentId()
+    {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
+    public void setStudentId(Long studentId)
+    {
         this.studentId = studentId;
     }
 
-    public Long getScore() {
+    public Long getScore()
+    {
         return score;
     }
 
-    public void setScore(Long score) {
+    public void setScore(Long score)
+    {
         this.score = score;
     }
 
-    public Long getMaxScore() {
+    public Long getMaxScore()
+    {
         return maxScore;
     }
 
-    public void setMaxScore(Long maxScore) {
+    public void setMaxScore(Long maxScore)
+    {
         this.maxScore = maxScore;
     }
 }

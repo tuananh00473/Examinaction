@@ -33,8 +33,8 @@ public class NewStudentGUI extends JPanel
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JPasswordField txtConfirmPassword;
-    private JLabel lbValidateFistname;
-    private JLabel lbValidateLastname;
+    private JLabel lbValidateFistName;
+    private JLabel lbValidateLastName;
     private JLabel lbValidateStudentCode;
     private JLabel lbValidateClass;
     private JLabel lbValidateCourse;
@@ -160,9 +160,9 @@ public class NewStudentGUI extends JPanel
     private void setDateOfBirth(String dateOfBirth)
     {
         String[] arg = dateOfBirth.split("/");
-        comboBoxDay.setSelectedItem(arg[0]);
-        comboBoxMonth.setSelectedItem(arg[1]);
         comboBoxYear.setSelectedItem(arg[2]);
+        comboBoxMonth.setSelectedItem(arg[1]);
+        comboBoxDay.setSelectedItem(arg[0]);
     }
 
     private void setGender(String gender)
@@ -338,14 +338,14 @@ public class NewStudentGUI extends JPanel
         panel3.add(txtPassword, new GridConstraints(10, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtConfirmPassword = new JPasswordField();
         panel3.add(txtConfirmPassword, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        lbValidateFistname = new JLabel();
-        lbValidateFistname.setForeground(new Color(-65536));
-        lbValidateFistname.setText("");
-        panel3.add(lbValidateFistname, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbValidateLastname = new JLabel();
-        lbValidateLastname.setForeground(new Color(-65536));
-        lbValidateLastname.setText("");
-        panel3.add(lbValidateLastname, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbValidateFistName = new JLabel();
+        lbValidateFistName.setForeground(new Color(-65536));
+        lbValidateFistName.setText("");
+        panel3.add(lbValidateFistName, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbValidateLastName = new JLabel();
+        lbValidateLastName.setForeground(new Color(-65536));
+        lbValidateLastName.setText("");
+        panel3.add(lbValidateLastName, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbValidateStudentCode = new JLabel();
         lbValidateStudentCode.setForeground(new Color(-65536));
         lbValidateStudentCode.setText("");

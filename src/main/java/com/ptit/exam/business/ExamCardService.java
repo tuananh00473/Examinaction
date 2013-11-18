@@ -9,7 +9,8 @@ import java.util.List;
  * Date: 10/9/13
  * Time: 11:48 PM
  */
-public interface ExamCardService {
+public interface ExamCardService
+{
     public ExamCard findById(Long id);
 
     public ExamCard save(ExamCard result);
@@ -22,5 +23,7 @@ public interface ExamCardService {
 
     public ExamCard findByStudentIdAndSubjectId(Long studentId, Long subjectId);
 
-    public void removeBySubjectIdAndCourse(Long subjectId, String course);
+    public void deActiveSubject(String course, String faculty, Long subjectId);
+
+    public List<ExamCard> findByStudentId(Long studentId);
 }

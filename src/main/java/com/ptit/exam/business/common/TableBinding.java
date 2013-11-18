@@ -106,6 +106,20 @@ public class TableBinding
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
+    public static void bindingExamination(List<Exam> examList, JTable tableExamination, JScrollPane examinationScrollPanel)
+    {
+        unbinding(tableExamination, examinationScrollPanel);
+        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examList, tableExamination);
+        //-----------------------Option----------------------------------------------
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_NAME)).setColumnName("TÊN ĐỀ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_CODE)).setColumnName("MÃ ĐỀ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_SUBJECT_CODE)).setColumnName("MÃ MÔN");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_TIME)).setColumnName("THỜI GIAN THI");
+
+        jTableBinding.bind();
+        bindMap.put(examinationScrollPanel.hashCode() + "." + tableExamination.hashCode(), jTableBinding);
+    }
+
     //----------------- unbinding-------------------------------
     public static void unbinding(JTable table, JScrollPane panel)
     {

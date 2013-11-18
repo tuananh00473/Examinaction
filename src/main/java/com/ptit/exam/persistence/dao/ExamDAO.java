@@ -17,5 +17,4 @@ public interface ExamDAO extends JpaRepository<Exam, Long>
     public Exam findByExamName(String examName);
 
     public List<Exam> findBySubjectCode(String subjectCode);
-
 }

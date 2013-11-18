@@ -34,7 +34,8 @@ import java.util.List;
  * Time: 4:50 PM
  */
 @Component
-public class ManagementSubjectController {
+public class ManagementSubjectController
+{
 
     @Autowired
     MainAdminGUI mainAdminGUI;
@@ -70,7 +71,8 @@ public class ManagementSubjectController {
     private ManagementSubjectGUI managementSubjectGUI;
     private NewSubjectGUI newSubjectGUI;
 
-    public void doSetUp() {
+    public void doSetUp()
+    {
         managementSubjectGUI = mainAdminGUI.getManagementSubjectGUI();
         newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
 
@@ -80,7 +82,8 @@ public class ManagementSubjectController {
         setUpActionListenerTab2();
     }
 
-    private void setUpViewTab1() {
+    private void setUpViewTab1()
+    {
         tab1SubjectTable = managementSubjectGUI.getTableSubjectTab1();
         tab1SubjectScrollPane = managementSubjectGUI.getScrollPaneSubjectTab1();
         managementSubjectGUI.getCbBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
@@ -89,7 +92,8 @@ public class ManagementSubjectController {
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
     }
 
-    public void setUpViewTab2() {
+    public void setUpViewTab2()
+    {
         setUpTab2TableSubject();
         setUpTab2TableSubjectActived();
 
@@ -99,63 +103,79 @@ public class ManagementSubjectController {
 
     }
 
-    private void setUpTab2TableSubject() {
+    private void setUpTab2TableSubject()
+    {
         tab2SubjectTable = managementSubjectGUI.getTableSubjectTab2();
         tab2SubjectScrollPane = managementSubjectGUI.getScrollPanelSubjectTab2();
     }
 
-    private void setUpTab2TableSubjectActived() {
+    private void setUpTab2TableSubjectActived()
+    {
         tab2SubjectTableActived = managementSubjectGUI.getTableSubjectActivedTab2();
         tab2SubjectScrollPaneActived = managementSubjectGUI.getScrollPanelSubjectActivedTab2();
     }
 
-    private void setUpActionListenerTab1() {
+    private void setUpActionListenerTab1()
+    {
         managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListenerTab1);
         managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListenerTab1);
         managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListenerTab1);
         managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListenerTab1);
     }
 
-    public ActionListener actionListenerTab1 = new ActionListener() {
+    public ActionListener actionListenerTab1 = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == managementSubjectGUI.getBtnAddSUBJECT()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == managementSubjectGUI.getBtnAddSUBJECT())
+            {
                 doAddSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnEditSUBJECT()) {
+            if (e.getSource() == managementSubjectGUI.getBtnEditSUBJECT())
+            {
                 doEditSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnDelSUBJECT()) {
+            if (e.getSource() == managementSubjectGUI.getBtnDelSUBJECT())
+            {
                 doDeleteSubject();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnSearchTab1()) {
+            if (e.getSource() == managementSubjectGUI.getBtnSearchTab1())
+            {
                 doSearchTab1();
             }
         }
     };
 
-    private void doAddSubject() {
+    private void doAddSubject()
+    {
         addSubjectController.doSetUp(new Subject());
         newSubjectGUI.resetNewSubjectGUI();
         mainAdminController.doShowNewSubjectCard();
     }
 
-    private void doEditSubject() {
+    private void doEditSubject()
+    {
         int select = tab1SubjectTable.getSelectedRow();
-        if (-1 == select) {
+        if (-1 == select)
+        {
             MessageManager.show("Hãy chọn môn học bạn muốn sửa.");
-        } else {
+        }
+        else
+        {
             doSetUpEditSubject(tab1SubjectList.get(select));
             mainAdminController.doShowNewSubjectCard();
         }
     }
 
-    private void doSetUpEditSubject(Subject subject) {
+    private void doSetUpEditSubject(Subject subject)
+    {
         addSubjectController.doSetUp(subject);
         newSubjectGUI.mappingInfoToField(subject);
     }
 
-    private void doSearchTab1() {
+    private void doSearchTab1()
+    {
         String nameSubject = managementSubjectGUI.getTxtNameSubjectSearch().getText();
         String nameFaculty = managementSubjectGUI.getCbBoxFacultyTab1().getSelectedItem().toString();
 
@@ -163,21 +183,28 @@ public class ManagementSubjectController {
         List<Subject> list2 = ("".equals(nameFaculty) ? subjectService.getAll() : subjectService.findByFaculty(nameFaculty));
 
         tab1SubjectList = new ArrayList<Subject>();
-        for (Subject subject : list1) {
-            if (list2.contains(subject)) {
+        for (Subject subject : list1)
+        {
+            if (list2.contains(subject))
+            {
                 tab1SubjectList.add(subject);
             }
         }
         doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
     }
 
-    private void doDeleteSubject() {
+    private void doDeleteSubject()
+    {
         int rowSelected = tab1SubjectTable.getSelectedRow();
-        if (-1 == rowSelected) {
+        if (-1 == rowSelected)
+        {
             MessageManager.show("Hãy chọn môn học bạn muốn xóa.");
-        } else {
+        }
+        else
+        {
             int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa môn học này?");
-            if (0 == k) {
+            if (0 == k)
+            {
                 subjectService.delete(tab1SubjectList.get(rowSelected));
                 tab1SubjectList.remove(rowSelected);
                 doBindingSubject(tab1SubjectList, tab1SubjectTable, tab1SubjectScrollPane);
@@ -186,7 +213,8 @@ public class ManagementSubjectController {
     }
 
 
-    private void setUpActionListenerTab2() {
+    private void setUpActionListenerTab2()
+    {
         managementSubjectGUI.getBtnAdd().addActionListener(actionListenerTab2);
         managementSubjectGUI.getBtnDelete().addActionListener(actionListenerTab2);
         managementSubjectGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
@@ -195,26 +223,35 @@ public class ManagementSubjectController {
         managementSubjectGUI.getCbBoxFacultyTab2().addItemListener(itemListener);
     }
 
-    private ActionListener actionListenerTab2 = new ActionListener() {
+    private ActionListener actionListenerTab2 = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == managementSubjectGUI.getBtnAdd()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == managementSubjectGUI.getBtnAdd())
+            {
                 addSubjectToActive();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnDelete()) {
+            if (e.getSource() == managementSubjectGUI.getBtnDelete())
+            {
                 removeSubjectToDeActive();
             }
-            if (e.getSource() == managementSubjectGUI.getBtnSaveTab2()) {
+            if (e.getSource() == managementSubjectGUI.getBtnSaveTab2())
+            {
                 activeSubject();
             }
         }
     };
 
-    private void addSubjectToActive() {
+    private void addSubjectToActive()
+    {
         int select = tab2SubjectTable.getSelectedRow();
-        if (-1 == select) {
+        if (-1 == select)
+        {
             MessageManager.show("Không có môn học được chọn để kích hoạt thẻ dự thi.");
-        } else {
+        }
+        else
+        {
             tab2SubjectListActived.add(tab2SubjectList.get(select));
             doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
 
@@ -223,11 +260,15 @@ public class ManagementSubjectController {
         }
     }
 
-    private void removeSubjectToDeActive() {
+    private void removeSubjectToDeActive()
+    {
         int select = tab2SubjectTableActived.getSelectedRow();
-        if (-1 == select) {
+        if (-1 == select)
+        {
             MessageManager.show("Không có môn học được chọn để bỏ kích hoạt thẻ dự thi.");
-        } else {
+        }
+        else
+        {
             tab2SubjectList.add(tab2SubjectListActived.get(select));
             doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
 
@@ -236,52 +277,70 @@ public class ManagementSubjectController {
         }
     }
 
-    private void activeSubject() {
-        if (tab2SubjectListActived.size() <= 0) {
-            MessageManager.show("Không có môn học nào được lựa chọn để kích hoạt đề thi.");
+    private void activeSubject()
+    {
+        List<Student> studentList = studentService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
+        if (studentList.size() <= 0)
+        {
+            MessageManager.show("Khóa học không có sinh viên.");
             return;
         }
-        List<Student> studentList = studentService.findByCourse(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());
-        if (studentList.size() <= 0) {
-            if (tab2SubjectListActivedBackUp.size() > 0) {
-                for (Subject subject : tab2SubjectListActivedBackUp) {
-//                    subjectService.deactive(subject, managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString());    // todo : dang lam do o day
+        if (tab2SubjectListActivedBackUp.size() > 0)
+        {
+            for (Subject subject : tab2SubjectListActivedBackUp)
+            {
+                if (!tab2SubjectListActived.contains(subject))
+                {
+                    String course = managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString();
+                    String faculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
+                    examCardService.deActiveSubject(course, faculty, subject.getId());
                 }
             }
-            MessageManager.show("Đã hủy kích hoạt tất cả các môn học.");
-            return;
         }
-        for (Subject subject : tab2SubjectListActived) {
-            for (Student student : studentList) {
-                examCardService.save(new ExamCard(subject, student));
+
+        for (Subject subject : tab2SubjectListActived)
+        {
+            if (!tab2SubjectListActivedBackUp.contains(subject))
+            {
+                for (Student student : studentList)
+                {
+                    examCardService.save(new ExamCard(subject, student));
+                }
             }
         }
+        backUpSubjectActivedList();
         MessageManager.show("Kích hoạt thẻ dự thi thành công.");
     }
 
-    private ItemListener itemListener = new ItemListener() {
+    private ItemListener itemListener = new ItemListener()
+    {
         @Override
-        public void itemStateChanged(ItemEvent e) {
+        public void itemStateChanged(ItemEvent e)
+        {
             if ((e.getSource() == managementSubjectGUI.getCbBoxFacultyTab2() && !("".equals(managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString())))
-                    || (e.getSource() == managementSubjectGUI.getCbBoxCourseTab2() && !("".equals(managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString())))) {
+                    || (e.getSource() == managementSubjectGUI.getCbBoxCourseTab2() && !("".equals(managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString()))))
+            {
 
                 String faculty = managementSubjectGUI.getCbBoxFacultyTab2().getSelectedItem().toString();
                 String course = managementSubjectGUI.getCbBoxCourseTab2().getSelectedItem().toString();
-                tab2SubjectList = subjectService.getAll();
+                tab2SubjectList = subjectService.findByFaculty(faculty);
                 tab2SubjectListActived = new ArrayList<Subject>();
 
-                for (Subject subject : tab2SubjectList) {
+                for (Subject subject : tab2SubjectList)
+                {
                     List<Subject> checkList = subjectService.findByCourseAndFaculty(course, faculty, subject.getId());
-                    if (checkList.size() > 0) {
+                    if (checkList.size() > 0)
+                    {
                         tab2SubjectListActived.add(subject);
                     }
                 }
 
-                for (Subject subject : tab2SubjectListActived) {
+                for (Subject subject : tab2SubjectListActived)
+                {
                     tab2SubjectList.remove(subject);
                 }
 
-                tab2SubjectListActivedBackUp = tab2SubjectListActived;
+                backUpSubjectActivedList();
 
                 doBindingSubject(tab2SubjectListActived, tab2SubjectTableActived, tab2SubjectScrollPaneActived);
                 doBindingSubject(tab2SubjectList, tab2SubjectTable, tab2SubjectScrollPane);
@@ -289,7 +348,8 @@ public class ManagementSubjectController {
         }
     };
 
-    private void doBindingSubject(List<Subject> subjectList, JTable jTable, JScrollPane jScrollPane) {
+    private void doBindingSubject(List<Subject> subjectList, JTable jTable, JScrollPane jScrollPane)
+    {
         TableBinding.bindingSubject(subjectList, jTable, jScrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
@@ -328,4 +388,13 @@ public class ManagementSubjectController {
 //        resetManagementSubjectGUI();
 //        doSetUp();
 //    }
+
+    private void backUpSubjectActivedList()
+    {
+        tab2SubjectListActivedBackUp = new ArrayList<Subject>();
+        for (Subject subject : tab2SubjectListActived)
+        {
+            tab2SubjectListActivedBackUp.add(subject);
+        }
+    }
 }
