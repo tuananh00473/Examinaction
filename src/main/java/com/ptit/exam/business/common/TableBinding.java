@@ -69,6 +69,19 @@ public class TableBinding
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
+    public static void bindingSubjectToExam(List<Subject> subjectList, JTable table, JScrollPane panel)
+    {
+        unbinding(table, panel);
+        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, subjectList, table);
+        //-----------------------Option----------------------------------------------
+        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_CODE)).setColumnName("MÃ MÔN HỌC");
+        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_NAME)).setColumnName("TÊN MÔN HỌC");
+        jTableBinding.addColumnBinding(BeanProperty.create(Subject.SUBJECT_UNIT_STUDY)).setColumnName("ĐVHT");
+
+        jTableBinding.bind();
+        bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
+    }
+
     public static void bindingManagementExam(List<Exam> examList, JTable table, JScrollPane panel)
     {
         unbinding(table, panel);

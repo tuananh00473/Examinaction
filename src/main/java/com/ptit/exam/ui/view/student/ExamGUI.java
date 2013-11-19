@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import com.ptit.exam.persistence.entity.Student;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,8 @@ import java.awt.*;
  * Date: 10/1/13
  * Time: 9:52 AM
  */
-public class ExamGUI extends JPanel {
+public class ExamGUI extends JPanel
+{
 
     private JPanel examCard;
     private JLabel lbNameExamination;
@@ -39,92 +41,114 @@ public class ExamGUI extends JPanel {
     private JTextArea txtContentQuestion;
     private JLabel lbImage;
 
-    public JPanel getPanelButtonQuestion() {
+    public JPanel getPanelButtonQuestion()
+    {
         return panelButtonQuestion;
     }
 
 
-    public JButton getBtnAnswerA() {
+    public JButton getBtnAnswerA()
+    {
         return btnAnswerA;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public JButton getBtnAnswerB() {
+    public JButton getBtnAnswerB()
+    {
         return btnAnswerB;
     }
 
-    public JButton getBtnAnswerC() {
+    public JButton getBtnAnswerC()
+    {
         return btnAnswerC;
     }
 
-    public JButton getBtnAnswerD() {
+    public JButton getBtnAnswerD()
+    {
         return btnAnswerD;
     }
 
-    public JPanel getExamCard() {
+    public JPanel getExamCard()
+    {
         return examCard;
     }
 
-    public JLabel getLbNameExamination() {
+    public JLabel getLbNameExamination()
+    {
         return lbNameExamination;
     }
 
-    public JLabel getLbNameStudent() {
+    public JLabel getLbNameStudent()
+    {
         return lbNameStudent;
     }
 
-    public JLabel getLbStudentCode() {
+    public JLabel getLbStudentCode()
+    {
         return lbStudentCode;
     }
 
-    public JLabel getLbNameSubject() {
+    public JLabel getLbNameSubject()
+    {
         return lbNameSubject;
     }
 
-    public JLabel getLbTime() {
+    public JLabel getLbTime()
+    {
         return lbTime;
     }
 
-    public JLabel getLbNumberQuestion() {
+    public JLabel getLbNumberQuestion()
+    {
         return lbNumberQuestion;
     }
 
-    public JButton getBtnPrevious() {
+    public JButton getBtnPrevious()
+    {
         return btnPrevious;
     }
 
-    public JButton getBtnNext() {
+    public JButton getBtnNext()
+    {
         return btnNext;
     }
 
-    public JButton getBtnSubmit() {
+    public JButton getBtnSubmit()
+    {
         return btnSubmit;
     }
 
-    public JLabel getLbRemainTime() {
+    public JLabel getLbRemainTime()
+    {
         return lbRemainTime;
     }
 
-    public JPanel getPanelButtonAnswer() {
+    public JPanel getPanelButtonAnswer()
+    {
         return panelButtonAnswer;
     }
 
-    public JLabel getLbTotalNumberAnswered() {
+    public JLabel getLbTotalNumberAnswered()
+    {
         return lbTotalNumberAnswered;
     }
 
-    public JLabel getLbTotalNumberNotAnswerYet() {
+    public JLabel getLbTotalNumberNotAnswerYet()
+    {
         return lbTotalNumberNotAnswerYet;
     }
 
-    public JScrollPane getContentQuestionScrollpanel() {
+    public JScrollPane getContentQuestionScrollpanel()
+    {
         return contentQuestionScrollpanel;
     }
 
@@ -142,7 +166,8 @@ public class ExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         examCard = new JPanel();
         examCard.setLayout(new CardLayout(0, 0));
         examCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
@@ -284,7 +309,13 @@ public class ExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return examCard;
+    }
+
+    public void setInfoAboutStudentToField(Student student)
+    {
+        // todo :     đang làm dở ở đây
     }
 }

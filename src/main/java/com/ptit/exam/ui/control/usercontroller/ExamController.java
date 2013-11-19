@@ -1,5 +1,10 @@
-package com.ptit.exam.ui.control;
+package com.ptit.exam.ui.control.usercontroller;
 
+import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.ui.view.student.ExamGUI;
+import com.ptit.exam.ui.view.student.MainStudentGUI;
+import com.ptit.exam.util.GlobalValues;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,15 +13,16 @@ import org.springframework.stereotype.Component;
  * Time: 4:07 PM
  */
 @Component
-public class ExamController {
+public class ExamController
+{
 
-//    @Autowired
+    //    @Autowired
 //    MainStudentController mainStudentController;
 //
-//    @Autowired
-//    MainStudentGUI mainStudentGUI;
-//
-//    @Autowired
+    @Autowired
+    MainStudentGUI mainStudentGUI;
+
+    //    @Autowired
 //    SettingExamController settingExamController;
 //
 //    @Autowired
@@ -49,8 +55,17 @@ public class ExamController {
 //    private Thread thread;
 //    private ExamCard result;
 //    private Exam exam;
-//    private Student student;
-//
+    private Student student;
+    private ExamGUI examGUI;
+
+    public void doSetUp()
+    {
+        examGUI = mainStudentGUI.getExamGUI();
+
+        student = GlobalValues.student;
+        examGUI.setInfoAboutStudentToField(student);
+    }
+
 //    public void doExam(final ExamCard result, final Exam exam,final Student student) {
 ////        Long idExam = examCard.getIdExamination();
 ////        Examination examination = examinationService.findById(idExam);
