@@ -20,6 +20,7 @@ public class Exam
     public static String EXAM_TOTAL_EASY_QUESTION = "totalEasyQuestion";
     public static String EXAM_TOTAL_MEDIUM_QUESTION = "totalMediumQuestion";
     public static String EXAM_TOTAL_HARD_QUESTION = "totalHardQuestion";
+    public static String EXAM_IS_ACTIVE = "active";
 
 
     @Id
@@ -47,6 +48,9 @@ public class Exam
 
     @Column(name = "total_easy_question")
     private int totalEasyQuestion;
+
+    @Column(name = "active")
+    private boolean active;
 
     public Long getId()
     {
@@ -126,6 +130,16 @@ public class Exam
     public void setTotalEasyQuestion(int totalEasyQuestion)
     {
         this.totalEasyQuestion = totalEasyQuestion;
+    }
+
+    public boolean isActive()
+    {
+        return active;
+    }
+
+    public void setActive(boolean active)
+    {
+        this.active = active;
     }
 }
 

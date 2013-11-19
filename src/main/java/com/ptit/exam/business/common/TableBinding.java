@@ -119,6 +119,21 @@ public class TableBinding
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
+
+    public static void bindingExamCard(List<ExamCard> examCardList, JTable tableExamCard, JScrollPane examCardScrollPane)
+    {
+        unbinding(tableExamCard, examCardScrollPane);
+        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examCardList, tableExamCard);
+        //-----------------------Option----------------------------------------------
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_ID)).setColumnName("STT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_STUDENT_ID)).setColumnName("MÃ SINH VIÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_SUBJECT_ID)).setColumnName("MÃ MÔN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_ACTIVE)).setColumnName("ĐỦ ĐKDT");
+
+        jTableBinding.bind();
+        bindMap.put(examCardScrollPane.hashCode() + "." + tableExamCard.hashCode(), jTableBinding);
+    }
+
     public static void bindingExamination(List<Exam> examList, JTable tableExamination, JScrollPane examinationScrollPanel)
     {
         unbinding(tableExamination, examinationScrollPanel);

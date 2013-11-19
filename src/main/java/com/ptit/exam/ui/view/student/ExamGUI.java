@@ -5,7 +5,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -150,6 +152,14 @@ public class ExamGUI extends JPanel
     public JScrollPane getContentQuestionScrollpanel()
     {
         return contentQuestionScrollpanel;
+    }
+
+    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
+    {
+        lbNameSubject.setText(subject.getSubjectName());
+        lbNameStudent.setText(student.getFirstName() + " " + student.getLastName());
+        lbStudentCode.setText(student.getStudentCode());
+
     }
 
     {
@@ -312,10 +322,5 @@ public class ExamGUI extends JPanel
     public JComponent $$$getRootComponent$$$()
     {
         return examCard;
-    }
-
-    public void setInfoAboutStudentToField(Student student)
-    {
-        // todo :     đang làm dở ở đây
     }
 }

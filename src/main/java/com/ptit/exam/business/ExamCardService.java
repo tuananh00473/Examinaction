@@ -25,5 +25,7 @@ public interface ExamCardService
 
     public void deActiveSubject(String course, String faculty, Long subjectId);
 
+    public List<ExamCard> findBySubjectNameAndClassRoom(String classRoom, String subjectName);
+
     public List<ExamCard> findByStudentId(Long studentId);
 }

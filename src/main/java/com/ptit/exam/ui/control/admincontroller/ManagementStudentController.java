@@ -1,9 +1,11 @@
 package com.ptit.exam.ui.control.admincontroller;
 
+import com.ptit.exam.business.ExamCardService;
 import com.ptit.exam.business.StudentService;
 import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
 import com.ptit.exam.business.common.TextAreaRenderer;
+import com.ptit.exam.persistence.entity.ExamCard;
 import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
@@ -43,9 +45,16 @@ public class ManagementStudentController
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    ExamCardService examCardService;
+
     private List<Student> tab1StudentList;
     private JTable tab1StudentTable;
-    private JScrollPane tab1StudentScrollpane;
+    private JScrollPane tab1StudentScrollPane;
+
+    private List<ExamCard> tab2examCardList;
+    private JTable tab2ExamCardTable;
+    private JScrollPane tab2ExamCardScrollPane;
 
     private ManagementStudentGUI managementStudentGUI;
     private NewStudentGUI newStudentGUI;
@@ -53,10 +62,11 @@ public class ManagementStudentController
     public void doSetUp()
     {
         setUpView();
-        setUpActionListener();
+        setUpActionListenerTab1();
+        setUpActionListenerTab2();
 
         tab1StudentList = studentService.getAll();
-        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
+        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
 
 //        List<Subject> subjectList = subjectService.getAll();
 //        Set<String> stringSet1 = new HashSet<String>();
@@ -88,25 +98,49 @@ public class ManagementStudentController
         managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
         newStudentGUI = mainAdminGUI.getNewStudentGUI();
 
-        tab1StudentTable = managementStudentGUI.getStudentTableTab1();
-        tab1StudentScrollpane = managementStudentGUI.getStudentScrollpanelTab1();
-
-        mainAdminGUI.getManagementStudentGUI().getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
+        setUpViewTab1();
+        setUpViewTab2();
     }
 
-    public void setUpActionListener()
+    private void setUpViewTab1()
     {
-        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION)
+        tab1StudentTable = managementStudentGUI.getStudentTableTab1();
+        tab1StudentScrollPane = managementStudentGUI.getStudentScrollPanelTab1();
+
+        managementStudentGUI.getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
+    }
+
+    private void setUpViewTab2()
+    {
+        tab2ExamCardTable = managementStudentGUI.getExamTableTab2();
+        tab2ExamCardScrollPane = managementStudentGUI.getExamScrollPanelTab2();
+
+        managementStudentGUI.getComboBoxSubjectTab2().setModel(new DefaultComboBoxModel(Constants.subjects));
+    }
+
+    public void setUpActionListenerTab1()
+    {
+        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB1)
         {
-            managementStudentGUI.getBtnAdd().addActionListener(actionListener);
-            managementStudentGUI.getBtnEdit().addActionListener(actionListener);
-            managementStudentGUI.getBtnDel().addActionListener(actionListener);
-            managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
-            GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION = false;
+            managementStudentGUI.getBtnAdd().addActionListener(actionListenerTab1);
+            managementStudentGUI.getBtnEdit().addActionListener(actionListenerTab1);
+            managementStudentGUI.getBtnDel().addActionListener(actionListenerTab1);
+            managementStudentGUI.getBtnSearchTab1().addActionListener(actionListenerTab1);
+            GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB1 = false;
         }
     }
 
-    public ActionListener actionListener = new ActionListener()
+    public void setUpActionListenerTab2()
+    {
+        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB2)
+        {
+            managementStudentGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
+            managementStudentGUI.getBtnSearchTab2().addActionListener(actionListenerTab2);
+            GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB2 = false;
+        }
+    }
+
+    public ActionListener actionListenerTab1 = new ActionListener()
     {
         @Override
         public void actionPerformed(ActionEvent e)
@@ -129,6 +163,35 @@ public class ManagementStudentController
             }
         }
     };
+    public ActionListener actionListenerTab2 = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == managementStudentGUI.getBtnSaveTab2())
+            {
+                doSaveExamCard();
+            }
+            if (e.getSource() == managementStudentGUI.getBtnSearchTab2())
+            {
+                doSearchExamCard();
+            }
+        }
+    };
+
+    private void doSaveExamCard()
+    {
+
+    }
+
+    private void doSearchExamCard()
+    {
+        String subjectName = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
+        String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
+        tab2examCardList = examCardService.findBySubjectNameAndClassRoom(subjectName, classRoom);
+
+        doBindingExamCard(tab2examCardList, tab2ExamCardTable, tab2ExamCardScrollPane);
+    }
 
     private void doEditStudent()
     {
@@ -169,7 +232,7 @@ public class ManagementStudentController
                 tab1StudentList.add(student);
             }
         }
-        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
+        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
     }
 
     private void doDeleteStudent()
@@ -186,7 +249,7 @@ public class ManagementStudentController
             {
                 studentService.delete(tab1StudentList.get(rowSelected));
                 tab1StudentList.remove(rowSelected);
-                doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollpane);
+                doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
             }
         }
     }
@@ -224,17 +287,31 @@ public class ManagementStudentController
 //        }
 //    }
 //
-//    public void doSearch() {
-//        studentTable = mainAdminGUI.getManagementStudentGUI().getStudentTableTab1();
-//
-//        studentList = studentService.findByClassRoom(nameClass);
-//        if(studentList==null){
-//            studentList = ObservableCollections.observableList(new ArrayList<Student>());
-//        }
-//        doBindingStudent(studentList);
-//
-//    }
-//
+
+    private void doBindingExamCard(List<ExamCard> examCardList, JTable jTable, JScrollPane jScrollPane)
+    {
+        TableBinding.bindingExamCard(examCardList, jTable, jScrollPane);
+
+        TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
+        TextAreaEditor textEditor = new TextAreaEditor();
+        textEditor.setEditAble(false);
+
+        TableColumnModel cmodel = jTable.getColumnModel();
+        cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(0).setCellEditor(textEditor);
+        cmodel.getColumn(1).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(1).setCellEditor(textEditor);
+        cmodel.getColumn(2).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(2).setCellEditor(textEditor);
+        cmodel.getColumn(3).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(3).setCellEditor(textEditor);
+        JTableHeader header = jTable.getTableHeader();
+        header.setPreferredSize(new Dimension(10000, 30));
+        jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTable.repaint();
+    }
+
     private void doBindingStudent(List<Student> studentList, JTable jTable, JScrollPane jScrollPane)
     {
 

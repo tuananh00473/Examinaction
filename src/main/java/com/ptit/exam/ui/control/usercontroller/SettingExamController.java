@@ -142,6 +142,7 @@ public class SettingExamController
                 }
                 else
                 {
+                    GlobalValues.subject = subjectList.get(k);
                     int sure = MessageManager.showConfirm("Bạn đã sẵn sàng chưa?");
                     if (0 == sure)
                     {

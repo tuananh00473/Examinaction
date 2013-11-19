@@ -11,12 +11,10 @@ import javax.persistence.*;
 @Table(name = "exam_card")
 public class ExamCard
 {
-
-    public static String RESULT_ID = "id";
-    public static String RESULT_SUBJECT_ID = "subjectId";
-    public static String RESULT_STUDENT_ID = "studentId";
-    public static String RESULT_SCORE = "score";
-    public static String RESULT_MAX_SCORE = "maxScore";
+    public static String EXAM_CARD_ID = "id";
+    public static String EXAM_CARD_SUBJECT_ID = "subjectId";
+    public static String EXAM_CARD_STUDENT_ID = "studentId";
+    public static String EXAM_CARD_ACTIVE = "canDoExam";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +27,8 @@ public class ExamCard
     @Column(name = "student_id")
     private Long studentId;
 
-    @Column(name = "score")
-    private Long score;
-
-    @Column(name = "max_score")
-    private Long maxScore;
+    @Column(name = "can_do_exam")
+    private boolean canDoExam;
 
     public ExamCard()
     {
@@ -43,6 +38,7 @@ public class ExamCard
     {
         this.subjectId = subject.getId();
         this.studentId = student.getId();
+        this.canDoExam = true;
     }
 
     public Long getId()
@@ -75,23 +71,13 @@ public class ExamCard
         this.studentId = studentId;
     }
 
-    public Long getScore()
+    public boolean isCanDoExam()
     {
-        return score;
+        return canDoExam;
     }
 
-    public void setScore(Long score)
+    public void setCanDoExam(boolean canDoExam)
     {
-        this.score = score;
-    }
-
-    public Long getMaxScore()
-    {
-        return maxScore;
-    }
-
-    public void setMaxScore(Long maxScore)
-    {
-        this.maxScore = maxScore;
+        this.canDoExam = canDoExam;
     }
 }

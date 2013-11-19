@@ -28,4 +28,12 @@ public interface ExamCardDAO extends JpaRepository<ExamCard, Long>
             "and su.faculty = :faculty " +
             "and su.id = :id")
     public List<ExamCard> findBySubjectIdAndCourse(@Param("course") String course, @Param("faculty") String faculty, @Param("id") Long id);
+
+    @Query(value = "select ec " +
+            "from Subject su, Student st, ExamCard ec " +
+            "where su.id = ec.subjectId " +
+            "and st.id = ec.studentId " +
+            "and st.classRoom = :classRoom " +
+            "and su.subjectName = :subjectName")
+    public List<ExamCard> findBySubjectNameAndClassRoom(@Param("classRoom") String classRoom, @Param("subjectName") String subjectName);
 }

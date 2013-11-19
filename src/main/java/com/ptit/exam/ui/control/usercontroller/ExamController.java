@@ -1,6 +1,8 @@
 package com.ptit.exam.ui.control.usercontroller;
 
+import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.student.ExamGUI;
 import com.ptit.exam.ui.view.student.MainStudentGUI;
 import com.ptit.exam.util.GlobalValues;
@@ -54,7 +56,8 @@ public class ExamController
 //    private long minute = 0;
 //    private Thread thread;
 //    private ExamCard result;
-//    private Exam exam;
+    private Exam exam;
+    private Subject subject;
     private Student student;
     private ExamGUI examGUI;
 
@@ -63,7 +66,10 @@ public class ExamController
         examGUI = mainStudentGUI.getExamGUI();
 
         student = GlobalValues.student;
-        examGUI.setInfoAboutStudentToField(student);
+        subject = GlobalValues.subject;
+        exam = GlobalValues.exam;
+
+        examGUI.setInfoAboutStudentToField(subject, student, exam);
     }
 
 //    public void doExam(final ExamCard result, final Exam exam,final Student student) {

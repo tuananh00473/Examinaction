@@ -24,7 +24,8 @@ public class GlobalValues
     public static boolean NEW_SUBJECT_ADD_ACTION = true;
     public static boolean NEW_EXAM_ADD_ACTION = true;
 
-    public static boolean MANAGEMENT_STUDENT_ADD_ACTION = true;
+    public static boolean MANAGEMENT_STUDENT_ADD_ACTION_TAB1 = true;
+    public static boolean MANAGEMENT_STUDENT_ADD_ACTION_TAB2 = true;
     public static boolean MANAGEMENT_EXAM_ADD_ACTION = true;
     public static boolean MANAGEMENT_QUESTION_ADD_ACTION = true;
     public static boolean MANAGEMENT_SUBJECT_ADD_ACTION_TAB1 = true;
