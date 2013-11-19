@@ -5,6 +5,7 @@ import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewSubjectGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,8 @@ import java.awt.event.ActionListener;
  */
 
 @Component
-public class AddSubjectController {
+public class AddSubjectController
+{
     @Autowired
     MainAdminController mainAdminController;
 
@@ -36,7 +38,8 @@ public class AddSubjectController {
     private NewSubjectGUI newSubjectGUI;
     private Subject subject;
 
-    public void doSetUp(Subject subject) {
+    public void doSetUp(Subject subject)
+    {
         this.subject = subject;
 
         newSubjectGUI = mainAdminGUI.getNewSubjectGUI();
@@ -44,17 +47,32 @@ public class AddSubjectController {
         newSubjectGUI.getComboBoxFaculty().setModel(new DefaultComboBoxModel(Constants.facultyList));
         newSubjectGUI.getComboBoxUnitStudy().setModel(new DefaultComboBoxModel(Constants.unitOfStudy));
 
-        newSubjectGUI.getBtnSave().addActionListener(actionListener);
-        newSubjectGUI.getBtnCancel().addActionListener(actionListener);
+        setUpActionListener();
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private void setUpActionListener()
+    {
+        if (GlobalValues.NEW_SUBJECT_ADD_ACTION)
+        {
+            newSubjectGUI.getBtnSave().addActionListener(actionListener);
+            newSubjectGUI.getBtnCancel().addActionListener(actionListener);
+        }
+        GlobalValues.NEW_SUBJECT_ADD_ACTION = false;
+    }
+
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == newSubjectGUI.getBtnSave()) {
-                if (newSubjectGUI.invalidForm()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == newSubjectGUI.getBtnSave())
+            {
+                if (newSubjectGUI.invalidForm())
+                {
                     MessageManager.show("Thông tin về môn học không hợp lệ.");
-                } else {
+                }
+                else
+                {
                     subject = newSubjectGUI.getSubjectInfo(subject);
                     subjectService.save(subject);
 
@@ -64,7 +82,8 @@ public class AddSubjectController {
                     mainAdminController.doShowManagementSubjectGUI();
                 }
             }
-            if (e.getSource() == newSubjectGUI.getBtnCancel()) {
+            if (e.getSource() == newSubjectGUI.getBtnCancel())
+            {
                 managementSubjectController.doSetUp();
                 mainAdminController.doShowManagementSubjectGUI();
             }

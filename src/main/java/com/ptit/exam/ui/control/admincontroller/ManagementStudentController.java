@@ -9,6 +9,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
 import com.ptit.exam.ui.view.admin.NewStudentGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -93,14 +94,16 @@ public class ManagementStudentController
         mainAdminGUI.getManagementStudentGUI().getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
     }
 
-    private void setUpActionListener()
+    public void setUpActionListener()
     {
-        managementStudentGUI.getBtnAdd().addActionListener(actionListener);
-        managementStudentGUI.getBtnEdit().addActionListener(actionListener);
-        //TODO don't duplicate add action listener
-        managementStudentGUI.getBtnDel().addActionListener(actionListener);
-        managementStudentGUI.getBtnDel().addActionListener(actionListener);
-        managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
+        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION)
+        {
+            managementStudentGUI.getBtnAdd().addActionListener(actionListener);
+            managementStudentGUI.getBtnEdit().addActionListener(actionListener);
+            managementStudentGUI.getBtnDel().addActionListener(actionListener);
+            managementStudentGUI.getBtnSearchTab1().addActionListener(actionListener);
+            GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION = false;
+        }
     }
 
     public ActionListener actionListener = new ActionListener()

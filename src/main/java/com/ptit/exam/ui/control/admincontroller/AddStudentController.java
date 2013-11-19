@@ -6,6 +6,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewStudentGUI;
 import com.ptit.exam.util.ComboboxManager;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,11 +55,20 @@ public class AddStudentController
         ComboboxManager.setValue(newStudentGUI.getComboBoxYear(), 1990, 2013);
 
 
-        newStudentGUI.getBtnSave().addActionListener(actionListener);
-        newStudentGUI.getBtnCancel().addActionListener(actionListener);
+        setUpActionListener();
+    }
 
-        newStudentGUI.getComboBoxMonth().addItemListener(itemListener);
-        newStudentGUI.getComboBoxYear().addItemListener(itemListener);
+    private void setUpActionListener()
+    {
+        if (GlobalValues.NEW_STUDENT_ADD_ACTION)
+        {
+            newStudentGUI.getBtnSave().addActionListener(actionListener);
+            newStudentGUI.getBtnCancel().addActionListener(actionListener);
+
+            newStudentGUI.getComboBoxMonth().addItemListener(itemListener);
+            newStudentGUI.getComboBoxYear().addItemListener(itemListener);
+        }
+        GlobalValues.NEW_STUDENT_ADD_ACTION = false;
     }
 
     private ItemListener itemListener = new ItemListener()

@@ -13,6 +13,7 @@ import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementSubjectGUI;
 import com.ptit.exam.ui.view.admin.NewSubjectGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -117,10 +118,14 @@ public class ManagementSubjectController
 
     private void setUpActionListenerTab1()
     {
-        managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListenerTab1);
-        managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListenerTab1);
-        managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListenerTab1);
-        managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListenerTab1);
+        if (GlobalValues.MANAGEMENT_SUBJECT_ADD_ACTION_TAB1)
+        {
+            managementSubjectGUI.getBtnAddSUBJECT().addActionListener(actionListenerTab1);
+            managementSubjectGUI.getBtnEditSUBJECT().addActionListener(actionListenerTab1);
+            managementSubjectGUI.getBtnDelSUBJECT().addActionListener(actionListenerTab1);
+            managementSubjectGUI.getBtnSearchTab1().addActionListener(actionListenerTab1);
+        }
+        GlobalValues.MANAGEMENT_SUBJECT_ADD_ACTION_TAB1 = false;
     }
 
     public ActionListener actionListenerTab1 = new ActionListener()
@@ -215,12 +220,16 @@ public class ManagementSubjectController
 
     private void setUpActionListenerTab2()
     {
-        managementSubjectGUI.getBtnAdd().addActionListener(actionListenerTab2);
-        managementSubjectGUI.getBtnDelete().addActionListener(actionListenerTab2);
-        managementSubjectGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
+        if (GlobalValues.MANAGEMENT_SUBJECT_ADD_ACTION_TAB2)
+        {
+            managementSubjectGUI.getBtnAdd().addActionListener(actionListenerTab2);
+            managementSubjectGUI.getBtnDelete().addActionListener(actionListenerTab2);
+            managementSubjectGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
 
-        managementSubjectGUI.getCbBoxCourseTab2().addItemListener(itemListener);
-        managementSubjectGUI.getCbBoxFacultyTab2().addItemListener(itemListener);
+            managementSubjectGUI.getCbBoxCourseTab2().addItemListener(itemListener);
+            managementSubjectGUI.getCbBoxFacultyTab2().addItemListener(itemListener);
+        }
+        GlobalValues.MANAGEMENT_SUBJECT_ADD_ACTION_TAB2 = false;
     }
 
     private ActionListener actionListenerTab2 = new ActionListener()

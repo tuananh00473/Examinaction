@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.LoginController;
+import com.ptit.exam.util.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,8 @@ import java.awt.event.ActionListener;
  */
 
 @Component
-public class LoginGUI extends JFrame {
+public class LoginGUI extends JFrame
+{
     private JComboBox cbxBusiness;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
@@ -33,7 +35,8 @@ public class LoginGUI extends JFrame {
     @Autowired
     ChangePasswordGUI changePasswordGUI;
 
-    public LoginGUI() {
+    public LoginGUI()
+    {
         setContentPane(loginPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -41,39 +44,52 @@ public class LoginGUI extends JFrame {
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
         setSize(xSize, ySize);
 
-        addActionListener();
+        setUpActionListener();
     }
 
-    private void addActionListener() {
-        btnLogin.addActionListener(actionListener);
-        btnQuit.addActionListener(actionListener);
+    private void setUpActionListener()
+    {
+        if (GlobalValues.LOGIN_ADD_ACTION)
+        {
+            btnLogin.addActionListener(actionListener);
+            btnQuit.addActionListener(actionListener);
+        }
+        GlobalValues.LOGIN_ADD_ACTION = false;
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnLogin) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == btnLogin)
+            {
                 loginController.doLogin();
             }
-            if (e.getSource() == btnQuit) {
+            if (e.getSource() == btnQuit)
+            {
                 loginController.doQuit();
             }
         }
     };
 
-    public JTextField getTxtUsername() {
+    public JTextField getTxtUsername()
+    {
         return txtUsername;
     }
 
-    public JPasswordField getTxtPassword() {
+    public JPasswordField getTxtPassword()
+    {
         return txtPassword;
     }
 
-    public JComboBox getCbxBusiness() {
+    public JComboBox getCbxBusiness()
+    {
         return cbxBusiness;
     }
 
-    private void createUIComponents() {
+    private void createUIComponents()
+    {
         // TODO: place custom component creation code here
     }
 
@@ -91,7 +107,8 @@ public class LoginGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         loginPanel = new JPanel();
         loginPanel.setLayout(new CardLayout(0, 0));
         loginPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
@@ -148,7 +165,8 @@ public class LoginGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return loginPanel;
     }
 }

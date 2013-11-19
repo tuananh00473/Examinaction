@@ -72,14 +72,12 @@ public class MainAdminGUI extends JFrame
 
     public MainAdminGUI()
     {
-
         setContentPane(mainPanel);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = (int) tk.getScreenSize().getWidth();
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
         setSize(xSize, ySize);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 
         lbLogOut.addMouseListener(new MouseAdapter()
         {
@@ -118,7 +116,6 @@ public class MainAdminGUI extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 mainAdminController.doShowExportExamCard();
-//                exportExamController.showExportExamGUI();
             }
         });
 

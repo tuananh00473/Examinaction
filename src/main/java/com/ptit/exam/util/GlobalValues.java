@@ -16,4 +16,17 @@ public class GlobalValues
     public static Subject subject;
     public static Exam exam;
     public static ExamCard examCard;
+
+    public static boolean LOGIN_ADD_ACTION = true;
+
+    public static boolean NEW_QUESTION_ADD_ACTION = true;
+    public static boolean NEW_STUDENT_ADD_ACTION = true;
+    public static boolean NEW_SUBJECT_ADD_ACTION = true;
+    public static boolean NEW_EXAM_ADD_ACTION = true;
+
+    public static boolean MANAGEMENT_STUDENT_ADD_ACTION = true;
+    public static boolean MANAGEMENT_EXAM_ADD_ACTION = true;
+    public static boolean MANAGEMENT_QUESTION_ADD_ACTION = true;
+    public static boolean MANAGEMENT_SUBJECT_ADD_ACTION_TAB1 = true;
+    public static boolean MANAGEMENT_SUBJECT_ADD_ACTION_TAB2 = true;
 }

@@ -6,6 +6,7 @@ import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.ui.view.admin.ExportExamination;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.util.Constants;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,8 @@ import java.awt.event.ActionListener;
  * Time: 4:28 PM
  */
 @Component
-public class ExportExamController {
+public class ExportExamController
+{
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -40,7 +42,8 @@ public class ExportExamController {
 
     private Exam exam;
 
-    public void doSetUp(Exam exam) {
+    public void doSetUp(Exam exam)
+    {
         this.exam = exam;
 
         exportExamination = mainAdminGUI.getExportExaminationGUI();
@@ -53,30 +56,48 @@ public class ExportExamController {
 
         exportExamination.setLabelTotalCountLevel(countEasy, countMedium, countHard);
 
-        exportExamination.getBtnSave().addActionListener(actionListener);
-        exportExamination.getBtnCancel().addActionListener(actionListener);
+        setUpActionListener();
     }
 
-    private int getTotalCountHard() {
+    private void setUpActionListener()
+    {
+        if (GlobalValues.NEW_EXAM_ADD_ACTION)
+        {
+            exportExamination.getBtnSave().addActionListener(actionListener);
+            exportExamination.getBtnCancel().addActionListener(actionListener);
+        }
+        GlobalValues.NEW_EXAM_ADD_ACTION = false;
+    }
+
+    private int getTotalCountHard()
+    {
         return 10; // todo: vao service de lay info nay
     }
 
-    private int getTotalCountMedium() {
+    private int getTotalCountMedium()
+    {
         return 10; // todo: vao service de lay info nay
     }
 
-    private int getTotalCountEasy() {
+    private int getTotalCountEasy()
+    {
 //        return questionService.findBySubjectIdAndLevelAndChapter()
         return 10; // todo: vao service de lay info nay
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == exportExamination.getBtnSave()) {
-                if (exportExamination.invalidForm()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == exportExamination.getBtnSave())
+            {
+                if (exportExamination.invalidForm())
+                {
                     MessageManager.show("Thông tin về đề thi không hợp lệ.");
-                } else {
+                }
+                else
+                {
                     exam = exportExamination.getExamInfo(exam);
                     examService.save(exam);
                     MessageManager.show("Đã lưu thành công.");
@@ -85,7 +106,8 @@ public class ExportExamController {
                     mainAdminController.doShowManagementExamGUI();
                 }
             }
-            if (e.getSource() == exportExamination.getBtnCancel()) {
+            if (e.getSource() == exportExamination.getBtnCancel())
+            {
                 managementExamController.doSetUp();
                 mainAdminController.doShowManagementExamGUI();
             }
