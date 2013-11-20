@@ -28,4 +28,8 @@ public interface ExamCardService
     public List<ExamCard> findBySubjectNameAndClassRoom(String classRoom, String subjectName);
 
     public List<ExamCard> findByStudentId(Long studentId);
+
+    public List<ExamCard> findBySubjectCode(String subjectCode);
+
+    public List<ExamCard> findByClassRoom(String classRoom);
 }

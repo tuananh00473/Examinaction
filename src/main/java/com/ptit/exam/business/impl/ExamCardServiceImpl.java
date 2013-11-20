@@ -76,4 +76,16 @@ public class ExamCardServiceImpl implements ExamCardService
     {
         return examCardDAO.findByStudentId(studentId);
     }
+
+    @Override
+    public List<ExamCard> findBySubjectCode(String subjectCode)
+    {
+        return examCardDAO.findBySubjectCode(subjectCode);
+    }
+
+    @Override
+    public List<ExamCard> findByClassRoom(String classRoom)
+    {
+        return examCardDAO.findByClassRoom(classRoom);
+    }
 }

@@ -224,9 +224,7 @@ public class Student
         {
             return true;
         }
-        {
-            return false;
-        }
+        return false;
     }
 
     public boolean inValid()

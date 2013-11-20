@@ -58,6 +58,7 @@ public class ManagementStudentController
 
     private ManagementStudentGUI managementStudentGUI;
     private NewStudentGUI newStudentGUI;
+    private List<Student> studentList;
 
     public void doSetUp()
     {
@@ -186,11 +187,27 @@ public class ManagementStudentController
 
     private void doSearchExamCard()
     {
-        String subjectName = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
-        String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
-        tab2examCardList = examCardService.findBySubjectNameAndClassRoom(subjectName, classRoom);
-
+        tab2examCardList = getExamCards();
         doBindingExamCard(tab2examCardList, tab2ExamCardTable, tab2ExamCardScrollPane);
+    }
+
+    private List<ExamCard> getExamCards()
+    {
+        String subjectCode = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
+        String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
+
+        List<ExamCard> list1 = ("".equals(subjectCode)) ? examCardService.getAll() : examCardService.findBySubjectCode(subjectCode);
+        List<ExamCard> list2 = ("".equals(classRoom)) ? examCardService.getAll() : examCardService.findByClassRoom(classRoom);
+        List<ExamCard> resultList = new ArrayList<ExamCard>();
+
+        for (ExamCard examCard : list1)
+        {
+            if (list2.contains(examCard))
+            {
+                resultList.add(examCard);
+            }
+        }
+        return resultList;
     }
 
     private void doEditStudent()
@@ -205,7 +222,6 @@ public class ManagementStudentController
             doSetUpStudentGUI(tab1StudentList.get(select));
             mainAdminController.doShowNewStudentCard();
         }
-
     }
 
     private void doSetUpStudentGUI(Student student)
@@ -216,6 +232,12 @@ public class ManagementStudentController
 
     private void doSearchStudent()
     {
+        tab1StudentList = getStudentList();
+        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
+    }
+
+    public List<Student> getStudentList()
+    {
         String nameStudent = managementStudentGUI.getTxtNameSearch().getText();
         String classRoom = managementStudentGUI.getTxtClassSearchTab1().getText();
         String faculty = managementStudentGUI.getComboBoxFacultyTab1().getSelectedItem().toString();
@@ -223,16 +245,16 @@ public class ManagementStudentController
         List<Student> list1 = ("".equals(nameStudent) ? studentService.getAll() : studentService.findByName(nameStudent));
         List<Student> list2 = ("".equals(classRoom) ? studentService.getAll() : studentService.findByClassRoom(classRoom));
         List<Student> list3 = ("".equals(faculty) ? studentService.getAll() : studentService.findByFaculty(faculty));
+        List<Student> resultList = new ArrayList<Student>();
 
-        tab1StudentList = new ArrayList<Student>();
         for (Student student : list1)
         {
             if (list2.contains(student) && list3.contains(student))
             {
-                tab1StudentList.add(student);
+                resultList.add(student);
             }
         }
-        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
+        return resultList;
     }
 
     private void doDeleteStudent()

@@ -313,7 +313,7 @@ public class ManagementSubjectController
             {
                 for (Student student : studentList)
                 {
-                    examCardService.save(new ExamCard(subject, student));
+                    examCardService.save(new ExamCard(subject.getId(), student.getId()));
                 }
             }
         }
