@@ -94,6 +94,7 @@ public class TableBinding
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_HARD_QUESTION)).setColumnName("SỐ CÂU KHÓ");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_MEDIUM_QUESTION)).setColumnName("SỐ CÂU TRUNG BÌNH");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_EASY_QUESTION)).setColumnName("SỐ CÂU DỄ");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_IS_ACTIVE)).setColumnName("KÍCH HOẠT");
 
         jTableBinding.bind();
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);

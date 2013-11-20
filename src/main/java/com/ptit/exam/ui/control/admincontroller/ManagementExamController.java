@@ -194,6 +194,8 @@ public class ManagementExamController
         cmodel.getColumn(5).setCellEditor(textEditor);
         cmodel.getColumn(6).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(6).setCellEditor(textEditor);
+        cmodel.getColumn(7).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(7).setCellEditor(textEditor);
 
         JTableHeader header = managementExamTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));
