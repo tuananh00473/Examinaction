@@ -121,15 +121,19 @@ public class TableBinding
     }
 
 
-    public static void bindingExamCard(List<ExamCard> examCardList, JTable tableExamCard, JScrollPane examCardScrollPane)
+    public static void bindingExamCard(List<ExamCardDTOBinding> examCardDTOList, JTable tableExamCard, JScrollPane examCardScrollPane)
     {
         unbinding(tableExamCard, examCardScrollPane);
-        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examCardList, tableExamCard);
+        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examCardDTOList, tableExamCard);
         //-----------------------Option----------------------------------------------
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_ID)).setColumnName("STT");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_STUDENT_ID)).setColumnName("MÃ SINH VIÊN");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_SUBJECT_ID)).setColumnName("MÃ MÔN");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCard.EXAM_CARD_ACTIVE)).setColumnName("ĐỦ ĐKDT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.EXAM_ID)).setColumnName("MÃ THẺ DỰ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_CODE)).setColumnName("MÃ SINH VIÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_NAME)).setColumnName("HỌ VÀ TÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.FACULTY)).setColumnName("KHOA");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CLASS_ROOM)).setColumnName("LỚP");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.NAME_SUBJECT)).setColumnName("TÊN MÔN HỌC");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.UNIT_OF_STUDY)).setColumnName("ĐVHT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CAN_DO_EXAM)).setColumnName("ĐỦ ĐKDT");
 
         jTableBinding.bind();
         bindMap.put(examCardScrollPane.hashCode() + "." + tableExamCard.hashCode(), jTableBinding);

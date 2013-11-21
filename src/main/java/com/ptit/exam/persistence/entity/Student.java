@@ -210,7 +210,7 @@ public class Student
     public boolean equals(Object object)
     {
         Student student = (Student) object;
-        if (firstName.equals(student.getFirstName())
+        return firstName.equals(student.getFirstName())
                 && lastName.equals(student.getLastName())
                 && gender.equals(student.getGender())
                 && dateOfBirth.equals(student.getDateOfBirth())
@@ -220,16 +220,12 @@ public class Student
                 && course.equals(student.getCourse())
                 && trainingType.equals(student.getTrainingType())
                 && userName.equals(student.getUserName())
-                && passWord.equals(student.getPassWord()))
-        {
-            return true;
-        }
-        return false;
+                && passWord.equals(student.getPassWord());
     }
 
     public boolean inValid()
     {
-        if (isValueNull(studentCode)
+        return isValueNull(studentCode)
                 || isValueNull(firstName)
                 || isValueNull(lastName)
                 || isValueNull(gender)
@@ -239,20 +235,12 @@ public class Student
                 || isValueNull(course)
                 || isValueNull(trainingType)
                 || isValueNull(userName)
-                || isValueNull(passWord))
-        {
-            return true;
-        }
-        return false;
+                || isValueNull(passWord);
     }
 
     public boolean isValueNull(String attribute)
     {
-        if (null == attribute || "".equals(attribute))
-        {
-            return true;
-        }
-        return false;
+        return null == attribute || "".equals(attribute);
     }
 
     @Override

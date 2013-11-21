@@ -85,12 +85,8 @@ public class ExamCard
     public boolean equals(Object obj)
     {
         ExamCard examCard = (ExamCard) obj;
-        if (subjectId.equals(examCard.getSubjectId())
+        return subjectId.equals(examCard.getSubjectId())
                 && studentId.equals(examCard.getStudentId())
-                && (canDoExam && examCard.isCanDoExam()))
-        {
-            return true;
-        }
-        return false;
+                && (canDoExam == examCard.isCanDoExam());
     }
 }

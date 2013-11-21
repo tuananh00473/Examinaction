@@ -11,6 +11,7 @@ import com.ptit.exam.ui.view.admin.ManagermentExamGUI;
 import com.ptit.exam.util.Constants;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
+import org.jdesktop.observablecollections.ObservableCollections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,25 +54,21 @@ public class ManagementExamController
     private JScrollPane managementExamScrollPanel;
 
     //    private Set<String> stringSet = new HashSet<String>();
-//    private String nameSubject;
-//
+
     public void doSetUp()
     {
         setUpView();
         setUpActionListenner();
-
-        examList = examService.getAll();
-        doBindingExam(examList, managementExamTable, managementExamScrollPanel);
     }
 
     private void setUpActionListenner()
     {
         if (GlobalValues.MANAGEMENT_EXAM_ADD_ACTION)
         {
-            managementExamGUI.getBtnSearch().addActionListener(actionListener);
             managementExamGUI.getBtnAddExam().addActionListener(actionListener);
             managementExamGUI.getBtnEditExam().addActionListener(actionListener);
             managementExamGUI.getBtnDeleteExam().addActionListener(actionListener);
+            managementExamGUI.getComboBoxSubject().addItemListener(itemListener);
         }
         GlobalValues.MANAGEMENT_EXAM_ADD_ACTION = false;
     }
@@ -78,10 +78,6 @@ public class ManagementExamController
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            if (e.getSource() == managementExamGUI.getBtnSearch())
-            {
-                doSearchExam();
-            }
             if (e.getSource() == managementExamGUI.getBtnAddExam())
             {
                 doAddExam();
@@ -97,12 +93,16 @@ public class ManagementExamController
         }
     };
 
-    private void doSearchExam()
+    private ItemListener itemListener = new ItemListener()
     {
-        String subjectCode = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
-        examList = ("".equals(subjectCode)) ? examService.getAll() : examService.findBySubjectCode(subjectCode);
-        doBindingExam(examList, managementExamTable, managementExamScrollPanel);
-    }
+        @Override
+        public void itemStateChanged(ItemEvent e)
+        {
+            String subjectCode = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
+            examList = ("".equals(subjectCode)) ? ObservableCollections.observableList(new ArrayList<Exam>()) : examService.findBySubjectCode(subjectCode);
+            doBindingExam(examList, managementExamTable, managementExamScrollPanel);
+        }
+    };
 
     private void doAddExam()
     {
@@ -160,17 +160,6 @@ public class ManagementExamController
         managementExamTable = managementExamGUI.getManagementExamTable();
         managementExamScrollPanel = managementExamGUI.getManagementExamScrollpanel();
     }
-//
-//    public void doSearch() {
-//        examList = ObservableCollections.observableList(new ArrayList<Exam>());
-//        managementExamTable = mainAdminGUI.getManagermentExamGUI().getManagementExamTable();
-//        nameSubject = mainAdminGUI.getManagermentExamGUI().getComboBoxSubject().getSelectedItem().toString();
-//        Subject subject = subjectService.findBySubjectName(nameSubject);
-//        examList = examService.findBySubjectRelationExam(subject);
-//        doBindingExam(examList);
-//
-//
-//    }
 
     private void doBindingExam(List<Exam> examList, JTable table, JScrollPane scrollPane)
     {
@@ -178,6 +167,7 @@ public class ManagementExamController
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
         TextAreaEditor textEditor = new TextAreaEditor();
+
         textEditor.setEditAble(false);
         TableColumnModel cmodel = managementExamTable.getColumnModel();
         cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
@@ -194,8 +184,8 @@ public class ManagementExamController
         cmodel.getColumn(5).setCellEditor(textEditor);
         cmodel.getColumn(6).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(6).setCellEditor(textEditor);
-        cmodel.getColumn(7).setCellRenderer(textAreaRenderer);
-        cmodel.getColumn(7).setCellEditor(textEditor);
+        cmodel.getColumn(7).setCellRenderer(table.getDefaultRenderer(Boolean.class));
+        cmodel.getColumn(7).setCellEditor(table.getDefaultEditor(Boolean.class));
 
         JTableHeader header = managementExamTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));
