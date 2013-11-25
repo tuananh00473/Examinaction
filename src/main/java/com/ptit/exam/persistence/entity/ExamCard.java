@@ -34,10 +34,10 @@ public class ExamCard
     {
     }
 
-    public ExamCard(Subject subject, Student student)
+    public ExamCard(Long subjectId, Long studentId)
     {
-        this.subjectId = subject.getId();
-        this.studentId = student.getId();
+        this.subjectId = subjectId;
+        this.studentId = studentId;
         this.canDoExam = true;
     }
 
@@ -79,5 +79,14 @@ public class ExamCard
     public void setCanDoExam(boolean canDoExam)
     {
         this.canDoExam = canDoExam;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        ExamCard examCard = (ExamCard) obj;
+        return subjectId.equals(examCard.getSubjectId())
+                && studentId.equals(examCard.getStudentId())
+                && (canDoExam == examCard.isCanDoExam());
     }
 }

@@ -2,17 +2,21 @@ package com.ptit.exam.ui.control.admincontroller;
 
 import com.ptit.exam.business.ExamCardService;
 import com.ptit.exam.business.StudentService;
+import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
 import com.ptit.exam.business.common.TextAreaRenderer;
 import com.ptit.exam.persistence.entity.ExamCard;
+import com.ptit.exam.persistence.entity.ExamCardDTOBinding;
 import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
 import com.ptit.exam.ui.view.admin.NewStudentGUI;
 import com.ptit.exam.util.Constants;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
+import org.jdesktop.observablecollections.ObservableCollections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,18 +50,23 @@ public class ManagementStudentController
     StudentService studentService;
 
     @Autowired
+    SubjectService subjectService;
+
+    @Autowired
     ExamCardService examCardService;
 
     private List<Student> tab1StudentList;
     private JTable tab1StudentTable;
     private JScrollPane tab1StudentScrollPane;
 
+    private List<ExamCardDTOBinding> examCardDTOBindingList;
     private List<ExamCard> tab2examCardList;
     private JTable tab2ExamCardTable;
     private JScrollPane tab2ExamCardScrollPane;
 
     private ManagementStudentGUI managementStudentGUI;
     private NewStudentGUI newStudentGUI;
+    private List<Student> studentList;
 
     public void doSetUp()
     {
@@ -181,16 +190,37 @@ public class ManagementStudentController
 
     private void doSaveExamCard()
     {
-
+        for (ExamCardDTOBinding examCardDTOBinding : examCardDTOBindingList)
+        {
+            ExamCard examCard = examCardService.findById(examCardDTOBinding.getExamId());
+            examCard.setCanDoExam(examCardDTOBinding.isCanDoExam());
+            examCardService.save(examCard);
+        }
     }
 
     private void doSearchExamCard()
     {
-        String subjectName = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
-        String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
-        tab2examCardList = examCardService.findBySubjectNameAndClassRoom(subjectName, classRoom);
-
+        tab2examCardList = getExamCards();
         doBindingExamCard(tab2examCardList, tab2ExamCardTable, tab2ExamCardScrollPane);
+    }
+
+    private List<ExamCard> getExamCards()
+    {
+        String subjectCode = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
+        String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
+
+        List<ExamCard> list1 = ("".equals(subjectCode)) ? examCardService.getAll() : examCardService.findBySubjectCode(subjectCode);
+        List<ExamCard> list2 = ("".equals(classRoom)) ? examCardService.getAll() : examCardService.findByClassRoom(classRoom);
+        List<ExamCard> resultList = new ArrayList<ExamCard>();
+
+        for (ExamCard examCard : list1)
+        {
+            if (list2.contains(examCard))
+            {
+                resultList.add(examCard);
+            }
+        }
+        return resultList;
     }
 
     private void doEditStudent()
@@ -205,7 +235,6 @@ public class ManagementStudentController
             doSetUpStudentGUI(tab1StudentList.get(select));
             mainAdminController.doShowNewStudentCard();
         }
-
     }
 
     private void doSetUpStudentGUI(Student student)
@@ -216,6 +245,12 @@ public class ManagementStudentController
 
     private void doSearchStudent()
     {
+        tab1StudentList = getStudentList();
+        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
+    }
+
+    public List<Student> getStudentList()
+    {
         String nameStudent = managementStudentGUI.getTxtNameSearch().getText();
         String classRoom = managementStudentGUI.getTxtClassSearchTab1().getText();
         String faculty = managementStudentGUI.getComboBoxFacultyTab1().getSelectedItem().toString();
@@ -223,16 +258,16 @@ public class ManagementStudentController
         List<Student> list1 = ("".equals(nameStudent) ? studentService.getAll() : studentService.findByName(nameStudent));
         List<Student> list2 = ("".equals(classRoom) ? studentService.getAll() : studentService.findByClassRoom(classRoom));
         List<Student> list3 = ("".equals(faculty) ? studentService.getAll() : studentService.findByFaculty(faculty));
+        List<Student> resultList = new ArrayList<Student>();
 
-        tab1StudentList = new ArrayList<Student>();
         for (Student student : list1)
         {
             if (list2.contains(student) && list3.contains(student))
             {
-                tab1StudentList.add(student);
+                resultList.add(student);
             }
         }
-        doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
+        return resultList;
     }
 
     private void doDeleteStudent()
@@ -290,13 +325,33 @@ public class ManagementStudentController
 
     private void doBindingExamCard(List<ExamCard> examCardList, JTable jTable, JScrollPane jScrollPane)
     {
-        TableBinding.bindingExamCard(examCardList, jTable, jScrollPane);
+        examCardDTOBindingList = ObservableCollections.observableList(new ArrayList<ExamCardDTOBinding>());
+        for (ExamCard examCard : examCardList)
+        {
+            Student student = studentService.findById(examCard.getStudentId());
+            Subject subject = subjectService.findById(examCard.getSubjectId());
+
+            ExamCardDTOBinding examCardDTOBinding = new ExamCardDTOBinding();
+            examCardDTOBinding.setExamId(examCard.getId());
+            examCardDTOBinding.setStudentCode(student.getStudentCode());
+            examCardDTOBinding.setStudentName(student.getFirstName() + " " + student.getLastName());
+            examCardDTOBinding.setFaculty(student.getFaculty());
+            examCardDTOBinding.setClassRoom(student.getClassRoom());
+            examCardDTOBinding.setNameSubject(subject.getSubjectName());
+            examCardDTOBinding.setUnitOfStudy(subject.getUnitOfStudy());
+            examCardDTOBinding.setCanDoExam(examCard.isCanDoExam());
+
+            examCardDTOBindingList.add(examCardDTOBinding);
+        }
+
+        TableBinding.bindingExamCard(examCardDTOBindingList, jTable, jScrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
         TextAreaEditor textEditor = new TextAreaEditor();
         textEditor.setEditAble(false);
 
         TableColumnModel cmodel = jTable.getColumnModel();
+
         cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(0).setCellEditor(textEditor);
         cmodel.getColumn(1).setCellRenderer(textAreaRenderer);
@@ -305,6 +360,15 @@ public class ManagementStudentController
         cmodel.getColumn(2).setCellEditor(textEditor);
         cmodel.getColumn(3).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(3).setCellEditor(textEditor);
+        cmodel.getColumn(4).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(4).setCellEditor(textEditor);
+        cmodel.getColumn(5).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(5).setCellEditor(textEditor);
+        cmodel.getColumn(6).setCellRenderer(textAreaRenderer);
+        cmodel.getColumn(6).setCellEditor(textEditor);
+        cmodel.getColumn(7).setCellEditor(jTable.getDefaultEditor(Boolean.class));
+        cmodel.getColumn(7).setCellRenderer(jTable.getDefaultRenderer(Boolean.class));
+
         JTableHeader header = jTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));
         jTable.getTableHeader().setReorderingAllowed(false);
@@ -322,6 +386,7 @@ public class ManagementStudentController
         textEditor.setEditAble(false);
 
         TableColumnModel cmodel = jTable.getColumnModel();
+
         cmodel.getColumn(0).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(0).setCellEditor(textEditor);
         cmodel.getColumn(1).setCellRenderer(textAreaRenderer);
@@ -344,6 +409,7 @@ public class ManagementStudentController
         cmodel.getColumn(9).setCellEditor(textEditor);
         cmodel.getColumn(10).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(10).setCellEditor(textEditor);
+
         JTableHeader header = jTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));
         jTable.getTableHeader().setReorderingAllowed(false);

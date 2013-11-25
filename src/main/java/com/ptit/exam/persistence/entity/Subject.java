@@ -33,7 +33,7 @@ public class Subject
     private String faculty;
 
     @Column(name = "unit_study")
-    private Long unitOfStudy;
+    private int unitOfStudy;
 
     @Column(name = "subject_description")
     private String subjectDescription;
@@ -78,12 +78,12 @@ public class Subject
         this.faculty = faculty;
     }
 
-    public Long getUnitOfStudy()
+    public int getUnitOfStudy()
     {
         return unitOfStudy;
     }
 
-    public void setUnitOfStudy(Long unitOfStudy)
+    public void setUnitOfStudy(int unitOfStudy)
     {
         this.unitOfStudy = unitOfStudy;
     }
@@ -102,32 +102,20 @@ public class Subject
     public boolean equals(Object obj)
     {
         Subject subject = (Subject) obj;
-        if (subjectCode.equals(subject.getSubjectCode())
+        return subjectCode.equals(subject.getSubjectCode())
                 && subjectName.equals(subject.getSubjectName())
                 && subjectDescription.equals(subject.getSubjectDescription())
                 && faculty.equals(subject.getFaculty())
-                && unitOfStudy == subject.getUnitOfStudy())
-        {
-            return true;
-        }
-        return false;
+                && unitOfStudy == subject.getUnitOfStudy();
     }
 
     public boolean inValid()
     {
-        if (isValueNull(subjectCode) || isValueNull(subjectName) || isValueNull(faculty) || null == unitOfStudy || isValueNull(subjectDescription))
-        {
-            return true;
-        }
-        return false;
+        return isValueNull(subjectCode) || isValueNull(subjectName) || isValueNull(faculty) || 0 == unitOfStudy || isValueNull(subjectDescription);
     }
 
     public boolean isValueNull(String attribute)
     {
-        if (null == attribute || "".equals(attribute))
-        {
-            return true;
-        }
-        return false;
+        return null == attribute || "".equals(attribute);
     }
 }

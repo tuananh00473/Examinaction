@@ -10,7 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "answers")
-public class Answer {
+public class Answer
+{
 
     public static String ANSWER_CORRECT = "correct";
     public static String ANSWER_CONTENT = "content";
@@ -30,45 +31,52 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionId;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public boolean isCorrect() {
+    public boolean isCorrect()
+    {
         return correct;
     }
 
-    public void setCorrect(boolean correct) {
+    public void setCorrect(boolean correct)
+    {
         this.correct = correct;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content)
+    {
         this.content = content;
     }
 
-    public Long getQuestionId() {
+    public Long getQuestionId()
+    {
         return questionId;
     }
 
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(Long questionId)
+    {
         this.questionId = questionId;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         Answer answer = (Answer) obj;
-        if (questionId == answer.getQuestionId()
+        return questionId.equals(answer.getQuestionId())
                 && content.equals(answer.getContent())
-                && (correct && answer.isCorrect()))
-            return true;
-        return false;
+                && (correct && answer.isCorrect());
     }
 }

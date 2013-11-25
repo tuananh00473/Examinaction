@@ -36,4 +36,16 @@ public interface ExamCardDAO extends JpaRepository<ExamCard, Long>
             "and st.classRoom = :classRoom " +
             "and su.subjectName = :subjectName")
     public List<ExamCard> findBySubjectNameAndClassRoom(@Param("classRoom") String classRoom, @Param("subjectName") String subjectName);
+
+    @Query(value = "select ec " +
+            "from Subject su, ExamCard ec " +
+            "where su.id = ec.subjectId " +
+            "and su.subjectCode = :subjectCode")
+    public List<ExamCard> findBySubjectCode(@Param("subjectCode") String subjectCode);
+
+    @Query(value = "select ec " +
+            "from Student st, ExamCard ec " +
+            "where st.id = ec.studentId " +
+            "and st.classRoom = :classRoom ")
+    public List<ExamCard> findByClassRoom(@Param("classRoom") String classRoom);
 }
