@@ -1,6 +1,6 @@
 package com.ptit.exam.ui.control.admincontroller;
 
-import com.ptit.exam.ui.view.admin.MainAdminGUI;
+import com.ptit.exam.ui.view.admin.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class MainAdminController
-{
+public class MainAdminController {
 
     public static final String MANAGEMENT_EXAM_CARD = "managermentExamGUI";
     public static final String MANAGEMENT_STUDENT_CARD = "managementStudentGUI";
@@ -50,56 +49,46 @@ public class MainAdminController
     @Autowired
     ManagementSubjectController managementSubjectController;
 
-    public void setUpCard()
-    {
+    public void setUpCard(){
         managementSubjectController.doSetUp();
         managementStudentController.doSetUp();
         managementExamController.doSetUp();
         questionBankController.doSetUp();
     }
 
-    public void doShowQuestionBankCard()
-    {
+    public void doShowQuestionBankCard() {
         showCard(QUESTION_BANK_CARD);
     }
 
-    public void doShowNewQuestionCard()
-    {
+    public void doShowNewQuestionCard() {
         showCard(NEW_QUESTION_CARD);
     }
 
-    public void doShowExportExamCard()
-    {
+    public void doShowExportExamCard() {
         showCard(EXPORT_EXAM_CARD);
     }
 
-    public void doShowManagementExamGUI()
-    {
+    public void doShowManagementExamGUI() {
         showCard(MANAGEMENT_EXAM_CARD);
     }
 
-    public void doShowManagementSubjectGUI()
-    {
+    public void doShowManagementSubjectGUI() {
         showCard(MANAGEMENT_SUBJECT_CARD);
     }
 
-    public void doShowManagementStudentGUI()
-    {
+    public void doShowManagementStudentGUI() {
         showCard(MANAGEMENT_STUDENT_CARD);
     }
 
-    public void doShowNewSubjectCard()
-    {
+    public void doShowNewSubjectCard() {
         showCard(NEW_SUBJECT_CARD);
     }
 
-    public void doShowNewStudentCard()
-    {
+    public void doShowNewStudentCard() {
         showCard(NEW_STUDENT_CARD);
     }
 
-    public void showCard(String nameCard)
-    {
+    public void showCard(String nameCard) {
         mainAdminGUI.getCardLayout().show(mainAdminGUI.getAdminCardPanel(), nameCard);
     }
 }
