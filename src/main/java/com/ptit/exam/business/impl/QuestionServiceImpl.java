@@ -15,52 +15,68 @@ import java.util.List;
  */
 
 @Component("questionService")
-public class QuestionServiceImpl implements QuestionService {
+public class QuestionServiceImpl implements QuestionService
+{
     @Autowired
     QuestionDAO questionDAO;
 
     @Override
-    public Question findById(Long id) {
+    public Question findById(Long id)
+    {
         return questionDAO.findOne(id);
     }
 
     @Override
-    public Question save(Question question) {
+    public Question save(Question question)
+    {
         return questionDAO.saveAndFlush(question);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id)
+    {
         questionDAO.delete(id);
     }
 
     @Override
-    public void delete(Question question) {
+    public void delete(Question question)
+    {
         questionDAO.delete(question);
     }
 
     @Override
-    public List<Question> getAll() {
+    public List<Question> getAll()
+    {
         return questionDAO.findAll();
     }
 
     @Override
-    public List<Question> findBySubjectIdAndLevelAndChapter(String subjectCode, int chapter, int level) {
+    public List<Question> findBySubjectIdAndLevelAndChapter(String subjectCode, int chapter, int level)
+    {
         return questionDAO.findBySubjectCodeAndChapterAndLevel(subjectCode, chapter, level);
     }
 
     @Override
-    public List<Question> findBySubjectCode(String subjectCode) {
+    public List<Question> findBySubjectIdAndLevel(String subjectCode, int difficult)
+    {
+        return questionDAO.findBySubjectCodeAndLevel(subjectCode, difficult);
+    }
+
+    @Override
+    public List<Question> findBySubjectCode(String subjectCode)
+    {
         return questionDAO.findBySubjectCode(subjectCode);
     }
 
     @Override
-    public List<Question> findByChapter(int value) {
+    public List<Question> findByChapter(int value)
+    {
         return questionDAO.findByChapter(value);
     }
 
     @Override
-    public List<Question> findByLevel(int value) {
+    public List<Question> findByLevel(int value)
+    {
         return questionDAO.findByLevel(value);
     }
 

@@ -10,7 +10,8 @@ import java.util.List;
  * Time: 10:00 AM
  */
 
-public interface AdminService {
+public interface AdminService
+{
     public Admin findById(Long id);
 
     public Admin save(Admin admin);

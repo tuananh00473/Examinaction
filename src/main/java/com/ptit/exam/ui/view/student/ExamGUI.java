@@ -39,29 +39,22 @@ public class ExamGUI extends JPanel
     private JPanel panelButtonAnswer;
     private JLabel lbTotalNumberAnswered;
     private JLabel lbTotalNumberNotAnswerYet;
-    private JScrollPane contentQuestionScrollpanel;
     private JTextArea txtContentQuestion;
     private JLabel lbImage;
 
-    public JPanel getPanelButtonQuestion()
+    public JButton getBtnPrevious()
     {
-        return panelButtonQuestion;
+        return btnPrevious;
     }
 
+    public JButton getBtnNext()
+    {
+        return btnNext;
+    }
 
     public JButton getBtnAnswerA()
     {
         return btnAnswerA;
-    }
-
-    public JTextArea getTxtContentQuestion()
-    {
-        return txtContentQuestion;
-    }
-
-    public JLabel getLbImage()
-    {
-        return lbImage;
     }
 
     public JButton getBtnAnswerB()
@@ -79,64 +72,26 @@ public class ExamGUI extends JPanel
         return btnAnswerD;
     }
 
-    public JPanel getExamCard()
-    {
-        return examCard;
-    }
-
-    public JLabel getLbNameExamination()
-    {
-        return lbNameExamination;
-    }
-
-    public JLabel getLbNameStudent()
-    {
-        return lbNameStudent;
-    }
-
-    public JLabel getLbStudentCode()
-    {
-        return lbStudentCode;
-    }
-
-    public JLabel getLbNameSubject()
-    {
-        return lbNameSubject;
-    }
-
-    public JLabel getLbTime()
-    {
-        return lbTime;
-    }
-
-    public JLabel getLbNumberQuestion()
-    {
-        return lbNumberQuestion;
-    }
-
-    public JButton getBtnPrevious()
-    {
-        return btnPrevious;
-    }
-
-    public JButton getBtnNext()
-    {
-        return btnNext;
-    }
-
     public JButton getBtnSubmit()
     {
         return btnSubmit;
     }
 
+    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
+    {
+        lbNameSubject.setText(subject.getSubjectName());
+        lbNameStudent.setText(student.getFullName());
+        lbStudentCode.setText(student.getStudentCode());
+
+        lbNameExamination.setText(exam.getExamName());
+        lbTime.setText(String.valueOf(exam.getTotalTime()));
+        lbNumberQuestion.setText(String.valueOf(exam.getTotalQuestion()));
+
+    }
+
     public JLabel getLbRemainTime()
     {
         return lbRemainTime;
-    }
-
-    public JPanel getPanelButtonAnswer()
-    {
-        return panelButtonAnswer;
     }
 
     public JLabel getLbTotalNumberAnswered()
@@ -149,17 +104,24 @@ public class ExamGUI extends JPanel
         return lbTotalNumberNotAnswerYet;
     }
 
-    public JScrollPane getContentQuestionScrollpanel()
+    public JTextArea getTxtContentQuestion()
     {
-        return contentQuestionScrollpanel;
+        return txtContentQuestion;
     }
 
-    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
+    public JPanel getPanelButtonQuestion()
     {
-        lbNameSubject.setText(subject.getSubjectName());
-        lbNameStudent.setText(student.getFirstName() + " " + student.getLastName());
-        lbStudentCode.setText(student.getStudentCode());
+        return panelButtonQuestion;
+    }
 
+    public JLabel getLbImage()
+    {
+        return lbImage;
+    }
+
+    public JPanel getPanelButtonAnswer()
+    {
+        return panelButtonAnswer;
     }
 
     {

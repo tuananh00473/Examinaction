@@ -11,9 +11,7 @@ import java.util.List;
  * Time: 2:29 PM
  */
 
-public interface AnswerDAO extends JpaRepository<Answer, Long> {
+public interface AnswerDAO extends JpaRepository<Answer, Long>
+{
     public List<Answer> findByQuestionId(Long questionId);
-
-//    @Query("DELETE FROM Answer a WHERE a.questionId = :questionId")
-//    public void deleteByQuestionId(@Param("questionId")Long questionId);
 }

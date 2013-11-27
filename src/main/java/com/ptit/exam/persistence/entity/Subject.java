@@ -118,4 +118,10 @@ public class Subject
     {
         return null == attribute || "".equals(attribute);
     }
+
+    @Override
+    public String toString()
+    {
+        return subjectName;
+    }
 }

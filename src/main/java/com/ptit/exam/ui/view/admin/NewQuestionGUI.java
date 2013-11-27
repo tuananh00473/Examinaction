@@ -18,7 +18,8 @@ import java.util.List;
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-public class NewQuestionGUI extends JPanel {
+public class NewQuestionGUI extends JPanel
+{
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -40,39 +41,48 @@ public class NewQuestionGUI extends JPanel {
     @Autowired
     QuestionBankController questionBankController;
 
-    public JComboBox getCbLevel() {
+    public JComboBox getCbLevel()
+    {
         return cbLevel;
     }
 
-    public JTextField getTxtChapter() {
+    public JTextField getTxtChapter()
+    {
         return txtChapter;
     }
 
-    public JTextField getTxtSubjectCode() {
+    public JTextField getTxtSubjectCode()
+    {
         return txtSubjectCode;
     }
 
-    public JTextArea getTxtContentQues() {
+    public JTextArea getTxtContentQues()
+    {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage() {
+    public JTextField getTxtUrlImage()
+    {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser() {
+    public JButton getBtnBrowser()
+    {
         return btnBrowser;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public Question getQuestionInfo(Question question) {
+    public Question getQuestionInfo(Question question)
+    {
         question.setSubjectCode(txtSubjectCode.getText());
         question.setChapter(Integer.parseInt(txtChapter.getText()));
         question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
@@ -81,48 +91,55 @@ public class NewQuestionGUI extends JPanel {
         return question;
     }
 
-    public Answer getAnswer1(Question question, Answer answer) {
+    public Answer getAnswer1(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer1.getText());
         answer.setCorrect(rdAnswer1.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer2(Question question, Answer answer) {
+    public Answer getAnswer2(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer2.getText());
         answer.setCorrect(rdAnswer2.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer3(Question question, Answer answer) {
+    public Answer getAnswer3(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer3.getText());
         answer.setCorrect(rdAnswer3.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer4(Question question, Answer answer) {
+    public Answer getAnswer4(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer4.getText());
         answer.setCorrect(rdAnswer4.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public boolean invalidForm() {
+    public boolean invalidForm()
+    {
         if ("".equals(txtSubjectCode.getText())
                 || "".equals(txtChapter.getText())
                 || "".equals(txtContentQues.getText())
                 || "".equals(txtContentAnswer1.getText())
                 || "".equals(txtContentAnswer2.getText())
                 || "".equals(txtContentAnswer3.getText())
-                || "".equals(txtContentAnswer4.getText())) {
+                || "".equals(txtContentAnswer4.getText()))
+        {
             return true;
         }
         return false;
     }
 
-    public List<JTextArea> getTxtContentAnswer() {
+    public List<JTextArea> getTxtContentAnswer()
+    {
         List<JTextArea> answerList = new ArrayList<JTextArea>();
         answerList.add(txtContentAnswer1);
         answerList.add(txtContentAnswer2);
@@ -131,7 +148,8 @@ public class NewQuestionGUI extends JPanel {
         return answerList;
     }
 
-    public List<JRadioButton> getRadioButtonList() {
+    public List<JRadioButton> getRadioButtonList()
+    {
         List<JRadioButton> radioButtonList = new ArrayList<JRadioButton>();
         radioButtonList.add(rdAnswer1);
         radioButtonList.add(rdAnswer2);
@@ -140,7 +158,8 @@ public class NewQuestionGUI extends JPanel {
         return radioButtonList;
     }
 
-    public void resetNewQuestionGUI() {
+    public void resetNewQuestionGUI()
+    {
         txtSubjectCode.setText("");
         txtChapter.setText("");
         txtContentQues.setText("");
@@ -155,7 +174,8 @@ public class NewQuestionGUI extends JPanel {
         rdAnswer4.setSelected(false);
     }
 
-    public void mappingInfoToField(Question question, List<Answer> answerList) {
+    public void mappingInfoToField(Question question, List<Answer> answerList)
+    {
         txtContentAnswer1.setText(answerList.get(0).getContent());
         rdAnswer1.setSelected(answerList.get(0).isCorrect());
 
@@ -189,25 +209,24 @@ public class NewQuestionGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         newQuestionPanel = new JPanel();
-        newQuestionPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
-        final JLabel label1 = new JLabel();
-        label1.setText("New question :");
-        newQuestionPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        newQuestionPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        newQuestionPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1));
-        newQuestionPanel.add(panel1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        newQuestionPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        final JLabel label1 = new JLabel();
+        label1.setText("Nội dung câu hỏi :");
+        panel1.add(label1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Nội dung câu hỏi :");
-        panel1.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label2.setText("Url Image :");
+        panel1.add(label2, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("Url Image :");
-        panel1.add(label3, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label4 = new JLabel();
-        label4.setText("Các phương án trả lời :");
-        panel1.add(label4, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label3.setText("Các phương án trả lời :");
+        panel1.add(label3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         txtContentQues = new JTextArea();
         panel1.add(txtContentQues, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(53, 100), null, 0, false));
         final JPanel panel2 = new JPanel();
@@ -223,25 +242,25 @@ public class NewQuestionGUI extends JPanel {
         panel3.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel3, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(53, 221), null, 0, false));
         panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
-        final JLabel label5 = new JLabel();
-        label5.setText("Phương án 1:");
-        panel3.add(label5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label4 = new JLabel();
+        label4.setText("Phương án 1:");
+        panel3.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtContentAnswer1 = new JTextArea();
         panel3.add(txtContentAnswer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        final JLabel label6 = new JLabel();
-        label6.setText("Phương án 2:");
-        panel3.add(label6, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label5 = new JLabel();
+        label5.setText("Phương án 2:");
+        panel3.add(label5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtContentAnswer2 = new JTextArea();
         panel3.add(txtContentAnswer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        final JLabel label7 = new JLabel();
-        label7.setText("Phương án 3:");
-        panel3.add(label7, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label6 = new JLabel();
+        label6.setText("Phương án 3:");
+        panel3.add(label6, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtContentAnswer3 = new JTextArea();
         txtContentAnswer3.setText("");
         panel3.add(txtContentAnswer3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        final JLabel label8 = new JLabel();
-        label8.setText("Phương án 4:");
-        panel3.add(label8, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label7 = new JLabel();
+        label7.setText("Phương án 4:");
+        panel3.add(label7, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtContentAnswer4 = new JTextArea();
         panel3.add(txtContentAnswer4, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         rdAnswer1 = new JRadioButton();
@@ -258,36 +277,32 @@ public class NewQuestionGUI extends JPanel {
         rdAnswer4 = new JRadioButton();
         rdAnswer4.setText("");
         panel3.add(rdAnswer4, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label9 = new JLabel();
-        label9.setText("Mã môn học:");
-        panel1.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label8 = new JLabel();
+        label8.setText("Tên môn học:");
+        panel1.add(label8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         txtSubjectCode = new JTextField();
         panel1.add(txtSubjectCode, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 22), null, 0, false));
-        final JLabel label10 = new JLabel();
-        label10.setText("Nội dung thuộc chương:");
-        panel1.add(label10, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label9 = new JLabel();
+        label9.setText("Nội dung thuộc chương:");
+        panel1.add(label9, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         txtChapter = new JTextField();
         txtChapter.setText("");
         panel1.add(txtChapter, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 22), null, 0, false));
-        final JLabel label11 = new JLabel();
-        label11.setText("Độ khó");
-        panel1.add(label11, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label10 = new JLabel();
+        label10.setText("Độ khó");
+        panel1.add(label10, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(171, 17), null, 0, false));
         cbLevel = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
         cbLevel.setModel(defaultComboBoxModel1);
         panel1.add(cbLevel, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(53, 24), null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        newQuestionPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        newQuestionPanel.add(spacer2, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        newQuestionPanel.add(panel4, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        newQuestionPanel.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnSave = new JButton();
         btnSave.setText("SAVE");
         panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        panel4.add(spacer3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnCancel = new JButton();
         btnCancel.setText("CANCEL");
         panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -302,7 +317,8 @@ public class NewQuestionGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return newQuestionPanel;
     }
 }

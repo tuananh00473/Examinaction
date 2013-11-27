@@ -14,7 +14,8 @@ import java.util.List;
  * Date: 10/18/13
  * Time: 4:57 PM
  */
-public class QuestionBankGUI extends JPanel {
+public class QuestionBankGUI extends JPanel
+{
     private JPanel QuestionBankCard;
     private JButton btnSearch;
     private JButton btnNewQuestion;
@@ -34,51 +35,63 @@ public class QuestionBankGUI extends JPanel {
     private JComboBox comboBoxSubjectCode;
     private JComboBox comboBoxChapter;
 
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JButton getBtnNewQuestion() {
+    public JButton getBtnNewQuestion()
+    {
         return btnNewQuestion;
     }
 
-    public JButton getBtnEditQuestion() {
+    public JButton getBtnEditQuestion()
+    {
         return btnEditQuestion;
     }
 
-    public JButton getBtnDeleteQuestion() {
+    public JButton getBtnDeleteQuestion()
+    {
         return btnDeleteQuestion;
     }
 
-    public JTable getTableQuestionBank() {
+    public JTable getTableQuestionBank()
+    {
         return tableQuestionBank;
     }
 
-    public JScrollPane getQuestionBankScrollPanel() {
+    public JScrollPane getQuestionBankScrollPanel()
+    {
         return questionBankScrollPanel;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JComboBox getComboBoxLevel() {
+    public JComboBox getComboBoxLevel()
+    {
         return comboBoxLevel;
     }
 
-    public JComboBox getComboBoxSubjectCode() {
+    public JComboBox getComboBoxSubjectCode()
+    {
         return comboBoxSubjectCode;
     }
 
-    public JComboBox getComboBoxChapter() {
+    public JComboBox getComboBoxChapter()
+    {
         return comboBoxChapter;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public List<JTextArea> getTxtContentAnswer() {
+    public List<JTextArea> getTxtContentAnswer()
+    {
         List<JTextArea> answerList = new ArrayList<JTextArea>();
         answerList.add(txtContentAnswer1);
         answerList.add(txtContentAnswer2);
@@ -87,7 +100,8 @@ public class QuestionBankGUI extends JPanel {
         return answerList;
     }
 
-    public void resetPreview() {
+    public void resetPreview()
+    {
         txtContentQuestion.setText("");
         lbImage.setVisible(false);
         txtContentAnswer1.setText("");
@@ -110,7 +124,8 @@ public class QuestionBankGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         QuestionBankCard = new JPanel();
         QuestionBankCard.setLayout(new CardLayout(0, 0));
         QuestionBankCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -137,10 +152,12 @@ public class QuestionBankGUI extends JPanel {
         label3.setText("Chương");
         panel2.add(label3, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxSubjectCode = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        comboBoxSubjectCode.setModel(defaultComboBoxModel1);
         panel2.add(comboBoxSubjectCode, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxChapter = new JComboBox();
-        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        comboBoxChapter.setModel(defaultComboBoxModel1);
+        final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
+        comboBoxChapter.setModel(defaultComboBoxModel2);
         panel2.add(comboBoxChapter, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -220,7 +237,8 @@ public class QuestionBankGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return QuestionBankCard;
     }
 }

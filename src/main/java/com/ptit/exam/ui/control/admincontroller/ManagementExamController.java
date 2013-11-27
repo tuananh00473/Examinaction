@@ -53,8 +53,6 @@ public class ManagementExamController
     private JTable managementExamTable;
     private JScrollPane managementExamScrollPanel;
 
-    //    private Set<String> stringSet = new HashSet<String>();
-
     public void doSetUp()
     {
         setUpView();
@@ -68,6 +66,8 @@ public class ManagementExamController
             managementExamGUI.getBtnAddExam().addActionListener(actionListener);
             managementExamGUI.getBtnEditExam().addActionListener(actionListener);
             managementExamGUI.getBtnDeleteExam().addActionListener(actionListener);
+            managementExamGUI.getBtnSave().addActionListener(actionListener);
+            managementExamGUI.getBtnCancel().addActionListener(actionListener);
             managementExamGUI.getComboBoxSubject().addItemListener(itemListener);
         }
         GlobalValues.MANAGEMENT_EXAM_ADD_ACTION = false;
@@ -90,19 +90,45 @@ public class ManagementExamController
             {
                 doDeleteExam();
             }
+            if (e.getSource() == managementExamGUI.getBtnSave())
+            {
+                doSave();
+            }
+            if (e.getSource() == managementExamGUI.getBtnCancel())
+            {
+                doCancel();
+            }
         }
     };
+
+    private void doCancel()
+    {
+        setExamList();
+    }
+
+    private void doSave()
+    {
+        for (Exam exam : examList)
+        {
+            examService.save(exam);
+        }
+    }
 
     private ItemListener itemListener = new ItemListener()
     {
         @Override
         public void itemStateChanged(ItemEvent e)
         {
-            String subjectCode = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
-            examList = ("".equals(subjectCode)) ? ObservableCollections.observableList(new ArrayList<Exam>()) : examService.findBySubjectCode(subjectCode);
-            doBindingExam(examList, managementExamTable, managementExamScrollPanel);
+            setExamList();
         }
     };
+
+    private void setExamList()
+    {
+        String subjectCode = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
+        examList = ("".equals(subjectCode)) ? ObservableCollections.observableList(new ArrayList<Exam>()) : examService.findBySubjectCode(subjectCode);
+        doBindingExam(examList, managementExamTable, managementExamScrollPanel);
+    }
 
     private void doAddExam()
     {

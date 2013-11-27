@@ -13,7 +13,7 @@ import java.util.List;
  * Date: 10/9/13
  * Time: 11:49 PM
  */
-@Component("resultService")
+@Component("examCardService")
 public class ExamCardServiceImpl implements ExamCardService
 {
     @Autowired

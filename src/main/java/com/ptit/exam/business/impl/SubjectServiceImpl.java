@@ -77,4 +77,10 @@ public class SubjectServiceImpl implements SubjectService
     {
         return subjectDAO.findByCourseAndFaculty(course, faculty, id);
     }
+
+    @Override
+    public List<Subject> findByStudentId(Long id)
+    {
+        return subjectDAO.findByStudentId(id);
+    }
 }

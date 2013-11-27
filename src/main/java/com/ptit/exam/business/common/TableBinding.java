@@ -43,10 +43,10 @@ public class TableBinding
         unbinding(table, panel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, questionList, table);
         //-----------------------Option----------------------------------------------
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CONTENT)).setColumnName("NỘI DUNG CÂU HỎI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CONTENT)).setColumnName("NỘI DUNG");
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_SUBJECT_CODE)).setColumnName("MÃ MÔN");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_IMAGE_URL)).setColumnName("HÌNH ẢNH MINH HỌA");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CHAPTER)).setColumnName("NỘI DUNG THUỘC CHƯƠNG");
+        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_IMAGE_URL)).setColumnName("HÌNH ẢNH ");
+        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CHAPTER)).setColumnName("CHƯƠNG");
         jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_LEVEL)).setColumnName("MỨC KHÓ");
 
         jTableBinding.bind();
@@ -115,7 +115,7 @@ public class TableBinding
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_COURSE)).setColumnName("KHÓA HỌC");
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_TRAINING_TYPE)).setColumnName("HÌNH THỨC ĐÀO TẠO");
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_USERNAME)).setColumnName("USERNAME");
-        jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_PASSWORD)).setColumnName("PASSWORD");
+        //  jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_PASSWORD)).setColumnName("PASSWORD");
         jTableBinding.bind();
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
