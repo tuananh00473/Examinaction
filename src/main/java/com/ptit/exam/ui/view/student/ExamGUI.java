@@ -5,7 +5,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +17,8 @@ import java.awt.*;
  * Date: 10/1/13
  * Time: 9:52 AM
  */
-public class ExamGUI extends JPanel {
+public class ExamGUI extends JPanel
+{
 
     private JPanel examCard;
     private JLabel lbNameExamination;
@@ -36,101 +39,89 @@ public class ExamGUI extends JPanel {
     private JPanel panelButtonAnswer;
     private JLabel lbTotalNumberAnswered;
     private JLabel lbTotalNumberNotAnswerYet;
-    private JScrollPane contentQuestionScrollpanel;
     private JTextArea txtContentQuestion;
     private JLabel lbImage;
 
-    public JPanel getPanelButtonQuestion() {
-        return panelButtonQuestion;
-    }
-
-
-    public JButton getBtnAnswerA() {
-        return btnAnswerA;
-    }
-
-    public JTextArea getTxtContentQuestion() {
-        return txtContentQuestion;
-    }
-
-    public JLabel getLbImage() {
-        return lbImage;
-    }
-
-    public JButton getBtnAnswerB() {
-        return btnAnswerB;
-    }
-
-    public JButton getBtnAnswerC() {
-        return btnAnswerC;
-    }
-
-    public JButton getBtnAnswerD() {
-        return btnAnswerD;
-    }
-
-    public JPanel getExamCard() {
-        return examCard;
-    }
-
-    public JLabel getLbNameExamination() {
-        return lbNameExamination;
-    }
-
-    public JLabel getLbNameStudent() {
-        return lbNameStudent;
-    }
-
-    public JLabel getLbStudentCode() {
-        return lbStudentCode;
-    }
-
-    public JLabel getLbNameSubject() {
-        return lbNameSubject;
-    }
-
-    public JLabel getLbTime() {
-        return lbTime;
-    }
-
-    public JLabel getLbNumberQuestion() {
-        return lbNumberQuestion;
-    }
-
-    public JButton getBtnPrevious() {
+    public JButton getBtnPrevious()
+    {
         return btnPrevious;
     }
 
-    public JButton getBtnNext() {
+    public JButton getBtnNext()
+    {
         return btnNext;
     }
 
-    public JButton getBtnSubmit() {
+    public JButton getBtnAnswerA()
+    {
+        return btnAnswerA;
+    }
+
+    public JButton getBtnAnswerB()
+    {
+        return btnAnswerB;
+    }
+
+    public JButton getBtnAnswerC()
+    {
+        return btnAnswerC;
+    }
+
+    public JButton getBtnAnswerD()
+    {
+        return btnAnswerD;
+    }
+
+    public JButton getBtnSubmit()
+    {
         return btnSubmit;
     }
 
-    public JLabel getLbRemainTime() {
+    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
+    {
+        lbNameSubject.setText(subject.getSubjectName());
+        lbNameStudent.setText(student.getFullName());
+        lbStudentCode.setText(student.getStudentCode());
+
+        lbNameExamination.setText(exam.getExamName());
+        lbTime.setText(String.valueOf(exam.getTotalTime()));
+        lbNumberQuestion.setText(String.valueOf(exam.getTotalQuestion()));
+
+    }
+
+    public JLabel getLbRemainTime()
+    {
         return lbRemainTime;
     }
 
-    public JPanel getPanelButtonAnswer() {
-        return panelButtonAnswer;
-    }
-
-    public JLabel getLbTotalNumberAnswered() {
+    public JLabel getLbTotalNumberAnswered()
+    {
         return lbTotalNumberAnswered;
     }
 
-    public JLabel getLbTotalNumberNotAnswerYet() {
+    public JLabel getLbTotalNumberNotAnswerYet()
+    {
         return lbTotalNumberNotAnswerYet;
     }
 
-    public JScrollPane getContentQuestionScrollpanel() {
-        return contentQuestionScrollpanel;
+    public JTextArea getTxtContentQuestion()
+    {
+        return txtContentQuestion;
     }
 
-    public void setInfoAboutStudentToField(Student student) {
-        // todo :     đang làm dở ở đây
+    public JPanel getPanelButtonQuestion()
+    {
+        return panelButtonQuestion;
+    }
+
+    public JLabel getLbImage()
+    {
+        return lbImage;
+    }
+
+    public JPanel getPanelButtonAnswer()
+    {
+        return panelButtonAnswer;
     }
 
     {
@@ -147,7 +138,8 @@ public class ExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         examCard = new JPanel();
         examCard.setLayout(new CardLayout(0, 0));
         examCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
@@ -289,7 +281,8 @@ public class ExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return examCard;
     }
 }

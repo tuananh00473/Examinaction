@@ -248,4 +248,9 @@ public class Student
     {
         return studentCode + " : " + firstName + lastName;
     }
+
+    public String getFullName()
+    {
+        return firstName + " " + lastName;
+    }
 }

@@ -14,47 +14,56 @@ import java.util.List;
  * Time: 2:40 PM
  */
 @Component("answerService")
-public class AnswerServiceImpl implements AnswerService {
+public class AnswerServiceImpl implements AnswerService
+{
 
     @Autowired
     AnswerDAO answerDAO;
 
     @Override
-    public Answer findById(Long id) {
+    public Answer findById(Long id)
+    {
         return answerDAO.findOne(id);
     }
 
     @Override
-    public Answer save(Answer answer) {
+    public Answer save(Answer answer)
+    {
         return answerDAO.saveAndFlush(answer);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id)
+    {
         answerDAO.delete(id);
     }
 
     @Override
-    public void delete(Answer answer) {
+    public void delete(Answer answer)
+    {
         answerDAO.delete(answer);
     }
 
 
     @Override
-    public List<Answer> getAll() {
+    public List<Answer> getAll()
+    {
         return answerDAO.findAll();
     }
 
     @Override
-    public List<Answer> getListAnswer(Long questionId) {
+    public List<Answer> findByQuestionId(Long questionId)
+    {
 
         return answerDAO.findByQuestionId(questionId);
     }
 
     @Override
-    public void deleteByQuestionId(Long questionId) {
+    public void deleteByQuestionId(Long questionId)
+    {
         List<Answer> answers = answerDAO.findByQuestionId(questionId);
-        for (Answer answer : answers) {
+        for (Answer answer : answers)
+        {
             answerDAO.delete(answer);
         }
     }

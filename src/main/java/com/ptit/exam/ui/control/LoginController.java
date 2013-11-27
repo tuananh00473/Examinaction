@@ -82,7 +82,7 @@ public class LoginController
     {
         if (checkLoginStudent(userName, passWord))
         {
-            mainStudentGUI.getLbUsername().setText("Hi ! " + userName);
+            mainStudentGUI.getLbUsername().setText("Hi ! " + GlobalValues.student.getFullName());
             mainStudentGUI.setVisible(true);
             loginGUI.setVisible(false);
         }

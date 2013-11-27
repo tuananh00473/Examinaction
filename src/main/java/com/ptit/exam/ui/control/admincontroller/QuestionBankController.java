@@ -227,7 +227,7 @@ public class QuestionBankController
                     }
                 }
 
-                List<Answer> answerList = answerService.getListAnswer(question.getId());
+                List<Answer> answerList = answerService.findByQuestionId(question.getId());
                 List<JTextArea> txtAnswerList = questionBankGUI.getTxtContentAnswer();
                 for (int i = 0; i < 4; i++)
                 {
@@ -250,7 +250,7 @@ public class QuestionBankController
 //
 //        questionList = questionService.findBySubjectRelationAndDifficultRelation(subject, difficult);
 //        for (Question question : questionList) {
-//            List<Answer> answerList = answerService.getListAnswer(question);
+//            List<Answer> answerList = answerService.findByQuestionId(question);
 //            question.setAnswerList(answerList);
 //        }
 //
@@ -319,7 +319,7 @@ public class QuestionBankController
 
     public void doSetUpEditQuestionGUI(Question question)
     {
-        List<Answer> answerList = answerService.getListAnswer(question.getId());
+        List<Answer> answerList = answerService.findByQuestionId(question.getId());
         addQuestionController.doSetUp(question, answerList);
         newQuestionGUI.mappingInfoToField(question, answerList);
     }

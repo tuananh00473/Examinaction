@@ -407,8 +407,8 @@ public class ManagementStudentController
         cmodel.getColumn(8).setCellEditor(textEditor);
         cmodel.getColumn(9).setCellRenderer(textAreaRenderer);
         cmodel.getColumn(9).setCellEditor(textEditor);
-        cmodel.getColumn(10).setCellRenderer(textAreaRenderer);
-        cmodel.getColumn(10).setCellEditor(textEditor);
+//        cmodel.getColumn(10).setCellRenderer(textAreaRenderer);
+//        cmodel.getColumn(10).setCellEditor(textEditor);
 
         JTableHeader header = jTable.getTableHeader();
         header.setPreferredSize(new Dimension(10000, 30));

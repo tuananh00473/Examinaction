@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ptit.exam.ui.view.admin.QuestionBankGUI">
   <grid id="27dc6" binding="QuestionBankCard" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="635" height="473"/>
+      <xy x="20" y="20" width="635" height="487"/>
     </constraints>
     <properties/>
     <border type="line">
@@ -72,7 +72,9 @@
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <model/>
+                </properties>
               </component>
               <component id="86d22" class="javax.swing.JComboBox" binding="comboBoxChapter">
                 <constraints>
@@ -285,7 +287,7 @@
               </grid>
             </children>
           </grid>
-          <vspacer id="33028">
+          <vspacer id="63701">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>

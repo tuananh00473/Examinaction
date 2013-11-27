@@ -12,7 +12,8 @@ import java.util.List;
  * Date: 9/25/13
  * Time: 10:36 AM
  */
-public interface SubjectDAO extends JpaRepository<Subject, Long> {
+public interface SubjectDAO extends JpaRepository<Subject, Long>
+{
     public List<Subject> findBySubjectName(String nameOfSubject);
 
     public List<Subject> findByFaculty(String faculty);
@@ -27,4 +28,11 @@ public interface SubjectDAO extends JpaRepository<Subject, Long> {
             "and su.faculty = :faculty " +
             "and su.id = :id")
     public List<Subject> findByCourseAndFaculty(@Param("course") String course, @Param("faculty") String faculty, @Param("id") Long id);
+
+    @Query(value = "select su " +
+            "from Subject su, Student st, ExamCard ec " +
+            "where su.id = ec.subjectId " +
+            "and st.id = ec.studentId " +
+            "and st.id = :id")
+    public List<Subject> findByStudentId(@Param("id") Long id);
 }

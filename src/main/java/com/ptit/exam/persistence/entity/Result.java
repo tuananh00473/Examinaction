@@ -11,12 +11,6 @@ import javax.persistence.*;
 @Table(name = "result")
 public class Result
 {
-    public static String RESULT_ID = "id";
-    public static String RESULT_EXAM_ID = "examId";
-    public static String RESULT_STUDENT_ID = "studentId";
-    public static String RESULT_SCORE = "score";
-    public static String RESULT_MAX_SCORE = "maxScore";
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

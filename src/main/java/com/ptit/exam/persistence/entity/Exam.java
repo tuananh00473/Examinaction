@@ -141,6 +141,11 @@ public class Exam
     {
         this.active = active;
     }
+
+    public int getTotalQuestion()
+    {
+        return totalEasyQuestion + totalMediumQuestion + totalHardQuestion;
+    }
 }
 
 
