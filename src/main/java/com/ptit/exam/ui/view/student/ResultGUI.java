@@ -11,8 +11,7 @@ import java.awt.*;
  * Date: 10/20/13
  * Time: 4:47 PM
  */
-public class ResultGUI extends JPanel
-{
+public class ResultGUI extends JPanel {
     private JPanel resultCard;
     private JComboBox comboBoxFaculty;
     private JComboBox comboBoxExamination;
@@ -21,44 +20,37 @@ public class ResultGUI extends JPanel
     private JButton btnSearch;
     private JScrollPane markScrollPanel;
     private JTable tableMark;
+    private JComboBox cbBoxFacultyTab2;
 
-    public JPanel getResultCard()
-    {
+    public JPanel getResultCard() {
         return resultCard;
     }
 
-    public JComboBox getComboBoxFaculty()
-    {
+    public JComboBox getComboBoxFaculty() {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxExamination()
-    {
+    public JComboBox getComboBoxExamination() {
         return comboBoxExamination;
     }
 
-    public JComboBox getComboBoxSubject()
-    {
+    public JComboBox getComboBoxSubject() {
         return comboBoxSubject;
     }
 
-    public JComboBox getComboBoxClass()
-    {
+    public JComboBox getComboBoxClass() {
         return comboBoxClass;
     }
 
-    public JButton getBtnSearch()
-    {
+    public JButton getBtnSearch() {
         return btnSearch;
     }
 
-    public JScrollPane getMarkScrollPanel()
-    {
+    public JScrollPane getMarkScrollPanel() {
         return markScrollPanel;
     }
 
-    public JTable getTableMark()
-    {
+    public JTable getTableMark() {
         return tableMark;
     }
 
@@ -76,8 +68,7 @@ public class ResultGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         resultCard = new JPanel();
         resultCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -133,8 +124,11 @@ public class ResultGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return resultCard;
+    }
+
+    public JComboBox getCbBoxFacultyTab2() {
+        return cbBoxFacultyTab2;
     }
 }

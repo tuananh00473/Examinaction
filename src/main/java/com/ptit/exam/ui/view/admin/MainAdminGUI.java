@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 /**
  * User: thuongntt
@@ -22,8 +19,7 @@ import java.awt.event.MouseEvent;
  * Time: 11:17 AM
  */
 @Component
-public class MainAdminGUI extends JFrame
-{
+public class MainAdminGUI extends JFrame {
     @Autowired
     MainAdminController mainAdminController;
 
@@ -67,11 +63,24 @@ public class MainAdminGUI extends JFrame
     private ManagementSubjectGUI managementSubjectGUI;
     private ManagementStudentGUI managementStudentGUI;
 
+    //    menu
+    private JMenuBar menuBar;
+
+    private JMenu menuFile;
+    private JMenu menuTools;
+    private JMenu menuOptions;
+    private JMenu menuHelps;
+
+    private JMenuItem menuItemImportStudent;
+    private JMenuItem menuItemExportStudent;
+    private JMenuItem menuItemQuit;
+
+
     private CardLayout cardLayout;
 
 
-    public MainAdminGUI()
-    {
+    public MainAdminGUI() {
+        $$$setupUI$$$();
         setContentPane(mainPanel);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = (int) tk.getScreenSize().getWidth();
@@ -79,147 +88,130 @@ public class MainAdminGUI extends JFrame
         setSize(xSize, ySize);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        lbLogOut.addMouseListener(new MouseAdapter()
-        {
+        initMenuBar();
+
+        lbLogOut.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e)
-            {
+            public void mousePressed(MouseEvent e) {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
             }
         });
 
-        btnQuestionBank.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                questionBankController.doSetUp();
-                mainAdminController.doShowQuestionBankCard();
-            }
-        });
-
-
-        btnManagementExam.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                managementExamController.doSetUp();
-                mainAdminController.doShowManagementExamGUI();
-            }
-        });
-
-        btnExportExamination.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                mainAdminController.doShowExportExamCard();
-            }
-        });
-
-        btnManagementSubject.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                managementSubjectController.doSetUp();
-                mainAdminController.doShowManagementSubjectGUI();
-            }
-        });
-
-        btnManagementStudent.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                managementStudentController.doSetUp();
-                mainAdminController.doShowManagementStudentGUI();
-            }
-        });
-
+        btnQuestionBank.addActionListener(actionListener);
+        btnManagementExam.addActionListener(actionListener);
+        btnExportExamination.addActionListener(actionListener);
+        btnManagementSubject.addActionListener(actionListener);
+        btnManagementStudent.addActionListener(actionListener);
 
         cardLayout = (CardLayout) AdminCardPanel.getLayout();
     }
 
-    public JButton getBtnQuestionBank()
-    {
-        return btnQuestionBank;
-    }
+    private ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnQuestionBank) {
+                questionBankController.doSetUp();
+                mainAdminController.doShowQuestionBankCard();
+            }
+            if (e.getSource() == btnManagementExam) {
+                managementExamController.doSetUp();
+                mainAdminController.doShowManagementExamGUI();
+            }
+            if (e.getSource() == btnExportExamination) {
+                mainAdminController.doShowExportExamCard();
+            }
+            if (e.getSource() == btnManagementSubject) {
+                managementSubjectController.doSetUp();
+                mainAdminController.doShowManagementSubjectGUI();
+            }
+            if (e.getSource() == btnQuestionBank) {
+                managementStudentController.doSetUp();
+                mainAdminController.doShowManagementStudentGUI();
+            }
+        }
+    };
 
-    public JButton getBtnManagementExam()
-    {
-        return btnManagementExam;
-    }
-
-    public ExportExamination getExportExaminationGUI()
-    {
+    public ExportExamination getExportExaminationGUI() {
         return exportExaminationGUI;
     }
 
-    public ManagermentExamGUI getManagermentExamGUI()
-    {
+    public ManagermentExamGUI getManagermentExamGUI() {
         return managermentExamGUI;
     }
 
-    public JButton getBtnIntroduce()
-    {
-        return btnIntroduce;
-    }
-
-    public ManagementStudentGUI getManagementStudentGUI()
-    {
+    public ManagementStudentGUI getManagementStudentGUI() {
         return managementStudentGUI;
     }
 
-    public ManagementSubjectGUI getManagementSubjectGUI()
-    {
+    public ManagementSubjectGUI getManagementSubjectGUI() {
         return managementSubjectGUI;
     }
 
 
-    public QuestionBankGUI getQuestionBankGUI()
-    {
+    public QuestionBankGUI getQuestionBankGUI() {
         return questionBankGUI;
     }
 
-    public NewQuestionGUI getNewQuestionGUI()
-    {
+    public NewQuestionGUI getNewQuestionGUI() {
         return newQuestionGUI;
     }
 
-    public CardLayout getCardLayout()
-    {
+    public CardLayout getCardLayout() {
         return cardLayout;
     }
 
-    public JPanel getAdminCardPanel()
-    {
+    public JPanel getAdminCardPanel() {
         return AdminCardPanel;
     }
 
-    public JLabel getLbUsername()
-    {
+    public JLabel getLbUsername() {
         return lbUsername;
     }
 
-    public NewSubjectGUI getNewSubjectGUI()
-    {
+    public NewSubjectGUI getNewSubjectGUI() {
         return newSubjectGUI;
     }
 
-    public NewStudentGUI getNewStudentGUI()
-    {
+    public NewStudentGUI getNewStudentGUI() {
         return newStudentGUI;
     }
 
-    {
-// GUI initializer generated by IntelliJ IDEA GUI Designer
-// >>> IMPORTANT!! <<<
-// DO NOT EDIT OR ADD ANY CODE HERE!
-        $$$setupUI$$$();
+    public void initMenuBar() {
+        menuBar = new JMenuBar();
+        menuFile = new JMenu("File");
+        setMenuItem(menuFile);
+        menuTools = new JMenu("Tools");
+        menuOptions = new JMenu("Options");
+        menuHelps = new JMenu("Helps");
+        menuBar.add(menuFile);
+        menuBar.add(menuTools);
+        menuBar.add(menuOptions);
+        menuBar.add(menuHelps);
+        this.setJMenuBar(menuBar);
     }
+
+    private void setMenuItem(JMenu menuFile) {
+        menuItemImportStudent = new JMenuItem("Import student from excel");
+        menuItemExportStudent = new JMenuItem("Export student to excel");
+        menuItemQuit = new JMenuItem("Quit");
+
+        menuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+        menuItemQuit.addActionListener(menuItemListener);
+
+        menuFile.add(menuItemImportStudent);
+        menuFile.add(menuItemExportStudent);
+        menuFile.add(menuItemQuit);
+    }
+
+    private ActionListener menuItemListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == menuItemQuit) {
+                System.exit(0);
+            }
+        }
+    };
 
     /**
      * Method generated by IntelliJ IDEA GUI Designer
@@ -228,8 +220,7 @@ public class MainAdminGUI extends JFrame
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(3, 2, new Insets(10, 10, 10, 10), -1, -1));
         final JPanel panel1 = new JPanel();
@@ -293,8 +284,7 @@ public class MainAdminGUI extends JFrame
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
 }
