@@ -13,6 +13,12 @@
     </properties>
 
     <dependencies>
+        <!--io-->
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.poi</artifactId>
+            <version>3.6_1</version>
+        </dependency>
         <!--jgoodies-->
         <dependency>
             <groupId>org.springframework</groupId>

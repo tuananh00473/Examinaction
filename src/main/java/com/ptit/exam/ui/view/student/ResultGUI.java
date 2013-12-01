@@ -18,9 +18,8 @@ public class ResultGUI extends JPanel {
     private JComboBox comboBoxSubject;
     private JComboBox comboBoxClass;
     private JButton btnSearch;
-    private JScrollPane markScrollPanel;
-    private JTable tableMark;
-    private JComboBox cbBoxFacultyTab2;
+    private JScrollPane resultScrollPanel;
+    private JTable tableResult;
 
     public JPanel getResultCard() {
         return resultCard;
@@ -46,12 +45,12 @@ public class ResultGUI extends JPanel {
         return btnSearch;
     }
 
-    public JScrollPane getMarkScrollPanel() {
-        return markScrollPanel;
+    public JScrollPane getResultScrollPanel() {
+        return resultScrollPanel;
     }
 
-    public JTable getTableMark() {
-        return tableMark;
+    public JTable getTableResult() {
+        return tableResult;
     }
 
     {
@@ -85,7 +84,7 @@ public class ResultGUI extends JPanel {
         panel4.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayoutManager(1, 7, new Insets(0, 0, 0, 0), -1, -1));
+        panel5.setLayout(new GridLayoutManager(1, 9, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16764109)), null));
         final JLabel label1 = new JLabel();
@@ -98,7 +97,7 @@ public class ResultGUI extends JPanel {
         panel5.add(comboBoxFaculty, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSearch = new JButton();
         btnSearch.setText("Tìm kiếm");
-        panel5.add(btnSearch, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(btnSearch, new GridConstraints(0, 8, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Lớp:");
         panel5.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -115,10 +114,19 @@ public class ResultGUI extends JPanel {
         defaultComboBoxModel3.addElement("lập trình web");
         comboBoxSubject.setModel(defaultComboBoxModel3);
         panel5.add(comboBoxSubject, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        markScrollPanel = new JScrollPane();
-        panel4.add(markScrollPanel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        tableMark = new JTable();
-        markScrollPanel.setViewportView(tableMark);
+        final JLabel label4 = new JLabel();
+        label4.setText("Tên kì thi");
+        panel5.add(label4, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboBoxExamination = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel4 = new DefaultComboBoxModel();
+        defaultComboBoxModel4.addElement("HK");
+        defaultComboBoxModel4.addElement("HM");
+        comboBoxExamination.setModel(defaultComboBoxModel4);
+        panel5.add(comboBoxExamination, new GridConstraints(0, 7, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        resultScrollPanel = new JScrollPane();
+        panel4.add(resultScrollPanel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        tableResult = new JTable();
+        resultScrollPanel.setViewportView(tableResult);
     }
 
     /**
@@ -126,9 +134,5 @@ public class ResultGUI extends JPanel {
      */
     public JComponent $$$getRootComponent$$$() {
         return resultCard;
-    }
-
-    public JComboBox getCbBoxFacultyTab2() {
-        return cbBoxFacultyTab2;
     }
 }

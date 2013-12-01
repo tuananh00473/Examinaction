@@ -108,7 +108,7 @@ public class TableBinding {
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_COURSE)).setColumnName("KHÓA HỌC");
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_TRAINING_TYPE)).setColumnName("HÌNH THỨC ĐÀO TẠO");
         jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_USERNAME)).setColumnName("USERNAME");
-        //  jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_PASSWORD)).setColumnName("PASSWORD");
+        jTableBinding.addColumnBinding(BeanProperty.create(Student.STUDENT_PASSWORD)).setColumnName("PASSWORD");
         jTableBinding.bind();
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
@@ -118,14 +118,14 @@ public class TableBinding {
         unbinding(tableExamCard, examCardScrollPane);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examCardDTOList, tableExamCard);
         //-----------------------Option----------------------------------------------
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.EXAM_ID)).setColumnName("MÃ THẺ DỰ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.EXAM_ID)).setColumnName("MÃ TH? D? THI");
         jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_CODE)).setColumnName("MÃ SINH VIÊN");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_NAME)).setColumnName("HỌ VÀ TÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_NAME)).setColumnName("H? VÀ TÊN");
         jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.FACULTY)).setColumnName("KHOA");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CLASS_ROOM)).setColumnName("LỚP");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.NAME_SUBJECT)).setColumnName("TÊN MÔN HỌC");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.UNIT_OF_STUDY)).setColumnName("ĐVHT");
-        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CAN_DO_EXAM)).setColumnName("ĐỦ ĐKDT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CLASS_ROOM)).setColumnName("L?P");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.NAME_SUBJECT)).setColumnName("TÊN MÔN H?C");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.UNIT_OF_STUDY)).setColumnName("?VHT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CAN_DO_EXAM)).setColumnName("?? ?KDT");
 
         jTableBinding.bind();
         bindMap.put(examCardScrollPane.hashCode() + "." + tableExamCard.hashCode(), jTableBinding);
@@ -135,10 +135,10 @@ public class TableBinding {
         unbinding(tableExamination, examinationScrollPanel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, examList, tableExamination);
         //-----------------------Option----------------------------------------------
-        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_NAME)).setColumnName("TÊN ĐỀ THI");
-        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_CODE)).setColumnName("MÃ ĐỀ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_NAME)).setColumnName("TÊN ?? THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_CODE)).setColumnName("MÃ ?? THI");
         jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_SUBJECT_CODE)).setColumnName("MÃ MÔN");
-        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_TIME)).setColumnName("THỜI GIAN THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(Exam.EXAM_TOTAL_TIME)).setColumnName("TH?I GIAN THI");
 
         jTableBinding.bind();
         bindMap.put(examinationScrollPanel.hashCode() + "." + tableExamination.hashCode(), jTableBinding);
@@ -157,15 +157,15 @@ public class TableBinding {
         unbinding(resultTable, resultScrollPanel);
         JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, resultList, resultTable);
         //-----------------------Option----------------------------------------------\
-        // todo : can binding not cho nay nhe
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.EXAM_ID)).setColumnName("MÃ THẺ DỰ THI");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_CODE)).setColumnName("MÃ SINH VIÊN");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.STUDENT_NAME)).setColumnName("HỌ VÀ TÊN");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.FACULTY)).setColumnName("KHOA");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CLASS_ROOM)).setColumnName("LỚP");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.NAME_SUBJECT)).setColumnName("TÊN MÔN HỌC");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.UNIT_OF_STUDY)).setColumnName("ĐVHT");
-//        jTableBinding.addColumnBinding(BeanProperty.create(ExamCardDTOBinding.CAN_DO_EXAM)).setColumnName("ĐỦ ĐKDT");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.EXAM_NAME)).setColumnName("KỲ THI");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.STUDENT_CODE)).setColumnName("MÃ SINH VIÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.STUDENT_FIRST_NAME)).setColumnName("HỌ ĐỆM");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.STUDENT_LAST_NAME)).setColumnName("TÊN");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.FACULTY)).setColumnName("KHOA");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.CLASS_ROOM)).setColumnName("LỚP");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.NAME_SUBJECT)).setColumnName("TÊN MÔN HỌC");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.SOCRE)).setColumnName("ĐIỂM");
+        jTableBinding.addColumnBinding(BeanProperty.create(ResultDTOBinding.MAX_SCORE)).setColumnName("ĐIỂM TỐI ĐA");
 
         jTableBinding.bind();
         bindMap.put(resultScrollPanel.hashCode() + "." + resultList.hashCode(), jTableBinding);

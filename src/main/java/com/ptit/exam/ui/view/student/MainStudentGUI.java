@@ -75,6 +75,7 @@ public class MainStudentGUI extends JFrame {
         btnExamResults.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                resultController.setUp();
                 mainStudentController.doShowResultCard();
             }
         });

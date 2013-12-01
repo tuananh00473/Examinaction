@@ -8,7 +8,20 @@ import java.io.Serializable;
  * Time: 2:45 PM
  */
 public class ResultDTOBinding implements Serializable {
-    private String studentName;
+
+
+    public static final String EXAM_NAME = "examName";
+    public static final String STUDENT_CODE = "studentCode";
+    public static final String STUDENT_FIRST_NAME = "studentFirstName";
+    public static final String STUDENT_LAST_NAME = "studentLastName";
+    public static final String FACULTY = "faculty";
+    public static final String CLASS_ROOM = "classRoom";
+    public static final String NAME_SUBJECT = "subjectName";
+    public static final String SOCRE = "score";
+    public static final String MAX_SCORE = "maxScore";
+
+    private String studentFirstName;
+    private String studentLastName;
     private String studentCode;
     private String faculty;
     private String classRoom;
@@ -33,12 +46,20 @@ public class ResultDTOBinding implements Serializable {
         this.classRoom = classRoom;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getStudentFirstName() {
+        return studentFirstName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
     public String getStudentCode() {
