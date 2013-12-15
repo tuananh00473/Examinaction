@@ -7,12 +7,13 @@ import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
 import com.ptit.exam.business.common.TextAreaRenderer;
 import com.ptit.exam.persistence.entity.ExamCard;
-import com.ptit.exam.persistence.entity.ExamCardDTOBinding;
 import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.persistence.entity.Subject;
+import com.ptit.exam.persistence.modelbinding.ExamCardDTOBinding;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.ManagementStudentGUI;
 import com.ptit.exam.ui.view.admin.NewStudentGUI;
+import com.ptit.exam.util.ComboboxManager;
 import com.ptit.exam.util.Constants;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
@@ -35,8 +36,7 @@ import java.util.List;
  * Time: 9:45 PM
  */
 @Component
-public class ManagementStudentController
-{
+public class ManagementStudentController {
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -66,10 +66,9 @@ public class ManagementStudentController
 
     private ManagementStudentGUI managementStudentGUI;
     private NewStudentGUI newStudentGUI;
-    private List<Student> studentList;
+    private List<Subject> subjectList;
 
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpView();
         setUpActionListenerTab1();
         setUpActionListenerTab2();
@@ -102,8 +101,7 @@ public class ManagementStudentController
 //        });
     }
 
-    private void setUpView()
-    {
+    private void setUpView() {
         managementStudentGUI = mainAdminGUI.getManagementStudentGUI();
         newStudentGUI = mainAdminGUI.getNewStudentGUI();
 
@@ -111,26 +109,24 @@ public class ManagementStudentController
         setUpViewTab2();
     }
 
-    private void setUpViewTab1()
-    {
+    private void setUpViewTab1() {
         tab1StudentTable = managementStudentGUI.getStudentTableTab1();
         tab1StudentScrollPane = managementStudentGUI.getStudentScrollPanelTab1();
 
         managementStudentGUI.getComboBoxFacultyTab1().setModel(new DefaultComboBoxModel(Constants.facultyList));
     }
 
-    private void setUpViewTab2()
-    {
+    private void setUpViewTab2() {
         tab2ExamCardTable = managementStudentGUI.getExamTableTab2();
         tab2ExamCardScrollPane = managementStudentGUI.getExamScrollPanelTab2();
 
-        managementStudentGUI.getComboBoxSubjectTab2().setModel(new DefaultComboBoxModel(Constants.subjects));
+        subjectList = subjectService.getAll();
+        ComboboxManager.setListSubject(managementStudentGUI.getComboBoxSubjectTab2(), subjectList);
+        // managementStudentGUI.getComboBoxSubjectTab2().setModel(new DefaultComboBoxModel(Constants.subjects));
     }
 
-    public void setUpActionListenerTab1()
-    {
-        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB1)
-        {
+    public void setUpActionListenerTab1() {
+        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB1) {
             managementStudentGUI.getBtnAdd().addActionListener(actionListenerTab1);
             managementStudentGUI.getBtnEdit().addActionListener(actionListenerTab1);
             managementStudentGUI.getBtnDel().addActionListener(actionListenerTab1);
@@ -139,118 +135,93 @@ public class ManagementStudentController
         }
     }
 
-    public void setUpActionListenerTab2()
-    {
-        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB2)
-        {
+    public void setUpActionListenerTab2() {
+        if (GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB2) {
             managementStudentGUI.getBtnSaveTab2().addActionListener(actionListenerTab2);
             managementStudentGUI.getBtnSearchTab2().addActionListener(actionListenerTab2);
             GlobalValues.MANAGEMENT_STUDENT_ADD_ACTION_TAB2 = false;
         }
     }
 
-    public ActionListener actionListenerTab1 = new ActionListener()
-    {
+    public ActionListener actionListenerTab1 = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == managementStudentGUI.getBtnAdd())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementStudentGUI.getBtnAdd()) {
                 doAddStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnEdit())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnEdit()) {
                 doEditStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnDel())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnDel()) {
                 doDeleteStudent();
             }
-            if (e.getSource() == managementStudentGUI.getBtnSearchTab1())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnSearchTab1()) {
                 doSearchStudent();
             }
         }
     };
-    public ActionListener actionListenerTab2 = new ActionListener()
-    {
+    public ActionListener actionListenerTab2 = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == managementStudentGUI.getBtnSaveTab2())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == managementStudentGUI.getBtnSaveTab2()) {
                 doSaveExamCard();
             }
-            if (e.getSource() == managementStudentGUI.getBtnSearchTab2())
-            {
+            if (e.getSource() == managementStudentGUI.getBtnSearchTab2()) {
                 doSearchExamCard();
             }
         }
     };
 
-    private void doSaveExamCard()
-    {
-        for (ExamCardDTOBinding examCardDTOBinding : examCardDTOBindingList)
-        {
+    private void doSaveExamCard() {
+        for (ExamCardDTOBinding examCardDTOBinding : examCardDTOBindingList) {
             ExamCard examCard = examCardService.findById(examCardDTOBinding.getExamId());
             examCard.setCanDoExam(examCardDTOBinding.isCanDoExam());
             examCardService.save(examCard);
         }
     }
 
-    private void doSearchExamCard()
-    {
+    private void doSearchExamCard() {
         tab2examCardList = getExamCards();
         doBindingExamCard(tab2examCardList, tab2ExamCardTable, tab2ExamCardScrollPane);
     }
 
-    private List<ExamCard> getExamCards()
-    {
-        String subjectCode = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
+    private List<ExamCard> getExamCards() {
+        String subjectName = managementStudentGUI.getComboBoxSubjectTab2().getSelectedItem().toString();
         String classRoom = managementStudentGUI.getTxtClassSearchTab2().getText();
 
-        List<ExamCard> list1 = ("".equals(subjectCode)) ? examCardService.getAll() : examCardService.findBySubjectCode(subjectCode);
+        List<ExamCard> list1 = ("".equals(subjectName)) ? examCardService.getAll() : examCardService.findBySubjectName(subjectName);
         List<ExamCard> list2 = ("".equals(classRoom)) ? examCardService.getAll() : examCardService.findByClassRoom(classRoom);
         List<ExamCard> resultList = new ArrayList<ExamCard>();
 
-        for (ExamCard examCard : list1)
-        {
-            if (list2.contains(examCard))
-            {
+        for (ExamCard examCard : list1) {
+            if (list2.contains(examCard)) {
                 resultList.add(examCard);
             }
         }
         return resultList;
     }
 
-    private void doEditStudent()
-    {
+    private void doEditStudent() {
         int select = tab1StudentTable.getSelectedRow();
-        if (-1 == select)
-        {
+        if (-1 == select) {
             MessageManager.show("Hãy chọn sinh viên bạn muốn sửa.");
-        }
-        else
-        {
+        } else {
             doSetUpStudentGUI(tab1StudentList.get(select));
             mainAdminController.doShowNewStudentCard();
         }
     }
 
-    private void doSetUpStudentGUI(Student student)
-    {
+    private void doSetUpStudentGUI(Student student) {
         addStudentController.doSetUp(student);
         newStudentGUI.setInfoSubject(student);
     }
 
-    private void doSearchStudent()
-    {
+    private void doSearchStudent() {
         tab1StudentList = getStudentList();
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
     }
 
-    public List<Student> getStudentList()
-    {
+    public List<Student> getStudentList() {
         String nameStudent = managementStudentGUI.getTxtNameSearch().getText();
         String classRoom = managementStudentGUI.getTxtClassSearchTab1().getText();
         String faculty = managementStudentGUI.getComboBoxFacultyTab1().getSelectedItem().toString();
@@ -260,28 +231,21 @@ public class ManagementStudentController
         List<Student> list3 = ("".equals(faculty) ? studentService.getAll() : studentService.findByFaculty(faculty));
         List<Student> resultList = new ArrayList<Student>();
 
-        for (Student student : list1)
-        {
-            if (list2.contains(student) && list3.contains(student))
-            {
+        for (Student student : list1) {
+            if (list2.contains(student) && list3.contains(student)) {
                 resultList.add(student);
             }
         }
         return resultList;
     }
 
-    private void doDeleteStudent()
-    {
+    private void doDeleteStudent() {
         int rowSelected = tab1StudentTable.getSelectedRow();
-        if (-1 == rowSelected)
-        {
+        if (-1 == rowSelected) {
             MessageManager.show("Hãy chọn sinh viên bạn muốn xóa.");
-        }
-        else
-        {
+        } else {
             int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa sinh viên này?");
-            if (0 == k)
-            {
+            if (0 == k) {
                 studentService.delete(tab1StudentList.get(rowSelected));
                 tab1StudentList.remove(rowSelected);
                 doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
@@ -289,8 +253,7 @@ public class ManagementStudentController
         }
     }
 
-    private void doAddStudent()
-    {
+    private void doAddStudent() {
         addStudentController.doSetUp(new Student());
         newStudentGUI.resetForm();
         mainAdminController.doShowNewStudentCard();
@@ -323,11 +286,9 @@ public class ManagementStudentController
 //    }
 //
 
-    private void doBindingExamCard(List<ExamCard> examCardList, JTable jTable, JScrollPane jScrollPane)
-    {
+    private void doBindingExamCard(List<ExamCard> examCardList, JTable jTable, JScrollPane jScrollPane) {
         examCardDTOBindingList = ObservableCollections.observableList(new ArrayList<ExamCardDTOBinding>());
-        for (ExamCard examCard : examCardList)
-        {
+        for (ExamCard examCard : examCardList) {
             Student student = studentService.findById(examCard.getStudentId());
             Subject subject = subjectService.findById(examCard.getSubjectId());
 
@@ -376,8 +337,7 @@ public class ManagementStudentController
         jTable.repaint();
     }
 
-    private void doBindingStudent(List<Student> studentList, JTable jTable, JScrollPane jScrollPane)
-    {
+    private void doBindingStudent(List<Student> studentList, JTable jTable, JScrollPane jScrollPane) {
 
         TableBinding.bindingStudent(studentList, jTable, jScrollPane);
 

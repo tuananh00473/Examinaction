@@ -9,8 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "exams")
-public class Exam
-{
+public class Exam {
 
 
     public static String EXAM_NAME = "examName";
@@ -52,99 +51,85 @@ public class Exam
     @Column(name = "active")
     private boolean active;
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getSubjectCode()
-    {
+    public String getSubjectCode() {
         return subjectCode;
     }
 
-    public void setSubjectCode(String subjectCode)
-    {
+    public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;
     }
 
-    public String getExamCode()
-    {
+    public String getExamCode() {
         return examCode;
     }
 
-    public void setExamCode(String examCode)
-    {
+    public void setExamCode(String examCode) {
         this.examCode = examCode;
     }
 
-    public String getExamName()
-    {
+    public String getExamName() {
         return examName;
     }
 
-    public void setExamName(String examName)
-    {
+    public void setExamName(String examName) {
         this.examName = examName;
     }
 
-    public Long getTotalTime()
-    {
+    public Long getTotalTime() {
         return totalTime;
     }
 
-    public void setTotalTime(Long totalTime)
-    {
+    public void setTotalTime(Long totalTime) {
         this.totalTime = totalTime;
     }
 
-    public int getTotalHardQuestion()
-    {
+    public int getTotalHardQuestion() {
         return totalHardQuestion;
     }
 
-    public void setTotalHardQuestion(int totalHardQuestion)
-    {
+    public void setTotalHardQuestion(int totalHardQuestion) {
         this.totalHardQuestion = totalHardQuestion;
     }
 
-    public int getTotalMediumQuestion()
-    {
+    public int getTotalMediumQuestion() {
         return totalMediumQuestion;
     }
 
-    public void setTotalMediumQuestion(int totalMediumQuestion)
-    {
+    public void setTotalMediumQuestion(int totalMediumQuestion) {
         this.totalMediumQuestion = totalMediumQuestion;
     }
 
-    public int getTotalEasyQuestion()
-    {
+    public int getTotalEasyQuestion() {
         return totalEasyQuestion;
     }
 
-    public void setTotalEasyQuestion(int totalEasyQuestion)
-    {
+    public void setTotalEasyQuestion(int totalEasyQuestion) {
         this.totalEasyQuestion = totalEasyQuestion;
     }
 
-    public boolean isActive()
-    {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active)
-    {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public int getTotalQuestion()
-    {
+    public int getTotalQuestion() {
         return totalEasyQuestion + totalMediumQuestion + totalHardQuestion;
+    }
+
+    @Override
+    public String toString() {
+        return examName;
     }
 }
 

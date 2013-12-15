@@ -2,14 +2,13 @@ package com.ptit.exam.ui.control.admincontroller;
 
 import com.ptit.exam.business.AnswerService;
 import com.ptit.exam.business.QuestionService;
+import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.persistence.entity.Answer;
 import com.ptit.exam.persistence.entity.Question;
+import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.ui.view.admin.NewQuestionGUI;
-import com.ptit.exam.util.Constants;
-import com.ptit.exam.util.FileChooserManager;
-import com.ptit.exam.util.GlobalValues;
-import com.ptit.exam.util.MessageManager;
+import com.ptit.exam.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,9 +41,15 @@ public class AddQuestionController {
     @Autowired
     AnswerService answerService;
 
+    @Autowired
+    SubjectService subjectService;
+
     private NewQuestionGUI newQuestionGUI;
     private Question question;
     private List<Answer> answerList;
+
+    private List<Subject> subjectList;
+
 
     public void doSetUp(Question question, List<Answer> answerList) {
         this.question = question;
@@ -52,6 +57,10 @@ public class AddQuestionController {
 
         newQuestionGUI = mainAdminGUI.getNewQuestionGUI();
         newQuestionGUI.getCbLevel().setModel(new DefaultComboBoxModel(Constants.level));
+
+        subjectList = subjectService.getAll();
+
+        ComboboxManager.setListSubject(newQuestionGUI.getCbSubjectName(), subjectList);
 
         setUpActionListener();
     }
@@ -81,7 +90,7 @@ public class AddQuestionController {
     };
 
     private void doCancelAddQuestion() {
-        questionBankController.doSetUp();
+        questionBankController.doSetUp(question);
         mainAdminController.doShowQuestionBankCard();
     }
 
@@ -89,7 +98,7 @@ public class AddQuestionController {
         if (newQuestionGUI.invalidForm()) {
             MessageManager.show("Thông tin về câu hỏi không hợp lệ.");
         } else {
-            question = newQuestionGUI.getQuestionInfo(question);
+            question = newQuestionGUI.getQuestionInfo(question, subjectList);
             question = questionService.save(question);
 
             answerService.save(newQuestionGUI.getAnswer1(question, answerList.get(0)));
@@ -98,7 +107,7 @@ public class AddQuestionController {
             answerService.save(newQuestionGUI.getAnswer4(question, answerList.get(3)));
             MessageManager.show("Đã lưu thành công.");
 
-            questionBankController.doSetUp();
+            questionBankController.doSetUp(question);
             mainAdminController.doShowQuestionBankCard();
         }
     }

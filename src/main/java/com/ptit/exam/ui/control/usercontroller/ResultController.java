@@ -7,9 +7,14 @@ import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.business.common.TableBinding;
 import com.ptit.exam.business.common.TextAreaEditor;
 import com.ptit.exam.business.common.TextAreaRenderer;
-import com.ptit.exam.persistence.entity.*;
+import com.ptit.exam.persistence.entity.Exam;
+import com.ptit.exam.persistence.entity.Result;
+import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
+import com.ptit.exam.persistence.modelbinding.ResultDTOBinding;
 import com.ptit.exam.ui.view.student.MainStudentGUI;
 import com.ptit.exam.ui.view.student.ResultGUI;
+import com.ptit.exam.util.Constants;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,8 +25,12 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * User: thuongntt
@@ -47,6 +56,9 @@ public class ResultController {
     private List<ResultDTOBinding> resultListBinding;
     private JTable resultTable;
     private JScrollPane resultScrollPane;
+    private Set<String> stringSet = new HashSet<String>();
+    private List<Subject> subjectList;
+    private List<Student> studentList;
 
     public void setUp() {
         resetGUI();
@@ -61,7 +73,31 @@ public class ResultController {
                 doSearch();
             }
         });
+
+
+        resultGUI.getComboBoxFaculty().addItemListener(itemListener);
+
     }
+
+    private ItemListener itemListener = new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if ((e.getSource() == resultGUI.getComboBoxFaculty() && !("".equals(resultGUI.getComboBoxFaculty().getSelectedItem().toString())))) {
+                studentList = studentService.findByFaculty(resultGUI.getComboBoxFaculty().getSelectedItem().toString());
+                System.out.println(studentList.size());
+                for (Student student : studentList) {
+                    stringSet.add(student.getClassRoom());
+                }
+                System.out.println(stringSet.size());
+                for (String s : stringSet) {
+                    resultGUI.getComboBoxClass().addItem(s.intern());
+                }
+
+            } else {
+                resultGUI.getComboBoxClass().removeAllItems();
+            }
+        }
+    };
 
     private void doSearch() {
         resultList = getResultListBinding();
@@ -78,6 +114,8 @@ public class ResultController {
         resultGUI = mainStudentGUI.getResultGUI();
         resultTable = resultGUI.getTableResult();
         resultScrollPane = resultGUI.getResultScrollPanel();
+
+        resultGUI.getComboBoxFaculty().setModel(new DefaultComboBoxModel(Constants.facultyList));
     }
 
     private List<ResultDTOBinding> convertFromResultList(List<Result> resultList) {
@@ -127,7 +165,6 @@ public class ResultController {
     private void doBindingResult(List<ResultDTOBinding> resultList, JTable jTable, JScrollPane jScrollPane) {
         TableBinding.bindingResult(resultList, jTable, jScrollPane);
 
-        // todo :dang lam do o day
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();
         TextAreaEditor textEditor = new TextAreaEditor();
         textEditor.setEditAble(false);

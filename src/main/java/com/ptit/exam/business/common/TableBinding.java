@@ -2,7 +2,13 @@ package com.ptit.exam.business.common;
 
 
 import com.ptit.exam.business.StudentService;
-import com.ptit.exam.persistence.entity.*;
+import com.ptit.exam.persistence.entity.Answer;
+import com.ptit.exam.persistence.entity.Exam;
+import com.ptit.exam.persistence.entity.Student;
+import com.ptit.exam.persistence.entity.Subject;
+import com.ptit.exam.persistence.modelbinding.ExamCardDTOBinding;
+import com.ptit.exam.persistence.modelbinding.QuestionDTOBinding;
+import com.ptit.exam.persistence.modelbinding.ResultDTOBinding;
 import org.jdesktop.beansbinding.AutoBinding;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.swingbinding.JTableBinding;
@@ -36,15 +42,15 @@ public class TableBinding {
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);
     }
 
-    public static void bindingQuestionBank(List<Question> questionList, JTable table, JScrollPane panel) {
+    public static void bindingQuestionBank(List<QuestionDTOBinding> questionDTOBindingList, JTable table, JScrollPane panel) {
         unbinding(table, panel);
-        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, questionList, table);
+        JTableBinding jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ_WRITE, questionDTOBindingList, table);
         //-----------------------Option----------------------------------------------
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CONTENT)).setColumnName("NỘI DUNG");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_SUBJECT_CODE)).setColumnName("MÃ MÔN");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_IMAGE_URL)).setColumnName("HÌNH ẢNH ");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_CHAPTER)).setColumnName("CHƯƠNG");
-        jTableBinding.addColumnBinding(BeanProperty.create(Question.QUESTION_LEVEL)).setColumnName("MỨC KHÓ");
+        jTableBinding.addColumnBinding(BeanProperty.create(QuestionDTOBinding.QUESTION_SUBJECT_NAME)).setColumnName("TÊN MÔN");
+        jTableBinding.addColumnBinding(BeanProperty.create(QuestionDTOBinding.QUESTION_CONTENT)).setColumnName("NỘI DUNG");
+        jTableBinding.addColumnBinding(BeanProperty.create(QuestionDTOBinding.QUESTION_IMAGE_URL)).setColumnName("HÌNH ẢNH ");
+        jTableBinding.addColumnBinding(BeanProperty.create(QuestionDTOBinding.QUESTION_CHAPTER)).setColumnName("CHƯƠNG");
+        jTableBinding.addColumnBinding(BeanProperty.create(QuestionDTOBinding.QUESTION_LEVEL)).setColumnName("MỨC KHÓ");
 
         jTableBinding.bind();
         bindMap.put(panel.hashCode() + "." + table.hashCode(), jTableBinding);

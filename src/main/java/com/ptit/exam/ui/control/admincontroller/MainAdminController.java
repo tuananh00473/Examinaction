@@ -1,6 +1,6 @@
 package com.ptit.exam.ui.control.admincontroller;
 
-import com.ptit.exam.ui.view.admin.*;
+import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MainAdminController {
 
-    public static final String MANAGEMENT_EXAM_CARD = "managermentExamGUI";
+    public static final String MANAGEMENT_EXAM_CARD = "managementExamGUI";
     public static final String MANAGEMENT_STUDENT_CARD = "managementStudentGUI";
     public static final String MANAGEMENT_SUBJECT_CARD = "managementSubjectGUI";
-    public static final String EXPORT_EXAM_CARD = "exportExaminationGUI";
+    public static final String NEW_EXAM_CARD = "newExaminationGUI";
+    public static final String EXPORT_EXAM_CARD = "exportExamGUI";
     public static final String QUESTION_BANK_CARD = "questionBankGUI";
     private static final String NEW_QUESTION_CARD = "newQuestionGUI";
     private static final String NEW_SUBJECT_CARD = "newSubjectGUI";
@@ -35,7 +36,7 @@ public class MainAdminController {
     AddQuestionController addQuestionController;
 
     @Autowired
-    ExportExamController exportExamController;
+    NewExamController newExamController;
 
     @Autowired
     QuestionBankController questionBankController;
@@ -49,19 +50,16 @@ public class MainAdminController {
     @Autowired
     ManagementSubjectController managementSubjectController;
 
-    public void setUpCard(){
-        managementSubjectController.doSetUp();
-        managementStudentController.doSetUp();
-        managementExamController.doSetUp();
-        questionBankController.doSetUp();
-    }
-
     public void doShowQuestionBankCard() {
         showCard(QUESTION_BANK_CARD);
     }
 
     public void doShowNewQuestionCard() {
         showCard(NEW_QUESTION_CARD);
+    }
+
+    public void doShowNewExamCard() {
+        showCard(NEW_EXAM_CARD);
     }
 
     public void doShowExportExamCard() {

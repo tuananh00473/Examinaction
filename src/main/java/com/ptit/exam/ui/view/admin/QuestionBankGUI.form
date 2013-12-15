@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ptit.exam.ui.view.admin.QuestionBankGUI">
   <grid id="27dc6" binding="QuestionBankCard" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="635" height="487"/>
+      <xy x="20" y="20" width="635" height="568"/>
     </constraints>
     <properties/>
     <border type="line">
@@ -10,7 +10,7 @@
     </border>
     <children>
       <grid id="ec26b" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+        <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
           <card name="Card1"/>
         </constraints>
@@ -105,7 +105,7 @@
                   <scrollpane id="9312e" binding="questionBankScrollPanel">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="105" height="418"/>
+                        <preferred-size width="105" height="480"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -137,21 +137,6 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="95ba9" class="javax.swing.JButton" binding="btnDeleteQuestion">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <enabled value="true"/>
-                          <icon value="images/delete.png"/>
-                          <text value=""/>
-                        </properties>
-                      </component>
-                      <hspacer id="3a72">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
                       <component id="c88c9" class="javax.swing.JButton" binding="btnEditQuestion">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -162,6 +147,21 @@
                           <text value=""/>
                         </properties>
                       </component>
+                      <component id="95ba9" class="javax.swing.JButton" binding="btnDeleteQuestion">
+                        <constraints>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <enabled value="true"/>
+                          <icon value="images/delete.png"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <hspacer id="3c51e">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
                     </children>
                   </grid>
                   <scrollpane id="690a1">
@@ -179,16 +179,6 @@
                       </component>
                     </children>
                   </scrollpane>
-                  <component id="cbafe" class="javax.swing.JTextArea" binding="txtContentAnswer4">
-                    <constraints>
-                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="20"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <component id="a5798" class="javax.swing.JLabel" binding="lbImage">
                     <constraints>
                       <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
@@ -200,32 +190,21 @@
                       <text value=""/>
                     </properties>
                   </component>
-                  <component id="755a1" class="javax.swing.JTextArea" binding="txtContentAnswer3">
+                  <scrollpane id="deec8">
                     <constraints>
-                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="20"/>
-                      </grid>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
-                  </component>
-                  <component id="8ecfd" class="javax.swing.JTextArea" binding="txtContentAnswer2">
-                    <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="20"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="a0b22" class="javax.swing.JTextArea" binding="txtContentAnswer1">
-                    <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="20"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <text value=""/>
-                    </properties>
-                  </component>
+                    <border type="none"/>
+                    <children>
+                      <component id="a0b22" class="javax.swing.JTextArea" binding="txtContentAnswer1">
+                        <constraints/>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
                   <component id="73574" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -234,6 +213,47 @@
                       <text value="A."/>
                     </properties>
                   </component>
+                  <scrollpane id="d354b">
+                    <constraints>
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="8ecfd" class="javax.swing.JTextArea" binding="txtContentAnswer2">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <scrollpane id="e7efa">
+                    <constraints>
+                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="755a1" class="javax.swing.JTextArea" binding="txtContentAnswer3">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <scrollpane id="24130">
+                    <constraints>
+                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="cbafe" class="javax.swing.JTextArea" binding="txtContentAnswer4">
+                        <constraints/>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
                   <component id="cf3a5" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -287,7 +307,7 @@
               </grid>
             </children>
           </grid>
-          <vspacer id="63701">
+          <vspacer id="1c1d8">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>

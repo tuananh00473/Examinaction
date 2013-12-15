@@ -35,6 +35,9 @@ public class MainAdminGUI extends JFrame {
     QuestionBankController questionBankController;
 
     @Autowired
+    NewExamController newExamController;
+
+    @Autowired
     ExportExamController exportExamController;
 
     @Autowired
@@ -60,10 +63,11 @@ public class MainAdminGUI extends JFrame {
     private NewQuestionGUI newQuestionGUI;
     private NewSubjectGUI newSubjectGUI;
     private NewStudentGUI newStudentGUI;
-    private ExportExamination exportExaminationGUI;
-    private ManagermentExamGUI managermentExamGUI;
+    private NewExaminationGUI newExaminationGUI;
+    private ManagementExamGUI managementExamGUI;
     private ManagementSubjectGUI managementSubjectGUI;
     private ManagementStudentGUI managementStudentGUI;
+    private ExportExamGUI exportExamGUI;
 
     //    menu
     private JMenuBar menuBar;
@@ -113,14 +117,15 @@ public class MainAdminGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnQuestionBank) {
-                questionBankController.doSetUp();
+                questionBankController.doSetUp(null);
                 mainAdminController.doShowQuestionBankCard();
             }
             if (e.getSource() == btnManagementExam) {
-                managementExamController.doSetUp();
+                managementExamController.doSetUp(null);
                 mainAdminController.doShowManagementExamGUI();
             }
             if (e.getSource() == btnExportExamination) {
+                exportExamController.doSetUp();
                 mainAdminController.doShowExportExamCard();
             }
             if (e.getSource() == btnManagementSubject) {
@@ -134,12 +139,12 @@ public class MainAdminGUI extends JFrame {
         }
     };
 
-    public ExportExamination getExportExaminationGUI() {
-        return exportExaminationGUI;
+    public NewExaminationGUI getNewExaminationGUI() {
+        return newExaminationGUI;
     }
 
-    public ManagermentExamGUI getManagermentExamGUI() {
-        return managermentExamGUI;
+    public ManagementExamGUI getManagementExamGUI() {
+        return managementExamGUI;
     }
 
     public ManagementStudentGUI getManagementStudentGUI() {
@@ -150,6 +155,9 @@ public class MainAdminGUI extends JFrame {
         return managementSubjectGUI;
     }
 
+    public ExportExamGUI getExportExamGUI() {
+        return exportExamGUI;
+    }
 
     public QuestionBankGUI getQuestionBankGUI() {
         return questionBankGUI;
@@ -261,31 +269,31 @@ public class MainAdminGUI extends JFrame {
         btnIntroduce.setText("Introduce");
         panel2.add(btnIntroduce, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementExam = new JButton();
-        btnManagementExam.setText("Quản Lý Đề Thi");
+        btnManagementExam.setText("Quản lý đề thi");
         panel2.add(btnManagementExam, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnExportExamination = new JButton();
-        btnExportExamination.setText("Xuất Đề Thi");
+        btnExportExamination.setText("Xuất đề thi");
         panel2.add(btnExportExamination, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementSubject = new JButton();
-        btnManagementSubject.setText("Quản Lý Môn Học");
+        btnManagementSubject.setText("Qu?n Lý Môn H?c");
         panel2.add(btnManagementSubject, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel2.add(spacer1, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         btnQuestionBank = new JButton();
-        btnQuestionBank.setText("Ngân Hàng Câu Hỏi");
+        btnQuestionBank.setText("Ngân Hàng Câu H?i");
         panel2.add(btnQuestionBank, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementStudent = new JButton();
-        btnManagementStudent.setText("Quản Lý Sinh Viên");
+        btnManagementStudent.setText("Qu?n Lý Sinh Viên");
         panel2.add(btnManagementStudent, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         AdminCardPanel = new JPanel();
         AdminCardPanel.setLayout(new CardLayout(0, 0));
         panel1.add(AdminCardPanel, BorderLayout.CENTER);
         questionBankGUI = new QuestionBankGUI();
         AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
-        exportExaminationGUI = new ExportExamination();
-        AdminCardPanel.add(exportExaminationGUI.$$$getRootComponent$$$(), "exportExaminationGUI");
-        managermentExamGUI = new ManagermentExamGUI();
-        AdminCardPanel.add(managermentExamGUI.$$$getRootComponent$$$(), "managermentExamGUI");
+        newExaminationGUI = new NewExaminationGUI();
+        AdminCardPanel.add(newExaminationGUI.$$$getRootComponent$$$(), "newExaminationGUI");
+        managementExamGUI = new ManagementExamGUI();
+        AdminCardPanel.add(managementExamGUI.$$$getRootComponent$$$(), "managementExamGUI");
         managementSubjectGUI = new ManagementSubjectGUI();
         AdminCardPanel.add(managementSubjectGUI.$$$getRootComponent$$$(), "managementSubjectGUI");
         managementStudentGUI = new ManagementStudentGUI();
@@ -296,6 +304,8 @@ public class MainAdminGUI extends JFrame {
         AdminCardPanel.add(newSubjectGUI.$$$getRootComponent$$$(), "newSubjectGUI");
         newStudentGUI = new NewStudentGUI();
         AdminCardPanel.add(newStudentGUI.$$$getRootComponent$$$(), "newStudentGUI");
+        exportExamGUI = new ExportExamGUI();
+        AdminCardPanel.add(exportExamGUI.$$$getRootComponent$$$(), "exportExamGUI");
         final JLabel label1 = new JLabel();
         label1.setText("Label");
         mainPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

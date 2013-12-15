@@ -10,7 +10,6 @@ import com.ptit.exam.ui.view.student.MainStudentGUI;
 import com.ptit.exam.util.Constants;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
-import com.ptit.exam.util.NumberManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +30,7 @@ import java.util.List;
  * Time: 4:07 PM
  */
 @Component
-public class ExamController
-{
+public class ExamController {
 
     @Autowired
     MainStudentController mainStudentController;
@@ -76,15 +74,13 @@ public class ExamController
     private int[] correctAnswers;
     private int[] studentAnswers;
 
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setGlobalValues();
         setUpView();
         setUpActionListener();
     }
 
-    private void setGlobalValues()
-    {
+    private void setGlobalValues() {
         student = GlobalValues.student;
         subject = GlobalValues.subject;
         exam = GlobalValues.exam;
@@ -94,8 +90,7 @@ public class ExamController
         studentAnswers = new int[totalQuestionCount];
     }
 
-    public void setUpView()
-    {
+    public void setUpView() {
         examGUI = mainStudentGUI.getExamGUI();
         examGUI.setInfoAboutStudentToField(subject, student, exam);
         showButtonQuestion(exam);
@@ -104,10 +99,8 @@ public class ExamController
         startTime(exam.getTotalTime());
     }
 
-    public void setUpActionListener()
-    {
-        if (GlobalValues.EXAM_CARD_ACTION)
-        {
+    public void setUpActionListener() {
+        if (GlobalValues.EXAM_CARD_ACTION) {
             examGUI.getBtnNext().addActionListener(actionListener);
             examGUI.getBtnPrevious().addActionListener(actionListener);
             examGUI.getBtnSubmit().addActionListener(actionListener);
@@ -115,65 +108,49 @@ public class ExamController
         GlobalValues.EXAM_CARD_ACTION = false;
     }
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == examGUI.getBtnNext())
-            {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == examGUI.getBtnNext()) {
                 doNext();
             }
-            if (e.getSource() == examGUI.getBtnPrevious())
-            {
+            if (e.getSource() == examGUI.getBtnPrevious()) {
                 doPrevious();
             }
-            if (e.getSource() == examGUI.getBtnSubmit())
-            {
+            if (e.getSource() == examGUI.getBtnSubmit()) {
                 doSubmit();
             }
         }
     };
 
-    private void doSubmit()
-    {
+    private void doSubmit() {
         showResultExam();
     }
 
-    private void doPrevious()
-    {
-        if (indexQuestion > 0)
-        {                     // neu khong phai cau hoi dau tien thi moi cho phep previos
+    private void doPrevious() {
+        if (indexQuestion > 0) {                     // neu khong phai cau hoi dau tien thi moi cho phep previos
             indexQuestion--;
             setQuestionSelected(indexQuestion);
         }
     }
 
-    private void doNext()
-    {
-        if (indexQuestion < totalQuestionCount - 1)
-        {    // neu chua phai cau hoi cuoi cung thi moi cho phep next
+    private void doNext() {
+        if (indexQuestion < totalQuestionCount - 1) {    // neu chua phai cau hoi cuoi cung thi moi cho phep next
             indexQuestion++;
             setQuestionSelected(indexQuestion);
         }
     }
 
-    private void startTime(final long totalTime)
-    {
-        thread = new Thread(new Runnable()
-        {
+    private void startTime(final long totalTime) {
+        thread = new Thread(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 minute = totalTime;
                 second = 0;
-                while (!(minute == 0 && second == 0))
-                {
-                    try
-                    {
+                while (!(minute == 0 && second == 0)) {
+                    try {
                         Thread.sleep(1000);
-                        if (second == 0)
-                        {
+                        if (second == 0) {
                             second = 60;
                             minute--;
                         }
@@ -181,9 +158,7 @@ public class ExamController
                         String textMinute = minute < 10 ? "0" + minute : String.valueOf(minute);
                         String textSecond = second < 10 ? "0" + second : String.valueOf(second);
                         examGUI.getLbRemainTime().setText(textMinute + ":" + textSecond);
-                    }
-                    catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                     }
                 }
                 MessageManager.show("Time over !");
@@ -193,23 +168,15 @@ public class ExamController
         thread.start();
     }
 
-    private void showResultExam()
-    {
+    private void showResultExam() {
         int score = 0;
-        for (int i = 0; i < totalQuestionCount; i++)
-        {
-            if (studentAnswers[i] == correctAnswers[i])
-            {
-                if (i < exam.getTotalEasyQuestion())
-                {
+        for (int i = 0; i < totalQuestionCount; i++) {
+            if (studentAnswers[i] == correctAnswers[i]) {
+                if (i < exam.getTotalEasyQuestion()) {
                     score += Constants.EASY;
-                }
-                else if (i < exam.getTotalEasyQuestion() + exam.getTotalMediumQuestion())
-                {
+                } else if (i < exam.getTotalEasyQuestion() + exam.getTotalMediumQuestion()) {
                     score += Constants.MEDIUM;
-                }
-                else
-                {
+                } else {
                     score += Constants.HARD;
                 }
             }
@@ -229,28 +196,24 @@ public class ExamController
         mainStudentController.doShowSettingExamCard();
     }
 
-    public void showButtonQuestion(Exam exam)
-    {
-        questionList = loadRandomExamQuestionList(exam);
-        correctAnswers = loadCorrectAnswer(questionList);
+    public void showButtonQuestion(Exam exam) {
+        questionList = questionService.loadRandomExamQuestionList(exam);
+        correctAnswers = answerService.loadCorrectAnswer(questionList);
 
         textAreaQuestion = examGUI.getTxtContentQuestion();
         JPanel panelButtonQuestion = examGUI.getPanelButtonQuestion();
         panelButtonQuestion.setLayout(new GridLayout(0, 3));
         buttonQuestions = new MyButton[totalQuestionCount];
 
-        for (int i = 0; i < totalQuestionCount; i++)
-        {
+        for (int i = 0; i < totalQuestionCount; i++) {
             final int index = i + 1;
             buttonQuestions[i] = new MyButton();
             buttonQuestions[i].setNameButton(String.valueOf(index));
             buttonQuestions[i].setText(String.valueOf(index));
             buttonQuestions[i].setIdQuestion(questionList.get(index - 1).getId());
-            buttonQuestions[i].addActionListener(new ActionListener()
-            {
+            buttonQuestions[i].addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e)
-                {
+                public void actionPerformed(ActionEvent e) {
                     indexQuestion = getInt(buttonQuestions[index - 1].getNameButton()) - 1;
                     setQuestionSelected(indexQuestion);
                     //indexQuestion1++;
@@ -264,57 +227,7 @@ public class ExamController
         panelButtonQuestion.repaint();
     }
 
-    private List<Question> loadRandomExamQuestionList(Exam exam)
-    {
-        List<Question> listQuestionEasy = questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.EASY);
-        List<Question> listQuestionMedium = questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.MEDIUM);
-        List<Question> listQuestionHard = questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.HARD);
-
-        List<Integer> indexEasyRandom = NumberManager.getListRandomNumber(exam.getTotalEasyQuestion(), listQuestionEasy.size());
-        List<Integer> indexMediumRandom = NumberManager.getListRandomNumber(exam.getTotalMediumQuestion(), listQuestionMedium.size());
-        List<Integer> indexHardRandom = NumberManager.getListRandomNumber(exam.getTotalHardQuestion(), listQuestionHard.size());
-
-        List<Question> listQuestionSelected = new ArrayList<Question>();
-        for (Integer i : indexEasyRandom)
-        {
-            listQuestionSelected.add(listQuestionEasy.get(i));
-        }
-
-        for (Integer i : indexMediumRandom)
-        {
-            listQuestionSelected.add(listQuestionMedium.get(i));
-        }
-
-        for (Integer i : indexHardRandom)
-        {
-            listQuestionSelected.add(listQuestionHard.get(i));
-        }
-
-        return listQuestionSelected;
-    }
-
-    public int[] loadCorrectAnswer(List<Question> questionList)
-    {
-        int[] correctAnswers = new int[totalQuestionCount];
-        for (int i = 0; i < totalQuestionCount; i++)
-        {
-            Question question = questionList.get(i);
-            List<Answer> answers = answerService.findByQuestionId(question.getId());
-            question.setAnswerList(answers);
-
-            for (int j = 0; j < 4; j++)
-            {
-                if (answers.get(j).isCorrect())
-                {
-                    correctAnswers[i] = j + 1;
-                }
-            }
-        }
-        return correctAnswers;
-    }
-
-    private void setQuestionSelected(int indexQuestion)
-    {
+    private void setQuestionSelected(int indexQuestion) {
         showQuestionByIndex(indexQuestion, textAreaQuestion, questionList);
         resetForegroundButtonAnswer();
     }
@@ -322,37 +235,27 @@ public class ExamController
     // dat lai foreground cho cac button answer
     // neu cau tra loi da duoc chon thi dat la mau GRAY
     // neu cau tra loi chua duoc(khong duoc) chon thi set mau Default.
-    private void resetForegroundButtonAnswer()
-    {
-        for (int i = 0; i < answerList.size(); i++)
-        {
-            if (i + 1 == studentAnswers[indexQuestion])
-            {
+    private void resetForegroundButtonAnswer() {
+        for (int i = 0; i < answerList.size(); i++) {
+            if (i + 1 == studentAnswers[indexQuestion]) {
                 buttonAnswers[i].setForegroundColor(Color.GRAY);
-            }
-            else
-            {
+            } else {
                 buttonAnswers[i].setForegroundColor(new JButton().getForeground());
             }
         }
         // todo
     }
 
-    private void showQuestionByIndex(int indexQuestion, JTextArea textAreaQuestion, List<Question> questionList)
-    {
+    private void showQuestionByIndex(int indexQuestion, JTextArea textAreaQuestion, List<Question> questionList) {
         lbImage = examGUI.getLbImage();
         buttonQuestions[indexQuestion].setForegroundColor(Color.RED);
 
-        for (int i = 1; i < totalQuestionCount; i++)
-        {
+        for (int i = 1; i < totalQuestionCount; i++) {
 
             int index = (indexQuestion + i) % totalQuestionCount;
-            if (buttonQuestions[index].isSelected())
-            {
+            if (buttonQuestions[index].isSelected()) {
                 buttonQuestions[index].setForegroundColor(Color.GREEN);
-            }
-            else
-            {
+            } else {
                 buttonQuestions[index].setForegroundColor(new JButton().getForeground());
             }
         }
@@ -364,40 +267,30 @@ public class ExamController
         String textAnswerD = "\nD. " + answerList.get(3).getContent();
         String textAnswer = textAnswerA + textAnswerB + textAnswerC + textAnswerD;
         textAreaQuestion.setText(questionList.get(indexQuestion).getContent() + "\n" + textAnswer);
-        if (questionList.get(indexQuestion).getUrlImage() != null)
-        {
-            try
-            {
+        if (questionList.get(indexQuestion).getUrlImage() != null) {
+            try {
                 BufferedImage questionImage = ImageIO.read(new File(questionList.get(indexQuestion).getUrlImage()));
                 examGUI.getLbImage().setIcon(new ImageIcon(questionImage));
                 examGUI.getLbImage().setVisible(true);
-            }
-            catch (IOException e1)
-            {
+            } catch (IOException e1) {
                 examGUI.getLbImage().setVisible(false);
             }
-        }
-        else
-        {
+        } else {
             examGUI.setVisible(false);
         }
     }
 
-    public void showButtonAnswer(Exam exam)
-    {
+    public void showButtonAnswer(Exam exam) {
         JPanel panelButtonAnswer = examGUI.getPanelButtonAnswer();
         panelButtonAnswer.setLayout(new GridLayout(0, 4));
 
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             final int indexAnswer = i;
             buttonAnswers[i] = new MyButton();
             buttonAnswers[i].setNameButton(String.valueOf(i));
-            buttonAnswers[i].addActionListener(new ActionListener()
-            {
+            buttonAnswers[i].addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e)
-                {
+                public void actionPerformed(ActionEvent e) {
                     setStudentSelected(indexAnswer);
                     questionList.get(indexQuestion).setAnswerList(answerList);
                 }
@@ -411,18 +304,15 @@ public class ExamController
 
 
     // set text cho 4 button answer tuong ung la A, B, C, D.
-    private void setLabelButtonAnswer()
-    {
+    private void setLabelButtonAnswer() {
         buttonAnswers[0].setText("A");
         buttonAnswers[1].setText("B");
         buttonAnswers[2].setText("C");
         buttonAnswers[3].setText("D");
     }
 
-    public void setStudentSelected(int indexAnswer)
-    {
-        if (!buttonQuestions[indexQuestion].isSelected())
-        {    // neu cau hoi chua duoc tra loi moi tang numberAnswered them 1
+    public void setStudentSelected(int indexAnswer) {
+        if (!buttonQuestions[indexQuestion].isSelected()) {    // neu cau hoi chua duoc tra loi moi tang numberAnswered them 1
             totalNumberAnswered++;
         }
 
@@ -435,8 +325,7 @@ public class ExamController
 
 
         // danh dau cac cau tra loi con lai ma sv ko chon
-        for (int i = 1; i <= 3; i++)
-        {
+        for (int i = 1; i <= 3; i++) {
             int otherButton = (indexAnswer + i) % 4;
 //            answerList.get(otherButton).setStudenSelectted(false);  // todo
             buttonAnswers[otherButton].setForegroundColor(new JButton().getForeground());
@@ -448,14 +337,12 @@ public class ExamController
 
 
     // gan lai label so luong cau hoi da tra loi va label so luong cau hoi con lai
-    public void setTotalNumberAnswered(int totalNumberAnswered)
-    {
+    public void setTotalNumberAnswered(int totalNumberAnswered) {
         examGUI.getLbTotalNumberAnswered().setText(String.valueOf(totalNumberAnswered));
         examGUI.getLbTotalNumberNotAnswerYet().setText(String.valueOf(totalQuestionCount - totalNumberAnswered));
     }
 
-    public int getInt(String textInt)
-    {
+    public int getInt(String textInt) {
         return Integer.parseInt(textInt);
     }
 }

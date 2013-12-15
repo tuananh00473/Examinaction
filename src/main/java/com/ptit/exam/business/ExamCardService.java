@@ -9,8 +9,7 @@ import java.util.List;
  * Date: 10/9/13
  * Time: 11:48 PM
  */
-public interface ExamCardService
-{
+public interface ExamCardService {
     public ExamCard findById(Long id);
 
     public ExamCard save(ExamCard result);
@@ -32,4 +31,6 @@ public interface ExamCardService
     public List<ExamCard> findBySubjectCode(String subjectCode);
 
     public List<ExamCard> findByClassRoom(String classRoom);
+
+    public List<ExamCard> findBySubjectName(String subjectName);
 }

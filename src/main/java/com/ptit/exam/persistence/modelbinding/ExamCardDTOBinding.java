@@ -1,12 +1,11 @@
-package com.ptit.exam.persistence.entity;
+package com.ptit.exam.persistence.modelbinding;
 
 /**
  * User: anhnt
  * Date: 11/19/13
  * Time: 4:32 PM
  */
-public class ExamCardDTOBinding
-{
+public class ExamCardDTOBinding {
     public static final String EXAM_ID = "examId";
     public static final String STUDENT_CODE = "studentCode";
     public static final String STUDENT_NAME = "studentName";
@@ -25,83 +24,67 @@ public class ExamCardDTOBinding
     private int unitOfStudy;
     private boolean canDoExam;
 
-    public Long getExamId()
-    {
+    public Long getExamId() {
         return examId;
     }
 
-    public void setExamId(Long examId)
-    {
+    public void setExamId(Long examId) {
         this.examId = examId;
     }
 
-    public String getStudentCode()
-    {
+    public String getStudentCode() {
         return studentCode;
     }
 
-    public void setStudentCode(String studentCode)
-    {
+    public void setStudentCode(String studentCode) {
         this.studentCode = studentCode;
     }
 
-    public String getStudentName()
-    {
+    public String getStudentName() {
         return studentName;
     }
 
-    public void setStudentName(String studentName)
-    {
+    public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
-    public String getFaculty()
-    {
+    public String getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(String faculty)
-    {
+    public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
 
-    public String getClassRoom()
-    {
+    public String getClassRoom() {
         return classRoom;
     }
 
-    public void setClassRoom(String classRoom)
-    {
+    public void setClassRoom(String classRoom) {
         this.classRoom = classRoom;
     }
 
-    public String getNameSubject()
-    {
+    public String getNameSubject() {
         return nameSubject;
     }
 
-    public void setNameSubject(String nameSubject)
-    {
+    public void setNameSubject(String nameSubject) {
         this.nameSubject = nameSubject;
     }
 
-    public int getUnitOfStudy()
-    {
+    public int getUnitOfStudy() {
         return unitOfStudy;
     }
 
-    public void setUnitOfStudy(int unitOfStudy)
-    {
+    public void setUnitOfStudy(int unitOfStudy) {
         this.unitOfStudy = unitOfStudy;
     }
 
-    public boolean isCanDoExam()
-    {
+    public boolean isCanDoExam() {
         return canDoExam;
     }
 
-    public void setCanDoExam(boolean canDoExam)
-    {
+    public void setCanDoExam(boolean canDoExam) {
         this.canDoExam = canDoExam;
     }
 }

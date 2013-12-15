@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="newQuestionPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="495"/>
+      <xy x="20" y="20" width="500" height="520"/>
     </constraints>
     <properties/>
     <border type="etched"/>
@@ -16,16 +16,6 @@
         <properties/>
         <border type="bevel-lowered"/>
         <children>
-          <component id="61d29" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="171" height="17"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="Nội dung câu hỏi :"/>
-            </properties>
-          </component>
           <component id="dcbf3" class="javax.swing.JLabel">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
@@ -45,14 +35,6 @@
             <properties>
               <text value="Các phương án trả lời :"/>
             </properties>
-          </component>
-          <component id="8b7d6" class="javax.swing.JTextArea" binding="txtContentQues">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="53" height="100"/>
-              </grid>
-            </constraints>
-            <properties/>
           </component>
           <grid id="d3647" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
@@ -96,6 +78,19 @@
               <color color="-10066330"/>
             </border>
             <children>
+              <scrollpane id="44c4f">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="b8d4c" class="javax.swing.JTextArea" binding="txtContentAnswer1">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
               <component id="7844e" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -103,64 +98,6 @@
                 <properties>
                   <text value="Phương án 1:"/>
                 </properties>
-              </component>
-              <component id="b8d4c" class="javax.swing.JTextArea" binding="txtContentAnswer1">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="5f67" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Phương án 2:"/>
-                </properties>
-              </component>
-              <component id="24a3b" class="javax.swing.JTextArea" binding="txtContentAnswer2">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="4cdc4" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Phương án 3:"/>
-                </properties>
-              </component>
-              <component id="d73f2" class="javax.swing.JTextArea" binding="txtContentAnswer3">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="ff90e" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Phương án 4:"/>
-                </properties>
-              </component>
-              <component id="ee8c1" class="javax.swing.JTextArea" binding="txtContentAnswer4">
-                <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties/>
               </component>
               <component id="bab95" class="javax.swing.JRadioButton" binding="rdAnswer1">
                 <constraints>
@@ -171,12 +108,69 @@
                   <text value=""/>
                 </properties>
               </component>
+              <scrollpane id="2bb68">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="24a3b" class="javax.swing.JTextArea" binding="txtContentAnswer2">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="b829e">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="d73f2" class="javax.swing.JTextArea" binding="txtContentAnswer3">
+                    <constraints/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="2608e">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ee8c1" class="javax.swing.JTextArea" binding="txtContentAnswer4">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="5f67" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Phương án 2:"/>
+                </properties>
+              </component>
               <component id="a5963" class="javax.swing.JRadioButton" binding="rdAnswer2">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value=""/>
+                </properties>
+              </component>
+              <component id="4cdc4" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Phương án 3:"/>
                 </properties>
               </component>
               <component id="da16" class="javax.swing.JRadioButton" binding="rdAnswer3">
@@ -186,6 +180,14 @@
                 <properties>
                   <enabled value="true"/>
                   <text value=""/>
+                </properties>
+              </component>
+              <component id="ff90e" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Phương án 4:"/>
                 </properties>
               </component>
               <component id="81479" class="javax.swing.JRadioButton" binding="rdAnswer4">
@@ -207,14 +209,6 @@
             <properties>
               <text value="Tên môn học:"/>
             </properties>
-          </component>
-          <component id="ca99c" class="javax.swing.JTextField" binding="txtSubjectCode">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="53" height="22"/>
-              </grid>
-            </constraints>
-            <properties/>
           </component>
           <component id="c7f44" class="javax.swing.JLabel">
             <constraints>
@@ -254,6 +248,35 @@
             </constraints>
             <properties>
               <model/>
+            </properties>
+          </component>
+          <component id="50776" class="javax.swing.JComboBox" binding="cbSubjectName">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <scrollpane id="9cab1">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="8b7d6" class="javax.swing.JTextArea" binding="txtContentQues">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <component id="61d29" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="171" height="17"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Nội dung câu hỏi :"/>
             </properties>
           </component>
         </children>

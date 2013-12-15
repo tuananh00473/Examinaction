@@ -1,4 +1,4 @@
-package com.ptit.exam.persistence.entity;
+package com.ptit.exam.persistence.modelbinding;
 
 import java.io.Serializable;
 

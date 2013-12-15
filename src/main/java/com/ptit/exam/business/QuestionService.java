@@ -1,5 +1,6 @@
 package com.ptit.exam.business;
 
+import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.persistence.entity.Question;
 
 import java.util.List;
@@ -9,8 +10,7 @@ import java.util.List;
  * Date: 8/25/13
  * Time: 12:27 AM
  */
-public interface QuestionService
-{
+public interface QuestionService {
     public Question findById(Long id);
 
     public Question save(Question question);
@@ -30,4 +30,8 @@ public interface QuestionService
     public List<Question> findByChapter(int value);
 
     public List<Question> findByLevel(int value);
+
+    public List<Question> loadRandomExamQuestionList(Exam exam);
+
+    public List<Question> findBySubjectName(String subjectName);
 }

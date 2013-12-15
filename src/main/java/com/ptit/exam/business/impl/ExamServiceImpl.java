@@ -14,45 +14,43 @@ import java.util.List;
  * Time: 10:43 AM
  */
 @Component("examService")
-public class ExamServiceImpl implements ExamService
-{
+public class ExamServiceImpl implements ExamService {
 
     @Autowired
     ExamDAO examDAO;
 
     @Override
-    public Exam findById(Long id)
-    {
+    public Exam findById(Long id) {
         return examDAO.findOne(id);
     }
 
     @Override
-    public Exam save(Exam Exam)
-    {
+    public Exam save(Exam Exam) {
         return examDAO.saveAndFlush(Exam);
     }
 
     @Override
-    public void deleteById(Long id)
-    {
+    public void deleteById(Long id) {
         examDAO.delete(id);
     }
 
     @Override
-    public void delete(Exam Exam)
-    {
+    public void delete(Exam Exam) {
         examDAO.delete(Exam);
     }
 
     @Override
-    public List<Exam> getAll()
-    {
+    public List<Exam> getAll() {
         return examDAO.findAll();
     }
 
     @Override
-    public List<Exam> findBySubjectCode(String subjectCode)
-    {
+    public List<Exam> findBySubjectCode(String subjectCode) {
         return examDAO.findBySubjectCode(subjectCode);
+    }
+
+    @Override
+    public List<Exam> findBySubjectName(String subjectName) {
+        return examDAO.findBySubjectName(subjectName);
     }
 }
