@@ -5,12 +5,15 @@ import com.ptit.exam.business.ExamService;
 import com.ptit.exam.business.QuestionService;
 import com.ptit.exam.business.SubjectService;
 import com.ptit.exam.io.PDFManager;
+import com.ptit.exam.io.WordManager;
+import com.ptit.exam.persistence.entity.Answer;
 import com.ptit.exam.persistence.entity.Exam;
 import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.admin.ExportExamGUI;
 import com.ptit.exam.ui.view.admin.MainAdminGUI;
 import com.ptit.exam.util.ComboboxManager;
+import com.ptit.exam.util.Constants;
 import com.ptit.exam.util.FileChooserManager;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,13 +87,33 @@ public class ExportExamController {
                 Exam exam = (Exam) exportExamGUI.getCbExamName().getSelectedItem();
                 questionList = questionService.loadRandomExamQuestionList(exam);
                 correctAnswers = answerService.loadCorrectAnswer(questionList);
-
+//                show len view
+                String bufferContent = "";
+                int count = 1;
+                for (Question question : questionList) {
+                    bufferContent += "\nCâu " + count + ": ";
+                    bufferContent += question.getContent();
+                    List<Answer> answerList = question.getAnswerList();
+                    for (int i = 0; i < answerList.size(); i++) {
+                        bufferContent += "\n\t" + Constants.answerText[i] + ". " + answerList.get(i).getContent();
+                    }
+                    bufferContent += "\n";
+                    count++;
+                }
+                exportExamGUI.getTxtContent().setText(bufferContent);
             }
             if (e.getSource() == exportExamGUI.getBtnExport()) {
                 try {
                     String path = FileChooserManager.getPath(mainAdminGUI);
-                    PDFManager.printData(path, questionList, correctAnswers);
-                    MessageManager.show("Kết xuất đề thi thành công.");
+                    if (null != path && 0 != path.length()) {
+//                        PDFManager.printData(path, questionList, correctAnswers);
+                        PDFManager.printData(path, exportExamGUI.getTxtContent().getText());
+                        PDFManager.printData(path, correctAnswers);
+
+                        WordManager.writeToFile(path, exportExamGUI.getTxtContent().getText());
+
+                        MessageManager.show("Kết xuất đề thi thành công.");
+                    }
                 } catch (Exception ex) {
                     MessageManager.show("Kết xuất đề thi lỗi do hệ thống.");
                 }

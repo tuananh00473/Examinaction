@@ -1,5 +1,6 @@
-package com.ptit.exam.io;//package excel;
+package com.ptit.exam.io;
 
+import com.ptit.exam.persistence.entity.Student;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -9,13 +10,12 @@ import java.io.*;
 import java.util.*;
 
 /**
- * User: anhnt
+ * User: thuongntt
  * Date: 11/26/13
  * Time: 9:15 AM
- * Link to reference : http://viralpatel.net/blogs/java-read-write-excel-file-apache-poi/comment-page-1/
  */
 public class ExcelManager {
-    public void readData(String path) {
+    public static List<Student> readData(String path) {
         try {
             FileInputStream file = new FileInputStream(new File(path));
 
@@ -28,38 +28,55 @@ public class ExcelManager {
             //Iterate through each rows from first sheet
             Iterator<Row> rowIterator = sheet.iterator();
             if (rowIterator.hasNext()) {
-                Row rowHeader = rowIterator.next();
+                rowIterator.next();
             }
+            List<Student> studentList = new ArrayList<Student>();
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 //For each row, iterate through each columns
                 Iterator<Cell> cellIterator = row.cellIterator();
-                while (cellIterator.hasNext()) {
+                Student student = new Student();
+                Cell cell = cellIterator.next();
+                String firstName = cell.getStringCellValue();
+                student.setFirstName(firstName);
+                cell = cellIterator.next();
+                String lastName = cell.getStringCellValue();
+                student.setLastName(lastName);
+                cell = cellIterator.next();
+                student.setGender(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setDateOfBirth(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setStudentCode(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setClassRoom(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setFaculty(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setCourse(cell.getStringCellValue());
+                cell = cellIterator.next();
+                student.setTrainingType(cell.getStringCellValue());
 
-                    Cell cell = cellIterator.next();
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_BOOLEAN:
-                            System.out.print(cell.getBooleanCellValue() + "\t\t");
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "\t\t");
-                            break;
-                        case Cell.CELL_TYPE_STRING:
-                            System.out.print(cell.getStringCellValue() + "\t\t");
-                            break;
-                    }
+                String shortLastName = "";
+                String[] subLastNames = lastName.trim().split(" ");
+                for (int i = 0; i < subLastNames.length; i++) {
+                    shortLastName = shortLastName.concat(subLastNames[i].substring(0, 1));
                 }
-                System.out.println("");
+                String key = firstName.trim().concat(shortLastName);
+                student.setUserName(key);
+                student.setPassWord(key);
+
+                studentList.add(student);
             }
             file.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            return studentList;
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void writeData() {
+    public static void writeData() {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Sample sheet");
 

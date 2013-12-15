@@ -20,6 +20,7 @@ public class ExportExamGUI extends JPanel {
     private JComboBox cbSubjectName;
     private JComboBox cbExamName;
     private JButton btnGenerateExam;
+    private JTextArea txtContent;
 
     public JButton getBtnCancel() {
         return btnCancel;
@@ -39,6 +40,10 @@ public class ExportExamGUI extends JPanel {
 
     public JButton getBtnGenerateExam() {
         return btnGenerateExam;
+    }
+
+    public JTextArea getTxtContent() {
+        return txtContent;
     }
 
     {
@@ -63,6 +68,8 @@ public class ExportExamGUI extends JPanel {
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         scrollPane1.setViewportView(contentPanel);
+        txtContent = new JTextArea();
+        contentPanel.add(txtContent, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         btnExport = new JButton();
         btnExport.setText("XUẤT RA FILE");
         exportExamCard.add(btnExport, new GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

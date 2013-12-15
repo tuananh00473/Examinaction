@@ -3,6 +3,9 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.ptit.exam.business.StudentService;
+import com.ptit.exam.io.ExcelManager;
+import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.ui.control.LoginController;
 import com.ptit.exam.ui.control.admincontroller.*;
 import com.ptit.exam.ui.view.LoginGUI;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 /**
  * User: thuongntt
@@ -48,6 +52,9 @@ public class MainAdminGUI extends JFrame {
 
     @Autowired
     ManagementStudentController managementStudentController;
+
+    @Autowired
+    StudentService studentService;
 
     private JPanel mainPanel;
     private JButton btnIntroduce;
@@ -229,7 +236,11 @@ public class MainAdminGUI extends JFrame {
             if (e.getSource() == menuItemImportStudent) {
                 String pathFile = FileChooserManager.getFile(MainAdminGUI.this);
                 if (checkValidFile(pathFile)) {
-
+                    List<Student> studentList = ExcelManager.readData(pathFile);
+                    for (Student student : studentList) {
+                        studentService.save(student);
+                    }
+                    MessageManager.show("Đã thêm thành công " + studentList.size() + " sinh viên vào danh sách quản lý.");
                 } else {
                     MessageManager.show("File nhập vào không hợp lệ.");
                 }
