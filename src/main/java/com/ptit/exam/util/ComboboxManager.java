@@ -22,10 +22,10 @@ public class ComboboxManager {
     public static void setListSubject(JComboBox comboBox, List<Subject> subjectList) {
         Subject[] subjects = new Subject[subjectList.size()];
 
+
         for (int i = 0; i < subjectList.size(); i++) {
             subjects[i] = subjectList.get(i);
         }
-
         comboBox.setModel(new DefaultComboBoxModel(subjects));
     }
 

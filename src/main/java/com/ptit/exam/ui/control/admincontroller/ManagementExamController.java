@@ -123,6 +123,7 @@ public class ManagementExamController {
         for (Exam exam : examList) {
             examService.save(exam);
         }
+        MessageManager.show("Lưu thành công !");
     }
 
     private ItemListener itemListener = new ItemListener() {
@@ -150,7 +151,7 @@ public class ManagementExamController {
             MessageManager.show("Hãy chọn đề thi bạn muốn sửa.");
         } else {
             doSetUpEditExam(examList.get(select));
-            mainAdminController.doShowExportExamCard();
+            mainAdminController.doShowNewExamCard();
         }
     }
 

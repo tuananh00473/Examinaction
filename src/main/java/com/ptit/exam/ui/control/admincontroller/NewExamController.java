@@ -137,6 +137,7 @@ public class NewExamController {
             }
             if (e.getSource() == newExaminationGUI.getBtnCancel()) {
                 managementExamController.doSetUp(exam);
+                newExaminationGUI.resetExportExamGUI();
                 mainAdminController.doShowManagementExamGUI();
             }
         }

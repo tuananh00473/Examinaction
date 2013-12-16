@@ -52,27 +52,11 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <component id="f2b13" class="javax.swing.JLabel">
-                            <constraints>
-                              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties>
-                              <text value="Khoa"/>
-                            </properties>
-                          </component>
                           <hspacer id="5d6eb">
                             <constraints>
                               <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                           </hspacer>
-                          <component id="c54f0" class="javax.swing.JComboBox" binding="cbBoxFacultyTab1">
-                            <constraints>
-                              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties>
-                              <model/>
-                            </properties>
-                          </component>
                           <component id="e273e" class="javax.swing.JButton" binding="btnSearchTab1">
                             <constraints>
                               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -83,7 +67,7 @@
                           </component>
                           <component id="aa3bd" class="javax.swing.JLabel">
                             <constraints>
-                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <text value="Tên Môn"/>
@@ -91,9 +75,25 @@
                           </component>
                           <component id="66e63" class="javax.swing.JComboBox" binding="cbBoxSubjectTab1">
                             <constraints>
-                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
+                          </component>
+                          <component id="f2b13" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Khoa"/>
+                            </properties>
+                          </component>
+                          <component id="c54f0" class="javax.swing.JComboBox" binding="cbBoxFacultyTab1">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <model/>
+                            </properties>
                           </component>
                         </children>
                       </grid>

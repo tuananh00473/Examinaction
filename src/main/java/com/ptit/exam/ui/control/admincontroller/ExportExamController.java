@@ -85,41 +85,56 @@ public class ExportExamController {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == exportExamGUI.getBtnGenerateExam()) {
                 Exam exam = (Exam) exportExamGUI.getCbExamName().getSelectedItem();
-                questionList = questionService.loadRandomExamQuestionList(exam);
-                correctAnswers = answerService.loadCorrectAnswer(questionList);
+                if (null != exam) {
+                    questionList = questionService.loadRandomExamQuestionList(exam);
+                    correctAnswers = answerService.loadCorrectAnswer(questionList);
 //                show len view
-                String bufferContent = "";
-                int count = 1;
-                for (Question question : questionList) {
-                    bufferContent += "\nCâu " + count + ": ";
-                    bufferContent += question.getContent();
-                    List<Answer> answerList = question.getAnswerList();
-                    for (int i = 0; i < answerList.size(); i++) {
-                        bufferContent += "\n\t" + Constants.answerText[i] + ". " + answerList.get(i).getContent();
+                    String bufferContent = "";
+                    int count = 1;
+                    for (Question question : questionList) {
+                        bufferContent += "\nCâu " + count + ": ";
+                        bufferContent += question.getContent();
+                        List<Answer> answerList = question.getAnswerList();
+                        for (int i = 0; i < answerList.size(); i++) {
+                            bufferContent += "\n      " + Constants.answerText[i] + ". " + answerList.get(i).getContent();
+                        }
+                        bufferContent += "\n";
+                        count++;
                     }
-                    bufferContent += "\n";
-                    count++;
+                    exportExamGUI.getTxtContent().setText(bufferContent);
+                } else {
+                    MessageManager.show("Bạn chưa chọn đề thi nào. Hãy chọn 1 đề thi !");
                 }
-                exportExamGUI.getTxtContent().setText(bufferContent);
+
             }
             if (e.getSource() == exportExamGUI.getBtnExport()) {
-                try {
-                    String path = FileChooserManager.getPath(mainAdminGUI);
-                    if (null != path && 0 != path.length()) {
+                if ("".equals(exportExamGUI.getTxtContent().getText())) {
+                    MessageManager.show("Bạn chưa tạo đề thi !!!");
+                } else {
+                    try {
+                        String path = FileChooserManager.getPath(mainAdminGUI);
+                        if (null != path && 0 != path.length()) {
 //                        PDFManager.printData(path, questionList, correctAnswers);
-                        PDFManager.printData(path, exportExamGUI.getTxtContent().getText());
-                        PDFManager.printData(path, correctAnswers);
+                            PDFManager.printData(path, exportExamGUI.getTxtContent().getText());
+                            PDFManager.printData(path, correctAnswers);
 
-                        WordManager.writeToFile(path, exportExamGUI.getTxtContent().getText());
+                            WordManager.writeToFile(path, exportExamGUI.getTxtContent().getText());
 
-                        MessageManager.show("Kết xuất đề thi thành công.");
+                            MessageManager.show("Kết xuất đề thi thành công.");
+                        }
+                    } catch (Exception ex) {
+                        MessageManager.show("Kết xuất đề thi lỗi do hệ thống.");
                     }
-                } catch (Exception ex) {
-                    MessageManager.show("Kết xuất đề thi lỗi do hệ thống.");
                 }
             }
             if (e.getSource() == exportExamGUI.getBtnCancel()) {
+                resetGUI();
             }
         }
     };
+
+    private void resetGUI() {
+        exportExamGUI.resetExportExamGUI();
+
+    }
 }

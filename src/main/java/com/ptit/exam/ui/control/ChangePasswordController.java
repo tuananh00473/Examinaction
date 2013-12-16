@@ -53,7 +53,7 @@ public class ChangePasswordController {
                 Admin admin1 = adminService.save(admin);
                 if (admin1 != null) {
                     JOptionPane.showMessageDialog(null, "Bạn đã đổi mật khẩu thành công !");
-                    loginGUI.show();
+
                     changePasswordGUI.setVisible(false);
                 }
             } else {

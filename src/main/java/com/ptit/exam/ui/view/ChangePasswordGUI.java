@@ -50,7 +50,7 @@ public class ChangePasswordGUI extends JFrame {
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginGUI.show();
+
                 setVisible(false);
             }
         });

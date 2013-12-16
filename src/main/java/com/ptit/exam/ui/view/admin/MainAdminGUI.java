@@ -8,6 +8,7 @@ import com.ptit.exam.io.ExcelManager;
 import com.ptit.exam.persistence.entity.Student;
 import com.ptit.exam.ui.control.LoginController;
 import com.ptit.exam.ui.control.admincontroller.*;
+import com.ptit.exam.ui.view.ChangePasswordGUI;
 import com.ptit.exam.ui.view.LoginGUI;
 import com.ptit.exam.util.FileChooserManager;
 import com.ptit.exam.util.MessageManager;
@@ -35,6 +36,10 @@ public class MainAdminGUI extends JFrame {
     @Autowired
     LoginGUI loginGUI;
 
+
+    @Autowired
+    ChangePasswordGUI changePasswordGUI;
+
     @Autowired
     QuestionBankController questionBankController;
 
@@ -57,7 +62,6 @@ public class MainAdminGUI extends JFrame {
     StudentService studentService;
 
     private JPanel mainPanel;
-    private JButton btnIntroduce;
     private JButton btnQuestionBank;
     private JButton btnManagementExam;
     private JButton btnExportExamination;
@@ -75,6 +79,7 @@ public class MainAdminGUI extends JFrame {
     private ManagementSubjectGUI managementSubjectGUI;
     private ManagementStudentGUI managementStudentGUI;
     private ExportExamGUI exportExamGUI;
+
 
     //    menu
     private JMenuBar menuBar;
@@ -95,6 +100,7 @@ public class MainAdminGUI extends JFrame {
     public MainAdminGUI() {
         $$$setupUI$$$();
         setContentPane(mainPanel);
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = (int) tk.getScreenSize().getWidth();
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
@@ -108,6 +114,13 @@ public class MainAdminGUI extends JFrame {
             public void mousePressed(MouseEvent e) {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
+            }
+        });
+
+        lbUsername.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                changePasswordGUI.setVisible(true);
             }
         });
 
@@ -274,28 +287,25 @@ public class MainAdminGUI extends JFrame {
         panel1.setLayout(new BorderLayout(0, 0));
         mainPanel.add(panel1, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, BorderLayout.WEST);
-        btnIntroduce = new JButton();
-        btnIntroduce.setText("Introduce");
-        panel2.add(btnIntroduce, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementExam = new JButton();
-        btnManagementExam.setText("Quản lý đề thi");
-        panel2.add(btnManagementExam, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnManagementExam.setText("Quản Lý Đề Thi");
+        panel2.add(btnManagementExam, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnExportExamination = new JButton();
-        btnExportExamination.setText("Xuất đề thi");
-        panel2.add(btnExportExamination, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnExportExamination.setText("Xuất Đề Thi");
+        panel2.add(btnExportExamination, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementSubject = new JButton();
-        btnManagementSubject.setText("Qu?n Lý Môn H?c");
-        panel2.add(btnManagementSubject, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnManagementSubject.setText("Quản Lý Môn Học");
+        panel2.add(btnManagementSubject, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel2.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         btnQuestionBank = new JButton();
-        btnQuestionBank.setText("Ngân Hàng Câu H?i");
-        panel2.add(btnQuestionBank, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnQuestionBank.setText("Ngân Hàng Câu Hỏi");
+        panel2.add(btnQuestionBank, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnManagementStudent = new JButton();
-        btnManagementStudent.setText("Qu?n Lý Sinh Viên");
-        panel2.add(btnManagementStudent, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnManagementStudent.setText("Quản Lý Sinh Viên");
+        panel2.add(btnManagementStudent, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         AdminCardPanel = new JPanel();
         AdminCardPanel.setLayout(new CardLayout(0, 0));
         panel1.add(AdminCardPanel, BorderLayout.CENTER);
@@ -317,9 +327,6 @@ public class MainAdminGUI extends JFrame {
         AdminCardPanel.add(newStudentGUI.$$$getRootComponent$$$(), "newStudentGUI");
         exportExamGUI = new ExportExamGUI();
         AdminCardPanel.add(exportExamGUI.$$$getRootComponent$$$(), "exportExamGUI");
-        final JLabel label1 = new JLabel();
-        label1.setText("Label");
-        mainPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbLogOut = new JLabel();
         lbLogOut.setFont(new Font(lbLogOut.getFont().getName(), Font.BOLD | Font.ITALIC, lbLogOut.getFont().getSize()));
         lbLogOut.setText("Log out");

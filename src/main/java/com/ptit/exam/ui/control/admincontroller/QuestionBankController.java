@@ -100,7 +100,7 @@ public class QuestionBankController {
 
     private void resetView(Question question) {
         // todo : cho~ nay can reset toan bo TextArea content questions detail va TextField content answer detail
-        if (null == question) {
+        if (null == question || null == question.getContent()) {
             questionList = ObservableCollections.observableList(new ArrayList<Question>());
         } else {
             updateQuestionList(questionList, question);
@@ -139,6 +139,7 @@ public class QuestionBankController {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == questionBankGUI.getBtnSearch()) {
                 doSearchQuestion();
+
             }
             if (e.getSource() == questionBankGUI.getBtnNewQuestion()) {
                 doAddQuestion();
