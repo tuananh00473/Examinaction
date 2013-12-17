@@ -14,6 +14,7 @@ import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.persistence.modelbinding.ResultDTOBinding;
 import com.ptit.exam.ui.view.student.MainStudentGUI;
 import com.ptit.exam.ui.view.student.ResultGUI;
+import com.ptit.exam.util.ComboboxManager;
 import com.ptit.exam.util.Constants;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +57,10 @@ public class ResultController {
     private List<ResultDTOBinding> resultListBinding;
     private JTable resultTable;
     private JScrollPane resultScrollPane;
-    private Set<String> stringSet = new HashSet<String>();
+
     private List<Subject> subjectList;
     private List<Student> studentList;
+    private List<Exam> examList;
 
     public void setUp() {
         resetGUI();
@@ -76,25 +78,42 @@ public class ResultController {
 
 
         resultGUI.getComboBoxFaculty().addItemListener(itemListener);
+        resultGUI.getComboBoxSubject().addItemListener(itemListener);
 
     }
 
     private ItemListener itemListener = new ItemListener() {
         @Override
         public void itemStateChanged(ItemEvent e) {
-            if ((e.getSource() == resultGUI.getComboBoxFaculty() && !("".equals(resultGUI.getComboBoxFaculty().getSelectedItem().toString())))) {
-                studentList = studentService.findByFaculty(resultGUI.getComboBoxFaculty().getSelectedItem().toString());
-                System.out.println(studentList.size());
-                for (Student student : studentList) {
-                    stringSet.add(student.getClassRoom());
-                }
-                System.out.println(stringSet.size());
-                for (String s : stringSet) {
-                    resultGUI.getComboBoxClass().addItem(s.intern());
-                }
+            if (e.getSource() == resultGUI.getComboBoxFaculty()) {
+                String faculty = resultGUI.getComboBoxFaculty().getSelectedItem().toString();
+                if (!("".equals(faculty))) {
+                    Set<String> stringSet = new HashSet<String>();
 
-            } else {
-                resultGUI.getComboBoxClass().removeAllItems();
+                    resultGUI.getComboBoxClass().removeAllItems();
+                    studentList = studentService.findByFaculty(faculty);
+                    for (Student student : studentList) {
+                        stringSet.add(student.getClassRoom());
+                    }
+
+                    for (String s : stringSet) {
+                        resultGUI.getComboBoxClass().addItem(s.intern());
+                    }
+
+                    subjectList = subjectService.findByFaculty(faculty);
+                    ComboboxManager.setListSubject(resultGUI.getComboBoxSubject(), subjectList);
+                    if (subjectList.size() == 0) {
+                        ComboboxManager.resetCombobox(resultGUI.getComboBoxExamination());
+                    } else {
+                        examList = examService.findBySubjectName(subjectList.get(resultGUI.getComboBoxSubject().getSelectedIndex()).getSubjectName());
+                        ComboboxManager.setListExam(resultGUI.getComboBoxExamination(), examList);
+                    }
+                }
+            }
+
+            if (e.getSource() == resultGUI.getComboBoxSubject()) {
+                examList = examService.findBySubjectName(subjectList.get(resultGUI.getComboBoxSubject().getSelectedIndex()).getSubjectName());
+                ComboboxManager.setListExam(resultGUI.getComboBoxExamination(), examList);
             }
         }
     };
@@ -155,7 +174,7 @@ public class ResultController {
         List<Result> searchList = new ArrayList<Result>();
 
         for (Result result : list1) {
-            if (list2.contains(result)) {
+            if (list2.contains(result) && list3.contains(result) && list4.contains(result)) {
                 searchList.add(result);
             }
         }

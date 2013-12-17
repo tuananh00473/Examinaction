@@ -10,6 +10,7 @@ import com.ptit.exam.persistence.entity.Result;
 import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.view.student.MainStudentGUI;
 import com.ptit.exam.ui.view.student.SettingExamGUI;
+import com.ptit.exam.util.ComboboxManager;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,7 @@ import java.util.List;
  * Time: 11:46 AM
  */
 @Component
-public class SettingExamController
-{
+public class SettingExamController {
     @Autowired
     MainStudentGUI mainStudentGUI;
 
@@ -53,96 +53,99 @@ public class SettingExamController
     private JComboBox cbSubjectExam;
     private SettingExamGUI settingExamGUI;
 
-    public void doSetUp()
-    {
+    public void doSetUp() {
         setUpViewSetting();
         setUpActionListener();
+
     }
 
-    private void setUpActionListener()
-    {
-        if (GlobalValues.SETTING_EXAM_ADD_ACTION)
-        {
+    private void resetCbSubjectExam() {
+        settingExamGUI.getCbSubjectExam().removeAllItems();
+    }
+
+    private void setUpActionListener() {
+        if (GlobalValues.SETTING_EXAM_ADD_ACTION) {
             settingExamGUI.getBtnStart().addActionListener(actionListener);
             cbSubjectExam.addItemListener(itemListener);
         }
         GlobalValues.SETTING_EXAM_ADD_ACTION = false;
     }
 
-    private ItemListener itemListener = new ItemListener()
-    {
+    private ItemListener itemListener = new ItemListener() {
         @Override
-        public void itemStateChanged(ItemEvent e)
-        {
+        public void itemStateChanged(ItemEvent e) {
             GlobalValues.exam = null;
             int indexSelected = cbSubjectExam.getSelectedIndex();
-            if (0 != indexSelected)
-            {
-                Subject subject = subjectList.get(indexSelected - 1);
-                GlobalValues.subject = subject;
-                List<Exam> examList = examService.findBySubjectCode(subject.getSubjectCode());
-                if (0 == examList.size())
-                {
-                    settingExamGUI.setUpExamInfo(new Exam());
-                }
-                for (Exam exam : examList)
-                {
-                    if (exam.isActive())
-                    {
-                        settingExamGUI.setUpExamInfo(exam);
-                        GlobalValues.exam = exam;
-                    }
-                }
-            }
-            else
-            {
+            if (-1 != indexSelected) {
+                setInfoAboutExam(subjectList.get(indexSelected));
+            } else {
                 settingExamGUI.setUpExamInfo(new Exam());
             }
         }
     };
 
-    private ActionListener actionListener = new ActionListener()
-    {
+    private void setInfoAboutExam(Subject subject) {
+        GlobalValues.subject = subject;
+        List<Exam> examList = examService.findBySubjectCode(subject.getSubjectCode());
+        if (0 == examList.size()) {
+            settingExamGUI.setUpExamInfo(new Exam());
+        }
+        for (Exam exam : examList) {
+            if (exam.isActive()) {
+                settingExamGUI.setUpExamInfo(exam);
+                GlobalValues.exam = exam;
+                break;
+            }
+            if (null == GlobalValues.exam) {
+                settingExamGUI.setUpExamInfo(new Exam());
+            }
+        }
+    }
+
+    private ActionListener actionListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == settingExamGUI.getBtnStart())
-            {
-                if (null == GlobalValues.exam)
-                {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == settingExamGUI.getBtnStart()) {
+                if (null == GlobalValues.exam) {
                     MessageManager.show("Đề thi chưa được kích hoạt.");
-                }
-                else
-                {
+                } else {
                     ExamCard examCard = examCardService.findByStudentIdAndSubjectId(GlobalValues.student.getId(), GlobalValues.subject.getId());
                     Result result = resultService.findByExamIdAndStudentId(GlobalValues.exam.getId(), GlobalValues.student.getId());
-                    if (null != result)
-                    {
+                    if (null != result) {
                         MessageManager.show("Bạn đã thực hiện thi môn này rồi.");
                         return;
                     }
-                    if (!examCard.isCanDoExam())
-                    {
+                    if (!examCard.isCanDoExam()) {
                         MessageManager.show("Bạn không được phép dự thi môn " + GlobalValues.subject.getSubjectName());
                         return;
                     }
                     examController.doSetUp();
+                    isEnableButton();
                     mainStudentController.doShowExamCard();
                 }
             }
         }
     };
 
-    private void setUpViewSetting()
-    {
+    private void isEnableButton() {
+        mainStudentGUI.getBtnStartExam().setEnabled(false);
+        mainStudentGUI.getBtnExamResults().setEnabled(false);
+    }
+
+    public void resetEnableButton() {
+        mainStudentGUI.getBtnStartExam().setEnabled(true);
+        mainStudentGUI.getBtnExamResults().setEnabled(true);
+    }
+
+    private void setUpViewSetting() {
         settingExamGUI = mainStudentGUI.getSettingExamGUI();
         cbSubjectExam = settingExamGUI.getCbSubjectExam();
-        cbSubjectExam.addItem("");
         settingExamGUI.setInfoAboutStudentToField(GlobalValues.student);
         subjectList = subjectService.findByStudentId(GlobalValues.student.getId());
-        for (Subject subject : subjectList)
-        {
-            cbSubjectExam.addItem(subject.getSubjectName());
+
+        ComboboxManager.setListSubject(cbSubjectExam, subjectList);
+        if (subjectList.size() != 0) {
+            setInfoAboutExam(subjectList.get(0));
         }
     }
 }

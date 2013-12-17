@@ -6,6 +6,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import com.ptit.exam.ui.control.usercontroller.MainStudentController;
 import com.ptit.exam.ui.control.usercontroller.ResultController;
 import com.ptit.exam.ui.control.usercontroller.SettingExamController;
+import com.ptit.exam.ui.view.ChangePasswordGUI;
 import com.ptit.exam.ui.view.LoginGUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,7 @@ public class MainStudentGUI extends JFrame {
 
     private JLabel lbLogOut;
     private JLabel lbUsername;
+    private IntroduceStudentGUI introduceStudentGUI;
 
     private CardLayout cardLayout;
 
@@ -44,6 +46,8 @@ public class MainStudentGUI extends JFrame {
     SettingExamController settingExamController;
     @Autowired
     ResultController resultController;
+    @Autowired
+    ChangePasswordGUI changePasswordGUI;
 
     @Autowired
     LoginGUI loginGUI;
@@ -56,11 +60,19 @@ public class MainStudentGUI extends JFrame {
         int ySize = (int) tk.getScreenSize().getHeight() - 50;
         setSize(xSize, ySize);
 
+
         lbLogOut.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 loginGUI.setVisible(true);
                 MainStudentGUI.this.setVisible(false);
+            }
+        });
+
+        lbUsername.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                changePasswordGUI.setVisible(true);
             }
         });
 
@@ -79,26 +91,8 @@ public class MainStudentGUI extends JFrame {
                 mainStudentController.doShowResultCard();
             }
         });
-//
-//        // ================ button SETTING EXAM GUI ==============
-//        settingExamGUI.getBtnStart().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                settingExamController.doStart();
-//
-//            }
-//        });
-//
-//        // ================ button RESULTGUI ========================
-//
-//        resultGUI.getBtnSearchTab2().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                resultController.doSearch();
-//            }
-//        });
-
         cardLayout = (CardLayout) StudentCardPanel.getLayout();
+        cardLayout.show(StudentCardPanel, "introduceStudentGUI");
     }
 
     public ExamGUI getExamGUI() {
@@ -119,6 +113,14 @@ public class MainStudentGUI extends JFrame {
 
     public CardLayout getCardLayout() {
         return cardLayout;
+    }
+
+    public JButton getBtnStartExam() {
+        return btnStartExam;
+    }
+
+    public JButton getBtnExamResults() {
+        return btnExamResults;
     }
 
     public JLabel getLbUsername() {
@@ -164,15 +166,14 @@ public class MainStudentGUI extends JFrame {
         StudentCardPanel.setBackground(new Color(-6710785));
         panel1.add(StudentCardPanel, BorderLayout.CENTER);
         StudentCardPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16737895)), null));
+        introduceStudentGUI = new IntroduceStudentGUI();
+        StudentCardPanel.add(introduceStudentGUI.$$$getRootComponent$$$(), "introduceStudentGUI");
         examGUI = new ExamGUI();
         StudentCardPanel.add(examGUI.$$$getRootComponent$$$(), "examGUI");
         resultGUI = new ResultGUI();
         StudentCardPanel.add(resultGUI.$$$getRootComponent$$$(), "resultGUI");
         settingExamGUI = new SettingExamGUI();
         StudentCardPanel.add(settingExamGUI.$$$getRootComponent$$$(), "settingExamGUI");
-        final JLabel label1 = new JLabel();
-        label1.setText("Label");
-        studentPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbLogOut = new JLabel();
         lbLogOut.setFont(new Font(lbLogOut.getFont().getName(), Font.BOLD | Font.ITALIC, lbLogOut.getFont().getSize()));
         lbLogOut.setText("Log out");

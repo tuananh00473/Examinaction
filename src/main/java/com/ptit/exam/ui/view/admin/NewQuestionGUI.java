@@ -7,6 +7,7 @@ import com.ptit.exam.persistence.entity.Answer;
 import com.ptit.exam.persistence.entity.Question;
 import com.ptit.exam.persistence.entity.Subject;
 import com.ptit.exam.ui.control.admincontroller.QuestionBankController;
+import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
@@ -74,10 +75,24 @@ public class NewQuestionGUI extends JPanel {
         return btnCancel;
     }
 
+    public static boolean isNumeric(String str) {
+        try {
+            int d = Integer.parseInt(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     public Question getQuestionInfo(Question question, List<Subject> subjectList) {
         Subject subject = subjectList.get(cbSubjectName.getSelectedIndex());
         question.setSubjectCode(subject.getSubjectCode());
-        question.setChapter(Integer.parseInt(txtChapter.getText()));
+        if (isNumeric(txtChapter.getText())) {
+            question.setChapter(Integer.parseInt(txtChapter.getText()));
+        } else {
+            MessageManager.show("Lỗi dữ liệu. Hãy nhập lại chương !");
+        }
+
         question.setLevel(Integer.parseInt(cbLevel.getSelectedItem().toString()));
         question.setContent(txtContentQues.getText());
         question.setUrlImage(txtUrlImage.getText());
@@ -114,6 +129,7 @@ public class NewQuestionGUI extends JPanel {
 
     public boolean invalidForm() {
         if ("".equals(txtChapter.getText())
+                || "".equals(cbLevel.getSelectedItem().toString())
                 || "".equals(txtContentQues.getText())
                 || "".equals(txtContentAnswer1.getText())
                 || "".equals(txtContentAnswer2.getText())
@@ -289,12 +305,12 @@ public class NewQuestionGUI extends JPanel {
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         newQuestionPanel.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("SAVE");
+        btnSave.setText("LƯU");
         panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("CANCEL");
+        btnCancel.setText("HỦY");
         panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();

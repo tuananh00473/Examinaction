@@ -79,6 +79,7 @@ public class MainAdminGUI extends JFrame {
     private ManagementSubjectGUI managementSubjectGUI;
     private ManagementStudentGUI managementStudentGUI;
     private ExportExamGUI exportExamGUI;
+    private IntroduceAdminGUI introduceAdminGUI;
 
 
     //    menu
@@ -114,13 +115,6 @@ public class MainAdminGUI extends JFrame {
             public void mousePressed(MouseEvent e) {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
-            }
-        });
-
-        lbUsername.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                changePasswordGUI.setVisible(true);
             }
         });
 
@@ -327,6 +321,8 @@ public class MainAdminGUI extends JFrame {
         AdminCardPanel.add(newStudentGUI.$$$getRootComponent$$$(), "newStudentGUI");
         exportExamGUI = new ExportExamGUI();
         AdminCardPanel.add(exportExamGUI.$$$getRootComponent$$$(), "exportExamGUI");
+        introduceAdminGUI = new IntroduceAdminGUI();
+        AdminCardPanel.add(introduceAdminGUI.$$$getRootComponent$$$(), "introduceAdminGUI");
         lbLogOut = new JLabel();
         lbLogOut.setFont(new Font(lbLogOut.getFont().getName(), Font.BOLD | Font.ITALIC, lbLogOut.getFont().getSize()));
         lbLogOut.setText("Log out");

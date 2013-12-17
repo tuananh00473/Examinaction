@@ -22,6 +22,7 @@ public class MainAdminController {
     private static final String NEW_QUESTION_CARD = "newQuestionGUI";
     private static final String NEW_SUBJECT_CARD = "newSubjectGUI";
     private static final String NEW_STUDENT_CARD = "newStudentGUI";
+    private static final String INTRODUCE_ADMIN_CARD = "introduceAdminGUI";
 
     @Autowired
     MainAdminGUI mainAdminGUI;
@@ -84,6 +85,10 @@ public class MainAdminController {
 
     public void doShowNewStudentCard() {
         showCard(NEW_STUDENT_CARD);
+    }
+
+    public void doShowIntroduceAdminCard() {
+        showCard(INTRODUCE_ADMIN_CARD);
     }
 
     public void showCard(String nameCard) {

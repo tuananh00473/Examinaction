@@ -37,7 +37,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="First Name :"/>
+                      <text value="Tên:"/>
                     </properties>
                   </component>
                   <component id="b3bba" class="javax.swing.JTextField" binding="txtFirstname">
@@ -53,7 +53,7 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Last Name :"/>
+                      <text value="Họ tên đệm:"/>
                     </properties>
                   </component>
                   <component id="afcf2" class="javax.swing.JLabel">
@@ -61,7 +61,7 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Student Code:"/>
+                      <text value="Mã sinh viên:"/>
                     </properties>
                   </component>
                   <component id="4ba39" class="javax.swing.JLabel">
@@ -69,7 +69,7 @@
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Gender :"/>
+                      <text value="Giới tính:"/>
                     </properties>
                   </component>
                   <component id="7e5bf" class="javax.swing.JLabel">
@@ -77,7 +77,7 @@
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Date Of Birth :"/>
+                      <text value="Ngày sinh:"/>
                     </properties>
                   </component>
                   <component id="c8dba" class="javax.swing.JLabel">
@@ -85,7 +85,7 @@
                       <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Class :"/>
+                      <text value="Lớp:"/>
                     </properties>
                   </component>
                   <component id="53719" class="javax.swing.JLabel">
@@ -93,7 +93,7 @@
                       <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Faculty :"/>
+                      <text value="Khoa:"/>
                     </properties>
                   </component>
                   <component id="51631" class="javax.swing.JLabel">
@@ -101,7 +101,7 @@
                       <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Course :"/>
+                      <text value="Khóa học:"/>
                     </properties>
                   </component>
                   <component id="7fab1" class="javax.swing.JLabel">
@@ -109,7 +109,7 @@
                       <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Training System"/>
+                      <text value="Hình thức đào tạo:"/>
                     </properties>
                   </component>
                   <component id="aa2c7" class="javax.swing.JLabel">
@@ -133,7 +133,7 @@
                       <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Confirm Password:"/>
+                      <text value="Nhập lại Password:"/>
                     </properties>
                   </component>
                   <grid id="db325" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -199,7 +199,7 @@
                         </constraints>
                         <properties>
                           <selected value="true"/>
-                          <text value="Male"/>
+                          <text value="Nam"/>
                         </properties>
                       </component>
                       <hspacer id="819ec">
@@ -212,7 +212,7 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Female"/>
+                          <text value="Nữ"/>
                         </properties>
                       </component>
                     </children>
@@ -230,7 +230,7 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Day"/>
+                          <text value="Ngày"/>
                         </properties>
                       </component>
                       <hspacer id="71cc6">
@@ -251,7 +251,7 @@
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Month"/>
+                          <text value="Tháng"/>
                         </properties>
                       </component>
                       <component id="d350c" class="javax.swing.JComboBox" binding="comboBoxMonth">
@@ -267,7 +267,7 @@
                           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Year"/>
+                          <text value="Năm"/>
                         </properties>
                       </component>
                       <component id="9c1ea" class="javax.swing.JComboBox" binding="comboBoxYear">

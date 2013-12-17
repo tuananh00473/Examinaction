@@ -125,17 +125,18 @@ public class ExamController {
 
     private void doSubmit() {
         showResultExam();
+        settingExamController.resetEnableButton();
     }
 
     private void doPrevious() {
-        if (indexQuestion > 0) {                     // neu khong phai cau hoi dau tien thi moi cho phep previos
+        if (indexQuestion > 0) {
             indexQuestion--;
             setQuestionSelected(indexQuestion);
         }
     }
 
     private void doNext() {
-        if (indexQuestion < totalQuestionCount - 1) {    // neu chua phai cau hoi cuoi cung thi moi cho phep next
+        if (indexQuestion < totalQuestionCount - 1) {
             indexQuestion++;
             setQuestionSelected(indexQuestion);
         }

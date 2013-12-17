@@ -20,8 +20,11 @@ public class ComboboxManager {
     }
 
     public static void setListSubject(JComboBox comboBox, List<Subject> subjectList) {
+        if (subjectList.size() == 0) {
+            resetCombobox(comboBox);
+            return;
+        }
         Subject[] subjects = new Subject[subjectList.size()];
-
 
         for (int i = 0; i < subjectList.size(); i++) {
             subjects[i] = subjectList.get(i);
@@ -30,6 +33,10 @@ public class ComboboxManager {
     }
 
     public static void setListExam(JComboBox comboBox, List<Exam> examList) {
+        if (examList.size() == 0) {
+            resetCombobox(comboBox);
+            return;
+        }
         Exam[] exams = new Exam[examList.size()];
 
         for (int i = 0; i < examList.size(); i++) {
@@ -37,5 +44,9 @@ public class ComboboxManager {
         }
 
         comboBox.setModel(new DefaultComboBoxModel(exams));
+    }
+
+    public static void resetCombobox(JComboBox comboBox) {
+        comboBox.setModel(new DefaultComboBoxModel(new String[]{}));
     }
 }

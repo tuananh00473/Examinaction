@@ -14,8 +14,7 @@ import java.awt.*;
  * Date: 10/8/13
  * Time: 10:34 AM
  */
-public class SettingExamGUI extends JPanel
-{
+public class SettingExamGUI extends JPanel {
     private JPanel SettingExamCard;
     private JButton btnStart;
     private JLabel lbNameStudent;
@@ -29,38 +28,31 @@ public class SettingExamGUI extends JPanel
     private JLabel lbTotalQuestionCount;
     private JLabel lbTotalTimeCount;
 
-    public JButton getBtnStart()
-    {
+    public JButton getBtnStart() {
         return btnStart;
     }
 
-    public JLabel getLbStudentCode()
-    {
+    public JLabel getLbStudentCode() {
         return lbStudentCode;
     }
 
-    public JLabel getLbDateOfBirth()
-    {
+    public JLabel getLbDateOfBirth() {
         return lbDateOfBirth;
     }
 
-    public JLabel getLbFaculty()
-    {
+    public JLabel getLbFaculty() {
         return lbFaculty;
     }
 
-    public JLabel getLbClass()
-    {
+    public JLabel getLbClass() {
         return lbClass;
     }
 
-    public JComboBox getCbSubjectExam()
-    {
+    public JComboBox getCbSubjectExam() {
         return cbSubjectExam;
     }
 
-    public void setInfoAboutStudentToField(Student student)
-    {
+    public void setInfoAboutStudentToField(Student student) {
         lbNameStudent.setText(student.getFullName());
         lbClass.setText(student.getClassRoom());
         lbStudentCode.setText(student.getStudentCode());
@@ -68,12 +60,18 @@ public class SettingExamGUI extends JPanel
         lbFaculty.setText(student.getFaculty());
     }
 
-    public void setUpExamInfo(Exam exam)
-    {
-        lbExamCode.setText(exam.getExamCode());
-        lbExamName.setText(exam.getExamName());
-        lbTotalQuestionCount.setText(String.valueOf(exam.getTotalQuestion()));
-        lbTotalTimeCount.setText(String.valueOf(exam.getTotalTime()));
+    public void setUpExamInfo(Exam exam) {
+        if (!exam.equals(new Exam())) {
+            lbExamCode.setText(exam.getExamCode());
+            lbExamName.setText(exam.getExamName());
+            lbTotalQuestionCount.setText(String.valueOf(exam.getTotalQuestion()));
+            lbTotalTimeCount.setText(String.valueOf(exam.getTotalTime()));
+        } else {
+            lbExamCode.setText("");
+            lbExamName.setText("");
+            lbTotalQuestionCount.setText("");
+            lbTotalTimeCount.setText("");
+        }
     }
 
     {
@@ -90,8 +88,7 @@ public class SettingExamGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         SettingExamCard = new JPanel();
         SettingExamCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -176,7 +173,7 @@ public class SettingExamGUI extends JPanel
         lbTotalTimeCount.setText("");
         panel5.add(lbTotalTimeCount, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnStart = new JButton();
-        btnStart.setText("START");
+        btnStart.setText("BẮT ĐẦU THI");
         panel4.add(btnStart, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cbSubjectExam = new JComboBox();
         panel4.add(cbSubjectExam, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -189,8 +186,7 @@ public class SettingExamGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return SettingExamCard;
     }
 }

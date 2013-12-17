@@ -13,8 +13,7 @@ import java.awt.*;
  * Date: 10/23/13
  * Time: 11:17 PM
  */
-public class NewStudentGUI extends JPanel
-{
+public class NewStudentGUI extends JPanel {
     private JPanel studentPanel;
     private JTextField txtFirstname;
     private JButton btnCancel;
@@ -43,48 +42,39 @@ public class NewStudentGUI extends JPanel
     private JLabel lbValidateConfirmPassword;
     private JLabel lbNote;
 
-    public JButton getBtnCancel()
-    {
+    public JButton getBtnCancel() {
         return btnCancel;
     }
 
-    public JButton getBtnSave()
-    {
+    public JButton getBtnSave() {
         return btnSave;
     }
 
-    public JComboBox getComboBoxDay()
-    {
+    public JComboBox getComboBoxDay() {
         return comboBoxDay;
     }
 
-    public JComboBox getComboBoxMonth()
-    {
+    public JComboBox getComboBoxMonth() {
         return comboBoxMonth;
     }
 
-    public JComboBox getComboBoxYear()
-    {
+    public JComboBox getComboBoxYear() {
         return comboBoxYear;
     }
 
-    public JComboBox getComboBoxFaculty()
-    {
+    public JComboBox getComboBoxFaculty() {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxTrainingSystem()
-    {
+    public JComboBox getComboBoxTrainingSystem() {
         return comboBoxTrainingSystem;
     }
 
-    public JComboBox getComboBoxCourse()
-    {
+    public JComboBox getComboBoxCourse() {
         return comboBoxCourse;
     }
 
-    public boolean invalidForm()
-    {
+    public boolean invalidForm() {
         if ("".equals(txtStudentCode.getText())
                 || "".equals(txtFirstname.getText())
                 || "".equals(txtLastname.getText())
@@ -95,15 +85,13 @@ public class NewStudentGUI extends JPanel
                 || !txtPassword.getText().equals(txtConfirmPassword.getText())
                 || "".equals(comboBoxCourse.getSelectedItem().toString())
                 || "".equals(comboBoxFaculty.getSelectedItem().toString())
-                || "".equals(comboBoxTrainingSystem.getSelectedItem().toString()))
-        {
+                || "".equals(comboBoxTrainingSystem.getSelectedItem().toString())) {
             return true;
         }
         return false;
     }
 
-    public Student getSubjectInfo(Student student)
-    {
+    public Student getSubjectInfo(Student student) {
         student.setStudentCode(txtStudentCode.getText());
         student.setFirstName(txtFirstname.getText());
         student.setLastName(txtLastname.getText());
@@ -118,28 +106,22 @@ public class NewStudentGUI extends JPanel
         return student;
     }
 
-    private String getDateOfBirth()
-    {
+    private String getDateOfBirth() {
         String day = comboBoxDay.getSelectedItem().toString();
         String month = comboBoxMonth.getSelectedItem().toString();
         String year = comboBoxYear.getSelectedItem().toString();
         return day + "/" + month + "/" + year;
     }
 
-    private String getGender()
-    {
-        if (btnRadioMale.isSelected())
-        {
+    private String getGender() {
+        if (btnRadioMale.isSelected()) {
             return "nam";
-        }
-        else
-        {
+        } else {
             return "nữ";
         }
     }
 
-    public void setInfoSubject(Student student)
-    {
+    public void setInfoSubject(Student student) {
         txtFirstname.setText(student.getFirstName());
         txtLastname.setText(student.getLastName());
         txtClass.setText(student.getClassRoom());
@@ -157,30 +139,25 @@ public class NewStudentGUI extends JPanel
         setDateOfBirth(student.getDateOfBirth());
     }
 
-    private void setDateOfBirth(String dateOfBirth)
-    {
+    private void setDateOfBirth(String dateOfBirth) {
         String[] arg = dateOfBirth.split("/");
         comboBoxYear.setSelectedItem(arg[2]);
         comboBoxMonth.setSelectedItem(arg[1]);
         comboBoxDay.setSelectedItem(arg[0]);
     }
 
-    private void setGender(String gender)
-    {
-        if ("nam".equals(gender))
-        {
+    private void setGender(String gender) {
+        if ("nam".equals(gender)) {
             btnRadioMale.setSelected(true);
             btnRadioFemale.setSelected(false);
         }
-        if ("nữ".equals(gender))
-        {
+        if ("nữ".equals(gender)) {
             btnRadioMale.setSelected(false);
             btnRadioFemale.setSelected(true);
         }
     }
 
-    public void resetForm()
-    {
+    public void resetForm() {
         txtLastname.setText("");
         txtFirstname.setText("");
         txtClass.setText("");
@@ -214,8 +191,7 @@ public class NewStudentGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         studentPanel = new JPanel();
         studentPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         studentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -230,33 +206,33 @@ public class NewStudentGUI extends JPanel
         panel3.setLayout(new GridLayoutManager(14, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3);
         final JLabel label1 = new JLabel();
-        label1.setText("First Name :");
+        label1.setText("Tên:");
         panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtFirstname = new JTextField();
         panel3.add(txtFirstname, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Last Name :");
+        label2.setText("Họ tên đệm:");
         panel3.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("Student Code:");
+        label3.setText("Mã sinh viên:");
         panel3.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Gender :");
+        label4.setText("Giới tính:");
         panel3.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setText("Date Of Birth :");
+        label5.setText("Ngày sinh:");
         panel3.add(label5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();
-        label6.setText("Class :");
+        label6.setText("Lớp:");
         panel3.add(label6, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label7 = new JLabel();
-        label7.setText("Faculty :");
+        label7.setText("Khoa:");
         panel3.add(label7, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label8 = new JLabel();
-        label8.setText("Course :");
+        label8.setText("Khóa học:");
         panel3.add(label8, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
-        label9.setText("Training System");
+        label9.setText("Hình thức đào tạo:");
         panel3.add(label9, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label10 = new JLabel();
         label10.setText("Username :");
@@ -265,7 +241,7 @@ public class NewStudentGUI extends JPanel
         label11.setText("Password :");
         panel3.add(label11, new GridConstraints(10, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label12 = new JLabel();
-        label12.setText("Confirm Password:");
+        label12.setText("Nhập lại Password:");
         panel3.add(label12, new GridConstraints(11, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
@@ -288,18 +264,18 @@ public class NewStudentGUI extends JPanel
         panel3.add(panel5, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnRadioMale = new JRadioButton();
         btnRadioMale.setSelected(true);
-        btnRadioMale.setText("Male");
+        btnRadioMale.setText("Nam");
         panel5.add(btnRadioMale, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel5.add(spacer2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnRadioFemale = new JRadioButton();
-        btnRadioFemale.setText("Female");
+        btnRadioFemale.setText("Nữ");
         panel5.add(btnRadioFemale, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(1, 7, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel6, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label13 = new JLabel();
-        label13.setText("Day");
+        label13.setText("Ngày");
         panel6.add(label13, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel6.add(spacer3, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
@@ -308,14 +284,14 @@ public class NewStudentGUI extends JPanel
         comboBoxDay.setModel(defaultComboBoxModel1);
         panel6.add(comboBoxDay, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label14 = new JLabel();
-        label14.setText("Month");
+        label14.setText("Tháng");
         panel6.add(label14, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxMonth = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
         comboBoxMonth.setModel(defaultComboBoxModel2);
         panel6.add(comboBoxMonth, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label15 = new JLabel();
-        label15.setText("Year");
+        label15.setText("Năm");
         panel6.add(label15, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboBoxYear = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel3 = new DefaultComboBoxModel();
@@ -388,8 +364,7 @@ public class NewStudentGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return studentPanel;
     }
 }

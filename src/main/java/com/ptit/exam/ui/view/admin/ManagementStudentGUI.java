@@ -130,7 +130,7 @@ public class ManagementStudentGUI extends JPanel {
         txtNameSearch.setText("");
         panel3.add(txtNameSearch, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         btnSearchTab1 = new JButton();
-        btnSearchTab1.setText("Search");
+        btnSearchTab1.setText("TÌM KIẾM");
         panel3.add(btnSearchTab1, new GridConstraints(0, 7, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Khoa");
@@ -189,7 +189,7 @@ public class ManagementStudentGUI extends JPanel {
         label5.setText("Lớp");
         panel7.add(label5, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSearchTab2 = new JButton();
-        btnSearchTab2.setText("Search");
+        btnSearchTab2.setText("TÌM KIẾM");
         panel7.add(btnSearchTab2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtClassSearchTab2 = new JTextField();
         txtClassSearchTab2.setText("");

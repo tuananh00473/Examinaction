@@ -17,8 +17,7 @@ import java.awt.*;
  * Date: 10/1/13
  * Time: 9:52 AM
  */
-public class ExamGUI extends JPanel
-{
+public class ExamGUI extends JPanel {
 
     private JPanel examCard;
     private JLabel lbNameExamination;
@@ -42,43 +41,35 @@ public class ExamGUI extends JPanel
     private JTextArea txtContentQuestion;
     private JLabel lbImage;
 
-    public JButton getBtnPrevious()
-    {
+    public JButton getBtnPrevious() {
         return btnPrevious;
     }
 
-    public JButton getBtnNext()
-    {
+    public JButton getBtnNext() {
         return btnNext;
     }
 
-    public JButton getBtnAnswerA()
-    {
+    public JButton getBtnAnswerA() {
         return btnAnswerA;
     }
 
-    public JButton getBtnAnswerB()
-    {
+    public JButton getBtnAnswerB() {
         return btnAnswerB;
     }
 
-    public JButton getBtnAnswerC()
-    {
+    public JButton getBtnAnswerC() {
         return btnAnswerC;
     }
 
-    public JButton getBtnAnswerD()
-    {
+    public JButton getBtnAnswerD() {
         return btnAnswerD;
     }
 
-    public JButton getBtnSubmit()
-    {
+    public JButton getBtnSubmit() {
         return btnSubmit;
     }
 
-    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
-    {
+    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam) {
         lbNameSubject.setText(subject.getSubjectName());
         lbNameStudent.setText(student.getFullName());
         lbStudentCode.setText(student.getStudentCode());
@@ -89,38 +80,31 @@ public class ExamGUI extends JPanel
 
     }
 
-    public JLabel getLbRemainTime()
-    {
+    public JLabel getLbRemainTime() {
         return lbRemainTime;
     }
 
-    public JLabel getLbTotalNumberAnswered()
-    {
+    public JLabel getLbTotalNumberAnswered() {
         return lbTotalNumberAnswered;
     }
 
-    public JLabel getLbTotalNumberNotAnswerYet()
-    {
+    public JLabel getLbTotalNumberNotAnswerYet() {
         return lbTotalNumberNotAnswerYet;
     }
 
-    public JTextArea getTxtContentQuestion()
-    {
+    public JTextArea getTxtContentQuestion() {
         return txtContentQuestion;
     }
 
-    public JPanel getPanelButtonQuestion()
-    {
+    public JPanel getPanelButtonQuestion() {
         return panelButtonQuestion;
     }
 
-    public JLabel getLbImage()
-    {
+    public JLabel getLbImage() {
         return lbImage;
     }
 
-    public JPanel getPanelButtonAnswer()
-    {
+    public JPanel getPanelButtonAnswer() {
         return panelButtonAnswer;
     }
 
@@ -138,8 +122,7 @@ public class ExamGUI extends JPanel
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         examCard = new JPanel();
         examCard.setLayout(new CardLayout(0, 0));
         examCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
@@ -246,10 +229,10 @@ public class ExamGUI extends JPanel
         label10.setText("Số câu chưa làm :");
         panel9.add(label10, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbTotalNumberAnswered = new JLabel();
-        lbTotalNumberAnswered.setText("Label");
+        lbTotalNumberAnswered.setText("");
         panel9.add(lbTotalNumberAnswered, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbTotalNumberNotAnswerYet = new JLabel();
-        lbTotalNumberNotAnswerYet.setText("Label");
+        lbTotalNumberNotAnswerYet.setText("");
         panel9.add(lbTotalNumberNotAnswerYet, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnNext = new JButton();
         btnNext.setIcon(new ImageIcon(getClass().getResource("/images/next.jpg")));
@@ -281,8 +264,7 @@ public class ExamGUI extends JPanel
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return examCard;
     }
 }

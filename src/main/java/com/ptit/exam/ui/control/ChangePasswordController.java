@@ -74,7 +74,7 @@ public class ChangePasswordController {
                 Student student1 = studentService.save(student);
                 if (student1 != null) {
                     JOptionPane.showMessageDialog(null, "Bạn đã đổi mật khẩu thành công !");
-                    loginGUI.show();
+
                     changePasswordGUI.setVisible(false);
                 }
             } else {

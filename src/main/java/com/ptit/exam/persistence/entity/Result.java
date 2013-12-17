@@ -9,8 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "result")
-public class Result
-{
+public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -28,53 +27,56 @@ public class Result
     @Column(name = "max_score")
     private int maxScore;
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getExamId()
-    {
+    public Long getExamId() {
         return examId;
     }
 
-    public void setExamId(Long examId)
-    {
+    public void setExamId(Long examId) {
         this.examId = examId;
     }
 
-    public Long getStudentId()
-    {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Long studentId)
-    {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 
-    public int getScore()
-    {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(int score)
-    {
+    public void setScore(int score) {
         this.score = score;
     }
 
-    public int getMaxScore()
-    {
+    public int getMaxScore() {
         return maxScore;
     }
 
-    public void setMaxScore(int maxScore)
-    {
+    public void setMaxScore(int maxScore) {
         this.maxScore = maxScore;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Result) {
+            Result result = (Result) obj;
+            if (result.getExamId().equals(examId)
+                    && result.getStudentId().equals(studentId)
+                    && result.getMaxScore() == maxScore) {
+                return true;
+            }
+        }
+        return false;
     }
 }
