@@ -15,7 +15,6 @@ import com.ptit.exam.ui.view.admin.NewExaminationGUI;
 import com.ptit.exam.util.ComboboxManager;
 import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.MessageManager;
-import org.jdesktop.observablecollections.ObservableCollections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +26,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,7 +36,8 @@ import java.util.List;
  * Time: 10:56 AM
  */
 @Component
-public class ManagementExamController {
+public class ManagementExamController
+{
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -71,14 +70,17 @@ public class ManagementExamController {
 
     private boolean editInfo;
 
-    public void doSetUp(Exam exam) {
+    public void doSetUp(Exam exam)
+    {
         setUpView(exam);
         setUpActionListenner();
 
     }
 
-    private void setUpActionListenner() {
-        if (GlobalValues.MANAGEMENT_EXAM_ADD_ACTION) {
+    private void setUpActionListenner()
+    {
+        if (GlobalValues.MANAGEMENT_EXAM_ADD_ACTION)
+        {
             managementExamGUI.getBtnAddExam().addActionListener(actionListener);
             managementExamGUI.getBtnEditExam().addActionListener(actionListener);
             managementExamGUI.getBtnDeleteExam().addActionListener(actionListener);
@@ -89,79 +91,102 @@ public class ManagementExamController {
         GlobalValues.MANAGEMENT_EXAM_ADD_ACTION = false;
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == managementExamGUI.getBtnAddExam()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == managementExamGUI.getBtnAddExam())
+            {
                 doAddExam();
                 return;
             }
-            if (e.getSource() == managementExamGUI.getBtnEditExam()) {
+            if (e.getSource() == managementExamGUI.getBtnEditExam())
+            {
                 doEditExam();
                 return;
             }
-            if (e.getSource() == managementExamGUI.getBtnDeleteExam()) {
+            if (e.getSource() == managementExamGUI.getBtnDeleteExam())
+            {
                 doDeleteExam();
                 return;
             }
-            if (e.getSource() == managementExamGUI.getBtnSave()) {
+            if (e.getSource() == managementExamGUI.getBtnSave())
+            {
                 doSave();
                 return;
             }
-            if (e.getSource() == managementExamGUI.getBtnCancel()) {
+            if (e.getSource() == managementExamGUI.getBtnCancel())
+            {
                 doCancel();
                 return;
             }
         }
     };
 
-    private void doCancel() {
+    private void doCancel()
+    {
         setExamList();
     }
 
-    private void doSave() {
-        for (Exam exam : examList) {
+    private void doSave()
+    {
+        for (Exam exam : examList)
+        {
             examService.save(exam);
         }
         MessageManager.show("Lưu thành công !");
     }
 
-    private ItemListener itemListener = new ItemListener() {
+    private ItemListener itemListener = new ItemListener()
+    {
         @Override
-        public void itemStateChanged(ItemEvent e) {
+        public void itemStateChanged(ItemEvent e)
+        {
             setExamList();
         }
     };
 
-    private void setExamList() {
+    private void setExamList()
+    {
         String subjectName = managementExamGUI.getComboBoxSubject().getSelectedItem().toString();
-        examList = ("".equals(subjectName)) ? ObservableCollections.observableList(new ArrayList<Exam>()) : examService.findBySubjectName(subjectName);
+        examList = examService.findBySubjectName(subjectName);
         doBindingExam(examList, managementExamTable, managementExamScrollPanel);
     }
 
-    private void doAddExam() {
+    private void doAddExam()
+    {
         newExamController.doSetUp(new Exam());
         newExaminationGUI.resetExportExamGUI();
         mainAdminController.doShowNewExamCard();
     }
 
-    private void doEditExam() {
+    private void doEditExam()
+    {
         int select = managementExamTable.getSelectedRow();
-        if (-1 == select) {
+        if (-1 == select)
+        {
             MessageManager.show("Hãy chọn đề thi bạn muốn sửa.");
-        } else {
+        }
+        else
+        {
             doSetUpEditExam(examList.get(select));
             mainAdminController.doShowNewExamCard();
         }
     }
 
-    private void doDeleteExam() {
+    private void doDeleteExam()
+    {
         int select = managementExamTable.getSelectedRow();
-        if (-1 == select) {
+        if (-1 == select)
+        {
             MessageManager.show("Hãy chọn đề thi bạn muốn xóa.");
-        } else {
+        }
+        else
+        {
             int k = MessageManager.showConfirm("Bạn chắc chắn muốn xóa?");
-            if (0 == k) {
+            if (0 == k)
+            {
                 examService.delete(examList.get(select));
                 examList.remove(select);
                 doBindingExam(examList, managementExamTable, managementExamScrollPanel);
@@ -169,12 +194,14 @@ public class ManagementExamController {
         }
     }
 
-    private void doSetUpEditExam(Exam exam) {
+    private void doSetUpEditExam(Exam exam)
+    {
         newExamController.doSetUp(exam);
         newExaminationGUI.mappingInfoToField(managementExamGUI.getComboBoxSubject().getSelectedIndex(), exam);
     }
 
-    private void setUpView(Exam exam) {
+    private void setUpView(Exam exam)
+    {
         managementExamGUI = mainAdminGUI.getManagementExamGUI();
         newExaminationGUI = mainAdminGUI.getNewExaminationGUI();
 
@@ -184,33 +211,15 @@ public class ManagementExamController {
         managementExamTable = managementExamGUI.getManagementExamTable();
         managementExamScrollPanel = managementExamGUI.getManagementExamScrollPanel();
 
-        resetView(exam);
+        setExamList();
     }
 
-    private void resetView(Exam exam) {
-        if (null == exam) {
-            examList = ObservableCollections.observableList(new ArrayList<Exam>());
-        } else {
-            updateExamList(examList, exam);
-            int index = newExaminationGUI.getComboBoxSubject().getSelectedIndex();
-            managementExamGUI.getComboBoxSubject().setSelectedIndex(index);
-        }
-        doBindingExam(examList, managementExamTable, managementExamScrollPanel);
-    }
-
-    private void updateExamList(List<Exam> examList, Exam exam) {
-        for (Exam examItem : examList) {
-            if (exam.getId() == examItem.getId()) {
-                examList.remove(examItem);
-                examList.add(exam);
-                break;
-            }
-        }
-    }
-
-    private void doBindingExam(List<Exam> examList, JTable table, JScrollPane scrollPane) {
-        Collections.sort(examList, new Comparator<Exam>() {
-            public int compare(Exam exam1, Exam exam2) {
+    private void doBindingExam(List<Exam> examList, JTable table, JScrollPane scrollPane)
+    {
+        Collections.sort(examList, new Comparator<Exam>()
+        {
+            public int compare(Exam exam1, Exam exam2)
+            {
                 return exam1.getId().compareTo(exam2.getId());
             }
         });

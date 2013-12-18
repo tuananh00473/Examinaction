@@ -31,7 +31,8 @@ import java.util.List;
  * Time: 11:29 PM
  */
 @Component
-public class ExportExamController {
+public class ExportExamController
+{
 
     @Autowired
     MainAdminGUI mainAdminGUI;
@@ -52,26 +53,32 @@ public class ExportExamController {
     private List<Question> questionList;
     private int[] correctAnswers;
 
-    public void doSetUp() {
+    public void doSetUp()
+    {
         setUpView();
         setUpActionListener();
     }
 
-    private void setUpView() {
+    private void setUpView()
+    {
         exportExamGUI = mainAdminGUI.getExportExamGUI();
 
         List<Subject> subjectList = subjectService.getAll();
         ComboboxManager.setListSubject(exportExamGUI.getCbSubjectName(), subjectList);
+        if (subjectList.size() != 0)
+        {
+            setComboboxExamValues(subjectList.get(0));
+        }
     }
 
-    private void setUpActionListener() {
-        exportExamGUI.getCbSubjectName().addItemListener(new ItemListener() {
+    private void setUpActionListener()
+    {
+        exportExamGUI.getCbSubjectName().addItemListener(new ItemListener()
+        {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                Subject subject = (Subject) e.getItem();
-                List<Exam> examList = examService.findBySubjectCode(subject.getSubjectCode());
-                exportExamGUI.getCbExamName().removeAllItems();
-                ComboboxManager.setListExam(exportExamGUI.getCbExamName(), examList);
+            public void itemStateChanged(ItemEvent e)
+            {
+                setComboboxExamValues((Subject) e.getItem());
             }
         });
 
@@ -80,40 +87,61 @@ public class ExportExamController {
         exportExamGUI.getBtnCancel().addActionListener(actionListener);
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private void setComboboxExamValues(Subject subject)
+    {
+        List<Exam> examList = examService.findBySubjectCode(subject.getSubjectCode());
+        exportExamGUI.getCbExamName().removeAllItems();
+        ComboboxManager.setListExam(exportExamGUI.getCbExamName(), examList);
+    }
+
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == exportExamGUI.getBtnGenerateExam()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == exportExamGUI.getBtnGenerateExam())
+            {
                 Exam exam = (Exam) exportExamGUI.getCbExamName().getSelectedItem();
-                if (null != exam) {
+                if (null != exam)
+                {
                     questionList = questionService.loadRandomExamQuestionList(exam);
                     correctAnswers = answerService.loadCorrectAnswer(questionList);
 //                show len view
                     String bufferContent = "";
                     int count = 1;
-                    for (Question question : questionList) {
+                    for (Question question : questionList)
+                    {
                         bufferContent += "\nCâu " + count + ": ";
                         bufferContent += question.getContent();
                         List<Answer> answerList = question.getAnswerList();
-                        for (int i = 0; i < answerList.size(); i++) {
+                        for (int i = 0; i < answerList.size(); i++)
+                        {
                             bufferContent += "\n      " + Constants.answerText[i] + ". " + answerList.get(i).getContent();
                         }
                         bufferContent += "\n";
                         count++;
                     }
                     exportExamGUI.getTxtContent().setText(bufferContent);
-                } else {
+                }
+                else
+                {
                     MessageManager.show("Bạn chưa chọn đề thi nào. Hãy chọn 1 đề thi !");
                 }
 
             }
-            if (e.getSource() == exportExamGUI.getBtnExport()) {
-                if ("".equals(exportExamGUI.getTxtContent().getText())) {
+            if (e.getSource() == exportExamGUI.getBtnExport())
+            {
+                if ("".equals(exportExamGUI.getTxtContent().getText()))
+                {
                     MessageManager.show("Bạn chưa tạo đề thi !!!");
-                } else {
-                    try {
+                }
+                else
+                {
+                    try
+                    {
                         String path = FileChooserManager.getPath(mainAdminGUI);
-                        if (null != path && 0 != path.length()) {
+                        if (null != path && 0 != path.length())
+                        {
 //                        PDFManager.printData(path, questionList, correctAnswers);
                             PDFManager.printData(path, exportExamGUI.getTxtContent().getText());
                             PDFManager.printData(path, correctAnswers);
@@ -122,18 +150,22 @@ public class ExportExamController {
 
                             MessageManager.show("Kết xuất đề thi thành công.");
                         }
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex)
+                    {
                         MessageManager.show("Kết xuất đề thi lỗi do hệ thống.");
                     }
                 }
             }
-            if (e.getSource() == exportExamGUI.getBtnCancel()) {
+            if (e.getSource() == exportExamGUI.getBtnCancel())
+            {
                 resetGUI();
             }
         }
     };
 
-    private void resetGUI() {
+    private void resetGUI()
+    {
         exportExamGUI.resetExportExamGUI();
 
     }

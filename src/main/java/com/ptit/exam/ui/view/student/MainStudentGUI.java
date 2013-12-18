@@ -39,6 +39,7 @@ public class MainStudentGUI extends JFrame
     private JLabel lbLogOut;
     private JLabel lbUsername;
     private IntroduceStudentGUI introduceStudentGUI;
+    private JPanel logoPanel;
 
     private CardLayout cardLayout;
 
@@ -215,5 +216,6 @@ public class MainStudentGUI extends JFrame
     private void createUIComponents()
     {
         studentPanel = new ImagePanel("background_content.jpg");
+        logoPanel = new ImagePanel("header_image.png");
     }
 }

@@ -20,7 +20,6 @@ public class ManagementSubjectGUI extends JPanel
     private JButton btnSaveTab2;
     private JComboBox cbBoxCourseTab2;
     private JTable tableSubjectActivedTab2;
-    private JButton btnSearchTab2;
     private JButton btnAdd;
     private JButton btnDelete;
     private JScrollPane scrollPanelSubjectTab2;
@@ -30,7 +29,6 @@ public class ManagementSubjectGUI extends JPanel
     private JPanel Subject;
     private JTable tableSubjectTab1;
     private JComboBox cbBoxFacultyTab1;
-    private JButton btnSearchTab1;
     private JButton btnDelSUBJECT;
     private JButton btnAddSUBJECT;
     private JScrollPane scrollPaneSubjectTab1;
@@ -41,11 +39,6 @@ public class ManagementSubjectGUI extends JPanel
     public JButton getBtnSaveTab2()
     {
         return btnSaveTab2;
-    }
-
-    public JButton getBtnSearchTab2()
-    {
-        return btnSearchTab2;
     }
 
     public JButton getBtnAdd()
@@ -87,11 +80,6 @@ public class ManagementSubjectGUI extends JPanel
     public JComboBox getCbBoxFacultyTab1()
     {
         return cbBoxFacultyTab1;
-    }
-
-    public JButton getBtnSearchTab1()
-    {
-        return btnSearchTab1;
     }
 
     public JButton getBtnDelSUBJECT()
@@ -158,17 +146,10 @@ public class ManagementSubjectGUI extends JPanel
         Subject.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.setLayout(new GridLayoutManager(1, 5, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        btnSearchTab1 = new JButton();
-        btnSearchTab1.setBorderPainted(false);
-        btnSearchTab1.setContentAreaFilled(false);
-        btnSearchTab1.setIcon(new ImageIcon(getClass().getResource("/images/btn_find.png")));
-        btnSearchTab1.setMargin(new Insets(0, 0, 0, 0));
-        btnSearchTab1.setText("");
-        panel2.add(btnSearchTab1, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel2.add(spacer1, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Tên Môn");
         panel2.add(label1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

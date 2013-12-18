@@ -75,32 +75,8 @@ public class ManagementStudentController
         setUpActionListenerTab1();
         setUpActionListenerTab2();
 
-        tab1StudentList = studentService.getAll();
+        tab1StudentList = ObservableCollections.observableList(new ArrayList<Student>());
         doBindingStudent(tab1StudentList, tab1StudentTable, tab1StudentScrollPane);
-
-//        List<Subject> subjectList = subjectService.getAll();
-//        Set<String> stringSet1 = new HashSet<String>();
-//        for(Subject subject1 : subjectList){
-//            stringSet1.add(subject1.getSubjectName());
-//        }
-//        for(String s : stringSet1){
-//            mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().addItem(s.intern());
-//        }
-//
-//        mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().isPopupVisible()){
-//                    String nameSubject = mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().getSelectedItem().toString();
-//                    Subject subject1 = subjectService.findBySubjectName(nameSubject);
-//                    List<Student> studentList1 = studentService.findByFaculty(subject1.getFaculty());
-//                    Set<String> stringSet2 = new HashSet<String>();
-//                    for(Student student: studentList1){
-//                        stringSet2.add(student.getClassRoom());
-//                    }
-//                }
-//            }
-//        });
     }
 
     private void setUpView()
@@ -260,7 +236,7 @@ public class ManagementStudentController
 
         List<Student> list1 = ("".equals(nameStudent) ? studentService.getAll() : studentService.findByName(nameStudent));
         List<Student> list2 = ("".equals(classRoom) ? studentService.getAll() : studentService.findByClassRoom(classRoom));
-        List<Student> list3 = ("".equals(faculty) ? studentService.getAll() : studentService.findByFaculty(faculty));
+        List<Student> list3 = studentService.findByFaculty(faculty);
         List<Student> resultList = new ArrayList<Student>();
 
         for (Student student : list1)
@@ -299,33 +275,6 @@ public class ManagementStudentController
         mainAdminController.doShowNewStudentCard();
     }
 
-
-    //    private void resetComboBoxSubject() {
-//        mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().removeAllItems();
-//        mainAdminGUI.getManagementStudentGUI().getComboBoxSUBJECT().addItem("Chọn môn thi ...");
-//    }
-//
-//    private void resetManagementStudentGUI() {
-//        if (studentList != null) {
-//            for (int i = 0; i < studentList.size(); i++) {
-//                studentList.remove(i);
-//            }
-//        }
-//        if (studentTable != null) {
-//            doBindingStudent(studentList);
-//        }
-//
-//        if (studentSubjectList != null) {
-//            for (int i = 0; i < studentSubjectList.size(); i++) {
-//                studentSubjectList.remove(i);
-//            }
-//        }
-//        if (studentSubjectTable != null) {
-//            bindingStudentBySubject(studentSubjectList);
-//        }
-//    }
-//
-
     private void doBindingExamCard(List<ExamCard> examCardList, JTable jTable, JScrollPane jScrollPane)
     {
         examCardDTOBindingList = ObservableCollections.observableList(new ArrayList<ExamCardDTOBinding>());
@@ -333,25 +282,19 @@ public class ManagementStudentController
         {
             Student student = studentService.findById(examCard.getStudentId());
             Subject subject = subjectService.findById(examCard.getSubjectId());
-            try
-            {
-                ExamCardDTOBinding examCardDTOBinding = new ExamCardDTOBinding();
 
-                examCardDTOBinding.setExamId(examCard.getId());
-                examCardDTOBinding.setStudentCode(student.getStudentCode());
-                examCardDTOBinding.setStudentName(student.getFullName());
-                examCardDTOBinding.setFaculty(student.getFaculty());
-                examCardDTOBinding.setClassRoom(student.getClassRoom());
-                examCardDTOBinding.setNameSubject(subject.getSubjectName());
-                examCardDTOBinding.setUnitOfStudy(subject.getUnitOfStudy());
-                examCardDTOBinding.setCanDoExam(examCard.isCanDoExam());
+            ExamCardDTOBinding examCardDTOBinding = new ExamCardDTOBinding();
 
-                examCardDTOBindingList.add(examCardDTOBinding);
-            }
-            catch (Exception e)
-            {
-                System.out.println("");
-            }
+            examCardDTOBinding.setExamId(examCard.getId());
+            examCardDTOBinding.setStudentCode(student.getStudentCode());
+            examCardDTOBinding.setStudentName(student.getFullName());
+            examCardDTOBinding.setFaculty(student.getFaculty());
+            examCardDTOBinding.setClassRoom(student.getClassRoom());
+            examCardDTOBinding.setNameSubject(subject.getSubjectName());
+            examCardDTOBinding.setUnitOfStudy(subject.getUnitOfStudy());
+            examCardDTOBinding.setCanDoExam(examCard.isCanDoExam());
+
+            examCardDTOBindingList.add(examCardDTOBinding);
         }
 
         TableBinding.bindingExamCard(examCardDTOBindingList, jTable, jScrollPane);

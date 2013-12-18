@@ -84,6 +84,8 @@ public class MainAdminGUI extends JFrame
     private ManagementStudentGUI managementStudentGUI;
     private ExportExamGUI exportExamGUI;
     private IntroduceAdminGUI introduceAdminGUI;
+    private JPanel headerPanel;
+    private JPanel controlPanel;
 
 
     //    menu
@@ -308,6 +310,8 @@ public class MainAdminGUI extends JFrame
     private void createUIComponents()
     {
         mainPanel = new ImagePanel("background_content.jpg");
+        headerPanel = new ImagePanel("header_image.png");
+        controlPanel = new ImagePanel("background_sub_panel.jpg");
     }
 
     /**
@@ -320,20 +324,38 @@ public class MainAdminGUI extends JFrame
     private void $$$setupUI$$$()
     {
         createUIComponents();
-        mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(10, 10, 10, 10), -1, -1));
+        mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        headerPanel.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:96px:grow"));
+        mainPanel.add(headerPanel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        lbLogOut = new JLabel();
+        lbLogOut.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbLogOut.setForeground(new Color(-3407872));
+        lbLogOut.setText("Log out");
+        CellConstraints cc = new CellConstraints();
+        headerPanel.add(lbLogOut, new CellConstraints(3, 3, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(0, 0, 0, 20)));
+        lbUsername = new JLabel();
+        lbUsername.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        lbUsername.setForeground(new Color(-3407872));
+        lbUsername.setHorizontalAlignment(4);
+        lbUsername.setHorizontalTextPosition(0);
+        lbUsername.setMaximumSize(new Dimension(250, 37));
+        lbUsername.setMinimumSize(new Dimension(250, 37));
+        lbUsername.setPreferredSize(new Dimension(250, 37));
+        lbUsername.setText("");
+        headerPanel.add(lbUsername, new CellConstraints(3, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(20, 0, 0, 20)));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        mainPanel.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
-        mainPanel.add(panel1, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        scrollPane1.setViewportView(panel1);
         AdminCardPanel = new JPanel();
         AdminCardPanel.setLayout(new CardLayout(0, 0));
-        AdminCardPanel.setMaximumSize(new Dimension(650, 600));
-        AdminCardPanel.setMinimumSize(new Dimension(650, 600));
-        AdminCardPanel.setPreferredSize(new Dimension(650, 600));
-        CellConstraints cc = new CellConstraints();
-        panel1.add(AdminCardPanel, cc.xy(3, 5));
-        questionBankGUI = new QuestionBankGUI();
-        AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
+        AdminCardPanel.setInheritsPopupMenu(true);
+        AdminCardPanel.setMaximumSize(new Dimension(600, 560));
+        AdminCardPanel.setMinimumSize(new Dimension(600, 560));
+        AdminCardPanel.setPreferredSize(new Dimension(600, 560));
+        panel1.add(AdminCardPanel, cc.xy(3, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
         newExaminationGUI = new NewExaminationGUI();
         AdminCardPanel.add(newExaminationGUI.$$$getRootComponent$$$(), "newExaminationGUI");
         managementExamGUI = new ManagementExamGUI();
@@ -352,41 +374,38 @@ public class MainAdminGUI extends JFrame
         AdminCardPanel.add(exportExamGUI.$$$getRootComponent$$$(), "exportExamGUI");
         introduceAdminGUI = new IntroduceAdminGUI();
         AdminCardPanel.add(introduceAdminGUI.$$$getRootComponent$$$(), "introduceAdminGUI");
-        lbLogOut = new JLabel();
-        lbLogOut.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-        lbLogOut.setForeground(new Color(-16777012));
-        lbLogOut.setText("Log out");
-        panel1.add(lbLogOut, new CellConstraints(3, 3, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(0, 0, 0, 20)));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(6, 1, new Insets(0, 10, 0, 10), -1, -1));
-        panel2.setMaximumSize(new Dimension(160, 200));
-        panel2.setMinimumSize(new Dimension(160, 200));
-        panel2.setPreferredSize(new Dimension(160, 200));
-        panel1.add(panel2, cc.xy(1, 5, CellConstraints.FILL, CellConstraints.FILL));
-        panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        questionBankGUI = new QuestionBankGUI();
+        AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
+        controlPanel.setLayout(new GridLayoutManager(6, 1, new Insets(0, 10, 0, 10), -1, -1));
+        controlPanel.setMaximumSize(new Dimension(100, 560));
+        controlPanel.setMinimumSize(new Dimension(100, 560));
+        controlPanel.setPreferredSize(new Dimension(100, 560));
+        controlPanel.setRequestFocusEnabled(true);
+        panel1.add(controlPanel, cc.xy(1, 3, CellConstraints.FILL, CellConstraints.FILL));
+        controlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         btnManagementExam = new JButton();
         btnManagementExam.setBorderPainted(false);
         btnManagementExam.setContentAreaFilled(false);
         btnManagementExam.setIcon(new ImageIcon(getClass().getResource("/images/exam_manager.png")));
         btnManagementExam.setMargin(new Insets(0, 0, 0, 0));
         btnManagementExam.setText("");
-        panel2.add(btnManagementExam, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        controlPanel.add(btnManagementExam, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
         btnExportExamination = new JButton();
         btnExportExamination.setBorderPainted(false);
         btnExportExamination.setContentAreaFilled(false);
         btnExportExamination.setIcon(new ImageIcon(getClass().getResource("/images/export_exam.png")));
         btnExportExamination.setMargin(new Insets(0, 0, 0, 0));
         btnExportExamination.setText("");
-        panel2.add(btnExportExamination, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        controlPanel.add(btnExportExamination, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
         btnManagementSubject = new JButton();
         btnManagementSubject.setBorderPainted(false);
         btnManagementSubject.setContentAreaFilled(false);
         btnManagementSubject.setIcon(new ImageIcon(getClass().getResource("/images/subject_manager.png")));
         btnManagementSubject.setMargin(new Insets(0, 0, 0, 0));
         btnManagementSubject.setText("");
-        panel2.add(btnManagementSubject, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        controlPanel.add(btnManagementSubject, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(109, 14), null, 0, false));
+        controlPanel.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(109, 14), null, 0, false));
         btnQuestionBank = new JButton();
         btnQuestionBank.setBorderPainted(false);
         btnQuestionBank.setContentAreaFilled(false);
@@ -394,23 +413,15 @@ public class MainAdminGUI extends JFrame
         btnQuestionBank.setLabel("");
         btnQuestionBank.setMargin(new Insets(0, 0, 0, 0));
         btnQuestionBank.setText("");
-        panel2.add(btnQuestionBank, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        controlPanel.add(btnQuestionBank, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
         btnManagementStudent = new JButton();
         btnManagementStudent.setBorderPainted(false);
         btnManagementStudent.setContentAreaFilled(false);
+        btnManagementStudent.setHorizontalAlignment(0);
         btnManagementStudent.setIcon(new ImageIcon(getClass().getResource("/images/student_manager.png")));
         btnManagementStudent.setMargin(new Insets(0, 0, 0, 0));
         btnManagementStudent.setText("");
-        panel2.add(btnManagementStudent, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
-        lbUsername = new JLabel();
-        lbUsername.setFont(new Font("Times New Roman", Font.BOLD, 16));
-        lbUsername.setHorizontalAlignment(4);
-        lbUsername.setHorizontalTextPosition(0);
-        lbUsername.setMaximumSize(new Dimension(250, 37));
-        lbUsername.setMinimumSize(new Dimension(250, 37));
-        lbUsername.setPreferredSize(new Dimension(250, 37));
-        lbUsername.setText("");
-        panel1.add(lbUsername, new CellConstraints(3, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(20, 0, 0, 20)));
+        controlPanel.add(btnManagementStudent, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
     }
 
     /**

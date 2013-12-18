@@ -26,7 +26,8 @@ import java.util.List;
  * Time: 4:28 PM
  */
 @Component
-public class NewExamController {
+public class NewExamController
+{
     @Autowired
     MainAdminGUI mainAdminGUI;
 
@@ -50,31 +51,22 @@ public class NewExamController {
 
     private Exam exam;
 
-    public void doSetUp(Exam exam) {
+    public void doSetUp(Exam exam)
+    {
         this.exam = exam;
 
         newExaminationGUI = mainAdminGUI.getNewExaminationGUI();
         subjectList = subjectService.getAll();
         ComboboxManager.setListSubject(newExaminationGUI.getComboBoxSubject(), subjectList);
 
-//        String name = newExaminationGUI.getComboBoxSubject().getSelectedItem().toString();
-//        System.out.println(name);
-//        List<Subject> subjects  = subjectService.findBySubjectName(name);
-//        Subject su = subjects.get(0);
-//        System.out.println(su.getSubjectName());
-//
-//
-//        int countEasy = getTotalCountEasy(su);
-//        int countMedium = getTotalCountMedium(su);
-//        int countHard = getTotalCountHard(su);
-//
-//        newExaminationGUI.setLabelTotalCountLevel(countEasy, countMedium, countHard);
-
+        setNumberQuestion(subjectList.get(0).getSubjectName());
         setUpActionListener();
     }
 
-    private void setUpActionListener() {
-        if (GlobalValues.NEW_EXAM_ADD_ACTION) {
+    private void setUpActionListener()
+    {
+        if (GlobalValues.NEW_EXAM_ADD_ACTION)
+        {
             newExaminationGUI.getBtnSave().addActionListener(actionListener);
             newExaminationGUI.getBtnCancel().addActionListener(actionListener);
 
@@ -83,17 +75,17 @@ public class NewExamController {
         GlobalValues.NEW_EXAM_ADD_ACTION = false;
     }
 
-    private ItemListener itemListener = new ItemListener() {
+    private ItemListener itemListener = new ItemListener()
+    {
         @Override
-        public void itemStateChanged(ItemEvent e) {
-            setNumberQuestion();
+        public void itemStateChanged(ItemEvent e)
+        {
+            setNumberQuestion(newExaminationGUI.getComboBoxSubject().getSelectedItem().toString());
         }
-
     };
 
-    private void setNumberQuestion() {
-        String name = newExaminationGUI.getComboBoxSubject().getSelectedItem().toString();
-
+    private void setNumberQuestion(String name)
+    {
         List<Subject> subjects = subjectService.findBySubjectName(name);
         Subject su = subjects.get(0);
 
@@ -107,26 +99,35 @@ public class NewExamController {
     }
 
 
-    private int getTotalCountHard(Subject subject) {
+    private int getTotalCountHard(Subject subject)
+    {
         return questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.HARD).size();
         //return questionService.findBySubjectIdAndLevel(exam.getSubjectCode(), Constants.HARD).size();
     }
 
-    private int getTotalCountMedium(Subject subject) {
+    private int getTotalCountMedium(Subject subject)
+    {
         return questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.MEDIUM).size();
     }
 
-    private int getTotalCountEasy(Subject subject) {
+    private int getTotalCountEasy(Subject subject)
+    {
         return questionService.findBySubjectIdAndLevel(subject.getSubjectCode(), Constants.EASY).size();
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == newExaminationGUI.getBtnSave()) {
-                if (newExaminationGUI.invalidForm()) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == newExaminationGUI.getBtnSave())
+            {
+                if (newExaminationGUI.invalidForm())
+                {
                     MessageManager.show("Thông tin về đề thi không hợp lệ.");
-                } else {
+                }
+                else
+                {
                     exam = newExaminationGUI.getExamInfo(exam, subjectList);
                     examService.save(exam);
                     MessageManager.show("Đã lưu thành công.");
@@ -135,7 +136,8 @@ public class NewExamController {
                     mainAdminController.doShowManagementExamGUI();
                 }
             }
-            if (e.getSource() == newExaminationGUI.getBtnCancel()) {
+            if (e.getSource() == newExaminationGUI.getBtnCancel())
+            {
                 managementExamController.doSetUp(exam);
                 newExaminationGUI.resetExportExamGUI();
                 mainAdminController.doShowManagementExamGUI();
