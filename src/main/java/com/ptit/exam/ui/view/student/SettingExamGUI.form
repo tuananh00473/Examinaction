@@ -218,10 +218,14 @@
                   </grid>
                   <component id="8f95d" class="javax.swing.JButton" binding="btnStart">
                     <constraints>
-                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="BẮT ĐẦU THI"/>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <icon value="images/btn_start_exam.png"/>
+                      <margin top="0" left="0" bottom="0" right="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="f2140" class="javax.swing.JComboBox" binding="cbSubjectExam">

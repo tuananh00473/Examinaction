@@ -12,7 +12,8 @@ import java.awt.*;
  * Date: 12/5/13
  * Time: 1:46 AM
  */
-public class ExportExamGUI extends JPanel {
+public class ExportExamGUI extends JPanel
+{
     private JButton btnCancel;
     private JButton btnExport;
     private JPanel exportExamCard;
@@ -22,31 +23,38 @@ public class ExportExamGUI extends JPanel {
     private JButton btnGenerateExam;
     private JTextArea txtContent;
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JButton getBtnExport() {
+    public JButton getBtnExport()
+    {
         return btnExport;
     }
 
-    public JComboBox getCbSubjectName() {
+    public JComboBox getCbSubjectName()
+    {
         return cbSubjectName;
     }
 
-    public JComboBox getCbExamName() {
+    public JComboBox getCbExamName()
+    {
         return cbExamName;
     }
 
-    public JButton getBtnGenerateExam() {
+    public JButton getBtnGenerateExam()
+    {
         return btnGenerateExam;
     }
 
-    public JTextArea getTxtContent() {
+    public JTextArea getTxtContent()
+    {
         return txtContent;
     }
 
-    public void resetExportExamGUI() {
+    public void resetExportExamGUI()
+    {
         txtContent.setText("");
     }
 
@@ -64,15 +72,18 @@ public class ExportExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         exportExamCard = new JPanel();
         exportExamCard.setLayout(new GridLayoutManager(2, 7, new Insets(0, 0, 0, 0), -1, -1));
         exportExamCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JScrollPane scrollPane1 = new JScrollPane();
         exportExamCard.add(scrollPane1, new GridConstraints(0, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         scrollPane1.setViewportView(contentPanel);
+        contentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 13, new Insets(0, 0, 0, 0), -1, -1));
         contentPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -99,19 +110,31 @@ public class ExportExamGUI extends JPanel {
         txtContent = new JTextArea();
         scrollPane2.setViewportView(txtContent);
         btnExport = new JButton();
-        btnExport.setText("XUẤT ĐỀ THI");
-        exportExamCard.add(btnExport, new GridConstraints(1, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnExport.setBorderPainted(false);
+        btnExport.setContentAreaFilled(false);
+        btnExport.setIcon(new ImageIcon(getClass().getResource("/images/btn_export_exam.png")));
+        btnExport.setInheritsPopupMenu(true);
+        btnExport.setLabel("");
+        btnExport.setMargin(new Insets(0, 0, 0, 0));
+        btnExport.setText("");
+        exportExamCard.add(btnExport, new GridConstraints(1, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         exportExamCard.add(spacer1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, new Dimension(76, 11), null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
-        exportExamCard.add(btnCancel, new GridConstraints(1, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setLabel("");
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
+        exportExamCard.add(btnCancel, new GridConstraints(1, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return exportExamCard;
     }
 }

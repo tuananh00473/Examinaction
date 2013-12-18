@@ -17,7 +17,8 @@ import java.awt.*;
  * Date: 10/1/13
  * Time: 9:52 AM
  */
-public class ExamGUI extends JPanel {
+public class ExamGUI extends JPanel
+{
 
     private JPanel examCard;
     private JLabel lbNameExamination;
@@ -28,10 +29,6 @@ public class ExamGUI extends JPanel {
     private JLabel lbNumberQuestion;
     private JButton btnPrevious;
     private JButton btnNext;
-    private JButton btnAnswerA;
-    private JButton btnAnswerB;
-    private JButton btnAnswerC;
-    private JButton btnAnswerD;
     private JButton btnSubmit;
     private JLabel lbRemainTime;
     private JPanel panelButtonQuestion;
@@ -41,35 +38,23 @@ public class ExamGUI extends JPanel {
     private JTextArea txtContentQuestion;
     private JLabel lbImage;
 
-    public JButton getBtnPrevious() {
+    public JButton getBtnPrevious()
+    {
         return btnPrevious;
     }
 
-    public JButton getBtnNext() {
+    public JButton getBtnNext()
+    {
         return btnNext;
     }
 
-    public JButton getBtnAnswerA() {
-        return btnAnswerA;
-    }
-
-    public JButton getBtnAnswerB() {
-        return btnAnswerB;
-    }
-
-    public JButton getBtnAnswerC() {
-        return btnAnswerC;
-    }
-
-    public JButton getBtnAnswerD() {
-        return btnAnswerD;
-    }
-
-    public JButton getBtnSubmit() {
+    public JButton getBtnSubmit()
+    {
         return btnSubmit;
     }
 
-    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam) {
+    public void setInfoAboutStudentToField(Subject subject, Student student, Exam exam)
+    {
         lbNameSubject.setText(subject.getSubjectName());
         lbNameStudent.setText(student.getFullName());
         lbStudentCode.setText(student.getStudentCode());
@@ -80,31 +65,38 @@ public class ExamGUI extends JPanel {
 
     }
 
-    public JLabel getLbRemainTime() {
+    public JLabel getLbRemainTime()
+    {
         return lbRemainTime;
     }
 
-    public JLabel getLbTotalNumberAnswered() {
+    public JLabel getLbTotalNumberAnswered()
+    {
         return lbTotalNumberAnswered;
     }
 
-    public JLabel getLbTotalNumberNotAnswerYet() {
+    public JLabel getLbTotalNumberNotAnswerYet()
+    {
         return lbTotalNumberNotAnswerYet;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JPanel getPanelButtonQuestion() {
+    public JPanel getPanelButtonQuestion()
+    {
         return panelButtonQuestion;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public JPanel getPanelButtonAnswer() {
+    public JPanel getPanelButtonAnswer()
+    {
         return panelButtonAnswer;
     }
 
@@ -122,16 +114,17 @@ public class ExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         examCard = new JPanel();
         examCard.setLayout(new CardLayout(0, 0));
         examCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         examCard.add(panel1, "Card1");
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:d:grow,top:4dlu:noGrow,center:d:grow,top:4dlu:noGrow,center:d:grow"));
-        panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(0, 120), new Dimension(0, 120), new Dimension(0, 120), 0, false));
         panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JLabel label1 = new JLabel();
         label1.setText("Tên môn thi :");
@@ -141,12 +134,16 @@ public class ExamGUI extends JPanel {
         label2.setText("Mã sinh viên :");
         panel2.add(label2, cc.xy(1, 5));
         lbNameStudent = new JLabel();
+        lbNameStudent.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbNameStudent.setForeground(new Color(-16777012));
         lbNameStudent.setText("");
         panel2.add(lbNameStudent, cc.xy(3, 3));
         final JLabel label3 = new JLabel();
         label3.setText("Họ và tên sinh viên :");
         panel2.add(label3, cc.xy(1, 3));
         lbStudentCode = new JLabel();
+        lbStudentCode.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbStudentCode.setForeground(new Color(-16777012));
         lbStudentCode.setText("");
         panel2.add(lbStudentCode, cc.xy(3, 5));
         final JLabel label4 = new JLabel();
@@ -159,19 +156,22 @@ public class ExamGUI extends JPanel {
         label6.setText("Tổng số câu hỏi :");
         panel2.add(label6, cc.xy(5, 5));
         lbTime = new JLabel();
+        lbTime.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
         lbTime.setText("");
         panel2.add(lbTime, cc.xy(7, 3));
         lbNumberQuestion = new JLabel();
+        lbNumberQuestion.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
         lbNumberQuestion.setText("");
         panel2.add(lbNumberQuestion, cc.xy(7, 5));
         lbNameExamination = new JLabel();
+        lbNameExamination.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
         lbNameExamination.setText("");
         panel2.add(lbNameExamination, cc.xy(7, 1));
         lbNameSubject = new JLabel();
+        lbNameSubject.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbNameSubject.setForeground(new Color(-16777012));
         lbNameSubject.setText("");
         panel2.add(lbNameSubject, cc.xy(3, 1));
-        final Spacer spacer1 = new Spacer();
-        panel1.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -187,16 +187,19 @@ public class ExamGUI extends JPanel {
         panelButtonQuestion = new JPanel();
         panelButtonQuestion.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         scrollPane1.setViewportView(panelButtonQuestion);
+        final Spacer spacer1 = new Spacer();
+        panel4.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        panel4.add(spacer2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        panel4.add(spacer3, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel4.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
         btnPrevious = new JButton();
-        btnPrevious.setIcon(new ImageIcon(getClass().getResource("/images/previous.jpg")));
+        btnPrevious.setBorderPainted(false);
+        btnPrevious.setContentAreaFilled(false);
+        btnPrevious.setIcon(new ImageIcon(getClass().getResource("/images/btn_prev.png")));
+        btnPrevious.setMargin(new Insets(0, 0, 0, 0));
         btnPrevious.setText("");
         panel5.add(btnPrevious, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel6 = new JPanel();
@@ -205,7 +208,7 @@ public class ExamGUI extends JPanel {
         panelButtonAnswer = new JPanel();
         panelButtonAnswer.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel6.add(panelButtonAnswer, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panelButtonAnswer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
+        panelButtonAnswer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel7 = new JPanel();
         panel7.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel6.add(panel7, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -235,19 +238,27 @@ public class ExamGUI extends JPanel {
         lbTotalNumberNotAnswerYet.setText("");
         panel9.add(lbTotalNumberNotAnswerYet, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnNext = new JButton();
-        btnNext.setIcon(new ImageIcon(getClass().getResource("/images/next.jpg")));
+        btnNext.setBorderPainted(false);
+        btnNext.setContentAreaFilled(false);
+        btnNext.setIcon(new ImageIcon(getClass().getResource("/images/btn_next.png")));
+        btnNext.setMargin(new Insets(0, 0, 0, 0));
         btnNext.setText("");
         panel5.add(btnNext, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel10 = new JPanel();
         panel10.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel10, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel10.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         btnSubmit = new JButton();
-        btnSubmit.setText("SUBMIT");
-        panel10.add(btnSubmit, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSubmit.setBorderPainted(false);
+        btnSubmit.setContentAreaFilled(false);
+        btnSubmit.setIcon(new ImageIcon(getClass().getResource("/images/btn_submit.png")));
+        btnSubmit.setMargin(new Insets(0, 0, 0, 0));
+        btnSubmit.setText("");
+        panel10.add(btnSubmit, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer3 = new Spacer();
+        panel10.add(spacer3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel10.add(spacer4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final Spacer spacer5 = new Spacer();
-        panel10.add(spacer5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel10.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         panel3.add(scrollPane2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel11 = new JPanel();
@@ -264,7 +275,8 @@ public class ExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return examCard;
     }
 }

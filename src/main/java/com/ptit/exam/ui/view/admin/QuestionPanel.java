@@ -18,7 +18,8 @@ import java.util.List;
  * Date: 12/5/13
  * Time: 2:07 AM
  */
-public class QuestionPanel extends JPanel {
+public class QuestionPanel extends JPanel
+{
     private JPanel questionPanel;
     private JTextArea txtQuestion;
     private JTextArea txtAnswer1;
@@ -27,17 +28,22 @@ public class QuestionPanel extends JPanel {
     private JTextArea txtAnswer4;
     private JLabel lbImage;
 
-    public QuestionPanel(Question question) {
+    public QuestionPanel(Question question)
+    {
         txtQuestion.setText(question.getContent());
 
-        if (null != question.getUrlImage()) {
-            try {
+        if (null != question.getUrlImage())
+        {
+            try
+            {
                 BufferedImage questionImage = ImageIO.read(new File(question.getUrlImage()));
                 ImageIcon imageIcon = new ImageIcon(questionImage);
                 Image image = imageIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
                 lbImage.setIcon(new ImageIcon(image));
                 lbImage.setVisible(true);
-            } catch (IOException e1) {
+            }
+            catch (IOException e1)
+            {
                 lbImage.setVisible(false);
             }
         }
@@ -63,23 +69,24 @@ public class QuestionPanel extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         questionPanel = new JPanel();
         questionPanel.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
         txtQuestion = new JTextArea();
         txtQuestion.setText("");
-        questionPanel.add(txtQuestion, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 150), null, 0, false));
+        questionPanel.add(txtQuestion, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 150), new Dimension(300, 150), new Dimension(300, 150), 0, false));
         txtAnswer1 = new JTextArea();
-        questionPanel.add(txtAnswer1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 15), null, 0, false));
+        questionPanel.add(txtAnswer1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(450, 30), new Dimension(450, 30), new Dimension(450, 30), 0, false));
         txtAnswer2 = new JTextArea();
-        questionPanel.add(txtAnswer2, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 15), null, 0, false));
+        questionPanel.add(txtAnswer2, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(450, 30), new Dimension(450, 30), new Dimension(450, 30), 0, false));
         txtAnswer3 = new JTextArea();
-        questionPanel.add(txtAnswer3, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 15), null, 0, false));
+        questionPanel.add(txtAnswer3, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(450, 30), new Dimension(450, 30), new Dimension(450, 30), 0, false));
         txtAnswer4 = new JTextArea();
-        questionPanel.add(txtAnswer4, new GridConstraints(4, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 15), null, 0, false));
+        questionPanel.add(txtAnswer4, new GridConstraints(4, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(450, 30), new Dimension(450, 30), new Dimension(450, 30), 0, false));
         lbImage = new JLabel();
         lbImage.setText("");
-        questionPanel.add(lbImage, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, 150), null, 0, false));
+        questionPanel.add(lbImage, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, 150), new Dimension(150, 150), new Dimension(150, 150), 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("A.");
         questionPanel.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -97,7 +104,8 @@ public class QuestionPanel extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return questionPanel;
     }
 }

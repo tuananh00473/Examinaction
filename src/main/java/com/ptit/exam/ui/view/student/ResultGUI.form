@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ptit.exam.ui.view.student.ResultGUI">
   <grid id="27dc6" binding="resultCard" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="263" y="30" width="467" height="390"/>
+      <xy x="263" y="30" width="567" height="390"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -66,10 +66,14 @@
                           </component>
                           <component id="a6691" class="javax.swing.JButton" binding="btnSearch">
                             <constraints>
-                              <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                              <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
-                              <text value="TÌM KIẾM"/>
+                              <borderPainted value="false"/>
+                              <contentAreaFilled value="false"/>
+                              <icon value="images/btn_find.png"/>
+                              <margin top="0" left="0" bottom="0" right="0"/>
+                              <text value=""/>
                             </properties>
                           </component>
                           <component id="5c7b5" class="javax.swing.JLabel">

@@ -11,7 +11,8 @@ import java.awt.*;
  * Date: 10/20/13
  * Time: 4:47 PM
  */
-public class ResultGUI extends JPanel {
+public class ResultGUI extends JPanel
+{
     private JPanel resultCard;
     private JComboBox comboBoxFaculty;
     private JComboBox comboBoxExamination;
@@ -21,35 +22,43 @@ public class ResultGUI extends JPanel {
     private JScrollPane resultScrollPanel;
     private JTable tableResult;
 
-    public JPanel getResultCard() {
+    public JPanel getResultCard()
+    {
         return resultCard;
     }
 
-    public JComboBox getComboBoxFaculty() {
+    public JComboBox getComboBoxFaculty()
+    {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxExamination() {
+    public JComboBox getComboBoxExamination()
+    {
         return comboBoxExamination;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
     }
 
-    public JComboBox getComboBoxClass() {
+    public JComboBox getComboBoxClass()
+    {
         return comboBoxClass;
     }
 
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JScrollPane getResultScrollPanel() {
+    public JScrollPane getResultScrollPanel()
+    {
         return resultScrollPanel;
     }
 
-    public JTable getTableResult() {
+    public JTable getTableResult()
+    {
         return tableResult;
     }
 
@@ -67,7 +76,8 @@ public class ResultGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         resultCard = new JPanel();
         resultCard.setLayout(new CardLayout(0, 0));
         final JPanel panel1 = new JPanel();
@@ -95,8 +105,12 @@ public class ResultGUI extends JPanel {
         comboBoxFaculty.setModel(defaultComboBoxModel1);
         panel5.add(comboBoxFaculty, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSearch = new JButton();
-        btnSearch.setText("TÌM KIẾM");
-        panel5.add(btnSearch, new GridConstraints(0, 8, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSearch.setBorderPainted(false);
+        btnSearch.setContentAreaFilled(false);
+        btnSearch.setIcon(new ImageIcon(getClass().getResource("/images/btn_find.png")));
+        btnSearch.setMargin(new Insets(0, 0, 0, 0));
+        btnSearch.setText("");
+        panel5.add(btnSearch, new GridConstraints(0, 8, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Lớp:");
         panel5.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -127,7 +141,8 @@ public class ResultGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return resultCard;
     }
 }

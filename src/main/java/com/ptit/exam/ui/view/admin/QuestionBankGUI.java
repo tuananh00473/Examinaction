@@ -14,7 +14,8 @@ import java.util.List;
  * Date: 10/18/13
  * Time: 4:57 PM
  */
-public class QuestionBankGUI extends JPanel {
+public class QuestionBankGUI extends JPanel
+{
     private JPanel QuestionBankCard;
     private JButton btnSearch;
     private JButton btnNewQuestion;
@@ -34,51 +35,63 @@ public class QuestionBankGUI extends JPanel {
     private JComboBox comboBoxSubjectCode;
     private JComboBox comboBoxChapter;
 
-    public JButton getBtnSearch() {
+    public JButton getBtnSearch()
+    {
         return btnSearch;
     }
 
-    public JButton getBtnNewQuestion() {
+    public JButton getBtnNewQuestion()
+    {
         return btnNewQuestion;
     }
 
-    public JButton getBtnEditQuestion() {
+    public JButton getBtnEditQuestion()
+    {
         return btnEditQuestion;
     }
 
-    public JButton getBtnDeleteQuestion() {
+    public JButton getBtnDeleteQuestion()
+    {
         return btnDeleteQuestion;
     }
 
-    public JTable getTableQuestionBank() {
+    public JTable getTableQuestionBank()
+    {
         return tableQuestionBank;
     }
 
-    public JScrollPane getQuestionBankScrollPanel() {
+    public JScrollPane getQuestionBankScrollPanel()
+    {
         return questionBankScrollPanel;
     }
 
-    public JTextArea getTxtContentQuestion() {
+    public JTextArea getTxtContentQuestion()
+    {
         return txtContentQuestion;
     }
 
-    public JComboBox getComboBoxLevel() {
+    public JComboBox getComboBoxLevel()
+    {
         return comboBoxLevel;
     }
 
-    public JComboBox getComboBoxSubjectName() {
+    public JComboBox getComboBoxSubjectName()
+    {
         return comboBoxSubjectCode;
     }
 
-    public JComboBox getComboBoxChapter() {
+    public JComboBox getComboBoxChapter()
+    {
         return comboBoxChapter;
     }
 
-    public JLabel getLbImage() {
+    public JLabel getLbImage()
+    {
         return lbImage;
     }
 
-    public List<JTextArea> getTxtContentAnswer() {
+    public List<JTextArea> getTxtContentAnswer()
+    {
         List<JTextArea> answerList = new ArrayList<JTextArea>();
         answerList.add(txtContentAnswer1);
         answerList.add(txtContentAnswer2);
@@ -87,7 +100,8 @@ public class QuestionBankGUI extends JPanel {
         return answerList;
     }
 
-    public void resetPreview() {
+    public void resetPreview()
+    {
         txtContentQuestion.setText("");
         lbImage.setVisible(false);
         txtContentAnswer1.setText("");
@@ -110,24 +124,30 @@ public class QuestionBankGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         QuestionBankCard = new JPanel();
         QuestionBankCard.setLayout(new CardLayout(0, 0));
         QuestionBankCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
+        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         QuestionBankCard.add(panel1, "Card1");
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 8, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JLabel label1 = new JLabel();
         label1.setText("Môn học");
         panel2.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel2.add(spacer1, new GridConstraints(0, 7, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnSearch = new JButton();
-        btnSearch.setText("TÌM KIẾM");
-        panel2.add(btnSearch, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSearch.setBorderPainted(false);
+        btnSearch.setContentAreaFilled(false);
+        btnSearch.setIcon(new ImageIcon(getClass().getResource("/images/btn_find.png")));
+        btnSearch.setMargin(new Insets(0, 0, 0, 0));
+        btnSearch.setText("");
+        panel2.add(btnSearch, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Mức khó");
         panel2.add(label2, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -147,22 +167,22 @@ public class QuestionBankGUI extends JPanel {
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel3.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel3.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(300, 500), new Dimension(300, 500), new Dimension(300, 500), 0, false));
         questionBankScrollPanel = new JScrollPane();
         questionBankScrollPanel.setAutoscrolls(true);
         panel4.add(questionBankScrollPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(105, 480), null, 0, false));
         tableQuestionBank = new JTable();
         questionBankScrollPanel.setViewportView(tableQuestionBank);
         final JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayoutManager(7, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel5.setLayout(new GridLayoutManager(6, 6, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel5, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel5.add(panel6, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel5.add(panel6, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnEditQuestion = new JButton();
         btnEditQuestion.setEnabled(true);
         btnEditQuestion.setIcon(new ImageIcon(getClass().getResource("/images/edit.png")));
@@ -176,43 +196,65 @@ public class QuestionBankGUI extends JPanel {
         final Spacer spacer2 = new Spacer();
         panel6.add(spacer2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        panel5.add(scrollPane1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        txtContentQuestion = new JTextArea();
-        txtContentQuestion.setPreferredSize(new Dimension(150, 50));
-        scrollPane1.setViewportView(txtContentQuestion);
-        lbImage = new JLabel();
-        lbImage.setText("");
-        panel5.add(lbImage, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 200), new Dimension(-1, 200), 0, false));
-        final JScrollPane scrollPane2 = new JScrollPane();
-        panel5.add(scrollPane2, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel5.add(scrollPane1, new GridConstraints(2, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         txtContentAnswer1 = new JTextArea();
+        txtContentAnswer1.setEditable(false);
+        txtContentAnswer1.setMaximumSize(new Dimension(450, 20));
+        txtContentAnswer1.setMinimumSize(new Dimension(450, 20));
+        txtContentAnswer1.setPreferredSize(new Dimension(450, 20));
         txtContentAnswer1.setText("");
-        scrollPane2.setViewportView(txtContentAnswer1);
+        scrollPane1.setViewportView(txtContentAnswer1);
         final JLabel label4 = new JLabel();
         label4.setText("A.");
-        panel5.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JScrollPane scrollPane3 = new JScrollPane();
-        panel5.add(scrollPane3, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel5.add(label4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(23, 14), null, 0, false));
+        final JScrollPane scrollPane2 = new JScrollPane();
+        panel5.add(scrollPane2, new GridConstraints(3, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         txtContentAnswer2 = new JTextArea();
-        scrollPane3.setViewportView(txtContentAnswer2);
-        final JScrollPane scrollPane4 = new JScrollPane();
-        panel5.add(scrollPane4, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        txtContentAnswer2.setEditable(false);
+        txtContentAnswer2.setEnabled(true);
+        txtContentAnswer2.setMaximumSize(new Dimension(450, 20));
+        txtContentAnswer2.setMinimumSize(new Dimension(450, 20));
+        txtContentAnswer2.setPreferredSize(new Dimension(450, 20));
+        scrollPane2.setViewportView(txtContentAnswer2);
+        final JScrollPane scrollPane3 = new JScrollPane();
+        panel5.add(scrollPane3, new GridConstraints(4, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         txtContentAnswer3 = new JTextArea();
-        scrollPane4.setViewportView(txtContentAnswer3);
-        final JScrollPane scrollPane5 = new JScrollPane();
-        panel5.add(scrollPane5, new GridConstraints(6, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        txtContentAnswer3.setEditable(false);
+        txtContentAnswer3.setMaximumSize(new Dimension(450, 20));
+        txtContentAnswer3.setMinimumSize(new Dimension(450, 20));
+        txtContentAnswer3.setPreferredSize(new Dimension(450, 20));
+        scrollPane3.setViewportView(txtContentAnswer3);
+        final JScrollPane scrollPane4 = new JScrollPane();
+        panel5.add(scrollPane4, new GridConstraints(5, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         txtContentAnswer4 = new JTextArea();
+        txtContentAnswer4.setEditable(false);
+        txtContentAnswer4.setMaximumSize(new Dimension(450, 20));
+        txtContentAnswer4.setMinimumSize(new Dimension(450, 20));
+        txtContentAnswer4.setPreferredSize(new Dimension(450, 20));
         txtContentAnswer4.setText("");
-        scrollPane5.setViewportView(txtContentAnswer4);
+        scrollPane4.setViewportView(txtContentAnswer4);
         final JLabel label5 = new JLabel();
         label5.setText("B.");
-        panel5.add(label5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(label5, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(23, 14), null, 0, false));
         final JLabel label6 = new JLabel();
         label6.setText("C.");
-        panel5.add(label6, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(label6, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(23, 14), null, 0, false));
         final JLabel label7 = new JLabel();
         label7.setText("D.");
-        panel5.add(label7, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(label7, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(23, 14), null, 0, false));
+        final JScrollPane scrollPane5 = new JScrollPane();
+        panel5.add(scrollPane5, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txtContentQuestion = new JTextArea();
+        txtContentQuestion.setEditable(false);
+        txtContentQuestion.setMaximumSize(new Dimension(300, 150));
+        txtContentQuestion.setMinimumSize(new Dimension(300, 150));
+        txtContentQuestion.setPreferredSize(new Dimension(300, 150));
+        txtContentQuestion.setText("");
+        scrollPane5.setViewportView(txtContentQuestion);
+        lbImage = new JLabel();
+        lbImage.setIcon(new ImageIcon(getClass().getResource("/images/no_image.png")));
+        lbImage.setText("");
+        panel5.add(lbImage, new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, 150), new Dimension(150, 150), new Dimension(150, 150), 0, false));
         final JPanel panel7 = new JPanel();
         panel7.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -230,7 +272,8 @@ public class QuestionBankGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return QuestionBankCard;
     }
 }

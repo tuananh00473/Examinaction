@@ -18,7 +18,8 @@ import java.awt.event.ActionListener;
  * Time: 5:39 PM
  */
 @Component
-public class ChangePasswordGUI extends JFrame {
+public class ChangePasswordGUI extends JFrame
+{
 
     @Autowired
     LoginGUI loginGUI;
@@ -34,30 +35,36 @@ public class ChangePasswordGUI extends JFrame {
     private JPasswordField txtNewPassword;
     private JPasswordField txtConfirmNewPassword;
 
-    public ChangePasswordGUI() {
+    public ChangePasswordGUI()
+    {
         setContentPane(changePasswordPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 450);
         resetChangePasswordGUI();
 
-        btnChange.addActionListener(new ActionListener() {
+        btnChange.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 changePasswordController.doChangePassword();
 
             }
         });
 
-        btnCancel.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
 
                 setVisible(false);
             }
         });
     }
 
-    private void resetChangePasswordGUI() {
+    private void resetChangePasswordGUI()
+    {
         txtUsername.setText("");
         txtCurrentPassword.setText("");
         txtNewPassword.setText("");
@@ -65,31 +72,38 @@ public class ChangePasswordGUI extends JFrame {
     }
 
 
-    public JPanel getChangePasswordPanel() {
+    public JPanel getChangePasswordPanel()
+    {
         return changePasswordPanel;
     }
 
-    public JTextField getTxtUsername() {
+    public JTextField getTxtUsername()
+    {
         return txtUsername;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JButton getBtnChange() {
+    public JButton getBtnChange()
+    {
         return btnChange;
     }
 
-    public JPasswordField getTxtCurrentPassword() {
+    public JPasswordField getTxtCurrentPassword()
+    {
         return txtCurrentPassword;
     }
 
-    public JPasswordField getTxtNewPassword() {
+    public JPasswordField getTxtNewPassword()
+    {
         return txtNewPassword;
     }
 
-    public JPasswordField getTxtConfirmNewPassword() {
+    public JPasswordField getTxtConfirmNewPassword()
+    {
         return txtConfirmNewPassword;
     }
 
@@ -107,7 +121,8 @@ public class ChangePasswordGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         changePasswordPanel = new JPanel();
         changePasswordPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         changePasswordPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16737895)), null));
@@ -135,11 +150,19 @@ public class ChangePasswordGUI extends JFrame {
         final Spacer spacer2 = new Spacer();
         panel2.add(spacer2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnChange = new JButton();
-        btnChange.setText("ĐỔI PASSWORD");
-        panel2.add(btnChange, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnChange.setBorderPainted(false);
+        btnChange.setContentAreaFilled(false);
+        btnChange.setIcon(new ImageIcon(getClass().getResource("/images/btn_change_password.png")));
+        btnChange.setMargin(new Insets(0, 0, 0, 0));
+        btnChange.setText("");
+        panel2.add(btnChange, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
-        panel2.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
+        panel2.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtCurrentPassword = new JPasswordField();
         panel1.add(txtCurrentPassword, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtNewPassword = new JPasswordField();
@@ -161,7 +184,8 @@ public class ChangePasswordGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return changePasswordPanel;
     }
 }

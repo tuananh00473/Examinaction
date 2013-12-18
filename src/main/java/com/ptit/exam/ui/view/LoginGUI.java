@@ -23,7 +23,8 @@ import java.awt.event.ActionListener;
  */
 
 @Component
-public class LoginGUI extends JFrame {
+public class LoginGUI extends JFrame
+{
     private JComboBox cbxBusiness;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
@@ -38,7 +39,8 @@ public class LoginGUI extends JFrame {
     @Autowired
     ChangePasswordGUI changePasswordGUI;
 
-    public LoginGUI() {
+    public LoginGUI()
+    {
         $$$setupUI$$$();
         setContentPane(loginPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -50,40 +52,50 @@ public class LoginGUI extends JFrame {
         setUpActionListener();
     }
 
-    private void setUpActionListener() {
-        if (GlobalValues.LOGIN_ADD_ACTION) {
+    private void setUpActionListener()
+    {
+        if (GlobalValues.LOGIN_ADD_ACTION)
+        {
             btnLogin.addActionListener(actionListener);
             btnQuit.addActionListener(actionListener);
         }
         GlobalValues.LOGIN_ADD_ACTION = false;
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnLogin) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == btnLogin)
+            {
                 loginController.doLogin();
             }
-            if (e.getSource() == btnQuit) {
+            if (e.getSource() == btnQuit)
+            {
                 loginController.doQuit();
             }
         }
     };
 
-    public JTextField getTxtUsername() {
+    public JTextField getTxtUsername()
+    {
         return txtUsername;
     }
 
-    public JPasswordField getTxtPassword() {
+    public JPasswordField getTxtPassword()
+    {
         return txtPassword;
     }
 
-    public JComboBox getCbxBusiness() {
+    public JComboBox getCbxBusiness()
+    {
         return cbxBusiness;
     }
 
-    private void createUIComponents() {
-        loginPanel = new ImagePanel("background.jpg");
+    private void createUIComponents()
+    {
+        loginPanel = new ImagePanel("background_login.jpg");
         pack();
     }
 
@@ -94,7 +106,8 @@ public class LoginGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         createUIComponents();
         loginPanel.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:20px:grow,top:4dlu:noGrow,center:94px:noGrow,center:d:noGrow,top:4dlu:noGrow,center:d:grow"));
         loginPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13421773)), null));
@@ -110,7 +123,7 @@ public class LoginGUI extends JFrame {
         loginPanel.add(loginContent, cc.xy(3, 4, CellConstraints.CENTER, CellConstraints.FILL));
         loginContent.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JLabel label1 = new JLabel();
-        label1.setText("Ch?c v? :");
+        label1.setText("Chức vụ");
         loginContent.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(30, 14), null, 0, false));
         cbxBusiness = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
@@ -119,14 +132,14 @@ public class LoginGUI extends JFrame {
         cbxBusiness.setModel(defaultComboBoxModel1);
         loginContent.add(cbxBusiness, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(19, 24), null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Tài kho?n :");
+        label2.setText("Tài khoản :");
         loginContent.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(30, 14), null, 0, false));
         txtUsername = new JTextField();
         txtUsername.setMargin(new Insets(0, 0, 0, 0));
         txtUsername.setText("admin");
         loginContent.add(txtUsername, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 30), null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("M?t kh?u :");
+        label3.setText("Mật khẩu :");
         loginContent.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(30, 14), null, 0, false));
         txtPassword = new JPasswordField();
         txtPassword.setMargin(new Insets(0, 0, 0, 0));
@@ -169,7 +182,8 @@ public class LoginGUI extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return loginPanel;
     }
 }

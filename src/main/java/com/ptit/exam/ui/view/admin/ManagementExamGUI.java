@@ -12,7 +12,8 @@ import java.awt.*;
  * Date: 10/21/13
  * Time: 10:40 AM
  */
-public class ManagementExamGUI extends JPanel {
+public class ManagementExamGUI extends JPanel
+{
     private JPanel managementExamCard;
     private JComboBox comboBoxSubject;
     private JTable managementExamTable;
@@ -24,35 +25,43 @@ public class ManagementExamGUI extends JPanel {
     private JButton btnSave;
     private JButton btnCancel;
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JButton getBtnAddExam() {
+    public JButton getBtnAddExam()
+    {
         return btnAddExam;
     }
 
-    public JButton getBtnEditExam() {
+    public JButton getBtnEditExam()
+    {
         return btnEditExam;
     }
 
-    public JButton getBtnDeleteExam() {
+    public JButton getBtnDeleteExam()
+    {
         return btnDeleteExam;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
     }
 
-    public JTable getManagementExamTable() {
+    public JTable getManagementExamTable()
+    {
         return managementExamTable;
     }
 
-    public JScrollPane getManagementExamScrollPanel() {
+    public JScrollPane getManagementExamScrollPanel()
+    {
         return managementExamScrollPanel;
     }
 
@@ -70,7 +79,8 @@ public class ManagementExamGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         managementExamCard = new JPanel();
         managementExamCard.setLayout(new CardLayout(0, 0));
         managementExamCard.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -114,11 +124,21 @@ public class ManagementExamGUI extends JPanel {
         managementExamTable = new JTable();
         managementExamScrollPanel.setViewportView(managementExamTable);
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
-        panel2.add(btnCancel, new GridConstraints(2, 3, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setHideActionText(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
+        panel2.add(btnCancel, new GridConstraints(2, 3, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("LƯU");
-        panel2.add(btnSave, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave.setBorderPainted(false);
+        btnSave.setContentAreaFilled(false);
+        btnSave.setIcon(new ImageIcon(getClass().getResource("/images/btn_save.png")));
+        btnSave.setLabel("");
+        btnSave.setMargin(new Insets(0, 0, 0, 0));
+        btnSave.setText("");
+        panel2.add(btnSave, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel2.add(spacer2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     }
@@ -126,7 +146,8 @@ public class ManagementExamGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return managementExamCard;
     }
 }

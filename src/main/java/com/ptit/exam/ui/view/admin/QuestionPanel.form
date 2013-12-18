@@ -11,7 +11,9 @@
       <component id="fd481" class="javax.swing.JTextArea" binding="txtQuestion">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="150"/>
+            <minimum-size width="300" height="150"/>
+            <preferred-size width="300" height="150"/>
+            <maximum-size width="300" height="150"/>
           </grid>
         </constraints>
         <properties>
@@ -21,7 +23,9 @@
       <component id="f3cea" class="javax.swing.JTextArea" binding="txtAnswer1">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="15"/>
+            <minimum-size width="450" height="30"/>
+            <preferred-size width="450" height="30"/>
+            <maximum-size width="450" height="30"/>
           </grid>
         </constraints>
         <properties/>
@@ -29,7 +33,9 @@
       <component id="5aab8" class="javax.swing.JTextArea" binding="txtAnswer2">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="15"/>
+            <minimum-size width="450" height="30"/>
+            <preferred-size width="450" height="30"/>
+            <maximum-size width="450" height="30"/>
           </grid>
         </constraints>
         <properties/>
@@ -37,7 +43,9 @@
       <component id="b7a1b" class="javax.swing.JTextArea" binding="txtAnswer3">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="15"/>
+            <minimum-size width="450" height="30"/>
+            <preferred-size width="450" height="30"/>
+            <maximum-size width="450" height="30"/>
           </grid>
         </constraints>
         <properties/>
@@ -45,7 +53,9 @@
       <component id="cc294" class="javax.swing.JTextArea" binding="txtAnswer4">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="15"/>
+            <minimum-size width="450" height="30"/>
+            <preferred-size width="450" height="30"/>
+            <maximum-size width="450" height="30"/>
           </grid>
         </constraints>
         <properties/>
@@ -53,7 +63,9 @@
       <component id="65dbe" class="javax.swing.JLabel" binding="lbImage">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="150"/>
             <preferred-size width="150" height="150"/>
+            <maximum-size width="150" height="150"/>
           </grid>
         </constraints>
         <properties>

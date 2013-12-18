@@ -15,7 +15,8 @@ import java.util.List;
  * Date: 10/17/13
  * Time: 9:27 AM
  */
-public class NewExaminationGUI extends JPanel {
+public class NewExaminationGUI extends JPanel
+{
     private JPanel NewExaminationGUI;
     private JComboBox comboBoxSubject;
     private JTextField txtExamName;
@@ -30,19 +31,23 @@ public class NewExaminationGUI extends JPanel {
     private JTextField txtExamCode;
     private JButton btnCancel;
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JComboBox getComboBoxSubject() {
+    public JComboBox getComboBoxSubject()
+    {
         return comboBoxSubject;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public boolean invalidForm() {
+    public boolean invalidForm()
+    {
         if ("".equals(txtExamName.getText())
                 || "".equals(txtExamCode.getText())
                 || "".equals(txtTotalNumberTime.getText())
@@ -51,24 +56,28 @@ public class NewExaminationGUI extends JPanel {
                 || "".equals(txtNumberQuestionHard.getText())
                 || value(txtNumberQuestionEasy.getText()) > value(lbTotalQuestionEasy.getText())
                 || value(txtNumberQuestionMedium.getText()) > value(lbTotalQuestionMedium.getText())
-                || value(txtNumberQuestionHard.getText()) > value(lbTotalQuestionHard.getText())) {
+                || value(txtNumberQuestionHard.getText()) > value(lbTotalQuestionHard.getText()))
+        {
             return true;
         }
         return false;
     }
 
-    private int value(String text) {
+    private int value(String text)
+    {
         return Integer.parseInt(text);
     }
 
 
-    public void setLabelTotalCountLevel(int easy, int medium, int hard) {
+    public void setLabelTotalCountLevel(int easy, int medium, int hard)
+    {
         lbTotalQuestionEasy.setText(String.valueOf(easy));
         lbTotalQuestionMedium.setText(String.valueOf(medium));
         lbTotalQuestionHard.setText(String.valueOf(hard));
     }
 
-    public void resetExportExamGUI() {
+    public void resetExportExamGUI()
+    {
         comboBoxSubject.setSelectedIndex(0);
         txtExamName.setText("");
         txtExamCode.setText("");
@@ -78,7 +87,8 @@ public class NewExaminationGUI extends JPanel {
         txtNumberQuestionHard.setText("0");
     }
 
-    public Exam getExamInfo(Exam exam, List<Subject> subjectList) {
+    public Exam getExamInfo(Exam exam, List<Subject> subjectList)
+    {
         exam.setExamCode(txtExamCode.getText());
         exam.setExamName(txtExamName.getText());
         Subject subject = subjectList.get(comboBoxSubject.getSelectedIndex());
@@ -90,7 +100,8 @@ public class NewExaminationGUI extends JPanel {
         return exam;
     }
 
-    public void mappingInfoToField(int selectedIndex, Exam exam) {
+    public void mappingInfoToField(int selectedIndex, Exam exam)
+    {
         comboBoxSubject.setSelectedIndex(selectedIndex);
         txtExamCode.setText(exam.getExamCode());
         txtExamName.setText(exam.getExamName());
@@ -114,7 +125,8 @@ public class NewExaminationGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         NewExaminationGUI = new JPanel();
         NewExaminationGUI.setLayout(new CardLayout(0, 0));
         NewExaminationGUI.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -236,13 +248,22 @@ public class NewExaminationGUI extends JPanel {
         panel13.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel13, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("LƯU");
-        panel13.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave.setBorderPainted(false);
+        btnSave.setContentAreaFilled(false);
+        btnSave.setIcon(new ImageIcon(getClass().getResource("/images/btn_save.png")));
+        btnSave.setLabel("");
+        btnSave.setMargin(new Insets(0, 0, 0, 0));
+        btnSave.setText("");
+        panel13.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer6 = new Spacer();
         panel13.add(spacer6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
-        panel13.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
+        panel13.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
         panel1.add(spacer7, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
@@ -250,7 +271,8 @@ public class NewExaminationGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return NewExaminationGUI;
     }
 }

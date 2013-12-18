@@ -3,6 +3,8 @@ package com.ptit.exam.ui.view.admin;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import com.ptit.exam.business.StudentService;
 import com.ptit.exam.io.ExcelManager;
 import com.ptit.exam.persistence.entity.Student;
@@ -11,6 +13,7 @@ import com.ptit.exam.ui.control.admincontroller.*;
 import com.ptit.exam.ui.view.ChangePasswordGUI;
 import com.ptit.exam.ui.view.LoginGUI;
 import com.ptit.exam.util.FileChooserManager;
+import com.ptit.exam.util.ImagePanel;
 import com.ptit.exam.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +29,8 @@ import java.util.List;
  * Time: 11:17 AM
  */
 @Component
-public class MainAdminGUI extends JFrame {
+public class MainAdminGUI extends JFrame
+{
     @Autowired
     MainAdminController mainAdminController;
 
@@ -98,7 +102,8 @@ public class MainAdminGUI extends JFrame {
     private CardLayout cardLayout;
 
 
-    public MainAdminGUI() {
+    public MainAdminGUI()
+    {
         $$$setupUI$$$();
         setContentPane(mainPanel);
 
@@ -110,9 +115,11 @@ public class MainAdminGUI extends JFrame {
 
         initMenuBar();
 
-        lbLogOut.addMouseListener(new MouseAdapter() {
+        lbLogOut.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e)
+            {
                 loginGUI.setVisible(true);
                 MainAdminGUI.this.setVisible(false);
             }
@@ -127,81 +134,101 @@ public class MainAdminGUI extends JFrame {
         cardLayout = (CardLayout) AdminCardPanel.getLayout();
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnQuestionBank) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == btnQuestionBank)
+            {
                 questionBankController.doSetUp(null);
                 mainAdminController.doShowQuestionBankCard();
             }
-            if (e.getSource() == btnManagementExam) {
+            if (e.getSource() == btnManagementExam)
+            {
                 managementExamController.doSetUp(null);
                 mainAdminController.doShowManagementExamGUI();
             }
-            if (e.getSource() == btnExportExamination) {
+            if (e.getSource() == btnExportExamination)
+            {
                 exportExamController.doSetUp();
                 mainAdminController.doShowExportExamCard();
             }
-            if (e.getSource() == btnManagementSubject) {
+            if (e.getSource() == btnManagementSubject)
+            {
                 managementSubjectController.doSetUp();
                 mainAdminController.doShowManagementSubjectGUI();
             }
-            if (e.getSource() == btnManagementStudent) {
+            if (e.getSource() == btnManagementStudent)
+            {
                 managementStudentController.doSetUp();
                 mainAdminController.doShowManagementStudentGUI();
             }
         }
     };
 
-    public NewExaminationGUI getNewExaminationGUI() {
+    public NewExaminationGUI getNewExaminationGUI()
+    {
         return newExaminationGUI;
     }
 
-    public ManagementExamGUI getManagementExamGUI() {
+    public ManagementExamGUI getManagementExamGUI()
+    {
         return managementExamGUI;
     }
 
-    public ManagementStudentGUI getManagementStudentGUI() {
+    public ManagementStudentGUI getManagementStudentGUI()
+    {
         return managementStudentGUI;
     }
 
-    public ManagementSubjectGUI getManagementSubjectGUI() {
+    public ManagementSubjectGUI getManagementSubjectGUI()
+    {
         return managementSubjectGUI;
     }
 
-    public ExportExamGUI getExportExamGUI() {
+    public ExportExamGUI getExportExamGUI()
+    {
         return exportExamGUI;
     }
 
-    public QuestionBankGUI getQuestionBankGUI() {
+    public QuestionBankGUI getQuestionBankGUI()
+    {
         return questionBankGUI;
     }
 
-    public NewQuestionGUI getNewQuestionGUI() {
+    public NewQuestionGUI getNewQuestionGUI()
+    {
         return newQuestionGUI;
     }
 
-    public CardLayout getCardLayout() {
+    public CardLayout getCardLayout()
+    {
         return cardLayout;
     }
 
-    public JPanel getAdminCardPanel() {
+    public JPanel getAdminCardPanel()
+    {
         return AdminCardPanel;
     }
 
-    public JLabel getLbUsername() {
+    public JLabel getLbUsername()
+    {
         return lbUsername;
     }
 
-    public NewSubjectGUI getNewSubjectGUI() {
+    public NewSubjectGUI getNewSubjectGUI()
+    {
         return newSubjectGUI;
     }
 
-    public NewStudentGUI getNewStudentGUI() {
+    public NewStudentGUI getNewStudentGUI()
+    {
         return newStudentGUI;
     }
 
-    public void initMenuBar() {
+    public void initMenuBar()
+    {
         menuBar = new JMenuBar();
         menuFile = new JMenu("File");
         setMenuItem(menuFile);
@@ -215,7 +242,8 @@ public class MainAdminGUI extends JFrame {
         this.setJMenuBar(menuBar);
     }
 
-    private void setMenuItem(JMenu menuFile) {
+    private void setMenuItem(JMenu menuFile)
+    {
         menuItemImportStudent = new JMenuItem("Import student from excel");
         menuItemExportStudent = new JMenuItem("Export student to excel");
         menuItemQuit = new JMenuItem("Quit");
@@ -234,26 +262,35 @@ public class MainAdminGUI extends JFrame {
         menuFile.add(menuItemQuit);
     }
 
-    private ActionListener menuItemListener = new ActionListener() {
+    private ActionListener menuItemListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == menuItemQuit) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == menuItemQuit)
+            {
                 System.exit(0);
             }
-            if (e.getSource() == menuItemImportStudent) {
+            if (e.getSource() == menuItemImportStudent)
+            {
                 String pathFile = FileChooserManager.getFile(MainAdminGUI.this);
-                if (checkValidFile(pathFile)) {
+                if (checkValidFile(pathFile))
+                {
                     List<Student> studentList = ExcelManager.readData(pathFile);
-                    for (Student student : studentList) {
+                    for (Student student : studentList)
+                    {
                         studentService.save(student);
                     }
                     MessageManager.show("Đã thêm thành công " + studentList.size() + " sinh viên vào danh sách quản lý.");
-                } else {
+                }
+                else
+                {
                     MessageManager.show("File nhập vào không hợp lệ.");
                 }
                 return;
             }
-            if (e.getSource() == menuItemExportStudent) {
+            if (e.getSource() == menuItemExportStudent)
+            {
                 String pathLocation = FileChooserManager.getPath(MainAdminGUI.this);
                 System.out.println(pathLocation);
                 return;
@@ -261,10 +298,16 @@ public class MainAdminGUI extends JFrame {
         }
     };
 
-    private boolean checkValidFile(String pathFile) {
+    private boolean checkValidFile(String pathFile)
+    {
         //todo : check xem cai file vua nhap vao co phai file excel ko
         //todo : check xem cac gia tri cua file excel co phu hop hay ko
         return true;
+    }
+
+    private void createUIComponents()
+    {
+        mainPanel = new ImagePanel("background_content.jpg");
     }
 
     /**
@@ -274,35 +317,21 @@ public class MainAdminGUI extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayoutManager(3, 2, new Insets(10, 10, 10, 10), -1, -1));
+    private void $$$setupUI$$$()
+    {
+        createUIComponents();
+        mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(10, 10, 10, 10), -1, -1));
+        mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new BorderLayout(0, 0));
-        mainPanel.add(panel1, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel2, BorderLayout.WEST);
-        btnManagementExam = new JButton();
-        btnManagementExam.setText("Quản Lý Đề Thi");
-        panel2.add(btnManagementExam, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnExportExamination = new JButton();
-        btnExportExamination.setText("Xuất Đề Thi");
-        panel2.add(btnExportExamination, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnManagementSubject = new JButton();
-        btnManagementSubject.setText("Quản Lý Môn Học");
-        panel2.add(btnManagementSubject, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        btnQuestionBank = new JButton();
-        btnQuestionBank.setText("Ngân Hàng Câu Hỏi");
-        panel2.add(btnQuestionBank, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnManagementStudent = new JButton();
-        btnManagementStudent.setText("Quản Lý Sinh Viên");
-        panel2.add(btnManagementStudent, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        mainPanel.add(panel1, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         AdminCardPanel = new JPanel();
         AdminCardPanel.setLayout(new CardLayout(0, 0));
-        panel1.add(AdminCardPanel, BorderLayout.CENTER);
+        AdminCardPanel.setMaximumSize(new Dimension(650, 600));
+        AdminCardPanel.setMinimumSize(new Dimension(650, 600));
+        AdminCardPanel.setPreferredSize(new Dimension(650, 600));
+        CellConstraints cc = new CellConstraints();
+        panel1.add(AdminCardPanel, cc.xy(3, 5));
         questionBankGUI = new QuestionBankGUI();
         AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
         newExaminationGUI = new NewExaminationGUI();
@@ -324,19 +353,71 @@ public class MainAdminGUI extends JFrame {
         introduceAdminGUI = new IntroduceAdminGUI();
         AdminCardPanel.add(introduceAdminGUI.$$$getRootComponent$$$(), "introduceAdminGUI");
         lbLogOut = new JLabel();
-        lbLogOut.setFont(new Font(lbLogOut.getFont().getName(), Font.BOLD | Font.ITALIC, lbLogOut.getFont().getSize()));
+        lbLogOut.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbLogOut.setForeground(new Color(-16777012));
         lbLogOut.setText("Log out");
-        mainPanel.add(lbLogOut, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(lbLogOut, new CellConstraints(3, 3, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(0, 0, 0, 20)));
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new GridLayoutManager(6, 1, new Insets(0, 10, 0, 10), -1, -1));
+        panel2.setMaximumSize(new Dimension(160, 200));
+        panel2.setMinimumSize(new Dimension(160, 200));
+        panel2.setPreferredSize(new Dimension(160, 200));
+        panel1.add(panel2, cc.xy(1, 5, CellConstraints.FILL, CellConstraints.FILL));
+        panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        btnManagementExam = new JButton();
+        btnManagementExam.setBorderPainted(false);
+        btnManagementExam.setContentAreaFilled(false);
+        btnManagementExam.setIcon(new ImageIcon(getClass().getResource("/images/exam_manager.png")));
+        btnManagementExam.setMargin(new Insets(0, 0, 0, 0));
+        btnManagementExam.setText("");
+        panel2.add(btnManagementExam, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        btnExportExamination = new JButton();
+        btnExportExamination.setBorderPainted(false);
+        btnExportExamination.setContentAreaFilled(false);
+        btnExportExamination.setIcon(new ImageIcon(getClass().getResource("/images/export_exam.png")));
+        btnExportExamination.setMargin(new Insets(0, 0, 0, 0));
+        btnExportExamination.setText("");
+        panel2.add(btnExportExamination, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        btnManagementSubject = new JButton();
+        btnManagementSubject.setBorderPainted(false);
+        btnManagementSubject.setContentAreaFilled(false);
+        btnManagementSubject.setIcon(new ImageIcon(getClass().getResource("/images/subject_manager.png")));
+        btnManagementSubject.setMargin(new Insets(0, 0, 0, 0));
+        btnManagementSubject.setText("");
+        panel2.add(btnManagementSubject, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        panel2.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(109, 14), null, 0, false));
+        btnQuestionBank = new JButton();
+        btnQuestionBank.setBorderPainted(false);
+        btnQuestionBank.setContentAreaFilled(false);
+        btnQuestionBank.setIcon(new ImageIcon(getClass().getResource("/images/question_store.png")));
+        btnQuestionBank.setLabel("");
+        btnQuestionBank.setMargin(new Insets(0, 0, 0, 0));
+        btnQuestionBank.setText("");
+        panel2.add(btnQuestionBank, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
+        btnManagementStudent = new JButton();
+        btnManagementStudent.setBorderPainted(false);
+        btnManagementStudent.setContentAreaFilled(false);
+        btnManagementStudent.setIcon(new ImageIcon(getClass().getResource("/images/student_manager.png")));
+        btnManagementStudent.setMargin(new Insets(0, 0, 0, 0));
+        btnManagementStudent.setText("");
+        panel2.add(btnManagementStudent, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 25), null, 0, false));
         lbUsername = new JLabel();
-        lbUsername.setFont(new Font(lbUsername.getFont().getName(), Font.BOLD, lbUsername.getFont().getSize()));
+        lbUsername.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        lbUsername.setHorizontalAlignment(4);
+        lbUsername.setHorizontalTextPosition(0);
+        lbUsername.setMaximumSize(new Dimension(250, 37));
+        lbUsername.setMinimumSize(new Dimension(250, 37));
+        lbUsername.setPreferredSize(new Dimension(250, 37));
         lbUsername.setText("");
-        mainPanel.add(lbUsername, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(lbUsername, new CellConstraints(3, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(20, 0, 0, 20)));
     }
 
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return mainPanel;
     }
 }

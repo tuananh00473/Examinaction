@@ -20,7 +20,8 @@ import java.util.List;
  * Date: 10/19/13
  * Time: 2:20 AM
  */
-public class NewQuestionGUI extends JPanel {
+public class NewQuestionGUI extends JPanel
+{
     private JTextArea txtContentQues;
     private JTextField txtUrlImage;
     private JButton btnBrowser;
@@ -43,53 +44,69 @@ public class NewQuestionGUI extends JPanel {
     @Autowired
     QuestionBankController questionBankController;
 
-    public JComboBox getCbLevel() {
+    public JComboBox getCbLevel()
+    {
         return cbLevel;
     }
 
-    public JTextField getTxtChapter() {
+    public JTextField getTxtChapter()
+    {
         return txtChapter;
     }
 
-    public JComboBox getCbSubjectName() {
+    public JComboBox getCbSubjectName()
+    {
         return cbSubjectName;
     }
 
-    public JTextArea getTxtContentQues() {
+    public JTextArea getTxtContentQues()
+    {
         return txtContentQues;
     }
 
-    public JTextField getTxtUrlImage() {
+    public JTextField getTxtUrlImage()
+    {
         return txtUrlImage;
     }
 
-    public JButton getBtnBrowser() {
+    public JButton getBtnBrowser()
+    {
         return btnBrowser;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public static boolean isNumeric(String str) {
-        try {
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
             int d = Integer.parseInt(str);
-        } catch (NumberFormatException nfe) {
+        }
+        catch (NumberFormatException nfe)
+        {
             return false;
         }
         return true;
     }
 
-    public Question getQuestionInfo(Question question, List<Subject> subjectList) {
+    public Question getQuestionInfo(Question question, List<Subject> subjectList)
+    {
         Subject subject = subjectList.get(cbSubjectName.getSelectedIndex());
         question.setSubjectCode(subject.getSubjectCode());
-        if (isNumeric(txtChapter.getText())) {
+        if (isNumeric(txtChapter.getText()))
+        {
             question.setChapter(Integer.parseInt(txtChapter.getText()));
-        } else {
+        }
+        else
+        {
             MessageManager.show("Lỗi dữ liệu. Hãy nhập lại chương !");
         }
 
@@ -99,48 +116,55 @@ public class NewQuestionGUI extends JPanel {
         return question;
     }
 
-    public Answer getAnswer1(Question question, Answer answer) {
+    public Answer getAnswer1(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer1.getText());
         answer.setCorrect(rdAnswer1.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer2(Question question, Answer answer) {
+    public Answer getAnswer2(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer2.getText());
         answer.setCorrect(rdAnswer2.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer3(Question question, Answer answer) {
+    public Answer getAnswer3(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer3.getText());
         answer.setCorrect(rdAnswer3.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public Answer getAnswer4(Question question, Answer answer) {
+    public Answer getAnswer4(Question question, Answer answer)
+    {
         answer.setContent(txtContentAnswer4.getText());
         answer.setCorrect(rdAnswer4.isSelected());
         answer.setQuestionId(question.getId());
         return answer;
     }
 
-    public boolean invalidForm() {
+    public boolean invalidForm()
+    {
         if ("".equals(txtChapter.getText())
                 || "".equals(cbLevel.getSelectedItem().toString())
                 || "".equals(txtContentQues.getText())
                 || "".equals(txtContentAnswer1.getText())
                 || "".equals(txtContentAnswer2.getText())
                 || "".equals(txtContentAnswer3.getText())
-                || "".equals(txtContentAnswer4.getText())) {
+                || "".equals(txtContentAnswer4.getText()))
+        {
             return true;
         }
         return false;
     }
 
-    public List<JTextArea> getTxtContentAnswer() {
+    public List<JTextArea> getTxtContentAnswer()
+    {
         List<JTextArea> answerList = new ArrayList<JTextArea>();
         answerList.add(txtContentAnswer1);
         answerList.add(txtContentAnswer2);
@@ -149,7 +173,8 @@ public class NewQuestionGUI extends JPanel {
         return answerList;
     }
 
-    public List<JRadioButton> getRadioButtonList() {
+    public List<JRadioButton> getRadioButtonList()
+    {
         List<JRadioButton> radioButtonList = new ArrayList<JRadioButton>();
         radioButtonList.add(rdAnswer1);
         radioButtonList.add(rdAnswer2);
@@ -158,7 +183,8 @@ public class NewQuestionGUI extends JPanel {
         return radioButtonList;
     }
 
-    public void resetNewQuestionGUI() {
+    public void resetNewQuestionGUI()
+    {
         txtChapter.setText("");
         txtContentQues.setText("");
         txtUrlImage.setText("");
@@ -172,7 +198,8 @@ public class NewQuestionGUI extends JPanel {
         rdAnswer4.setSelected(false);
     }
 
-    public void mappingInfoToField(int indexSubject, Question question, List<Answer> answerList) {
+    public void mappingInfoToField(int indexSubject, Question question, List<Answer> answerList)
+    {
         txtContentAnswer1.setText(answerList.get(0).getContent());
         rdAnswer1.setSelected(answerList.get(0).isCorrect());
 
@@ -206,7 +233,8 @@ public class NewQuestionGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         newQuestionPanel = new JPanel();
         newQuestionPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         newQuestionPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
@@ -305,13 +333,22 @@ public class NewQuestionGUI extends JPanel {
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         newQuestionPanel.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("LƯU");
-        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave.setBorderPainted(false);
+        btnSave.setContentAreaFilled(false);
+        btnSave.setIcon(new ImageIcon(getClass().getResource("/images/btn_save.png")));
+        btnSave.setLabel("");
+        btnSave.setMargin(new Insets(0, 0, 0, 0));
+        btnSave.setText("");
+        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
-        panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
+        panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(rdAnswer1);
@@ -323,7 +360,8 @@ public class NewQuestionGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return newQuestionPanel;
     }
 }

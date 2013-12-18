@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ptit.exam.ui.view.admin.ManagementExamGUI">
   <grid id="27dc6" binding="managementExamCard" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="500" height="416"/>
     </constraints>
     <properties/>
     <border type="line">
@@ -107,18 +107,28 @@
                   </scrollpane>
                   <component id="21b49" class="javax.swing.JButton" binding="btnCancel">
                     <constraints>
-                      <grid row="2" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="HỦY"/>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <hideActionText value="false"/>
+                      <icon value="images/btn_cancel.png"/>
+                      <margin top="0" left="0" bottom="0" right="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="68ba7" class="javax.swing.JButton" binding="btnSave">
                     <constraints>
-                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="LƯU"/>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <icon value="images/btn_save.png"/>
+                      <label value=""/>
+                      <margin top="0" left="0" bottom="0" right="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <hspacer id="f2f91">

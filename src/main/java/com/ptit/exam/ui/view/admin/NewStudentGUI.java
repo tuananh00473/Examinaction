@@ -13,7 +13,8 @@ import java.awt.*;
  * Date: 10/23/13
  * Time: 11:17 PM
  */
-public class NewStudentGUI extends JPanel {
+public class NewStudentGUI extends JPanel
+{
     private JPanel studentPanel;
     private JTextField txtFirstname;
     private JButton btnCancel;
@@ -42,39 +43,48 @@ public class NewStudentGUI extends JPanel {
     private JLabel lbValidateConfirmPassword;
     private JLabel lbNote;
 
-    public JButton getBtnCancel() {
+    public JButton getBtnCancel()
+    {
         return btnCancel;
     }
 
-    public JButton getBtnSave() {
+    public JButton getBtnSave()
+    {
         return btnSave;
     }
 
-    public JComboBox getComboBoxDay() {
+    public JComboBox getComboBoxDay()
+    {
         return comboBoxDay;
     }
 
-    public JComboBox getComboBoxMonth() {
+    public JComboBox getComboBoxMonth()
+    {
         return comboBoxMonth;
     }
 
-    public JComboBox getComboBoxYear() {
+    public JComboBox getComboBoxYear()
+    {
         return comboBoxYear;
     }
 
-    public JComboBox getComboBoxFaculty() {
+    public JComboBox getComboBoxFaculty()
+    {
         return comboBoxFaculty;
     }
 
-    public JComboBox getComboBoxTrainingSystem() {
+    public JComboBox getComboBoxTrainingSystem()
+    {
         return comboBoxTrainingSystem;
     }
 
-    public JComboBox getComboBoxCourse() {
+    public JComboBox getComboBoxCourse()
+    {
         return comboBoxCourse;
     }
 
-    public boolean invalidForm() {
+    public boolean invalidForm()
+    {
         if ("".equals(txtStudentCode.getText())
                 || "".equals(txtFirstname.getText())
                 || "".equals(txtLastname.getText())
@@ -85,13 +95,15 @@ public class NewStudentGUI extends JPanel {
                 || !txtPassword.getText().equals(txtConfirmPassword.getText())
                 || "".equals(comboBoxCourse.getSelectedItem().toString())
                 || "".equals(comboBoxFaculty.getSelectedItem().toString())
-                || "".equals(comboBoxTrainingSystem.getSelectedItem().toString())) {
+                || "".equals(comboBoxTrainingSystem.getSelectedItem().toString()))
+        {
             return true;
         }
         return false;
     }
 
-    public Student getSubjectInfo(Student student) {
+    public Student getSubjectInfo(Student student)
+    {
         student.setStudentCode(txtStudentCode.getText());
         student.setFirstName(txtFirstname.getText());
         student.setLastName(txtLastname.getText());
@@ -106,22 +118,28 @@ public class NewStudentGUI extends JPanel {
         return student;
     }
 
-    private String getDateOfBirth() {
+    private String getDateOfBirth()
+    {
         String day = comboBoxDay.getSelectedItem().toString();
         String month = comboBoxMonth.getSelectedItem().toString();
         String year = comboBoxYear.getSelectedItem().toString();
         return day + "/" + month + "/" + year;
     }
 
-    private String getGender() {
-        if (btnRadioMale.isSelected()) {
+    private String getGender()
+    {
+        if (btnRadioMale.isSelected())
+        {
             return "nam";
-        } else {
+        }
+        else
+        {
             return "nữ";
         }
     }
 
-    public void setInfoSubject(Student student) {
+    public void setInfoSubject(Student student)
+    {
         txtFirstname.setText(student.getFirstName());
         txtLastname.setText(student.getLastName());
         txtClass.setText(student.getClassRoom());
@@ -139,25 +157,30 @@ public class NewStudentGUI extends JPanel {
         setDateOfBirth(student.getDateOfBirth());
     }
 
-    private void setDateOfBirth(String dateOfBirth) {
+    private void setDateOfBirth(String dateOfBirth)
+    {
         String[] arg = dateOfBirth.split("/");
         comboBoxYear.setSelectedItem(arg[2]);
         comboBoxMonth.setSelectedItem(arg[1]);
         comboBoxDay.setSelectedItem(arg[0]);
     }
 
-    private void setGender(String gender) {
-        if ("nam".equals(gender)) {
+    private void setGender(String gender)
+    {
+        if ("nam".equals(gender))
+        {
             btnRadioMale.setSelected(true);
             btnRadioFemale.setSelected(false);
         }
-        if ("nữ".equals(gender)) {
+        if ("nữ".equals(gender))
+        {
             btnRadioMale.setSelected(false);
             btnRadioFemale.setSelected(true);
         }
     }
 
-    public void resetForm() {
+    public void resetForm()
+    {
         txtLastname.setText("");
         txtFirstname.setText("");
         txtClass.setText("");
@@ -191,7 +214,8 @@ public class NewStudentGUI extends JPanel {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         studentPanel = new JPanel();
         studentPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         studentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-10066330)), null));
@@ -247,13 +271,21 @@ public class NewStudentGUI extends JPanel {
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel4, new GridConstraints(12, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnCancel = new JButton();
-        btnCancel.setText("HỦY");
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/btn_cancel.png")));
+        btnCancel.setMargin(new Insets(0, 0, 0, 0));
+        btnCancel.setText("");
         panel4.add(btnCancel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         btnSave = new JButton();
-        btnSave.setText("LƯU");
-        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSave.setBorderPainted(false);
+        btnSave.setContentAreaFilled(false);
+        btnSave.setIcon(new ImageIcon(getClass().getResource("/images/btn_save.png")));
+        btnSave.setMargin(new Insets(0, 0, 0, 0));
+        btnSave.setText("");
+        panel4.add(btnSave, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtLastname = new JTextField();
         panel3.add(txtLastname, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         txtStudentCode = new JTextField();
@@ -364,7 +396,8 @@ public class NewStudentGUI extends JPanel {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return studentPanel;
     }
 }
