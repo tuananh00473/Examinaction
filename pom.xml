@@ -138,6 +138,13 @@
             <artifactId>beansbinding</artifactId>
             <version>1.2.1</version>
         </dependency>
+        <!--lib for PDFManager-->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>1.4.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,158 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ptit.exam.ui.view.student.MainStudentGUI">
-  <grid id="27dc6" binding="studentPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="804" height="539"/>
     </constraints>
     <properties>
-      <enabled value="false"/>
+      <doubleBuffered value="false"/>
+      <enabled value="true"/>
       <font style="3"/>
+      <minimumSize width="264" height="172"/>
+      <preferredSize width="734" height="742"/>
     </properties>
     <border type="bevel-lowered">
       <color color="-1"/>
     </border>
     <children>
-      <grid id="f6caf" layout-manager="FormLayout">
-        <rowspec value="center:max(d;4px):noGrow"/>
+      <grid id="75eba" binding="headerPanel" custom-create="true" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
         <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:39px:noGrow"/>
+        <rowspec value="top:44dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:d:noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
         <colspec value="fill:d:grow"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="874d7" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="10" bottom="0" right="10"/>
+          <component id="2723c" class="javax.swing.JLabel" binding="lbLogOut">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-vert="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <forms top="0" left="0" bottom="0" right="20" defaultalign-horz="false"/>
             </constraints>
             <properties>
-              <maximumSize width="160" height="200"/>
-              <minimumSize width="160" height="200"/>
-              <preferredSize width="160" height="200"/>
+              <font name="Times New Roman" size="14" style="3"/>
+              <foreground color="-16777012"/>
+              <text value="Log out"/>
             </properties>
-            <border type="bevel-lowered"/>
-            <children>
-              <component id="8b425" class="javax.swing.JButton" binding="btnStartExam">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <icon value="images/btn_do_exam.png"/>
-                  <margin top="0" left="0" bottom="0" right="0"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="25cf3" class="javax.swing.JButton" binding="btnExamResults">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <enabled value="true"/>
-                  <icon value="images/btn_view_result.png"/>
-                  <margin top="0" left="0" bottom="0" right="0"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <vspacer id="bc5d9">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-            </children>
-          </grid>
-          <grid id="73e7d" binding="StudentCardPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+          </component>
+          <component id="ffeed" class="javax.swing.JLabel" binding="lbUsername">
             <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <forms top="20" left="0" bottom="0" right="20" defaultalign-horz="false"/>
             </constraints>
             <properties>
-              <background color="-6710785"/>
+              <font name="Times New Roman" size="16" style="1"/>
+              <horizontalAlignment value="4"/>
+              <horizontalTextPosition value="0"/>
+              <maximumSize width="250" height="37"/>
+              <minimumSize width="250" height="37"/>
+              <preferredSize width="250" height="37"/>
+              <text value=""/>
             </properties>
-            <border type="line">
-              <color color="-16737895"/>
-            </border>
-            <children>
-              <nested-form id="2972a" form-file="com/ptit/exam/ui/view/student/SettingExamGUI.form" binding="settingExamGUI">
-                <constraints>
-                  <card name="settingExamGUI"/>
-                </constraints>
-              </nested-form>
-              <nested-form id="a09c" form-file="com/ptit/exam/ui/view/student/IntroduceStudentGUI.form" binding="introduceStudentGUI">
-                <constraints>
-                  <card name="introduceStudentGUI"/>
-                </constraints>
-              </nested-form>
-              <nested-form id="60b91" form-file="com/ptit/exam/ui/view/student/ExamGUI.form" binding="examGUI">
-                <constraints>
-                  <card name="Card1"/>
-                </constraints>
-              </nested-form>
-              <nested-form id="dca67" form-file="com/ptit/exam/ui/view/student/ResultGUI.form" binding="resultGUI">
-                <constraints>
-                  <card name="Card2"/>
-                </constraints>
-              </nested-form>
-            </children>
-          </grid>
-          <grid id="75eba" binding="logoPanel" custom-create="true" layout-manager="FormLayout">
-            <rowspec value="center:d:grow"/>
-            <rowspec value="top:4dlu:noGrow"/>
+          </component>
+        </children>
+      </grid>
+      <scrollpane id="ba49c">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="f6caf" layout-manager="FormLayout">
             <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <colspec value="fill:d:grow"/>
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties/>
+            <constraints/>
+            <properties>
+              <minimumSize width="706" height="590"/>
+              <preferredSize width="706" height="590"/>
+            </properties>
             <border type="none"/>
             <children>
-              <component id="2723c" class="javax.swing.JLabel" binding="lbLogOut">
+              <grid id="874d7" binding="controlPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="10" bottom="0" right="10"/>
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms top="0" left="0" bottom="0" right="20" defaultalign-horz="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-vert="false"/>
                 </constraints>
                 <properties>
-                  <font name="Times New Roman" size="14" style="3"/>
-                  <foreground color="-16777012"/>
-                  <text value="Log out"/>
+                  <maximumSize width="80" height="500"/>
+                  <minimumSize width="80" height="500"/>
+                  <preferredSize width="80" height="500"/>
                 </properties>
-              </component>
-              <component id="ffeed" class="javax.swing.JLabel" binding="lbUsername">
+                <border type="bevel-lowered"/>
+                <children>
+                  <component id="25cf3" class="javax.swing.JButton" binding="btnExamResults">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="60" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <enabled value="true"/>
+                      <icon value="images/btn_view_result.png"/>
+                      <margin top="0" left="0" bottom="0" right="0"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="8b425" class="javax.swing.JButton" binding="btnStartExam">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="60" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <icon value="images/btn_do_exam.png"/>
+                      <margin top="0" left="0" bottom="0" right="0"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <scrollpane id="7b014">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms top="20" left="0" bottom="0" right="20" defaultalign-horz="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
-                <properties>
-                  <font name="Times New Roman" size="16" style="1"/>
-                  <horizontalAlignment value="4"/>
-                  <horizontalTextPosition value="0"/>
-                  <maximumSize width="250" height="37"/>
-                  <minimumSize width="250" height="37"/>
-                  <preferredSize width="250" height="37"/>
-                  <text value=""/>
-                </properties>
-              </component>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="73e7d" binding="StudentCardPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                    <constraints/>
+                    <properties>
+                      <background color="-1"/>
+                      <maximumSize width="600" height="500"/>
+                      <minimumSize width="600" height="500"/>
+                      <preferredSize width="600" height="500"/>
+                    </properties>
+                    <border type="line">
+                      <color color="-16737895"/>
+                    </border>
+                    <children>
+                      <nested-form id="2972a" form-file="com/ptit/exam/ui/view/student/SettingExamGUI.form" binding="settingExamGUI">
+                        <constraints>
+                          <card name="settingExamGUI"/>
+                        </constraints>
+                      </nested-form>
+                      <nested-form id="a09c" form-file="com/ptit/exam/ui/view/student/IntroduceStudentGUI.form" binding="introduceStudentGUI">
+                        <constraints>
+                          <card name="introduceStudentGUI"/>
+                        </constraints>
+                      </nested-form>
+                      <nested-form id="60b91" form-file="com/ptit/exam/ui/view/student/ExamGUI.form" binding="examGUI">
+                        <constraints>
+                          <card name="examGUI"/>
+                        </constraints>
+                      </nested-form>
+                      <nested-form id="dca67" form-file="com/ptit/exam/ui/view/student/ResultGUI.form" binding="resultGUI">
+                        <constraints>
+                          <card name="resultGUI"/>
+                        </constraints>
+                      </nested-form>
+                    </children>
+                  </grid>
+                </children>
+              </scrollpane>
             </children>
           </grid>
         </children>
-      </grid>
+      </scrollpane>
     </children>
   </grid>
 </form>

@@ -39,7 +39,8 @@ import java.util.Set;
  * Time: 4:54 PM
  */
 @Component
-public class ResultController {
+public class ResultController
+{
     @Autowired
     MainStudentGUI mainStudentGUI;
     @Autowired
@@ -62,16 +63,19 @@ public class ResultController {
     private List<Student> studentList;
     private List<Exam> examList;
 
-    public void setUp() {
-        resetGUI();
+    public void setUp()
+    {
         setUpResultGUI();
         setUpActionListener();
     }
 
-    private void setUpActionListener() {
-        resultGUI.getBtnSearch().addActionListener(new ActionListener() {
+    private void setUpActionListener()
+    {
+        resultGUI.getBtnSearch().addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 doSearch();
             }
         });
@@ -79,67 +83,86 @@ public class ResultController {
 
         resultGUI.getComboBoxFaculty().addItemListener(itemListener);
         resultGUI.getComboBoxSubject().addItemListener(itemListener);
-
+        resultGUI.getComboBoxClass().addItemListener(itemListener);
+        resultGUI.getComboBoxExamination().addItemListener(itemListener);
     }
 
-    private ItemListener itemListener = new ItemListener() {
+    private ItemListener itemListener = new ItemListener()
+    {
         @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getSource() == resultGUI.getComboBoxFaculty()) {
+        public void itemStateChanged(ItemEvent e)
+        {
+            if (e.getSource() == resultGUI.getComboBoxFaculty())
+            {
                 String faculty = resultGUI.getComboBoxFaculty().getSelectedItem().toString();
-                if (!("".equals(faculty))) {
-                    Set<String> stringSet = new HashSet<String>();
-
-                    resultGUI.getComboBoxClass().removeAllItems();
-                    studentList = studentService.findByFaculty(faculty);
-                    for (Student student : studentList) {
-                        stringSet.add(student.getClassRoom());
-                    }
-
-                    for (String s : stringSet) {
-                        resultGUI.getComboBoxClass().addItem(s.intern());
-                    }
-
-                    subjectList = subjectService.findByFaculty(faculty);
-                    ComboboxManager.setListSubject(resultGUI.getComboBoxSubject(), subjectList);
-                    if (subjectList.size() == 0) {
-                        ComboboxManager.resetCombobox(resultGUI.getComboBoxExamination());
-                    } else {
-                        examList = examService.findBySubjectName(subjectList.get(resultGUI.getComboBoxSubject().getSelectedIndex()).getSubjectName());
-                        ComboboxManager.setListExam(resultGUI.getComboBoxExamination(), examList);
-                    }
-                }
+                setValuesOtherComboboxs(faculty);
             }
 
-            if (e.getSource() == resultGUI.getComboBoxSubject()) {
+            if (e.getSource() == resultGUI.getComboBoxSubject())
+            {
                 examList = examService.findBySubjectName(subjectList.get(resultGUI.getComboBoxSubject().getSelectedIndex()).getSubjectName());
                 ComboboxManager.setListExam(resultGUI.getComboBoxExamination(), examList);
             }
         }
     };
 
-    private void doSearch() {
+    private void setValuesOtherComboboxs(String faculty)
+    {
+        setComboboxClassValues(faculty);
+
+        subjectList = subjectService.findByFaculty(faculty);
+        ComboboxManager.setListSubject(resultGUI.getComboBoxSubject(), subjectList);
+        if (subjectList.size() == 0)
+        {
+            ComboboxManager.resetCombobox(resultGUI.getComboBoxExamination());
+        }
+        else
+        {
+            examList = examService.findBySubjectName(subjectList.get(resultGUI.getComboBoxSubject().getSelectedIndex()).getSubjectName());
+            ComboboxManager.setListExam(resultGUI.getComboBoxExamination(), examList);
+        }
+    }
+
+    private void setComboboxClassValues(String faculty)
+    {
+        Set<String> stringSet = new HashSet<String>();
+
+        resultGUI.getComboBoxClass().removeAllItems();
+        studentList = studentService.findByFaculty(faculty);
+        for (Student student : studentList)
+        {
+            stringSet.add(student.getClassRoom());
+        }
+
+        for (String s : stringSet)
+        {
+            resultGUI.getComboBoxClass().addItem(s.intern());
+        }
+    }
+
+    private void doSearch()
+    {
         resultList = getResultListBinding();
         resultListBinding = convertFromResultList(resultList);
 
         doBindingResult(resultListBinding, resultTable, resultScrollPane);
     }
 
-    private void resetGUI() {
-
-    }
-
-    private void setUpResultGUI() {
+    private void setUpResultGUI()
+    {
         resultGUI = mainStudentGUI.getResultGUI();
         resultTable = resultGUI.getTableResult();
         resultScrollPane = resultGUI.getResultScrollPanel();
 
         resultGUI.getComboBoxFaculty().setModel(new DefaultComboBoxModel(Constants.facultyList));
+        setValuesOtherComboboxs(Constants.facultyList[0]);
     }
 
-    private List<ResultDTOBinding> convertFromResultList(List<Result> resultList) {
+    private List<ResultDTOBinding> convertFromResultList(List<Result> resultList)
+    {
         List<ResultDTOBinding> resultListBinding = ObservableCollections.observableList(new ArrayList<ResultDTOBinding>());
-        for (Result result : resultList) {
+        for (Result result : resultList)
+        {
             ResultDTOBinding resultDTOBinding = new ResultDTOBinding();
 
             Exam exam = examService.findById(result.getExamId());
@@ -161,27 +184,33 @@ public class ResultController {
         return resultListBinding;
     }
 
-    private List<Result> getResultListBinding() {
+    private List<Result> getResultListBinding()
+    {
         String faculty = resultGUI.getComboBoxFaculty().getSelectedItem().toString();
-        String classRoom = resultGUI.getComboBoxClass().getSelectedItem().toString();
-        String subjectName = resultGUI.getComboBoxSubject().getSelectedItem().toString();
-        String examName = resultGUI.getComboBoxExamination().getSelectedItem().toString();
+        List<Result> list1 = resultService.findByFaculty(faculty);
 
-        List<Result> list1 = ("".equals(faculty)) ? resultService.getAll() : resultService.findByFaculty(faculty);
-        List<Result> list2 = ("".equals(classRoom)) ? resultService.getAll() : resultService.findByClassRoom(classRoom);
-        List<Result> list3 = ("".equals(subjectName)) ? resultService.getAll() : resultService.findBySubjectName(subjectName);
-        List<Result> list4 = ("".equals(examName)) ? resultService.getAll() : resultService.findByExamName(examName);
+        Object classRoom = resultGUI.getComboBoxClass().getSelectedItem();
+        Object subjectName = resultGUI.getComboBoxSubject().getSelectedItem();
+        Object examName = resultGUI.getComboBoxExamination().getSelectedItem();
+
+        List<Result> list2 = (classRoom != null) ? resultService.findByClassRoom(classRoom.toString()) : resultService.getAll();
+        List<Result> list3 = (subjectName != null) ? resultService.findBySubjectName(subjectName.toString()) : resultService.getAll();
+        List<Result> list4 = (examName != null) ? resultService.findByExamName(examName.toString()) : resultService.getAll();
+
         List<Result> searchList = new ArrayList<Result>();
 
-        for (Result result : list1) {
-            if (list2.contains(result) && list3.contains(result) && list4.contains(result)) {
+        for (Result result : list1)
+        {
+            if (list2.contains(result) && list3.contains(result) && list4.contains(result))
+            {
                 searchList.add(result);
             }
         }
         return searchList;
     }
 
-    private void doBindingResult(List<ResultDTOBinding> resultList, JTable jTable, JScrollPane jScrollPane) {
+    private void doBindingResult(List<ResultDTOBinding> resultList, JTable jTable, JScrollPane jScrollPane)
+    {
         TableBinding.bindingResult(resultList, jTable, jScrollPane);
 
         TextAreaRenderer textAreaRenderer = new TextAreaRenderer();

@@ -352,9 +352,9 @@ public class MainAdminGUI extends JFrame
         AdminCardPanel = new JPanel();
         AdminCardPanel.setLayout(new CardLayout(0, 0));
         AdminCardPanel.setInheritsPopupMenu(true);
-        AdminCardPanel.setMaximumSize(new Dimension(600, 560));
-        AdminCardPanel.setMinimumSize(new Dimension(600, 560));
-        AdminCardPanel.setPreferredSize(new Dimension(600, 560));
+        AdminCardPanel.setMaximumSize(new Dimension(600, 500));
+        AdminCardPanel.setMinimumSize(new Dimension(600, 500));
+        AdminCardPanel.setPreferredSize(new Dimension(600, 500));
         panel1.add(AdminCardPanel, cc.xy(3, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
         newExaminationGUI = new NewExaminationGUI();
         AdminCardPanel.add(newExaminationGUI.$$$getRootComponent$$$(), "newExaminationGUI");
@@ -377,9 +377,9 @@ public class MainAdminGUI extends JFrame
         questionBankGUI = new QuestionBankGUI();
         AdminCardPanel.add(questionBankGUI.$$$getRootComponent$$$(), "questionBankGUI");
         controlPanel.setLayout(new GridLayoutManager(6, 1, new Insets(0, 10, 0, 10), -1, -1));
-        controlPanel.setMaximumSize(new Dimension(100, 560));
-        controlPanel.setMinimumSize(new Dimension(100, 560));
-        controlPanel.setPreferredSize(new Dimension(100, 560));
+        controlPanel.setMaximumSize(new Dimension(80, 500));
+        controlPanel.setMinimumSize(new Dimension(80, 500));
+        controlPanel.setPreferredSize(new Dimension(80, 500));
         controlPanel.setRequestFocusEnabled(true);
         panel1.add(controlPanel, cc.xy(1, 3, CellConstraints.FILL, CellConstraints.FILL));
         controlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));

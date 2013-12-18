@@ -33,4 +33,5 @@ public class GlobalValues
 
     public static boolean SETTING_EXAM_ADD_ACTION = true;
     public static boolean EXAM_CARD_ACTION = true;
+    public static boolean DOING_EXAM = false;
 }

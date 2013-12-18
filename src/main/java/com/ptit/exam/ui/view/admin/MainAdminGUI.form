@@ -79,9 +79,9 @@
                 </constraints>
                 <properties>
                   <inheritsPopupMenu value="true"/>
-                  <maximumSize width="600" height="560"/>
-                  <minimumSize width="600" height="560"/>
-                  <preferredSize width="600" height="560"/>
+                  <maximumSize width="600" height="500"/>
+                  <minimumSize width="600" height="500"/>
+                  <preferredSize width="600" height="500"/>
                 </properties>
                 <border type="none"/>
                 <children>
@@ -144,9 +144,9 @@
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="100" height="560"/>
-                  <minimumSize width="100" height="560"/>
-                  <preferredSize width="100" height="560"/>
+                  <maximumSize width="80" height="500"/>
+                  <minimumSize width="80" height="500"/>
+                  <preferredSize width="80" height="500"/>
                   <requestFocusEnabled value="true"/>
                 </properties>
                 <border type="bevel-lowered"/>

@@ -2,12 +2,14 @@ package com.ptit.exam.ui.view.student;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import com.ptit.exam.ui.control.usercontroller.MainStudentController;
 import com.ptit.exam.ui.control.usercontroller.ResultController;
 import com.ptit.exam.ui.control.usercontroller.SettingExamController;
 import com.ptit.exam.ui.view.ChangePasswordGUI;
 import com.ptit.exam.ui.view.LoginGUI;
+import com.ptit.exam.util.GlobalValues;
 import com.ptit.exam.util.ImagePanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +29,7 @@ import java.awt.event.MouseEvent;
 @Component
 public class MainStudentGUI extends JFrame
 {
-    private JPanel studentPanel;
+    private JPanel mainPanel;
     private JButton btnStartExam;
     private JButton btnExamResults;
 
@@ -39,7 +41,8 @@ public class MainStudentGUI extends JFrame
     private JLabel lbLogOut;
     private JLabel lbUsername;
     private IntroduceStudentGUI introduceStudentGUI;
-    private JPanel logoPanel;
+    private JPanel headerPanel;
+    private JPanel controlPanel;
 
     private CardLayout cardLayout;
 
@@ -57,7 +60,8 @@ public class MainStudentGUI extends JFrame
 
     public MainStudentGUI()
     {
-        setContentPane(studentPanel);
+        $$$setupUI$$$();
+        setContentPane(mainPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = (int) tk.getScreenSize().getWidth();
@@ -70,8 +74,11 @@ public class MainStudentGUI extends JFrame
             @Override
             public void mousePressed(MouseEvent e)
             {
-                loginGUI.setVisible(true);
-                MainStudentGUI.this.setVisible(false);
+                if (!GlobalValues.DOING_EXAM)
+                {
+                    loginGUI.setVisible(true);
+                    MainStudentGUI.this.setVisible(false);
+                }
             }
         });
 
@@ -80,32 +87,36 @@ public class MainStudentGUI extends JFrame
             @Override
             public void mousePressed(MouseEvent e)
             {
-                changePasswordGUI.setVisible(true);
+                if (!GlobalValues.DOING_EXAM)
+                {
+                    changePasswordGUI.setVisible(true);
+                }
             }
         });
 
-        btnStartExam.addActionListener(new ActionListener()
+        btnStartExam.addActionListener(actionListener);
+        btnExamResults.addActionListener(actionListener);
+
+        cardLayout = (CardLayout) StudentCardPanel.getLayout();
+    }
+
+    private ActionListener actionListener = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
+            if (e.getSource() == btnStartExam)
             {
                 settingExamController.doSetUp();
                 mainStudentController.doShowSettingExamCard();
             }
-        });
-
-        btnExamResults.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
+            if (e.getSource() == btnExamResults)
             {
                 resultController.setUp();
                 mainStudentController.doShowResultCard();
             }
-        });
-        cardLayout = (CardLayout) StudentCardPanel.getLayout();
-        cardLayout.show(StudentCardPanel, "introduceStudentGUI");
-    }
+        }
+    };
 
     public ExamGUI getExamGUI()
     {
@@ -163,29 +174,41 @@ public class MainStudentGUI extends JFrame
      */
     private void $$$setupUI$$$()
     {
-        studentPanel = new JPanel();
-        studentPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
-        studentPanel.setEnabled(false);
-        studentPanel.setFont(new Font(studentPanel.getFont().getName(), Font.BOLD | Font.ITALIC, studentPanel.getFont().getSize()));
-        studentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16751002)), null));
+        createUIComponents();
+        mainPanel.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+        headerPanel.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:96px:grow"));
+        mainPanel.add(headerPanel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        lbLogOut = new JLabel();
+        lbLogOut.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        lbLogOut.setForeground(new Color(-3407872));
+        lbLogOut.setText("Log out");
+        CellConstraints cc = new CellConstraints();
+        headerPanel.add(lbLogOut, new CellConstraints(3, 3, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(0, 0, 0, 20)));
+        lbUsername = new JLabel();
+        lbUsername.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        lbUsername.setForeground(new Color(-3407872));
+        lbUsername.setHorizontalAlignment(4);
+        lbUsername.setHorizontalTextPosition(0);
+        lbUsername.setMaximumSize(new Dimension(250, 37));
+        lbUsername.setMinimumSize(new Dimension(250, 37));
+        lbUsername.setPreferredSize(new Dimension(250, 37));
+        lbUsername.setText("");
+        headerPanel.add(lbUsername, new CellConstraints(3, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT, new Insets(20, 0, 0, 20)));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        mainPanel.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new BorderLayout(0, 0));
-        studentPanel.add(panel1, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel2, BorderLayout.WEST);
-        btnStartExam = new JButton();
-        btnStartExam.setText("Bắt Đầu Thi");
-        panel2.add(btnStartExam, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btnExamResults = new JButton();
-        btnExamResults.setText("Xem kết quả thi");
-        panel2.add(btnExamResults, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.setLayout(new FormLayout("fill:d:grow,left:4dlu:noGrow,fill:d:grow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        scrollPane1.setViewportView(panel1);
+
         StudentCardPanel = new JPanel();
         StudentCardPanel.setLayout(new CardLayout(0, 0));
-        StudentCardPanel.setBackground(new Color(-6710785));
-        panel1.add(StudentCardPanel, BorderLayout.CENTER);
+        StudentCardPanel.setInheritsPopupMenu(true);
+        StudentCardPanel.setMaximumSize(new Dimension(600, 500));
+        StudentCardPanel.setMinimumSize(new Dimension(600, 500));
+        StudentCardPanel.setPreferredSize(new Dimension(600, 500));
+
+        panel1.add(StudentCardPanel, cc.xy(3, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
         StudentCardPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16737895)), null));
         introduceStudentGUI = new IntroduceStudentGUI();
         StudentCardPanel.add(introduceStudentGUI.$$$getRootComponent$$$(), "introduceStudentGUI");
@@ -195,14 +218,33 @@ public class MainStudentGUI extends JFrame
         StudentCardPanel.add(resultGUI.$$$getRootComponent$$$(), "resultGUI");
         settingExamGUI = new SettingExamGUI();
         StudentCardPanel.add(settingExamGUI.$$$getRootComponent$$$(), "settingExamGUI");
-        lbLogOut = new JLabel();
-        lbLogOut.setFont(new Font(lbLogOut.getFont().getName(), Font.BOLD | Font.ITALIC, lbLogOut.getFont().getSize()));
-        lbLogOut.setText("Log out");
-        studentPanel.add(lbLogOut, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        lbUsername = new JLabel();
-        lbUsername.setFont(new Font(lbUsername.getFont().getName(), Font.BOLD, lbUsername.getFont().getSize()));
-        lbUsername.setText("");
-        studentPanel.add(lbUsername, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
+        controlPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 10, 0, 10), -1, -1));
+        controlPanel.setMaximumSize(new Dimension(80, 500));
+        controlPanel.setMinimumSize(new Dimension(80, 500));
+        controlPanel.setPreferredSize(new Dimension(80, 500));
+        controlPanel.setRequestFocusEnabled(true);
+        panel1.add(controlPanel, cc.xy(1, 3, CellConstraints.FILL, CellConstraints.FILL));
+        controlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), null));
+
+        btnStartExam = new JButton();
+        btnStartExam.setBorderPainted(false);
+        btnStartExam.setContentAreaFilled(false);
+        btnStartExam.setIcon(new ImageIcon(getClass().getResource("/images/btn_do_exam.png")));
+        btnStartExam.setMargin(new Insets(0, 0, 0, 0));
+        btnStartExam.setText("");
+        controlPanel.add(btnStartExam, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
+        btnExamResults = new JButton();
+        btnExamResults.setBorderPainted(false);
+        btnExamResults.setContentAreaFilled(false);
+        btnExamResults.setIcon(new ImageIcon(getClass().getResource("/images/btn_view_result.png")));
+        btnExamResults.setMargin(new Insets(0, 0, 0, 0));
+        btnExamResults.setText("");
+        controlPanel.add(btnExamResults, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
+//        final Spacer spacer1 = new Spacer();
+//        controlPanel.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(109, 14), null, 0, false));
     }
 
     /**
@@ -210,12 +252,13 @@ public class MainStudentGUI extends JFrame
      */
     public JComponent $$$getRootComponent$$$()
     {
-        return studentPanel;
+        return mainPanel;
     }
 
     private void createUIComponents()
     {
-        studentPanel = new ImagePanel("background_content.jpg");
-        logoPanel = new ImagePanel("header_image.png");
+        mainPanel = new ImagePanel("background_content.jpg");
+        headerPanel = new ImagePanel("header_image.png");
+        controlPanel = new ImagePanel("background_sub_panel.jpg");
     }
 }

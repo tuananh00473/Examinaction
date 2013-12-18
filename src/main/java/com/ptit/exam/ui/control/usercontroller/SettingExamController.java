@@ -29,7 +29,8 @@ import java.util.List;
  * Time: 11:46 AM
  */
 @Component
-public class SettingExamController {
+public class SettingExamController
+{
     @Autowired
     MainStudentGUI mainStudentGUI;
 
@@ -53,98 +54,117 @@ public class SettingExamController {
     private JComboBox cbSubjectExam;
     private SettingExamGUI settingExamGUI;
 
-    public void doSetUp() {
+    public void doSetUp()
+    {
         setUpViewSetting();
         setUpActionListener();
 
     }
 
-    private void resetCbSubjectExam() {
-        settingExamGUI.getCbSubjectExam().removeAllItems();
-    }
-
-    private void setUpActionListener() {
-        if (GlobalValues.SETTING_EXAM_ADD_ACTION) {
+    private void setUpActionListener()
+    {
+        if (GlobalValues.SETTING_EXAM_ADD_ACTION)
+        {
             settingExamGUI.getBtnStart().addActionListener(actionListener);
             cbSubjectExam.addItemListener(itemListener);
         }
         GlobalValues.SETTING_EXAM_ADD_ACTION = false;
     }
 
-    private ItemListener itemListener = new ItemListener() {
+    private ItemListener itemListener = new ItemListener()
+    {
         @Override
-        public void itemStateChanged(ItemEvent e) {
+        public void itemStateChanged(ItemEvent e)
+        {
             GlobalValues.exam = null;
             int indexSelected = cbSubjectExam.getSelectedIndex();
-            if (-1 != indexSelected) {
+            if (-1 != indexSelected)
+            {
                 setInfoAboutExam(subjectList.get(indexSelected));
-            } else {
-                settingExamGUI.setUpExamInfo(new Exam());
+            }
+            else
+            {
+                settingExamGUI.resetExamInfo();
             }
         }
     };
 
-    private void setInfoAboutExam(Subject subject) {
+    private void setInfoAboutExam(Subject subject)
+    {
         GlobalValues.subject = subject;
         List<Exam> examList = examService.findBySubjectCode(subject.getSubjectCode());
-        if (0 == examList.size()) {
-            settingExamGUI.setUpExamInfo(new Exam());
+        if (0 == examList.size())
+        {
+            settingExamGUI.resetExamInfo();
         }
-        for (Exam exam : examList) {
-            if (exam.isActive()) {
-                settingExamGUI.setUpExamInfo(exam);
-                GlobalValues.exam = exam;
-                break;
+        else
+        {
+            for (Exam exam : examList)
+            {
+                if (exam.isActive())
+                {
+                    settingExamGUI.setUpExamInfo(exam);
+                    GlobalValues.exam = exam;
+                    break;
+                }
             }
-            if (null == GlobalValues.exam) {
-                settingExamGUI.setUpExamInfo(new Exam());
+            if (null == GlobalValues.exam)
+            {
+                settingExamGUI.resetExamInfo();
             }
         }
     }
 
-    private ActionListener actionListener = new ActionListener() {
+    private ActionListener actionListener = new ActionListener()
+    {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == settingExamGUI.getBtnStart()) {
-                if (null == GlobalValues.exam) {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (e.getSource() == settingExamGUI.getBtnStart())
+            {
+                if (null == GlobalValues.exam)
+                {
                     MessageManager.show("Đề thi chưa được kích hoạt.");
-                } else {
+                }
+                else
+                {
                     ExamCard examCard = examCardService.findByStudentIdAndSubjectId(GlobalValues.student.getId(), GlobalValues.subject.getId());
                     Result result = resultService.findByExamIdAndStudentId(GlobalValues.exam.getId(), GlobalValues.student.getId());
-                    if (null != result) {
+                    if (null != result)
+                    {
                         MessageManager.show("Bạn đã thực hiện thi môn này rồi.");
                         return;
                     }
-                    if (!examCard.isCanDoExam()) {
+                    if (!examCard.isCanDoExam())
+                    {
                         MessageManager.show("Bạn không được phép dự thi môn " + GlobalValues.subject.getSubjectName());
                         return;
                     }
                     examController.doSetUp();
-                    isEnableButton();
+                    setEnableButtons(false);
+                    GlobalValues.DOING_EXAM = true;
                     mainStudentController.doShowExamCard();
                 }
             }
         }
     };
 
-    private void isEnableButton() {
-        mainStudentGUI.getBtnStartExam().setEnabled(false);
-        mainStudentGUI.getBtnExamResults().setEnabled(false);
+    public void setEnableButtons(boolean bool)
+    {
+        mainStudentGUI.getBtnStartExam().setEnabled(bool);
+        mainStudentGUI.getBtnExamResults().setEnabled(bool);
     }
 
-    public void resetEnableButton() {
-        mainStudentGUI.getBtnStartExam().setEnabled(true);
-        mainStudentGUI.getBtnExamResults().setEnabled(true);
-    }
-
-    private void setUpViewSetting() {
+    private void setUpViewSetting()
+    {
         settingExamGUI = mainStudentGUI.getSettingExamGUI();
         cbSubjectExam = settingExamGUI.getCbSubjectExam();
         settingExamGUI.setInfoAboutStudentToField(GlobalValues.student);
         subjectList = subjectService.findByStudentId(GlobalValues.student.getId());
-
+        settingExamGUI.resetExamInfo();
         ComboboxManager.setListSubject(cbSubjectExam, subjectList);
-        if (subjectList.size() != 0) {
+        if (subjectList.size() != 0)
+        {
             setInfoAboutExam(subjectList.get(0));
         }
     }

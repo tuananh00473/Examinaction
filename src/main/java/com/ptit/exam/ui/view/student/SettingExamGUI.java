@@ -36,26 +36,6 @@ public class SettingExamGUI extends JPanel
         return btnStart;
     }
 
-    public JLabel getLbStudentCode()
-    {
-        return lbStudentCode;
-    }
-
-    public JLabel getLbDateOfBirth()
-    {
-        return lbDateOfBirth;
-    }
-
-    public JLabel getLbFaculty()
-    {
-        return lbFaculty;
-    }
-
-    public JLabel getLbClass()
-    {
-        return lbClass;
-    }
-
     public JComboBox getCbSubjectExam()
     {
         return cbSubjectExam;
@@ -72,20 +52,18 @@ public class SettingExamGUI extends JPanel
 
     public void setUpExamInfo(Exam exam)
     {
-        if (!exam.equals(new Exam()))
-        {
-            lbExamCode.setText(exam.getExamCode());
-            lbExamName.setText(exam.getExamName());
-            lbTotalQuestionCount.setText(String.valueOf(exam.getTotalQuestion()));
-            lbTotalTimeCount.setText(String.valueOf(exam.getTotalTime()));
-        }
-        else
-        {
-            lbExamCode.setText("");
-            lbExamName.setText("");
-            lbTotalQuestionCount.setText("");
-            lbTotalTimeCount.setText("");
-        }
+        lbExamCode.setText(exam.getExamCode());
+        lbExamName.setText(exam.getExamName());
+        lbTotalQuestionCount.setText(String.valueOf(exam.getTotalQuestion()));
+        lbTotalTimeCount.setText(String.valueOf(exam.getTotalTime()));
+    }
+
+    public void resetExamInfo()
+    {
+        lbExamCode.setText("");
+        lbExamName.setText("");
+        lbTotalQuestionCount.setText("");
+        lbTotalTimeCount.setText("");
     }
 
     private void createUIComponents()
